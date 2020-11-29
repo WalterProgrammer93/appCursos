@@ -6,16 +6,14 @@ public class Alumno {
     private String nombreAlumno;
     private String apellidosAlumno;
     private String dni;
-    private String genero;
-    private String telefono;
+    private String telefono_alumno;
     private Asignatura asignatura;
 
-    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String genero, String telefono, Asignatura asignatura) {
+    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String telefono_alumno, Asignatura asignatura) {
         this.nombreAlumno = nombreAlumno;
         this.apellidosAlumno = apellidosAlumno;
         this.dni = dni;
-        this.genero = genero;
-        this.telefono = telefono;
+        this.telefono_alumno = telefono_alumno;
         this.asignatura = asignatura;
     }
 
@@ -43,20 +41,12 @@ public class Alumno {
         this.dni = dni;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getTelefonoAlumno() {
+        return telefono_alumno;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefonoAlumno(String telefono_alumno) {
+        this.telefono_alumno = telefono_alumno;
     }
 
     public Asignatura getAsignatura() {

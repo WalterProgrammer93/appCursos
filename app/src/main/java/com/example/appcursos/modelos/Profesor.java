@@ -6,14 +6,14 @@ public class Profesor {
     private String nombreProfesor;
     private String apellidosProfesor;
     private String departamento;
-    private String telefono;
+    private String telefono_profesor;
     private Asignatura asignatura;
 
-    public Profesor(String nombreProfesor, String apellidosProfesor, String departamento, String telefono, Asignatura asignatura) {
+    public Profesor(String nombreProfesor, String apellidosProfesor, String departamento, String telefono_profesor, Asignatura asignatura) {
         this.nombreProfesor = nombreProfesor;
         this.apellidosProfesor = apellidosProfesor;
         this.departamento = departamento;
-        this.telefono = telefono;
+        this.telefono_profesor = telefono_profesor;
         this.asignatura = asignatura;
     }
 
@@ -41,12 +41,12 @@ public class Profesor {
         this.departamento = departamento;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTelefono_profesor() {
+        return telefono_profesor;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefono_profesor(String telefono_profesor) {
+        this.telefono_profesor = telefono_profesor;
     }
 
     public Asignatura getAsignatura() {
