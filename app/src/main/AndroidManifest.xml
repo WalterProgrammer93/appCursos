@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.appcursos" >
+    package="com.example.appcursos">
 
     <application
         android:allowBackup="true"
@@ -8,8 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".actividades.MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".actividades.ProfesoresActivity"></activity>
+        <activity android:name=".actividades.AsignaturasActivity" />
+        <activity android:name=".actividades.AlumnosActivity" />
+        <activity android:name=".actividades.CursosActivity" />
+        <activity android:name=".actividades.MenuActivity" />
+        <activity android:name=".actividades.RegistrarseActivity" />
+        <activity android:name=".actividades.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
