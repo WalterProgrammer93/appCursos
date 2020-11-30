@@ -18,4 +18,11 @@
     <string name="lb_asignaturas">Asignaturas</string>
     <string name="lb_profesores">Profesores</string>
     <string name="lb_usuarios">Usuarios</string>
+    <string name="llamar">Llamar</string>
+    <string name="marcar">Marcar</string>
+    <string name="sms">Mensajes</string>
+    <string name="contactos">Contactos</string>
+    <string name="camara">Camara</string>
+    <string name="mapa">Mapa</string>
+    <string name="salir">Salir</string>
 </resources>
