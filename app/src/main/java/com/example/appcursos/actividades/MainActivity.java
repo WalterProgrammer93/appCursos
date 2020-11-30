@@ -47,20 +47,20 @@ public class MainActivity extends AppCompatActivity {
                     String password = password_login.getText().toString();
 
                     //Authenticate User
-                    Usuario usuario = ubd.Authenticate(new Usuario(null, null, email, password));
+                    Usuario usuario = ubd.Authenticate(new Usuario(email, password));
 
                     //Check Authentication is successful or not
                     if (usuario != null) {
-                        Intent menu = new Intent(MainActivity.this, MenuActivity.class);
+                        Intent menu = new Intent(getApplicationContext(), MenuActivity.class);
                         menu.putExtra("Email", usuario.getEmail());
                         menu.putExtra("Name", usuario.getUsername());
                         startActivity(menu);
                         email_login.setText("");
                         password_login.setText("");
-                        Toast.makeText(MainActivity.this, "Bienvenido a appCursos" + usuario.getUsername(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Bienvenido a appCursos" + usuario.getUsername(), Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Toast.makeText(MainActivity.this, " Failed to Logged in!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), " Failed to Logged in!", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btn_registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registrarse = new Intent(MainActivity.this, RegistrarseActivity.class);
+                Intent registrarse = new Intent(getApplicationContext(), RegistrarseActivity.class);
                 startActivity(registrarse);
             }
         });
