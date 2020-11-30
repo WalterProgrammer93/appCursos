@@ -24,50 +24,50 @@ public class UsuarioBD {
     private static final String COL_USUARIO_PASSWORD = "password";
     private static final int NUM_COL_USUARIO_PASSWORD = 4;
 
-    SQLiteDatabase bd;
-    AdminBD abd;
+    private SQLiteDatabase bd;
+    private AdminBD abd;
 
     public UsuarioBD(Context context) {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void insertarUsuario(Usuario usuario) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_NAME, usuario.getUsername());
         registro.put(COL_USUARIO_EMAIL, usuario.getEmail());
         registro.put(COL_USUARIO_ROL, usuario.getRol());
         registro.put(COL_USUARIO_PASSWORD, usuario.getPassword());
         bd.insert(TABLA_USUARIOS, null, registro);
-        abd.cerrarBD();
+        bd.close();
     }
     public void editarUsuario(int id, Usuario usuario) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_NAME, usuario.getUsername());
         registro.put(COL_USUARIO_EMAIL, usuario.getEmail());
         registro.put(COL_USUARIO_ROL, usuario.getRol());
         registro.put(COL_USUARIO_PASSWORD, usuario.getPassword());
         bd.update(TABLA_USUARIOS, registro, COL_USUARIO_ID + "=" + id,null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void eliminarUsuario(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         bd.delete(TABLA_USUARIOS, COL_USUARIO_NAME + "=" + nombre, null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public Usuario buscarUsuario(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD}, COL_USUARIO_NAME
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_USUARIO_NAME);
-        abd.cerrarBD();
+        bd.close();
         return seleccionarUsuario(cursor);
     }
 
     private Usuario seleccionarUsuario(Cursor cursor) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -79,11 +79,11 @@ public class UsuarioBD {
         usuario.setRol(cursor.getString(NUM_COL_USUARIO_ROL));
         usuario.setPassword(cursor.getString(NUM_COL_USUARIO_PASSWORD));
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return usuario;
     }
     ArrayList<Usuario> listarUsuarios() {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {
                 COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD
         }, null, null, null, null, COL_USUARIO_NAME);
@@ -103,7 +103,7 @@ public class UsuarioBD {
             listaUsuario.add(usuario);
         }
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return listaUsuario;
     }
 
@@ -117,7 +117,7 @@ public class UsuarioBD {
                 COL_USUARIO_ROL,
                 COL_USUARIO_PASSWORD
         };
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
 
         Cursor cursor = bd.query(TABLA_USUARIOS, //Table to query
                 columns,                    //columns to return
@@ -143,7 +143,7 @@ public class UsuarioBD {
 
         }
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return null;
     }
 
@@ -157,7 +157,7 @@ public class UsuarioBD {
         //Selection Args
         String[] selection_Args = {email};
 
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         //Query
         Cursor cursor = bd.query(TABLA_USUARIOS,
                 columns,
@@ -172,7 +172,7 @@ public class UsuarioBD {
             return true;
         }
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return false;
     }
 

@@ -107,16 +107,4 @@ public class AdminBD  extends SQLiteOpenHelper {
         bd.execSQL(DROP_TABLE_PROFESORES);
         onCreate(bd);
     }
-
-    void escribirBD() {
-        bd  = this.getWritableDatabase();
-    }
-
-    void leerBD() {
-        bd = this.getReadableDatabase();
-    }
-
-    void cerrarBD() {
-        bd.close();
-    }
 }
