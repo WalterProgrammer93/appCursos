@@ -129,9 +129,10 @@ public class UsuarioBD {
         if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
             do {
 
-                Usuario user = new Usuario(cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)),
+                Usuario user = new Usuario(cursor.getInt(cursor.getColumnIndex(COL_USUARIO_ID)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_NAME)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_EMAIL)),
+                        cursor.getString(cursor.getColumnIndex(COL_USUARIO_ROL)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_PASSWORD)));
 
                 if (user.getPassword().equalsIgnoreCase(usuario.getPassword()) && user.getEmail().equals(usuario.getEmail())) {

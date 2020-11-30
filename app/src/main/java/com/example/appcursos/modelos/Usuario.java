@@ -26,17 +26,17 @@ public class Usuario {
         this.password = password;
     }
 
+    public Usuario(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public int getUsuarioId() {
         return usuarioId;
     }
 
     public void setUsuarioId(int usuarioId) {
         this.usuarioId = usuarioId;
-    }
-
-    public Usuario(String email, String password) {
-        this.email = email;
-        this.password = password;
     }
 
     public String getUsername() {

@@ -54,6 +54,20 @@
                 tools:targetApi="o" />
 
             <EditText
+                android:id="@+id/et_rol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:autofillHints="@string/descripcion"
+                android:ems="10"
+                android:hint="@string/rol"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@+id/et_email"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="16dp"
+                tools:targetApi="o" />
+
+            <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +76,7 @@
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                app:layout_constraintTop_toBottomOf="@+id/et_email"
+                app:layout_constraintTop_toBottomOf="@+id/et_rol"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="25dp"
                 tools:targetApi="o" />
@@ -101,6 +115,7 @@
                 android:background="@color/colorAccent"
                 android:text="@string/cancelar"
                 android:textColor="@color/blanco"
+                app:layout_constraintTop_toBottomOf="@+id/btn_añadir"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
     </ScrollView>

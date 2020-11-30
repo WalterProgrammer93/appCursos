@@ -10,4 +10,12 @@
     <string name="añadir">Añadir</string>
     <string name="cancelar">Cancelar</string>
     <string name="descripcion">Descripcion</string>
+    <string name="rol">Rol</string>
+    <string name="lb_registrarse">Registrarse</string>
+    <string name="lb_menu">Menu</string>
+    <string name="lb_cursos">Cursos</string>
+    <string name="lb_alumnos">Alumnos</string>
+    <string name="lb_asignaturas">Asignaturas</string>
+    <string name="lb_profesores">Profesores</string>
+    <string name="lb_usuarios">Usuarios</string>
 </resources>
