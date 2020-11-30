@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     String password = password_login.getText().toString();
 
                     //Authenticate User
-                    Usuario usuario = ubd.Authenticate(new Usuario(email, password));
+                    Usuario usuario = ubd.Authenticate(new Usuario(null, null, email, password));
 
                     //Check Authentication is successful or not
                     if (usuario != null) {
