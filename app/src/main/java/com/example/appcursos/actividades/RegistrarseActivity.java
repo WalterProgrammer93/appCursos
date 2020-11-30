@@ -47,7 +47,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
                         ubd.insertarUsuario(new Usuario(username, email, rol, pass));
-                        Toast.makeText(getApplicationContext(), "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_LONG).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -56,10 +56,10 @@ public class RegistrarseActivity extends AppCompatActivity {
                         }, Toast.LENGTH_LONG);
 
                     } else if (!confirmPassword.equals(pass)) {
-                        Toast.makeText(getApplicationContext(), "La contraseña no coincide ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "La contraseña no coincide ", Toast.LENGTH_LONG).show();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "El usuario ya existe, Verifique su email ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "El usuario ya existe, Verifique su email ", Toast.LENGTH_LONG).show();
 
                     }
                 }
@@ -70,7 +70,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // REGRESAR AL LOGIN
-                Intent cancelar = new Intent(getApplicationContext(), MainActivity.class);
+                Intent cancelar = new Intent(RegistrarseActivity.this, MainActivity.class);
                 startActivity(cancelar);
             }
         });
@@ -78,7 +78,7 @@ public class RegistrarseActivity extends AppCompatActivity {
     }
 
     private boolean validar() {
-        boolean valido;
+        boolean valido = false;
         String UserName = et_username.getText().toString();
         String Email = et_email.getText().toString();
         String Rol = et_rol.getText().toString();

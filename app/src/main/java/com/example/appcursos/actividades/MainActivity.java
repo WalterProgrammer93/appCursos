@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(menu);
                         email_login.setText("");
                         password_login.setText("");
-                        Toast.makeText(getApplicationContext(), "Bienvenido a appCursos" + usuario.getUsername(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Bienvenido a appCursos" + usuario.getUsername(), Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), " Failed to Logged in!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, " Failed to Logged in!", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btn_registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registrarse = new Intent(getApplicationContext(), RegistrarseActivity.class);
+                Intent registrarse = new Intent(MainActivity.this, RegistrarseActivity.class);
                 startActivity(registrarse);
             }
         });
