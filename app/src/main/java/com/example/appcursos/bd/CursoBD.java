@@ -26,15 +26,15 @@ public class CursoBD {
     private static final String COL_TEMAS = "temas";
     private static final int NUM_COL_TEMAS = 5;
 
-    SQLiteDatabase bd;
-    AdminBD abd;
+    private SQLiteDatabase bd;
+    private AdminBD abd;
 
     public CursoBD(Context context) {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void insertarCurso(Curso curso) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_CURSO, curso.getNombreCurso());
         registro.put(COL_CENTRO, curso.getCentro());
@@ -42,11 +42,11 @@ public class CursoBD {
         registro.put(COL_DISPONIBILIDAD, curso.getDisponibilidad());
         registro.put(COL_TEMAS, curso.getTemas());
         bd.insert(TABLA_CURSOS, null, registro);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void editarCurso(int id, Curso curso) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_CURSO, curso.getNombreCurso());
         registro.put(COL_CENTRO, curso.getCentro());
@@ -54,25 +54,25 @@ public class CursoBD {
         registro.put(COL_DISPONIBILIDAD, curso.getDisponibilidad());
         registro.put(COL_TEMAS, curso.getTemas());
         bd.update(TABLA_CURSOS, registro, COL_CURSO_ID + "=" + id,null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void eliminarCurso(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         bd.delete(TABLA_CURSOS, COL_NOMBRE_CURSO + "=" + nombre, null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public Curso buscarCurso(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_NUM_ALUMNOS, COL_DISPONIBILIDAD, COL_TEMAS}, COL_NOMBRE_CURSO
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_CURSO);
-        abd.cerrarBD();
+        bd.close();
         return seleccionarCurso(cursor);
     }
 
     public Curso seleccionarCurso(Cursor cursor) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -85,11 +85,11 @@ public class CursoBD {
         curso.setDisponibilidad(cursor.getString(NUM_COL_DISPONIBILIDAD));
         curso.setTemas(cursor.getString(NUM_COL_TEMAS));
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return curso;
     }
     public ArrayList<Curso> listarCurso() {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {
                 COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_NUM_ALUMNOS, COL_DISPONIBILIDAD
         }, null, null, null, null, null, COL_NOMBRE_CURSO);
@@ -110,7 +110,7 @@ public class CursoBD {
             listaCurso.add(curso);
         }
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return listaCurso;
     }
 }

@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.appcursos.modelos.Profesor;
-
 import java.util.ArrayList;
 
 public class ProfesorBD {
@@ -28,15 +26,15 @@ public class ProfesorBD {
     private static final String COL_ASIGNATURA_ID = "asignatura_id";
     private static final int NUM_COL_ASIGNATURA_ID = 5;
 
-    SQLiteDatabase bd;
-    AdminBD abd;
+    private SQLiteDatabase bd;
+    private AdminBD abd;
 
     public ProfesorBD(Context context) {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void insertarProfesor(Profesor profesor) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_PROFESOR, profesor.getNombreProfesor());
         registro.put(COL_APELLIDOS_PROFESOR, profesor.getApellidosProfesor());
@@ -44,11 +42,11 @@ public class ProfesorBD {
         registro.put(COL_TELEFONO_PROFESOR, profesor.getTelefonoProfesor());
         registro.put(COL_ASIGNATURA_ID, profesor.getAsignatura().getAsignaturaId());
         bd.insert(TABLA_PROFESORES, null, registro);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void editarProfesor(int id, Profesor profesor) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_PROFESOR, profesor.getNombreProfesor());
         registro.put(COL_APELLIDOS_PROFESOR, profesor.getApellidosProfesor());
@@ -56,25 +54,25 @@ public class ProfesorBD {
         registro.put(COL_TELEFONO_PROFESOR, profesor.getTelefonoProfesor());
         registro.put(COL_ASIGNATURA_ID, profesor.getAsignatura().getAsignaturaId());
         bd.update(TABLA_PROFESORES, registro, COL_ASIGNATURA_ID + "=" + id,null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void eliminarProfesor(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         bd.delete(TABLA_PROFESORES, COL_NOMBRE_PROFESOR + "=" + nombre, null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public Profesor buscarProfesor(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_PROFESORES, new String[] {COL_PROFESOR_ID, COL_NOMBRE_PROFESOR, COL_APELLIDOS_PROFESOR, COL_DEPARTAMENTO, COL_TELEFONO_PROFESOR, COL_ASIGNATURA_ID}, COL_NOMBRE_PROFESOR
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_PROFESOR);
-        abd.cerrarBD();
+        bd.close();
         return seleccionarProfesor(cursor);
     }
 
     public Profesor seleccionarProfesor(Cursor cursor) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -86,11 +84,11 @@ public class ProfesorBD {
         profesor.setDepartamento(cursor.getString(NUM_COL_DEPARTAMENTO));
         profesor.setTelefonoProfesor(cursor.getString(NUM_COL_TELEFONO_PROFESOR));
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return profesor;
     }
     public ArrayList<Profesor> listarProfesor() {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_PROFESORES, new String[] {
                 COL_PROFESOR_ID, COL_NOMBRE_PROFESOR, COL_APELLIDOS_PROFESOR, COL_DEPARTAMENTO, COL_TELEFONO_PROFESOR, COL_ASIGNATURA_ID
         }, null, null, null, null, null, COL_NOMBRE_PROFESOR);
@@ -110,7 +108,7 @@ public class ProfesorBD {
             listaProfesor.add(profesor);
         }
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return listaProfesor;
     }
 }

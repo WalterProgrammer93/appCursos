@@ -22,49 +22,49 @@ public class AsignaturaBD {
     private static final String COL_CURSO_ID = "curso_id";
     private static final int NUM_COL_CURSO_ID = 3;
 
-    SQLiteDatabase bd;
-    AdminBD abd;
+    private SQLiteDatabase bd;
+    private AdminBD abd;
 
     public AsignaturaBD(Context context) {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void insertarAsignatura(Asignatura asignatura) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ASIGNATURA, asignatura.getNombreAsignatura());
         registro.put(COL_DESCRIPCION_ASIGNATURA, asignatura.getDescripcionAsignatura());
         registro.put(COL_CURSO_ID, asignatura.getCurso().getCursoId());
         bd.insert(TABLA_ASIGNATURAS, null, registro);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void editarAsignatura(int id, Asignatura asignatura) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ASIGNATURA, asignatura.getNombreAsignatura());
         registro.put(COL_DESCRIPCION_ASIGNATURA, asignatura.getDescripcionAsignatura());
         registro.put(COL_CURSO_ID, asignatura.getCurso().getCursoId());
         bd.update(TABLA_ASIGNATURAS, registro, COL_ASIGNATURA_ID + "=" + id,null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void eliminarAsignatura(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         bd.delete(TABLA_ASIGNATURAS, COL_NOMBRE_ASIGNATURA + "=" + nombre, null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public Asignatura buscarAsignatura(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA}, COL_NOMBRE_ASIGNATURA
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_ASIGNATURA);
-        abd.cerrarBD();
+        bd.close();
         return seleccionarAsignatura(cursor);
     }
 
     public Asignatura seleccionarAsignatura(Cursor cursor) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -74,11 +74,11 @@ public class AsignaturaBD {
         asignatura.setNombreAsignatura(cursor.getString(NUM_COL_NOMBRE_ASIGNATURA));
         asignatura.setDescripcionAsignatura(cursor.getString(NUM_COL_DESCRIPCION_ASIGNATURA));
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return asignatura;
     }
     public ArrayList<Asignatura> listarAsignatura() {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {
                 COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA
         }, null, null, null, null, null, COL_NOMBRE_ASIGNATURA);
@@ -96,7 +96,7 @@ public class AsignaturaBD {
             listaAsignatura.add(asignatura);
         }
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return listaAsignatura;
     }
 }

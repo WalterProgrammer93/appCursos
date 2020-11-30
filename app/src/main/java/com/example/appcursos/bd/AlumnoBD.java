@@ -26,15 +26,15 @@ public class AlumnoBD {
     private static final String COL_ASIGNATURA_ID = "asignatura_id";
     private static final int NUM_COL_ASIGNATURA_ID = 5;
 
-    SQLiteDatabase bd;
-    AdminBD abd;
+    private SQLiteDatabase bd;
+    private AdminBD abd;
 
     public AlumnoBD(Context context) {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void insertarAlumno(Alumno alumno) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ALUMNO, alumno.getNombreAlumno());
         registro.put(COL_APELLIDOS_ALUMNO, alumno.getApellidosAlumno());
@@ -42,11 +42,11 @@ public class AlumnoBD {
         registro.put(COL_TELEFONO_ALUMNO, alumno.getTelefonoAlumno());
         registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura().getAsignaturaId());
         bd.insert(TABLA_ALUMNOS, null, registro);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void editarAlumno(int id, Alumno alumno) {
-        abd.escribirBD();
+        bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ALUMNO, alumno.getNombreAlumno());
         registro.put(COL_APELLIDOS_ALUMNO, alumno.getApellidosAlumno());
@@ -54,25 +54,25 @@ public class AlumnoBD {
         registro.put(COL_TELEFONO_ALUMNO, alumno.getTelefonoAlumno());
         registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura().getAsignaturaId());
         bd.update(TABLA_ALUMNOS, registro, COL_ASIGNATURA_ID + "=" + id,null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public void eliminarAlumno(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         bd.delete(TABLA_ALUMNOS, COL_NOMBRE_ALUMNO + "=" + nombre, null);
-        abd.cerrarBD();
+        bd.close();
     }
 
     public Alumno buscarAlumno(String nombre) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ALUMNOS, new String[] {COL_ALUMNO_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_ASIGNATURA_ID}, COL_NOMBRE_ALUMNO
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_ALUMNO);
-        abd.cerrarBD();
+        bd.close();
         return seleccionarAlumno(cursor);
     }
 
     public Alumno seleccionarAlumno(Cursor cursor) {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -84,11 +84,11 @@ public class AlumnoBD {
         alumno.setDni(cursor.getString(NUM_COL_DNI));
         alumno.setTelefonoAlumno(cursor.getString(NUM_COL_TELEFONO_ALUMNO));
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return alumno;
     }
     public ArrayList<Alumno> listarAlumno() {
-        abd.leerBD();
+        bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ALUMNOS, new String[] {
                 COL_ASIGNATURA_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_ASIGNATURA_ID
         }, null, null, null, null, null, COL_NOMBRE_ALUMNO);
@@ -108,7 +108,7 @@ public class AlumnoBD {
             listaAlumno.add(alumno);
         }
         cursor.close();
-        abd.cerrarBD();
+        bd.close();
         return listaAlumno;
     }
 }
