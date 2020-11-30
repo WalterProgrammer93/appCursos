@@ -7,10 +7,21 @@ public class Asignatura {
     private String descripcionAsignatura;
     private Curso curso;
 
+    public Asignatura() {
+    }
+
     public Asignatura(String nombreAsignatura, String descripcionAsignatura, Curso curso) {
         this.nombreAsignatura = nombreAsignatura;
         this.descripcionAsignatura = descripcionAsignatura;
         this.curso = curso;
+    }
+
+    public int getAsignaturaId() {
+        return asignaturaId;
+    }
+
+    public void setAsignaturaId(int asignaturaId) {
+        this.asignaturaId = asignaturaId;
     }
 
     public String getNombreAsignatura() {

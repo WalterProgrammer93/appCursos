@@ -3,7 +3,6 @@ package com.example.appcursos.bd;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
 
 public class AdminBD  extends SQLiteOpenHelper {
@@ -26,7 +25,7 @@ public class AdminBD  extends SQLiteOpenHelper {
 
     private static final String TABLA_CURSOS = "cursos";
     private static final String COL_CURSO_ID = "curso_id";
-    private static final String COL_NOMBRE_CURSO = "nombre";
+    private static final String COL_NOMBRE_CURSO = "nombre_curso";
     private static final String COL_CENTRO = "centro";
     private static final String COL_NUM_ALUMNOS = "numero_alumnos";
     private static final String COL_DISPONIBILIDAD = "disponibilidad";

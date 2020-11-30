@@ -24,8 +24,8 @@ public class UsuarioBD {
     private static final String COL_USUARIO_PASSWORD = "password";
     private static final int NUM_COL_USUARIO_PASSWORD = 4;
 
-    private SQLiteDatabase db;
-    private AdminBD abd;
+    SQLiteDatabase bd;
+    AdminBD abd;
 
     public UsuarioBD(Context context) {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,7 +38,7 @@ public class UsuarioBD {
         registro.put(COL_USUARIO_EMAIL, usuario.getEmail());
         registro.put(COL_USUARIO_ROL, usuario.getRol());
         registro.put(COL_USUARIO_PASSWORD, usuario.getPassword());
-        db.insert(TABLA_USUARIOS, null, registro);
+        bd.insert(TABLA_USUARIOS, null, registro);
         abd.cerrarBD();
     }
     public void editarUsuario(int id, Usuario usuario) {
@@ -48,18 +48,18 @@ public class UsuarioBD {
         registro.put(COL_USUARIO_EMAIL, usuario.getEmail());
         registro.put(COL_USUARIO_ROL, usuario.getRol());
         registro.put(COL_USUARIO_PASSWORD, usuario.getPassword());
-        db.update(TABLA_USUARIOS, registro, COL_USUARIO_ID + "=" + id,null);
+        bd.update(TABLA_USUARIOS, registro, COL_USUARIO_ID + "=" + id,null);
         abd.cerrarBD();
     }
 
     public void eliminarUsuario(String nombre) {
         abd.leerBD();
-        db.delete(TABLA_USUARIOS, COL_USUARIO_NAME + "=" + nombre, null);
+        bd.delete(TABLA_USUARIOS, COL_USUARIO_NAME + "=" + nombre, null);
         abd.cerrarBD();
     }
 
     public Usuario buscarUsuario(String nombre) {
-        Cursor cursor = db.query(TABLA_USUARIOS, new String[] {COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD}, COL_USUARIO_NAME
+        Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD}, COL_USUARIO_NAME
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_USUARIO_NAME);
         return seleccionarUsuario(cursor);
     }
@@ -79,7 +79,7 @@ public class UsuarioBD {
         return usuario;
     }
     ArrayList<Usuario> listarUsuarios() {
-        Cursor cursor = db.query(TABLA_USUARIOS, new String[] {
+        Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {
                 COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD
         }, null, null, null, null, COL_USUARIO_NAME);
 
@@ -113,7 +113,7 @@ public class UsuarioBD {
         };
         abd.leerBD();
 
-        Cursor cursor = db.query(TABLA_USUARIOS, //Table to query
+        Cursor cursor = bd.query(TABLA_USUARIOS, //Table to query
                 columns,                    //columns to return
                 null,                  //columns for the WHERE clause
                 null,              //The values for the WHERE clause
@@ -126,7 +126,6 @@ public class UsuarioBD {
                 Usuario user = new Usuario(cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_NAME)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_EMAIL)),
-                        cursor.getString(cursor.getColumnIndex(COL_USUARIO_ROL)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_PASSWORD)));
 
                 if (user.getPassword().equalsIgnoreCase(usuario.getPassword()) && user.getEmail().equals(usuario.getEmail())) {
@@ -151,7 +150,7 @@ public class UsuarioBD {
         String[] selection_Args = {email};
 
         //Query
-        Cursor cursor = db.query(TABLA_USUARIOS,
+        Cursor cursor = bd.query(TABLA_USUARIOS,
                 columns,
                 selection,
                 selection_Args,

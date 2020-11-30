@@ -3,27 +3,38 @@ package com.example.appcursos.modelos;
 public class Curso {
 
     private int cursoId;
-    private String nombre;
+    private String nombreCurso;
     private String centro;
     private String numeroAlumnos;
     private String disponibilidad;
     private String temas;
     private int i;
 
-    public Curso(String nombre, String centro, String numeroAlumnos, String disponibilidad, String temas) {
-        this.nombre = nombre;
+    public Curso() {
+    }
+
+    public Curso(String nombreCurso, String centro, String numeroAlumnos, String disponibilidad, String temas) {
+        this.nombreCurso = nombreCurso;
         this.centro = centro;
         this.numeroAlumnos = numeroAlumnos;
         this.disponibilidad = disponibilidad;
         this.temas = temas;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getCursoId() {
+        return cursoId;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCursoId(int cursoId) {
+        this.cursoId = cursoId;
+    }
+
+    public String getNombreCurso() {
+        return nombreCurso;
+    }
+
+    public void setNombreCurso(String nombreCurso) {
+        this.nombreCurso = nombreCurso;
     }
 
     public String getCentro() {
