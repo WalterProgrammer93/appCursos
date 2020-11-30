@@ -47,7 +47,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
                         ubd.insertarUsuario(new Usuario(username, email, rol, pass));
-                        Toast.makeText(getApplicationContext(), "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_LONG).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -56,10 +56,10 @@ public class RegistrarseActivity extends AppCompatActivity {
                         }, Toast.LENGTH_LONG);
 
                     } else if (!confirmPassword.equals(pass)) {
-                        Toast.makeText(getApplicationContext(), "La contraseña no coincide ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "La contraseña no coincide ", Toast.LENGTH_LONG).show();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "El usuario ya existe, Verifique su email ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "El usuario ya existe, Verifique su email ", Toast.LENGTH_LONG).show();
 
                     }
                 }

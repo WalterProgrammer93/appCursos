@@ -85,7 +85,7 @@ public class AdminBD  extends SQLiteOpenHelper {
 
     private SQLiteDatabase bd;
 
-    public AdminBD(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    AdminBD(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
@@ -108,15 +108,15 @@ public class AdminBD  extends SQLiteOpenHelper {
         onCreate(bd);
     }
 
-    public void escribirBD() {
+    void escribirBD() {
         bd  = this.getWritableDatabase();
     }
 
-    public void leerBD() {
+    void leerBD() {
         bd = this.getReadableDatabase();
     }
 
-    public void cerrarBD() {
+    void cerrarBD() {
         bd.close();
     }
 }

@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent registrarse = new Intent(MainActivity.this, RegistrarseActivity.class);
                 startActivity(registrarse);
-
-
             }
         });
 
