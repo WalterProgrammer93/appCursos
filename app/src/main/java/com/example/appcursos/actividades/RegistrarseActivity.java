@@ -70,7 +70,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // REGRESAR AL LOGIN
-                Intent cancelar = new Intent(getApplicationContext(), MenuActivity.class);
+                Intent cancelar = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(cancelar);
             }
         });
