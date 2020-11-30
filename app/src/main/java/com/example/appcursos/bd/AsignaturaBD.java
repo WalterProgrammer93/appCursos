@@ -56,12 +56,15 @@ public class AsignaturaBD {
     }
 
     public Asignatura buscarAsignatura(String nombre) {
+        abd.leerBD();
         Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA}, COL_NOMBRE_ASIGNATURA
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_ASIGNATURA);
+        abd.cerrarBD();
         return seleccionarAsignatura(cursor);
     }
 
     public Asignatura seleccionarAsignatura(Cursor cursor) {
+        abd.leerBD();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -71,9 +74,11 @@ public class AsignaturaBD {
         asignatura.setNombreAsignatura(cursor.getString(NUM_COL_NOMBRE_ASIGNATURA));
         asignatura.setDescripcionAsignatura(cursor.getString(NUM_COL_DESCRIPCION_ASIGNATURA));
         cursor.close();
+        abd.cerrarBD();
         return asignatura;
     }
     public ArrayList<Asignatura> listarAsignatura() {
+        abd.leerBD();
         Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {
                 COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA
         }, null, null, null, null, null, COL_NOMBRE_ASIGNATURA);
@@ -91,6 +96,7 @@ public class AsignaturaBD {
             listaAsignatura.add(asignatura);
         }
         cursor.close();
+        abd.cerrarBD();
         return listaAsignatura;
     }
 }

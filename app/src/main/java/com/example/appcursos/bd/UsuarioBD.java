@@ -59,12 +59,15 @@ public class UsuarioBD {
     }
 
     public Usuario buscarUsuario(String nombre) {
+        abd.leerBD();
         Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD}, COL_USUARIO_NAME
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_USUARIO_NAME);
+        abd.cerrarBD();
         return seleccionarUsuario(cursor);
     }
 
     private Usuario seleccionarUsuario(Cursor cursor) {
+        abd.leerBD();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -76,9 +79,11 @@ public class UsuarioBD {
         usuario.setRol(cursor.getString(NUM_COL_USUARIO_ROL));
         usuario.setPassword(cursor.getString(NUM_COL_USUARIO_PASSWORD));
         cursor.close();
+        abd.cerrarBD();
         return usuario;
     }
     ArrayList<Usuario> listarUsuarios() {
+        abd.leerBD();
         Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {
                 COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD
         }, null, null, null, null, COL_USUARIO_NAME);
@@ -98,6 +103,7 @@ public class UsuarioBD {
             listaUsuario.add(usuario);
         }
         cursor.close();
+        abd.cerrarBD();
         return listaUsuario;
     }
 
@@ -136,6 +142,7 @@ public class UsuarioBD {
 
         }
         cursor.close();
+        abd.cerrarBD();
         return null;
     }
 
@@ -149,6 +156,7 @@ public class UsuarioBD {
         //Selection Args
         String[] selection_Args = {email};
 
+        abd.leerBD();
         //Query
         Cursor cursor = bd.query(TABLA_USUARIOS,
                 columns,
@@ -162,6 +170,8 @@ public class UsuarioBD {
         if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
             return true;
         }
+        cursor.close();
+        abd.cerrarBD();
         return false;
     }
 

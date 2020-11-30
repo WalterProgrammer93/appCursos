@@ -6,15 +6,26 @@ public class Alumno {
     private String nombreAlumno;
     private String apellidosAlumno;
     private String dni;
-    private String telefono_alumno;
+    private String telefonoAlumno;
     private Asignatura asignatura;
 
-    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String telefono_alumno, Asignatura asignatura) {
+    public Alumno() {
+    }
+
+    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String telefonoAlumno, Asignatura asignatura) {
         this.nombreAlumno = nombreAlumno;
         this.apellidosAlumno = apellidosAlumno;
         this.dni = dni;
-        this.telefono_alumno = telefono_alumno;
+        this.telefonoAlumno = telefonoAlumno;
         this.asignatura = asignatura;
+    }
+
+    public int getAlumnoId() {
+        return alumnoId;
+    }
+
+    public void setAlumnoId(int alumnoId) {
+        this.alumnoId = alumnoId;
     }
 
     public String getNombreAlumno() {
@@ -42,11 +53,11 @@ public class Alumno {
     }
 
     public String getTelefonoAlumno() {
-        return telefono_alumno;
+        return telefonoAlumno;
     }
 
-    public void setTelefonoAlumno(String telefono_alumno) {
-        this.telefono_alumno = telefono_alumno;
+    public void setTelefonoAlumno(String telefonoAlumno) {
+        this.telefonoAlumno = telefonoAlumno;
     }
 
     public Asignatura getAsignatura() {

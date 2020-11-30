@@ -6,15 +6,26 @@ public class Profesor {
     private String nombreProfesor;
     private String apellidosProfesor;
     private String departamento;
-    private String telefono_profesor;
+    private String telefonoProfesor;
     private Asignatura asignatura;
 
-    public Profesor(String nombreProfesor, String apellidosProfesor, String departamento, String telefono_profesor, Asignatura asignatura) {
+    public Profesor() {
+    }
+
+    public Profesor(String nombreProfesor, String apellidosProfesor, String departamento, String telefonoProfesor, Asignatura asignatura) {
         this.nombreProfesor = nombreProfesor;
         this.apellidosProfesor = apellidosProfesor;
         this.departamento = departamento;
-        this.telefono_profesor = telefono_profesor;
+        this.telefonoProfesor = telefonoProfesor;
         this.asignatura = asignatura;
+    }
+
+    public int getProfesorId() {
+        return profesorId;
+    }
+
+    public void setProfesorId(int profesorId) {
+        this.profesorId = profesorId;
     }
 
     public String getNombreProfesor() {
@@ -41,12 +52,12 @@ public class Profesor {
         this.departamento = departamento;
     }
 
-    public String getTelefono_profesor() {
-        return telefono_profesor;
+    public String getTelefonoProfesor() {
+        return telefonoProfesor;
     }
 
-    public void setTelefono_profesor(String telefono_profesor) {
-        this.telefono_profesor = telefono_profesor;
+    public void setTelefonoProfesor(String telefonoProfesor) {
+        this.telefonoProfesor = telefonoProfesor;
     }
 
     public Asignatura getAsignatura() {
