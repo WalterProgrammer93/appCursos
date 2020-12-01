@@ -33,4 +33,5 @@
     <string name="lb_nuevo_asignatura">Nuevo Asignatura</string>
     <string name="lb_nuevo_alumno">Nuevo Alumno</string>
     <string name="lb_nuevo_profesor" tools:ignore="Typos">Nuevo Profesor</string>
+    <string name="lb_nuevo_usuario">Nuevo Usuario</string>
 </resources>

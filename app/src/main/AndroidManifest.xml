@@ -22,14 +22,23 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".actividades.NuevoProfesorActivity"
+        <activity android:name=".actividades.NuevoUsuarioActivity"
+            android:label="@string/lb_nuevo_usuario"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.UsuariosActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoProfesorActivity"
             android:label="@string/lb_nuevo_profesor"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.ProfesoresActivity" />
         </activity>
-        <activity android:name=".actividades.NuevoAlumnoActivity"
+        <activity
+            android:name=".actividades.NuevoAlumnoActivity"
             android:label="@string/lb_nuevo_alumno"
             android:screenOrientation="portrait">
             <meta-data
