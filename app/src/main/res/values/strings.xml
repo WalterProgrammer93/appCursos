@@ -60,4 +60,5 @@
     <string name="lb_esta_seguro">Estas seguro</string>
     <string name="lb_si">Si</string>
     <string name="lb_no">No</string>
+    <string name="title_activity_mapa" tools:ignore="MissingTranslation">Map</string>
 </resources>
