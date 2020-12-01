@@ -34,4 +34,13 @@
     <string name="lb_nuevo_alumno">Nuevo Alumno</string>
     <string name="lb_nuevo_profesor" tools:ignore="Typos">Nuevo Profesor</string>
     <string name="lb_nuevo_usuario">Nuevo Usuario</string>
+    <string name="nombreCurso">Nombre Curso</string>
+    <string name="centroCurso">Centro Curso</string>
+    <string name="disponible">Disponible</string>
+    <string name="noDisponible">No Disponible</string>
+    <string name="ingles">Ingles</string>
+    <string name="lengua">Lengua</string>
+    <string name="matematicas">Matematicas</string>
+    <string name="alta">Alta</string>
+    <string name="buscar">Buscar</string>
 </resources>

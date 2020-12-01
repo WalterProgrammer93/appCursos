@@ -10,7 +10,7 @@ public class Curso {
     private String numeroAlumnos;
     private String disponibilidad;
     private String temas;
-    private Bitmap foto;
+    private Bitmap iconoCurso;
     private int i;
 
     public Curso() {
@@ -24,8 +24,8 @@ public class Curso {
         this.temas = temas;
     }
 
-    public Bitmap getFoto() {
-        return foto;
+    public Bitmap getIconoCurso() {
+        return iconoCurso;
     }
 
     public int getCursoId() {

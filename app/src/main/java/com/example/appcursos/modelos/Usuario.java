@@ -1,5 +1,7 @@
 package com.example.appcursos.modelos;
 
+import android.graphics.Bitmap;
+
 public class Usuario {
 
     private int usuarioId;
@@ -7,6 +9,7 @@ public class Usuario {
     private String email;
     private String rol;
     private String password;
+    private Bitmap iconoUsuario;
 
     public Usuario() {
     }
@@ -29,6 +32,10 @@ public class Usuario {
     public Usuario(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public Bitmap getIconoUsuario() {
+        return iconoUsuario;
     }
 
     public int getUsuarioId() {
