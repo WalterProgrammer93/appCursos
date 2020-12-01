@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;

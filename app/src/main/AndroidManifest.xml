@@ -21,7 +21,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".actividades.NuevoCursoActivity"></activity>
+
+        <activity android:name=".actividades.NuevoProfesorActivity"
+            android:label="@string/lb_nuevo_profesor"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.ProfesoresActivity" />
+        </activity>
+        <activity android:name=".actividades.NuevoAlumnoActivity"
+            android:label="@string/lb_nuevo_alumno"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.AlumnosActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoAsignaturaActivity"
+            android:label="@string/lb_nuevo_asignatura"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.AsignaturasActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoCursoActivity"
+            android:label="@string/lb_nuevo_curso"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.CursosActivity" />
+        </activity>
         <activity
             android:name=".actividades.UsuariosActivity"
             android:label="@string/lb_usuarios"

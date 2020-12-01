@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="bienvenida">Bienvenido a AppCursos</string>
     <string name="email">Correo electronico</string>
     <string name="password">Contraseña</string>
@@ -29,4 +29,8 @@
     <string name="editar">Editar</string>
     <string name="eliminar">Eliminar</string>
     <string name="detalles">Detalles</string>
+    <string name="lb_nuevo_curso">Nuevo Curso</string>
+    <string name="lb_nuevo_asignatura">Nuevo Asignatura</string>
+    <string name="lb_nuevo_alumno">Nuevo Alumno</string>
+    <string name="lb_nuevo_profesor" tools:ignore="Typos">Nuevo Profesor</string>
 </resources>
