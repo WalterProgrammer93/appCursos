@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //Check Authentication is successful or not
                     if (usuario != null) {
-                        Intent menu = new Intent(getApplicationContext(), MenuActivity.class);
+                        Intent menu = new Intent(MainActivity.this, MenuActivity.class);
                         menu.putExtra("Email", usuario.getEmail());
                         menu.putExtra("Name", usuario.getUsername());
                         startActivity(menu);

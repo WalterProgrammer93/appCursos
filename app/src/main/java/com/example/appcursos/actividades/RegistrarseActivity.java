@@ -78,7 +78,8 @@ public class RegistrarseActivity extends AppCompatActivity {
     }
 
     private boolean validar() {
-        boolean valido = false;
+
+        boolean valido;
         String UserName = et_username.getText().toString();
         String Email = et_email.getText().toString();
         String Rol = et_rol.getText().toString();
