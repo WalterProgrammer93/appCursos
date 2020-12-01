@@ -102,7 +102,7 @@
                 android:background="@color/colorAccent"
                 android:textColor="@color/blanco"
                 android:text="@string/alta"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/tema3"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="25dp" />
@@ -114,7 +114,7 @@
                 android:background="@color/colorAccent"
                 android:textColor="@color/blanco"
                 android:text="@string/buscar"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/alta_curso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="25dp" />
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent"
                 android:text="@string/eliminar"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 android:textColor="@color/blanco"
                 app:layout_constraintTop_toBottomOf="@+id/buscar_curso"
                 tools:ignore="MissingConstraints"
@@ -138,7 +138,7 @@
                 android:background="@color/colorAccent"
                 android:text="@string/editar"
                 android:textColor="@color/blanco"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/eliminar_curso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="540dp" />
@@ -150,7 +150,7 @@
                 android:background="@color/colorAccent"
                 android:text="@string/cancelar"
                 android:textColor="@color/blanco"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/editar_curso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="540dp" />

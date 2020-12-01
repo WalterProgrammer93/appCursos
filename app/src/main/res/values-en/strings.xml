@@ -43,4 +43,15 @@
     <string name="matematicas">Matematicas</string>
     <string name="alta">Alta</string>
     <string name="buscar">Buscar</string>
+    <string name="nombreAsignatura">Nombre Asignatura</string>
+    <string name="descripcionAsignatura">Descripcion Asignatura</string>
+    <string name="nombreAlumno">Nombre Alumno</string>
+    <string name="apellidosAlumno">Apellidos Alumno</string>
+    <string name="dniAlumno">Dni Alumno</string>
+    <string name="telefonoAlumno">Telefono Alumno</string>
+    <string name="nombreProfesor">Nombre Profesor</string>
+    <string name="apellidosProfesor">Apellidos Profesor</string>
+    <string name="departamentoProfesor">Departamento Profesor</string>
+    <string name="telefonoProfesor">Telefono Profesor</string>
+    <string name="nombreUsuario">Nombre Usuario</string>
 </resources>
