@@ -59,17 +59,20 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
                 startActivity(i1);
                 break;
             case 1:
-                Intent i2 = new Intent(getApplicationContext(), AlumnosActivity.class);
+                Intent i2 = new Intent(getApplicationContext(), AsignaturasActivity.class);
                 startActivity(i2);
                 break;
             case 2:
-                Intent i3 = new Intent(getApplicationContext(), AsignaturasActivity.class);
+                Intent i3 = new Intent(getApplicationContext(), AlumnosActivity.class);
                 startActivity(i3);
                 break;
             case 3:
                 Intent i4 = new Intent(getApplicationContext(), ProfesoresActivity.class);
                 startActivity(i4);
                 break;
+            case 4:
+                Intent i5 = new Intent(getApplicationContext(), UsuariosActivity.class);
+                startActivity(i5);
             default:
                 Toast.makeText(this, "You clicked " + adapter.getItem(position) +
                         " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -101,6 +104,8 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
             case R.id.action_camara:
                 camara();
                 return true;
+            case R.id.action_mapa:
+                mapa();
             case R.id.action_salir:
                 finish();
                 Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
@@ -108,6 +113,11 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private void mapa() {
+        Intent mapa = new Intent(MenuActivity.this, MapaActivity.class);
+        startActivity(mapa);
     }
 
     public void llamar() {
@@ -143,10 +153,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     }
 
     public void camara() {
-        //String targetFilename = "captura";
         Intent camara = new Intent("android.media.action.IMAGE_CAPTURE");
-        /*camara.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.withAppendedPath(locationForPhotos, targetFilename));*/
         if (camara.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(camara, REQUEST_IMAGE_CAPTURE);
         }

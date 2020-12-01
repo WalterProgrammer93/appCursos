@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(menu);
                         email_login.setText("");
                         password_login.setText("");
-                        Toast.makeText(MainActivity.this, "Bienvenido a appCursos" + usuario.getUsername(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Bienvenido a appCursos " + usuario.getUsername(), Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(MainActivity.this, " Failed to Logged in!", Toast.LENGTH_LONG).show();
