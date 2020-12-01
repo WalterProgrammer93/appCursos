@@ -49,9 +49,12 @@
     <string name="apellidosAlumno">Apellidos Alumno</string>
     <string name="dniAlumno">Dni Alumno</string>
     <string name="telefonoAlumno">Telefono Alumno</string>
-    <string name="nombreProfesor">Nombre Profesor</string>
-    <string name="apellidosProfesor">Apellidos Profesor</string>
-    <string name="departamentoProfesor">Departamento Profesor</string>
-    <string name="telefonoProfesor">Telefono Profesor</string>
+    <string name="nombreProfesor" tools:ignore="Typos">Nombre Profesor</string>
+    <string name="apellidosProfesor" tools:ignore="Typos">Apellidos Profesor</string>
+    <string name="departamentoProfesor" tools:ignore="Typos">Departamento Profesor</string>
+    <string name="telefonoProfesor" tools:ignore="Typos">Telefono Profesor</string>
     <string name="nombreUsuario">Nombre Usuario</string>
+    <string name="emailUsuario">Correo Usuario</string>
+    <string name="rolUsuario">Rol Usuario</string>
+    <string name="passwordUsuario">Password Usuario</string>
 </resources>
