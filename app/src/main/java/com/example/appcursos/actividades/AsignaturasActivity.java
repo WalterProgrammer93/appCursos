@@ -1,7 +1,10 @@
 package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -74,12 +77,58 @@ public class AsignaturasActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_editar:
                 // hacer algo
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.lb_esta_seguro)
+                        .setPositiveButton(R.string.lb_si,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "Si"
+                                        Intent editar_curso = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
+                                        editar_curso.putExtra("NombreAsignatura", listaAsignaturas.get(0).getNombreAsignatura());
+                                        editar_curso.putExtra("DescripcionAsignatura", listaAsignaturas.get(1).getDescripcionAsignatura());
+                                        editar_curso.putExtra("Curso", listaAsignaturas.get(2).getCurso().getCursoId());
+                                        startActivity(editar_curso);
+                                    }})
+                        .setNegativeButton(R.string.lb_no,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "No"
+                                        // En este caso se cierra directamente el diálogo y no se hace nada más
+                                        dialog.dismiss();
+                                    }});
+                builder.create().show();
                 return true;
             case R.id.action_eliminar:
                 // hacer algo
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setMessage(R.string.lb_esta_seguro)
+                        .setPositiveButton(R.string.lb_si,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "Si"
+                                        Intent eliminar_asignatura = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
+                                        startActivity(eliminar_asignatura);
+                                    }})
+                        .setNegativeButton(R.string.lb_no,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "No"
+                                        // En este caso se cierra directamente el diálogo y no se hace nada más
+                                        dialog.dismiss();
+                                    }});
+                builder2.create().show();
                 return true;
             case R.id.action_detalles:
                 // hacer algo
+                Intent detalles_asignatura = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
+                detalles_asignatura.putExtra("NombreAsignatura", listaAsignaturas.get(0).getNombreAsignatura());
+                detalles_asignatura.putExtra("DescripcionAsignatura", listaAsignaturas.get(1).getDescripcionAsignatura());
+                detalles_asignatura.putExtra("Curso", listaAsignaturas.get(2).getCurso().getCursoId());
+                startActivity(detalles_asignatura);
                 return true;
             default:
                 return super.onContextItemSelected(item);

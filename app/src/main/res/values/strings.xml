@@ -57,4 +57,7 @@
     <string name="emailUsuario">Correo Usuario</string>
     <string name="rolUsuario">Rol Usuario</string>
     <string name="passwordUsuario">Password Usuario</string>
+    <string name="lb_esta_seguro">Estas seguro</string>
+    <string name="lb_si">Si</string>
+    <string name="lb_no">No</string>
 </resources>

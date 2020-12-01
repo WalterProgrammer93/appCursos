@@ -1,8 +1,10 @@
 package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -77,12 +79,62 @@ public class CursosActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_editar:
                 // hacer algo
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.lb_esta_seguro)
+                        .setPositiveButton(R.string.lb_si,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "Si"
+                                        Intent editar_curso = new Intent(CursosActivity.this, NuevoCursoActivity.class);
+                                        editar_curso.putExtra("NombreCurso", listaCursos.get(0).getNombreCurso());
+                                        editar_curso.putExtra("Centro", listaCursos.get(1).getCentro());
+                                        editar_curso.putExtra("NumeroAlumnos", listaCursos.get(2).getNumeroAlumnos());
+                                        editar_curso.putExtra("Disponibilidad", listaCursos.get(3).getDisponibilidad());
+                                        editar_curso.putExtra("Temas", listaCursos.get(4).getTemas());
+                                        startActivity(editar_curso);
+                                    }})
+                        .setNegativeButton(R.string.lb_no,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "No"
+                                        // En este caso se cierra directamente el diálogo y no se hace nada más
+                                        dialog.dismiss();
+                                    }});
+                builder.create().show();
                 return true;
             case R.id.action_eliminar:
                 // hacer algo
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setMessage(R.string.lb_esta_seguro)
+                        .setPositiveButton(R.string.lb_si,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "Si"
+                                        Intent eliminar_curso = new Intent(CursosActivity.this, NuevoCursoActivity.class);
+                                        startActivity(eliminar_curso);
+                                    }})
+                        .setNegativeButton(R.string.lb_no,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "No"
+                                        // En este caso se cierra directamente el diálogo y no se hace nada más
+                                        dialog.dismiss();
+                                    }});
+                builder2.create().show();
                 return true;
             case R.id.action_detalles:
                 // hacer algo
+                Intent detalles_curso = new Intent(CursosActivity.this, NuevoCursoActivity.class);
+                detalles_curso.putExtra("NombreCurso", listaCursos.get(0).getNombreCurso());
+                detalles_curso.putExtra("Centro", listaCursos.get(1).getCentro());
+                detalles_curso.putExtra("NumeroAlumnos", listaCursos.get(2).getNumeroAlumnos());
+                detalles_curso.putExtra("Disponibilidad", listaCursos.get(3).getDisponibilidad());
+                detalles_curso.putExtra("Temas", listaCursos.get(4).getTemas());
+                startActivity(detalles_curso);
                 return true;
             default:
                 return super.onContextItemSelected(item);
