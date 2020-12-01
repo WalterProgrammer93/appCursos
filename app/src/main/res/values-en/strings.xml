@@ -60,4 +60,7 @@
     <string name="lb_esta_seguro">Estas seguro</string>
     <string name="lb_si">Si</string>
     <string name="lb_no">No</string>
+    <string name="marcador">Marcador</string>
+    <string name="animarUPV">Animar a UPV</string>
+    <string name="irUPV">Ir a UPV</string>
 </resources>

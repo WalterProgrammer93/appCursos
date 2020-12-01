@@ -61,4 +61,7 @@
     <string name="lb_si">Si</string>
     <string name="lb_no">No</string>
     <string name="title_activity_mapa" tools:ignore="MissingTranslation">Map</string>
+    <string name="marcador">Marcador</string>
+    <string name="animarUPV">Animar a UPV</string>
+    <string name="irUPV">Ir a UPV</string>
 </resources>

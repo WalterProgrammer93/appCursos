@@ -1,31 +1,30 @@
 package com.example.appcursos.actividades;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-
+import android.view.View;
 import com.example.appcursos.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapaActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapaActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener{
 
     private GoogleMap mMap;
-    private double latitud;
-    private double longitud;
-    private String nombre;
+    private final LatLng UPV = new LatLng(39.481106, -0.340987);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapa);
 
-        // Inicializa el sistema de mapas de Google
         try {
             MapsInitializer.initialize(this);
         } catch (Exception e) {
@@ -52,9 +51,51 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        mMap.getUiSettings().setZoomControlsEnabled(false);
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney")
+                .snippet("Ciudad de Sydney")
+                .icon(BitmapDescriptorFactory
+                        .fromResource(android.R.drawable.ic_menu_compass))
+                .anchor(0.5f, 0.5f));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        LatLng UPV = new LatLng(39.481106, -0.340987); //Nos ubicamos en la UPV
+        mMap.addMarker(new MarkerOptions().position(UPV).title("UPV")
+                .snippet("Universidad Politécnica de Valencia")
+                .icon(BitmapDescriptorFactory
+                        .fromResource(android.R.drawable.ic_menu_compass))
+                .anchor(0.5f, 0.5f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(UPV, 15));
+
+        mMap.setOnMapClickListener(this);
+        if (ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setCompassEnabled(true);
+        }
+    }
+
+    public void moveCamera(View view) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(UPV));
+    }
+
+    public void animateCamera(View view) {
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(UPV));
+    }
+
+    public void addMarker(View view) {
+        mMap.addMarker(new MarkerOptions().position(
+                mMap.getCameraPosition().target));
+    }
+
+    @Override public void onMapClick(LatLng puntoPulsado) {
+        mMap.addMarker(new MarkerOptions().position(puntoPulsado)
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
     }
 }
