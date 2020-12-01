@@ -41,7 +41,7 @@ public class MenuAdaptador extends RecyclerView.Adapter<MenuAdaptador.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView opcion;
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             opcion = itemView.findViewById(R.id.opcion);
             itemView.setOnClickListener(this);
