@@ -1,5 +1,7 @@
 package com.example.appcursos.modelos;
 
+import android.graphics.Bitmap;
+
 public class Curso {
 
     private int cursoId;
@@ -8,6 +10,7 @@ public class Curso {
     private String numeroAlumnos;
     private String disponibilidad;
     private String temas;
+    private Bitmap foto;
     private int i;
 
     public Curso() {
@@ -19,6 +22,10 @@ public class Curso {
         this.numeroAlumnos = numeroAlumnos;
         this.disponibilidad = disponibilidad;
         this.temas = temas;
+    }
+
+    public Bitmap getFoto() {
+        return foto;
     }
 
     public int getCursoId() {
