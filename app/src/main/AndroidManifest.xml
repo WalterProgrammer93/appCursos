@@ -7,7 +7,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -20,50 +21,57 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
-        <activity android:name=".actividades.UsuariosActivity"
+        <activity android:name=".actividades.NuevoCursoActivity"></activity>
+        <activity
+            android:name=".actividades.UsuariosActivity"
             android:label="@string/lb_usuarios"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
-        <activity android:name=".actividades.ProfesoresActivity"
+        <activity
+            android:name=".actividades.ProfesoresActivity"
             android:label="@string/lb_profesores"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
-        <activity android:name=".actividades.AsignaturasActivity"
+        <activity
+            android:name=".actividades.AsignaturasActivity"
             android:label="@string/lb_asignaturas"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
-        <activity android:name=".actividades.AlumnosActivity"
+        <activity
+            android:name=".actividades.AlumnosActivity"
             android:label="@string/lb_alumnos"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
-        <activity android:name=".actividades.CursosActivity"
+        <activity
+            android:name=".actividades.CursosActivity"
             android:label="@string/lb_cursos"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
-        <activity android:name=".actividades.MenuActivity"
+        <activity
+            android:name=".actividades.MenuActivity"
             android:label="@string/lb_menu"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MainActivity" />
         </activity>
-        <activity android:name=".actividades.RegistrarseActivity"
+        <activity
+            android:name=".actividades.RegistrarseActivity"
             android:label="@string/lb_registrarse"
             android:screenOrientation="portrait">
             <meta-data
@@ -73,6 +81,7 @@
         <activity android:name=".actividades.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

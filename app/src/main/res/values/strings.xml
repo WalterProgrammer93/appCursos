@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppCursos</string>
+    <string name="app_name" translatable="false">AppCursos</string>
     <string name="bienvenida">Bienvenido a AppCursos</string>
     <string name="email">Correo electronico</string>
     <string name="password">Contraseña</string>
@@ -25,4 +25,8 @@
     <string name="camara">Camara</string>
     <string name="mapa">Mapa</string>
     <string name="salir">Salir</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="detalles">Detalles</string>
 </resources>

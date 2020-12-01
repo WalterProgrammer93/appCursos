@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/action_nuevo"
+        android:icon="@drawable/ic_add_circle_black_24dp"
+        android:title="@string/nuevo" />
+
+    <item android:id="@+id/action_salir"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="@string/salir" />
+
 </menu>
