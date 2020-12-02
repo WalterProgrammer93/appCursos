@@ -34,6 +34,16 @@ public class CursosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cursos);
 
         listaCursos = new ArrayList<>();
+        Bundle bundle = getIntent().getExtras();
+        String nombre = bundle.getString("NombreCurso");
+        String centro = bundle.getString("CentroCurso");
+        ArrayList<String> disponibilidad = new ArrayList<>();
+        disponibilidad.add(bundle.getString("Disponibilidad"));
+        String numeroAlumnos = bundle.getString("NumeroAlumnos");
+        ArrayList<String> temas = new ArrayList<>();
+        temas.add(bundle.getString("Temas"));
+        Curso c = new Curso(nombre, centro, disponibilidad, numeroAlumnos, temas);
+        listaCursos.add(c);
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
         lvCursos = findViewById(R.id.lvCursos);
         lvCursos.setAdapter(cursoAdaptador);
