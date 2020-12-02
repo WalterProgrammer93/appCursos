@@ -54,7 +54,6 @@
     <string name="telefonoProfesor" tools:ignore="Typos">Telefono Profesor</string>
     <string name="nombreUsuario">Nombre Usuario</string>
     <string name="emailUsuario">Correo Usuario</string>
-    <string name="rolUsuario">Rol</string>
     <string name="passwordUsuario">Contraseña Usuario</string>
     <string name="lb_esta_seguro">Estas seguro</string>
     <string name="lb_si">Si</string>
