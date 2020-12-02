@@ -13,7 +13,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appcursos.R;
@@ -27,6 +29,8 @@ public class CursosActivity extends AppCompatActivity {
     ArrayList<Curso> listaCursos;
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
+    ImageView ivCursos;
+    TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvTemas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +47,21 @@ public class CursosActivity extends AppCompatActivity {
         ArrayList<String> temas = new ArrayList<>();
         temas.add(bundle.getString("Temas"));
         Curso c = new Curso(nombre, centro, disponibilidad, numeroAlumnos, temas);
-        listaCursos.add(c);
+
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
+        ivCursos = findViewById(R.id.ivCurso);
+        tvNombreCurso = findViewById(R.id.tvNombreCurso);
+        tvCentro = findViewById(R.id.tvCentro);
+        tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
+        tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
+        tvTemas = findViewById(R.id.tvTemas);
+
+        tvNombreCurso.setText(nombre);
+        tvCentro.setText(c.getNombreCurso());
+        tvDisponibilidad.setText(c.getDisponibilidad());
+        tvNumeroAlumnos.setText(c.getNumeroAlumnos());
+        tvTemas.setText(c.getTemas());
+
         lvCursos = findViewById(R.id.lvCursos);
         lvCursos.setAdapter(cursoAdaptador);
         registerForContextMenu(lvCursos);
