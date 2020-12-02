@@ -51,12 +51,11 @@
     <string name="telefonoAlumno">Telefono Alumno</string>
     <string name="nombreProfesor" tools:ignore="Typos">Nombre Profesor</string>
     <string name="apellidosProfesor" tools:ignore="Typos">Apellidos Profesor</string>
-    <string name="departamentoProfesor" tools:ignore="Typos">Departamento Profesor</string>
     <string name="telefonoProfesor" tools:ignore="Typos">Telefono Profesor</string>
     <string name="nombreUsuario">Nombre Usuario</string>
     <string name="emailUsuario">Correo Usuario</string>
-    <string name="rolUsuario">Rol Usuario</string>
-    <string name="passwordUsuario">Password Usuario</string>
+    <string name="rolUsuario">Rol</string>
+    <string name="passwordUsuario">Contraseña Usuario</string>
     <string name="lb_esta_seguro">Estas seguro</string>
     <string name="lb_si">Si</string>
     <string name="lb_no">No</string>
@@ -64,4 +63,15 @@
     <string name="marcador">Marcador</string>
     <string name="animarUPV">Animar a UPV</string>
     <string name="irUPV">Ir a UPV</string>
+    <string name="fisicaQuimica">Fisica y Quimica</string>
+    <string name="tecnologia">Tecnologia</string>
+    <string name="informatica">Informatica</string>
+    <string name="musica">Musica</string>
+    <string name="biologiaGeologia">Biologia y Geologia</string>
+    <string name="historiaGeografia">Historia y Geografia</string>
+    <string name="seleccionar_curso">Seleccionar un curso</string>
+    <string name="seleccionar_asignatura">Seleccionar una asignatura</string>
+    <string name="rol1">Administrador</string>
+    <string name="rol2">Alumno</string>
+    <string name="rol3" tools:ignore="Typos">Profesor</string>
 </resources>

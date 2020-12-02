@@ -63,6 +63,7 @@
                 android:id="@+id/spinner_asignaturaAlumno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/seleccionar_asignatura"
                 app:layout_constraintTop_toBottomOf="@+id/et_telefonoAlumno"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />
