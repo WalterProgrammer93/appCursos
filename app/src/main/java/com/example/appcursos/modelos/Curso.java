@@ -2,13 +2,15 @@ package com.example.appcursos.modelos;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
 public class Curso {
 
     private int cursoId;
     private String nombreCurso;
     private String centro;
-    private String numeroAlumnos;
     private String disponibilidad;
+    private String numeroAlumnos;
     private String temas;
     private Bitmap iconoCurso;
     private int i;
@@ -16,12 +18,16 @@ public class Curso {
     public Curso() {
     }
 
-    public Curso(String nombreCurso, String centro, String numeroAlumnos, String disponibilidad, String temas) {
+    public Curso(String nombreCurso, String centroCurso, ArrayList<String> listaDisponibilidad, String numeroAlumnos, ArrayList<String> listaTema) {
         this.nombreCurso = nombreCurso;
-        this.centro = centro;
+        this.centro = centroCurso;
+        for (i = 0; i < listaDisponibilidad.size(); i++) {
+            this.disponibilidad = listaDisponibilidad.get(i);
+        }
         this.numeroAlumnos = numeroAlumnos;
-        this.disponibilidad = disponibilidad;
-        this.temas = temas;
+        for (i = 0; i < listaTema.size(); i++) {
+            this.temas = listaTema.get(i);
+        }
     }
 
     public Bitmap getIconoCurso() {
