@@ -50,46 +50,6 @@
                 android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
         <activity
-            android:name=".actividades.NuevoUsuarioActivity"
-            android:label="@string/lb_nuevo_usuario"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
-        </activity>
-        <activity
-            android:name=".actividades.NuevoProfesorActivity"
-            android:label="@string/lb_nuevo_profesor"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
-        </activity>
-        <activity
-            android:name=".actividades.NuevoAlumnoActivity"
-            android:label="@string/lb_nuevo_alumno"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
-        </activity>
-        <activity
-            android:name=".actividades.NuevoAsignaturaActivity"
-            android:label="@string/lb_nuevo_asignatura"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
-        </activity>
-        <activity
-            android:name=".actividades.NuevoCursoActivity"
-            android:label="@string/lb_nuevo_curso"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
-        </activity>
-        <activity
             android:name=".actividades.UsuariosActivity"
             android:label="@string/lb_usuarios"
             android:screenOrientation="portrait">
@@ -128,6 +88,46 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.NuevoCursoActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoUsuarioActivity"
+            android:label="@string/lb_nuevo_usuario"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoProfesorActivity"
+            android:label="@string/lb_nuevo_profesor"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoAlumnoActivity"
+            android:label="@string/lb_nuevo_alumno"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoAsignaturaActivity"
+            android:label="@string/lb_nuevo_asignatura"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevoCursoActivity"
+            android:label="@string/lb_nuevo_curso"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
         <activity
             android:name=".actividades.MenuActivity"

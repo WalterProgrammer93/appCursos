@@ -3,7 +3,7 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
+//import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,11 +13,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.CursoBD;
 import com.example.appcursos.modelos.Curso;
-
 import java.util.ArrayList;
 
 public class NuevoCursoActivity extends AppCompatActivity {
@@ -29,7 +27,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
     Button b_altaCurso, b_buscarCurso, b_eliminarCurso, b_editarCurso, b_cancelarCurso;
     ArrayAdapter<String> spinner_adapter;
     CursoBD cbd;
-    Cursor fila;
+    //Cursor fila;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +95,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
         b_buscarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validarDatos()) {
+                /*if (validarDatos()) {
                     String nombre = et_nombreCurso.getText().toString();
                     fila = (Cursor) cbd.buscarCurso(nombre);
                     if (fila.moveToFirst() && fila.getCount() > 0) {
@@ -113,7 +111,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         Toast.makeText(NuevoCursoActivity.this, "No existe el curso con dicho nombre",
                                 Toast.LENGTH_LONG).show();
                     }
-                }
+                }*/
             }
         });
         b_eliminarCurso.setOnClickListener(new View.OnClickListener() {
@@ -189,12 +187,11 @@ public class NuevoCursoActivity extends AppCompatActivity {
         });
     }
 
-    private boolean validarDatos() {
+    public boolean validarDatos() {
         boolean valido;
-
         String campo1 = et_nombreCurso.getText().toString();
         String campo2 = et_centroCurso.getText().toString();
-        String campo5 =s_numeroAlumnos.getSelectedItem().toString();
+        String campo5 = s_numeroAlumnos.getSelectedItem().toString();
 
         if (campo1.isEmpty()) {
             valido = false;
@@ -204,8 +201,8 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 valido = true;
                 et_nombreCurso.setError(null);
             } else {
-                valido = false;
                 et_nombreCurso.setError("El nombre del curso es corto!");
+                valido = false;
             }
         }
 

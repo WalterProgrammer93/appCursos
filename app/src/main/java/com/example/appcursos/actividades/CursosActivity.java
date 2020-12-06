@@ -118,7 +118,7 @@ public class CursosActivity extends AppCompatActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
 
-        switch (item.getItemId()) {
+        switch (itemSeleccionado) {
             case R.id.action_editar:
                 // hacer algo
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
