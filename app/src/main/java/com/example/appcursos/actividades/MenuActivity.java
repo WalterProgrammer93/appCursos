@@ -55,23 +55,23 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     public void onItemClick(View view, int position) {
         switch (position) {
             case 0:
-                Intent i1 = new Intent(getApplicationContext(), CursosActivity.class);
+                Intent i1 = new Intent(getApplicationContext(), NuevoCursoActivity.class);
                 startActivity(i1);
                 break;
             case 1:
-                Intent i2 = new Intent(getApplicationContext(), AsignaturasActivity.class);
+                Intent i2 = new Intent(getApplicationContext(), NuevoAsignaturaActivity.class);
                 startActivity(i2);
                 break;
             case 2:
-                Intent i3 = new Intent(getApplicationContext(), AlumnosActivity.class);
+                Intent i3 = new Intent(getApplicationContext(), NuevoAlumnoActivity.class);
                 startActivity(i3);
                 break;
             case 3:
-                Intent i4 = new Intent(getApplicationContext(), ProfesoresActivity.class);
+                Intent i4 = new Intent(getApplicationContext(), NuevoProfesorActivity.class);
                 startActivity(i4);
                 break;
             case 4:
-                Intent i5 = new Intent(getApplicationContext(), UsuariosActivity.class);
+                Intent i5 = new Intent(getApplicationContext(), NuevoUsuarioActivity.class);
                 startActivity(i5);
             default:
                 Toast.makeText(this, "You clicked " + adapter.getItem(position) +
