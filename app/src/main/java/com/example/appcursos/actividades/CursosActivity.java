@@ -38,16 +38,6 @@ public class CursosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cursos);
 
         listaCursos = new ArrayList<>();
-        Bundle bundle = getIntent().getExtras();
-        String nombre = bundle.getString("NombreCurso");
-        String centro = bundle.getString("CentroCurso");
-        ArrayList<String> disponibilidad = new ArrayList<>();
-        disponibilidad.add(bundle.getString("Disponibilidad"));
-        String numeroAlumnos = bundle.getString("NumeroAlumnos");
-        ArrayList<String> temas = new ArrayList<>();
-        temas.add(bundle.getString("Temas"));
-        Curso c = new Curso(nombre, centro, disponibilidad, numeroAlumnos, temas);
-
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
@@ -55,16 +45,30 @@ public class CursosActivity extends AppCompatActivity {
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
         tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
         tvTemas = findViewById(R.id.tvTemas);
+        lvCursos = findViewById(R.id.lvCursos);
+        lvCursos.setAdapter(cursoAdaptador);
+        registerForContextMenu(lvCursos);
 
-        tvNombreCurso.setText(nombre);
-        tvCentro.setText(c.getNombreCurso());
+        Intent recibir = this.getIntent();
+        String nombre = recibir.getStringExtra("NombreCurso");
+        String centro = recibir.getStringExtra("CentroCurso");
+        ArrayList<String> disponibilidad = new ArrayList<>();
+        disponibilidad.add(recibir.getStringExtra("Disponibilidad"));
+        String numeroAlumnos = recibir.getStringExtra("NumeroAlumnos");
+        ArrayList<String> temas = new ArrayList<>();
+        temas.add(recibir.getStringExtra("Temas"));
+        Curso c = new Curso();
+        c.setNombreCurso(nombre);
+        c.setCentro(centro);
+        c.setDisponibilidad(String.valueOf(disponibilidad));
+        c.setNumeroAlumnos(numeroAlumnos);
+        c.setTemas(String.valueOf(temas));
+        tvNombreCurso.setText(c.getNombreCurso());
+        tvCentro.setText(c.getCentro());
         tvDisponibilidad.setText(c.getDisponibilidad());
         tvNumeroAlumnos.setText(c.getNumeroAlumnos());
         tvTemas.setText(c.getTemas());
 
-        lvCursos = findViewById(R.id.lvCursos);
-        lvCursos.setAdapter(cursoAdaptador);
-        registerForContextMenu(lvCursos);
         cursoAdaptador.notifyDataSetChanged();
     }
 
