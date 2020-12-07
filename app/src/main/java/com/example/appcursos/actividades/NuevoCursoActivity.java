@@ -99,14 +99,17 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     String nombre = et_nombreCurso.getText().toString();
                     fila = (Cursor) cbd.buscarCurso(nombre);
                     if (fila.moveToFirst() && fila.getCount() > 0) {
-                        et_nombreCurso.setText(fila.getString(1));
+                        /*et_nombreCurso.setText(fila.getString(1));
                         et_centroCurso.setText(fila.getString(2));
                         rb_disponible.setChecked(Boolean.parseBoolean(fila.getString(3)));
                         rb_nodisponible.setChecked(Boolean.parseBoolean(fila.getString(3)));
                         s_numeroAlumnos.setEnabled(Boolean.parseBoolean(fila.getString(4)));
                         cb_tema1.setChecked(Boolean.parseBoolean(fila.getString(5)));
                         cb_tema2.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                        cb_tema3.setChecked(Boolean.parseBoolean(fila.getString(5)));
+                        cb_tema3.setChecked(Boolean.parseBoolean(fila.getString(5)));*/
+                        Intent buscar = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                        buscar.putExtra("NombreCurso", nombre);
+                        startActivity(buscar);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "No existe el curso con dicho nombre",
                                 Toast.LENGTH_LONG).show();
