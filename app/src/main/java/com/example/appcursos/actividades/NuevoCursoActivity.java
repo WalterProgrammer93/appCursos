@@ -91,6 +91,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 }
             }
         });
+        b_buscarCurso = findViewById(R.id.b_buscarCurso);
         b_buscarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +114,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 }
             }
         });
+        b_eliminarCurso = findViewById(R.id.b_eliminarCurso);
         b_eliminarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,6 +140,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 }
             }
         });
+        b_editarCurso = findViewById(R.id.b_editarCurso);
         b_editarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,6 +180,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 }
             }
         });
+        b_cancelarCurso = findViewById(R.id.b_cancelarCurso);
         b_cancelarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
