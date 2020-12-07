@@ -48,7 +48,6 @@ public class CursosActivity extends AppCompatActivity {
         lvCursos = findViewById(R.id.lvCursos);
         registerForContextMenu(lvCursos);
         lvCursos.setAdapter(cursoAdaptador);
-        cursoAdaptador.notifyDataSetChanged();
 
         try {
             Bundle recibir = getIntent().getExtras();
@@ -71,6 +70,10 @@ public class CursosActivity extends AppCompatActivity {
                 tvDisponibilidad.setText(c.getDisponibilidad());
                 tvNumeroAlumnos.setText(c.getNumeroAlumnos());
                 tvTemas.setText(c.getTemas());
+                for (int i = 0; i < listaCursos.size(); i++) {
+                    listaCursos.get(i);
+                }
+                cursoAdaptador.notifyDataSetChanged();
 
             }
 
