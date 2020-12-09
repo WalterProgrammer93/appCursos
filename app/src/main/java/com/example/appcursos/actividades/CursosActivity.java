@@ -59,22 +59,20 @@ public class CursosActivity extends AppCompatActivity {
                 String numeroAlumnos = recibir.getString("NumeroAlumnos");
                 ArrayList<String> temas = new ArrayList<>();
                 temas.add(recibir.getString("Temas"));
-                Curso c = new Curso();
-                c.setNombreCurso(nombre);
-                c.setCentro(centro);
-                c.setDisponibilidad(String.valueOf(disponibilidad));
-                c.setNumeroAlumnos(numeroAlumnos);
-                c.setTemas(String.valueOf(temas));
+                Curso c = new Curso(nombre, centro, disponibilidad, numeroAlumnos, temas);
                 tvNombreCurso.setText(c.getNombreCurso());
                 tvCentro.setText(c.getCentro());
                 tvDisponibilidad.setText(c.getDisponibilidad());
                 tvNumeroAlumnos.setText(c.getNumeroAlumnos());
                 tvTemas.setText(c.getTemas());
                 for (int i = 0; i < listaCursos.size(); i++) {
-                    listaCursos.get(i);
+                    listaCursos.add((Curso) tvNombreCurso.getText());
+                    listaCursos.add((Curso) tvCentro.getText());
+                    listaCursos.add((Curso) tvDisponibilidad.getText());
+                    listaCursos.add((Curso) tvNumeroAlumnos.getText());
+                    listaCursos.add((Curso) tvTemas.getText());
                 }
                 cursoAdaptador.notifyDataSetChanged();
-
             }
 
         } catch (Exception e) {
@@ -120,7 +118,6 @@ public class CursosActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info =
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
-
         switch (itemSeleccionado) {
             case R.id.action_editar:
                 // hacer algo

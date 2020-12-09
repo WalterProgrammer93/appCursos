@@ -25,6 +25,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
     CheckBox cb_tema1, cb_tema2, cb_tema3;
     Button b_altaCurso, b_buscarCurso, b_eliminarCurso, b_editarCurso, b_cancelarCurso;
     ArrayAdapter<String> spinner_adapter;
+    ArrayList<String> numAlumnos;
     CursoBD cbd;
     Cursor fila;
 
@@ -40,7 +41,13 @@ public class NuevoCursoActivity extends AppCompatActivity {
         rb_disponible = findViewById(R.id.rb_disponible);
         rb_nodisponible = findViewById(R.id.rb_nodisponible);
         s_numeroAlumnos = findViewById(R.id.s_numeroAlumnos);
-        String []numAlumnos={"5","10","15","20","25","30"};
+        numAlumnos = new ArrayList<>();
+        numAlumnos.add("5");
+        numAlumnos.add("10");
+        numAlumnos.add("15");
+        numAlumnos.add("20");
+        numAlumnos.add("25");
+        numAlumnos.add("30");
         spinner_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, numAlumnos);
         s_numeroAlumnos.setAdapter(spinner_adapter);
         cb_tema1 = findViewById(R.id.cb_tema1);
@@ -50,7 +57,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
         b_altaCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if (validarDatos()) {
+                if (validarDatos()) {
                     String nombreCurso = et_nombreCurso.getText().toString();
                     String centroCurso = et_centroCurso.getText().toString();
                     String disponible = rb_disponible.getText().toString();
@@ -88,25 +95,18 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();
                     }
-                //}
+                } else {
+                    Toast.makeText(NuevoCursoActivity.this, "Se ha producido un error en la insercion del curso", Toast.LENGTH_LONG).show();
+                }
             }
         });
         b_buscarCurso = findViewById(R.id.b_buscarCurso);
         b_buscarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if (validarDatos()) {
                     String nombre = et_nombreCurso.getText().toString();
                     fila = (Cursor) cbd.buscarCurso(nombre);
                     if (fila.moveToFirst() && fila.getCount() > 0) {
-                        /*et_nombreCurso.setText(fila.getString(1));
-                        et_centroCurso.setText(fila.getString(2));
-                        rb_disponible.setChecked(Boolean.parseBoolean(fila.getString(3)));
-                        rb_nodisponible.setChecked(Boolean.parseBoolean(fila.getString(3)));
-                        s_numeroAlumnos.setEnabled(Boolean.parseBoolean(fila.getString(4)));
-                        cb_tema1.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                        cb_tema2.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                        cb_tema3.setChecked(Boolean.parseBoolean(fila.getString(5)));*/
                         Intent buscar = new Intent(NuevoCursoActivity.this, CursosActivity.class);
                         buscar.putExtra("NombreCurso", nombre);
                         startActivity(buscar);
@@ -114,14 +114,12 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         Toast.makeText(NuevoCursoActivity.this, "No existe el curso con dicho nombre",
                                 Toast.LENGTH_LONG).show();
                     }
-                //}
             }
         });
         b_eliminarCurso = findViewById(R.id.b_eliminarCurso);
         b_eliminarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if (validarDatos()) {
                     String nom = et_nombreCurso.getText().toString();
                     int cant = cbd.eliminarCurso(nom);
                     et_nombreCurso.setText("");
@@ -135,19 +133,17 @@ public class NuevoCursoActivity extends AppCompatActivity {
 
                     if (cant == 1) {
                         Toast.makeText(NuevoCursoActivity.this, "Se borró el curso con dicho nombre", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                        startActivity(intent);
+                        Intent i_eliminar = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                        startActivity(i_eliminar);
                     } else
                         Toast.makeText(NuevoCursoActivity.this, "No existe un curso con dicho nombre", Toast.LENGTH_SHORT).show();
-
-                //}
             }
         });
         b_editarCurso = findViewById(R.id.b_editarCurso);
         b_editarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if (validarDatos()) {
+                if (validarDatos()) {
                     String et1 = et_nombreCurso.getText().toString();
                     String et2 = et_centroCurso.getText().toString();
                     String et3 = rb_disponible.getText().toString();
@@ -180,7 +176,9 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         Toast.makeText(NuevoCursoActivity.this, "No existe un curso con el nombre ingresado",
                                 Toast.LENGTH_SHORT).show();
 
-                //}
+                } else {
+                    Toast.makeText(NuevoCursoActivity.this, "Se ha producido un error en la edicion del curso", Toast.LENGTH_LONG).show();
+                }
             }
         });
         b_cancelarCurso = findViewById(R.id.b_cancelarCurso);
