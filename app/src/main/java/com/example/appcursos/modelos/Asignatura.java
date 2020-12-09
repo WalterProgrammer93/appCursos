@@ -1,6 +1,8 @@
 package com.example.appcursos.modelos;
-
+import android.database.Cursor;
 import android.graphics.Bitmap;
+
+import com.example.appcursos.bd.AdminBD;
 
 public class Asignatura {
 
@@ -9,6 +11,7 @@ public class Asignatura {
     private String descripcionAsignatura;
     private Curso curso;
     private Bitmap iconoAsignatura;
+    AdminBD abd;
 
     public Asignatura() {
     }
@@ -52,6 +55,12 @@ public class Asignatura {
     }
 
     public void setCurso(Curso curso) {
+        String query = "select curso_id as curso from cursos where curso_id = " + curso.getCursoId();
+        Cursor cursor = abd.getReadableDatabase().rawQuery(query,null);
+        while(cursor.moveToNext()) {
+            int fila = Integer.valueOf(cursor.getString(cursor.getColumnIndex("curso_id")));
+        }
+        cursor.close();
         this.curso = curso;
     }
 }

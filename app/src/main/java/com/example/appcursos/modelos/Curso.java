@@ -1,6 +1,11 @@
 package com.example.appcursos.modelos;
 
+import android.annotation.SuppressLint;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+
+import com.example.appcursos.bd.AdminBD;
 
 import java.util.ArrayList;
 
@@ -14,6 +19,7 @@ public class Curso {
     private String temas;
     private Bitmap iconoCurso;
     private int i;
+
 
     public Curso() {
     }

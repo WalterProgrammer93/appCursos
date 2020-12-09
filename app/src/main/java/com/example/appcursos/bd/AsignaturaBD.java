@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Asignatura;
+import com.example.appcursos.modelos.Curso;
+
 import java.util.ArrayList;
 
 public class AsignaturaBD {
@@ -98,5 +100,33 @@ public class AsignaturaBD {
         cursor.close();
         bd.close();
         return listaAsignatura;
+    }
+
+    public boolean isAsignaturaExists(String nombreAsignatura) {
+        String[] columns = {COL_NOMBRE_ASIGNATURA};
+
+        //Selection
+        String selection = COL_NOMBRE_ASIGNATURA + " = ? ";
+
+        //Selection Args
+        String[] selection_Args = {nombreAsignatura};
+
+        bd = abd.getReadableDatabase();
+        //Query
+        Cursor cursor = bd.query(TABLA_ASIGNATURAS,
+                columns,
+                selection,
+                selection_Args,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+            return true;
+        }
+        cursor.close();
+        bd.close();
+        return false;
     }
 }

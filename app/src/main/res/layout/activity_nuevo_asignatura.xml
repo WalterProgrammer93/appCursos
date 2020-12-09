@@ -95,7 +95,7 @@
                 tools:layout_editor_absoluteY="540dp" />
 
             <Button
-                android:id="@+id/cancelar"
+                android:id="@+id/cancelar_asignatura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent"
