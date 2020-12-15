@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Asignatura;
-import com.example.appcursos.modelos.Curso;
 
 import java.util.ArrayList;
 
@@ -31,6 +30,19 @@ public class AsignaturaBD {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    public void leerBD() {
+        bd = abd.getReadableDatabase();
+    }
+    public void escribirBD() {
+        bd = abd.getWritableDatabase();
+    }
+    public void cerrarBD() {
+        bd.close();
+    }
+
+    public SQLiteDatabase getBD() {
+        return bd;
+    }
     public void insertarAsignatura(Asignatura asignatura) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
@@ -41,20 +53,22 @@ public class AsignaturaBD {
         bd.close();
     }
 
-    public void editarAsignatura(int id, Asignatura asignatura) {
+    public int editarAsignatura(String nombre, Asignatura asignatura) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ASIGNATURA, asignatura.getNombreAsignatura());
         registro.put(COL_DESCRIPCION_ASIGNATURA, asignatura.getDescripcionAsignatura());
         registro.put(COL_CURSO_ID, asignatura.getCurso().getCursoId());
-        bd.update(TABLA_ASIGNATURAS, registro, COL_ASIGNATURA_ID + "=" + id,null);
+        int res = bd.update(TABLA_ASIGNATURAS, registro, COL_NOMBRE_ASIGNATURA + "=" + nombre,null);
         bd.close();
+        return res;
     }
 
-    public void eliminarAsignatura(String nombre) {
+    public int eliminarAsignatura(String nombre) {
         bd = abd.getReadableDatabase();
-        bd.delete(TABLA_ASIGNATURAS, COL_NOMBRE_ASIGNATURA + "=" + nombre, null);
+        int res = bd.delete(TABLA_ASIGNATURAS, COL_NOMBRE_ASIGNATURA + "=" + nombre, null);
         bd.close();
+        return res;
     }
 
     public Asignatura buscarAsignatura(String nombre) {
@@ -129,4 +143,5 @@ public class AsignaturaBD {
         bd.close();
         return false;
     }
+
 }

@@ -35,7 +35,6 @@ public class NuevoCursoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_curso);
 
         cbd = new CursoBD(this);
-
         et_nombreCurso = findViewById(R.id.et_nombreCurso);
         et_centroCurso = findViewById(R.id.et_centroCurso);
         rb_disponible = findViewById(R.id.rb_disponible);

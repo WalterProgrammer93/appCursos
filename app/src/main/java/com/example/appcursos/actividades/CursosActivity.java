@@ -66,11 +66,11 @@ public class CursosActivity extends AppCompatActivity {
                 tvNumeroAlumnos.setText(c.getNumeroAlumnos());
                 tvTemas.setText(c.getTemas());
                 for (int i = 0; i < listaCursos.size(); i++) {
-                    listaCursos.add((Curso) tvNombreCurso.getText());
-                    listaCursos.add((Curso) tvCentro.getText());
-                    listaCursos.add((Curso) tvDisponibilidad.getText());
-                    listaCursos.add((Curso) tvNumeroAlumnos.getText());
-                    listaCursos.add((Curso) tvTemas.getText());
+                    listaCursos.add(i, (Curso) tvNombreCurso.getText());
+                    listaCursos.add(i, (Curso) tvCentro.getText());
+                    listaCursos.add(i, (Curso) tvDisponibilidad.getText());
+                    listaCursos.add(i, (Curso) tvNumeroAlumnos.getText());
+                    listaCursos.add(i, (Curso) tvTemas.getText());
                 }
                 cursoAdaptador.notifyDataSetChanged();
             }
