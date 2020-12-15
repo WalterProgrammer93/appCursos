@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Asignatura;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AsignaturaBD {
 
@@ -142,6 +143,29 @@ public class AsignaturaBD {
         cursor.close();
         bd.close();
         return false;
+    }
+
+    public List<String> getAllCursos(){
+        List<String> cursos = new ArrayList<String>();
+        // Select All Query
+        String selectQuery = "SELECT curso_id AS cursos FROM cursos";
+
+        bd = abd.getReadableDatabase();
+        Cursor cursor = bd.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                cursos.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        bd.close();
+
+        // returning lables
+        return cursos;
     }
 
 }

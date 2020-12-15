@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CursoBD {
 
@@ -158,4 +159,6 @@ public class CursoBD {
         bd.close();
         return false;
     }
+
+
 }

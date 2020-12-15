@@ -16,14 +16,15 @@ import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NuevoAsignaturaActivity extends AppCompatActivity {
 
     EditText et_nombreAsignatura, et_descripcionAsignatura;
     Spinner s_curso;
     Button b_altaAsignatura, b_buscarAsignatura, b_eliminarAsignatura, b_editarAsignatura, b_cancelarAsignatura;
-    ArrayList<String> cursos;
-    ArrayAdapter<String> s_adapter;
+    List<String> cursos;
+    ArrayAdapter s_adapter;
     AsignaturaBD asbd;
     static Cursor cursor;
 
@@ -39,11 +40,9 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         s_curso = findViewById(R.id.spinner_cursoAsignatura);
         cursos = new ArrayList<>();
         asbd.leerBD();
-        cursor = asbd.getBD().rawQuery("select curso_id as curso from cursos",null);
-        if (cursor.moveToFirst() && cursor.getCount() > 0) {
-            cursos.add(String.valueOf(cursor));
-        }
+        cursos = asbd.getAllCursos();
         s_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cursos);
+        s_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_curso.setAdapter(s_adapter);
         b_altaAsignatura = findViewById(R.id.alta_asignatura);
         b_altaAsignatura.setOnClickListener(new View.OnClickListener() {
