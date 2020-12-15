@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
@@ -41,10 +40,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         cursos = new ArrayList<>();
         asbd.leerBD();
         cursor = asbd.getBD().rawQuery("select curso_id as curso from cursos",null);
-        for (int i = 0; i < cursos.size(); i++) {
-            if (cursor.moveToFirst() && cursor.getCount() > 0) {
-                cursos.add(i, String.valueOf(cursor));
-            }
+        if (cursor.moveToFirst() && cursor.getCount() > 0) {
+            cursos.add(String.valueOf(cursor));
         }
         s_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cursos);
         s_curso.setAdapter(s_adapter);
