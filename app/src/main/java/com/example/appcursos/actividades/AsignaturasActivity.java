@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AsignaturaAdaptador;
+import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
 import java.util.ArrayList;
 
@@ -42,9 +43,21 @@ public class AsignaturasActivity extends AppCompatActivity {
         tvDescripcionAsignatura = findViewById(R.id.tvDescripcionAsignatura);
         tvCurso = findViewById(R.id.tvCurso);
         lvAsignaturas = findViewById(R.id.lvAsignaturas);
+        AsignaturaBD asigbd = new AsignaturaBD(this);
+        SQLiteDatabase bd = adminbd.getWritableDatabase();
+        Cursor fila = bd.rawQuery("select nombre, puntuacion from usuarios", null);
+        if(fila.moveToFirst()){
+            do{
+                ranking.add(fila.getString(0) + " - " + fila.getString(1)));
+            }while(fila.moveToNext())
+        }
+        bd.close();
+
         lvAsignaturas.setAdapter(asignaturaAdaptador);
         registerForContextMenu(lvAsignaturas);
-        try {
+        listaAsignaturas.add(new Asignatura());
+
+        /*try {
             Bundle recibir = getIntent().getExtras();
             if (recibir != null) {
                 String nombreAsig = recibir.getString("NombreAsignatura");
@@ -63,7 +76,7 @@ public class AsignaturasActivity extends AppCompatActivity {
             lvAsignaturas.setEmptyView(tvNombreAsignatura);
             lvAsignaturas.setEmptyView(tvDescripcionAsignatura);
             lvAsignaturas.setEmptyView(tvCurso);
-        }
+        }*/
         asignaturaAdaptador.notifyDataSetChanged();
     }
 
