@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -44,8 +45,8 @@ public class AsignaturasActivity extends AppCompatActivity {
         tvCurso = findViewById(R.id.tvCurso);
         lvAsignaturas = findViewById(R.id.lvAsignaturas);
         AsignaturaBD asigbd = new AsignaturaBD(this);
-        SQLiteDatabase bd = adminbd.getWritableDatabase();
-        Cursor fila = bd.rawQuery("select nombre, puntuacion from usuarios", null);
+        SQLiteDatabase bd = asigbd.getWritableDatabase();
+        Cursor fila = bd.listaAsignatura
         if(fila.moveToFirst()){
             do{
                 ranking.add(fila.getString(0) + " - " + fila.getString(1)));
