@@ -65,14 +65,12 @@ public class CursosActivity extends AppCompatActivity {
                 tvDisponibilidad.setText(c.getDisponibilidad());
                 tvNumeroAlumnos.setText(c.getNumeroAlumnos());
                 tvTemas.setText(c.getTemas());
-                for (int i = 0; i < listaCursos.size(); i++) {
-                    listaCursos.add(i, (Curso) tvNombreCurso.getText());
-                    listaCursos.add(i, (Curso) tvCentro.getText());
-                    listaCursos.add(i, (Curso) tvDisponibilidad.getText());
-                    listaCursos.add(i, (Curso) tvNumeroAlumnos.getText());
-                    listaCursos.add(i, (Curso) tvTemas.getText());
-                }
-                cursoAdaptador.notifyDataSetChanged();
+                listaCursos.add((Curso) tvNombreCurso.getText());
+                listaCursos.add((Curso) tvCentro.getText());
+                listaCursos.add((Curso) tvDisponibilidad.getText());
+                listaCursos.add((Curso) tvNumeroAlumnos.getText());
+                listaCursos.add((Curso) tvTemas.getText());
+
             }
 
         } catch (Exception e) {
@@ -82,6 +80,7 @@ public class CursosActivity extends AppCompatActivity {
             lvCursos.setEmptyView(tvNumeroAlumnos);
             lvCursos.setEmptyView(tvTemas);
         }
+        cursoAdaptador.notifyDataSetChanged();
     }
 
     @Override
