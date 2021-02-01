@@ -44,21 +44,11 @@ public class AsignaturasActivity extends AppCompatActivity {
         tvDescripcionAsignatura = findViewById(R.id.tvDescripcionAsignatura);
         tvCurso = findViewById(R.id.tvCurso);
         lvAsignaturas = findViewById(R.id.lvAsignaturas);
-        AsignaturaBD asigbd = new AsignaturaBD(this);
-        SQLiteDatabase bd = asigbd.getWritableDatabase();
-        Cursor fila = bd.listaAsignatura
-        if(fila.moveToFirst()){
-            do{
-                ranking.add(fila.getString(0) + " - " + fila.getString(1)));
-            }while(fila.moveToNext())
-        }
-        bd.close();
 
         lvAsignaturas.setAdapter(asignaturaAdaptador);
         registerForContextMenu(lvAsignaturas);
-        listaAsignaturas.add(new Asignatura());
 
-        /*try {
+        try {
             Bundle recibir = getIntent().getExtras();
             if (recibir != null) {
                 String nombreAsig = recibir.getString("NombreAsignatura");
@@ -67,17 +57,15 @@ public class AsignaturasActivity extends AppCompatActivity {
                 tvNombreAsignatura.setText(nombreAsig);
                 tvDescripcionAsignatura.setText(descripAsig);
                 tvCurso.setText(curso);
-                for(int i = 0; i < listaAsignaturas.size(); i++) {
-                    listaAsignaturas.add((Asignatura) tvNombreAsignatura.getText());
-                    listaAsignaturas.add((Asignatura) tvDescripcionAsignatura.getText());
-                    listaAsignaturas.add((Asignatura) tvCurso.getText());
-                }
+                listaAsignaturas.add((Asignatura) tvNombreAsignatura.getText());
+                listaAsignaturas.add((Asignatura) tvDescripcionAsignatura.getText());
+                listaAsignaturas.add((Asignatura) tvCurso.getText());
             }
         } catch (Exception e) {
             lvAsignaturas.setEmptyView(tvNombreAsignatura);
             lvAsignaturas.setEmptyView(tvDescripcionAsignatura);
             lvAsignaturas.setEmptyView(tvCurso);
-        }*/
+        }
         asignaturaAdaptador.notifyDataSetChanged();
     }
 
