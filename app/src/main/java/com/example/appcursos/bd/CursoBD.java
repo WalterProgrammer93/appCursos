@@ -115,14 +115,16 @@ public class CursoBD {
             return null;
         }
         ArrayList<Curso> listaCurso = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            Curso curso = new Curso();
-            curso.setNombreCurso(cursor.getString(NUM_COL_NOMBRE_CURSO));
-            curso.setCentro(cursor.getString(NUM_COL_CENTRO));
-            curso.setDisponibilidad(cursor.getString(NUM_COL_DISPONIBILIDAD));
-            curso.setNumeroAlumnos(cursor.getString(NUM_COL_NUM_ALUMNOS));
-            curso.setTemas(cursor.getString(NUM_COL_TEMAS));
-            listaCurso.add(curso);
+        if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
+                Curso curso = new Curso();
+                curso.setNombreCurso(cursor.getString(NUM_COL_NOMBRE_CURSO));
+                curso.setCentro(cursor.getString(NUM_COL_CENTRO));
+                curso.setDisponibilidad(cursor.getString(NUM_COL_DISPONIBILIDAD));
+                curso.setNumeroAlumnos(cursor.getString(NUM_COL_NUM_ALUMNOS));
+                curso.setTemas(cursor.getString(NUM_COL_TEMAS));
+                listaCurso.add(curso);
+            }
         }
         cursor.close();
         bd.close();
