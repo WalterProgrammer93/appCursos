@@ -23,7 +23,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
     RadioButton rb_disponible, rb_nodisponible;
     Spinner s_numeroAlumnos;
     CheckBox cb_tema1, cb_tema2, cb_tema3;
-    Button b_altaCurso, b_buscarCurso, b_eliminarCurso, b_editarCurso, b_cancelarCurso;
+    Button b_altaCurso, b_cancelarCurso;
     ArrayAdapter<String> spinner_adapter;
     ArrayList<String> numAlumnos;
     CursoBD cbd;
@@ -52,7 +52,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
         cb_tema1 = findViewById(R.id.cb_tema1);
         cb_tema2 = findViewById(R.id.cb_tema2);
         cb_tema3 = findViewById(R.id.cb_tema3);
-        b_altaCurso = findViewById(R.id.b_altaCurso);
+        b_altaCurso = findViewById(R.id.altaCurso);
         b_altaCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +99,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 }
             }
         });
-        b_buscarCurso = findViewById(R.id.b_buscarCurso);
+        /*b_buscarCurso = findViewById(R.id.b_buscarCurso);
         b_buscarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,7 +138,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         Toast.makeText(NuevoCursoActivity.this, "No existe un curso con dicho nombre", Toast.LENGTH_SHORT).show();
             }
         });
-        b_editarCurso = findViewById(R.id.b_editarCurso);
+        b_editarCurso = findViewById(R.id.editarCurso);
         b_editarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,8 +179,8 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     Toast.makeText(NuevoCursoActivity.this, "Se ha producido un error en la edicion del curso", Toast.LENGTH_LONG).show();
                 }
             }
-        });
-        b_cancelarCurso = findViewById(R.id.b_cancelarCurso);
+        });*/
+        b_cancelarCurso = findViewById(R.id.cancelarCurso);
         b_cancelarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,4 +279,6 @@ public class NuevoCursoActivity extends AppCompatActivity {
         }
         return valido;
     }
+
+
 }

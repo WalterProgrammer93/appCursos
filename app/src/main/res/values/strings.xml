@@ -73,4 +73,7 @@
     <string name="rol1">Administrador</string>
     <string name="rol2">Alumno</string>
     <string name="rol3" tools:ignore="Typos">Profesor</string>
+    <string name="verCurso">Ver Cursos</string>
+    <string name="editarCurso">Editar Curso</string>
+    <string name="eliminarCurso">Eliminar Curso</string>
 </resources>

@@ -15,7 +15,7 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
 
     EditText nombreAlumno, apellidosAlumno, dniAlumno, telefonoAlumno;
     Spinner asignaturaId;
-    Button altaAlumno, buscarAlumno, eliminarAlumno, editarAlumno, cancelarAlumno;
+    Button altaAlumno, cancelarAlumno;
     AlumnoBD alumbd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,42 +28,22 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
         dniAlumno = findViewById(R.id.et_dniAlumno);
         telefonoAlumno = findViewById(R.id.et_telefonoAlumno);
         asignaturaId = findViewById(R.id.spinner_asignaturaId);
-        altaAlumno = findViewById(R.id.b_altaAlumno);
-        buscarAlumno = findViewById(R.id.b_buscarAlumno);
-        eliminarAlumno = findViewById(R.id.b_eliminarAlumno);
-        editarAlumno = findViewById(R.id.b_editarAlumno);
-        cancelarAlumno = findViewById(R.id.b_cancelarAlumno);
+        altaAlumno = findViewById(R.id.altaAlumno);
+        cancelarAlumno = findViewById(R.id.cancelarAlumno);
 
         altaAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validarDatos()) {
+                /*if (validarDatos()) {
                     String nombreAlum = nombreAlumno.getText().toString();
                     String apelAlum = apellidosAlumno.getText().toString();
                     String dniAlum = dniAlumno.getText().toString();
                     String telfAlum = telefonoAlumno.getText().toString();
                     String asigId = asignaturaId.getSelectedItem().toString();
-                }
+                }*/
             }
         });
-        buscarAlumno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
-        eliminarAlumno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        editarAlumno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         cancelarAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +52,6 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
         });
     }
 
-    private boolean validarDatos() {
-    }
+    /*private boolean validarDatos() {
+    }*/
 }

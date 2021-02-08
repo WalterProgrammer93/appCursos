@@ -22,7 +22,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
 
     EditText et_nombreAsignatura, et_descripcionAsignatura;
     Spinner s_curso;
-    Button b_altaAsignatura, b_buscarAsignatura, b_eliminarAsignatura, b_editarAsignatura, b_cancelarAsignatura;
+    Button b_altaAsignatura, b_cancelarAsignatura;
     List<String> cursos;
     ArrayAdapter s_adapter;
     AsignaturaBD asbd;
@@ -44,7 +44,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         s_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cursos);
         s_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_curso.setAdapter(s_adapter);
-        b_altaAsignatura = findViewById(R.id.alta_asignatura);
+        b_altaAsignatura = findViewById(R.id.altaAsignatura);
         b_altaAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +68,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                 }
             }
         });
-        b_buscarAsignatura = findViewById(R.id.buscar_asignatura);
+        /*b_buscarAsignatura = findViewById(R.id.buscar_asignatura);
         b_buscarAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,8 +122,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                     Toast.makeText(NuevoAsignaturaActivity.this, "No existe la asignatura",
                             Toast.LENGTH_SHORT).show();
             }
-        });
-        b_cancelarAsignatura = findViewById(R.id.cancelar_asignatura);
+        });*/
+        b_cancelarAsignatura = findViewById(R.id.cancelarAsignatura);
         b_cancelarAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
