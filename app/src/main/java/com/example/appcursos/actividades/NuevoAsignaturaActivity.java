@@ -38,7 +38,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         s_curso = findViewById(R.id.spinner_cursoAsignatura);
         cursos = new ArrayList<>();
         asbd.leerBD();
-        cursos = asbd.getAllCursos();
+        cursos = asbd.getAllCursos(); // error
         s_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, cursos);
         s_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_curso.setAdapter(s_adapter);
@@ -73,7 +73,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         });
 
     }
-    public boolean validarDatos() {
+    /*public boolean validarDatos() {
         boolean valido;
         String campo1 = et_nombreAsignatura.getText().toString();
         String campo2 = et_descripcionAsignatura.getText().toString();
@@ -113,5 +113,5 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
             Toast.makeText(NuevoAsignaturaActivity.this, "No ha seleccionado un curso", Toast.LENGTH_SHORT).show();
         }
         return valido;
-    }
+    }*/
 }

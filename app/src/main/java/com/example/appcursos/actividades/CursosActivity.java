@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -46,21 +45,9 @@ public class CursosActivity extends AppCompatActivity {
         tvTemas = findViewById(R.id.tvTemas);
         cbd = new CursoBD(this);
         cbd.leerBD();
-        Cursor fila = (Cursor) cbd.listarCurso();
-        if (fila.moveToFirst()) {
-            do {
-                Curso c = new Curso();
-                c.setNombreCurso(fila.getString(1));
-                c.setCentro(fila.getString(2));
-                c.setDisponibilidad(fila.getString(3));
-                c.setNumeroAlumnos(fila.getString(4));
-                c.setTemas(fila.getString(5));
-                listaCursos.add(c);
-            } while (fila.moveToNext());
-        }
+        listaCursos = cbd.listarCurso(); // error
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
         lvCursos = findViewById(R.id.lvCursos);
-
         lvCursos.setAdapter(cursoAdaptador);
         cursoAdaptador.notifyDataSetChanged();
     }

@@ -108,7 +108,7 @@ public class CursoBD {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {
                 COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_TEMAS
-        }, null, null, null, null, null, COL_NOMBRE_CURSO);
+        }, null, null, null, null, null, COL_NOMBRE_CURSO); // ERROR
 
         if (cursor.getCount() == 0) {
             cursor.close();

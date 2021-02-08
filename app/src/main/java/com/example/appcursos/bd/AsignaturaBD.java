@@ -145,7 +145,7 @@ public class AsignaturaBD {
     }
 
     public List<String> getAllCursos(){
-        List<String> cursos = new ArrayList<String>();
+        List<String> cursos = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT curso_id AS cursos FROM cursos";
 
@@ -155,7 +155,7 @@ public class AsignaturaBD {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                cursos.add(cursor.getString(1));
+                cursos.add(cursor.getString(1)); // error
             } while (cursor.moveToNext());
         }
 

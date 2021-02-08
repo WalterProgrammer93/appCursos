@@ -57,7 +57,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
         b_altaCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validarDatos()) {
+                //if (validarDatos()) {
                     String nombreCurso = et_nombreCurso.getText().toString();
                     String centroCurso = et_centroCurso.getText().toString();
                     String disponible = rb_disponible.getText().toString();
@@ -90,9 +90,9 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();
                     }
-                } else {
+                /*} else {
                     Toast.makeText(NuevoCursoActivity.this, "Se ha producido un error en la insercion del curso", Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
         b_cancelarCurso = findViewById(R.id.cancelarCurso);
@@ -128,7 +128,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
 
     }
 
-    public boolean validarDatos() {
+    /*public boolean validarDatos() {
         boolean valido;
         String campo1 = et_nombreCurso.getText().toString();
         String campo2 = et_centroCurso.getText().toString();
@@ -216,7 +216,5 @@ public class NuevoCursoActivity extends AppCompatActivity {
 
         }
         return valido;
-    }
-
-
+    }*/
 }
