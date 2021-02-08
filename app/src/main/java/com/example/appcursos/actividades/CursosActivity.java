@@ -44,15 +44,23 @@ public class CursosActivity extends AppCompatActivity {
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
         tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
         tvTemas = findViewById(R.id.tvTemas);
+        cbd = new CursoBD(this);
+        cbd.leerBD();
+        Cursor fila = (Cursor) cbd.listarCurso();
+        if (fila.moveToFirst()) {
+            do {
+                Curso c = new Curso();
+                c.setNombreCurso(fila.getString(1));
+                c.setCentro(fila.getString(2));
+                c.setDisponibilidad(fila.getString(3));
+                c.setNumeroAlumnos(fila.getString(4));
+                c.setTemas(fila.getString(5));
+                listaCursos.add(c);
+            } while (fila.moveToNext());
+        }
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
         lvCursos = findViewById(R.id.lvCursos);
 
-        cbd = new CursoBD(this);
-        cbd.escribirBD();
-        Cursor fila = (Cursor) cbd.listarCurso();
-        while (fila.moveToFirst()) {
-            listaCursos.add((Curso) fila);
-        }
         lvCursos.setAdapter(cursoAdaptador);
         cursoAdaptador.notifyDataSetChanged();
     }

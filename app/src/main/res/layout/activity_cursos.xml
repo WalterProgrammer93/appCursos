@@ -33,6 +33,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+
+
                 <TextView
                     android:id="@+id/tvNombreCurso"
                     android:layout_width="match_parent"
@@ -72,12 +74,8 @@
                     android:layout_weight="1"/>
 
             </LinearLayout>
-        </LinearLayout>
 
-        <ListView
-            android:id="@+id/lvCursos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

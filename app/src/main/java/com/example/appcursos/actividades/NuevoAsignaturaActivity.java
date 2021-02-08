@@ -3,7 +3,6 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,7 +25,6 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
     List<String> cursos;
     ArrayAdapter s_adapter;
     AsignaturaBD asbd;
-    static Cursor cursor;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -41,7 +39,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         cursos = new ArrayList<>();
         asbd.leerBD();
         cursos = asbd.getAllCursos();
-        s_adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, cursos);
+        s_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, cursos);
         s_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_curso.setAdapter(s_adapter);
         b_altaAsignatura = findViewById(R.id.altaAsignatura);
@@ -58,71 +56,13 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                     et_nombreAsignatura.setText("");
                     et_descripcionAsignatura.setText("");
                     Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura se ha creado correctamente!", Toast.LENGTH_LONG).show();
-                    Intent alta = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    alta.putExtra("NombreAsignatura", nombreAsignatura);
-                    alta.putExtra("DescripcionAsignatura", descripcionAsignatura);
-                    alta.putExtra("Curso", String.valueOf(curso));
+                    Intent alta = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(alta);
                 } else {
                     Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura ya existe!", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        /*b_buscarAsignatura = findViewById(R.id.buscar_asignatura);
-        b_buscarAsignatura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombre = et_nombreAsignatura.getText().toString();
-                cursor = (Cursor) asbd.buscarAsignatura(nombre);
-                if (cursor.moveToFirst() && cursor.getCount() > 0) {
-                    Intent buscar = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    buscar.putExtra("NombreCurso", nombre);
-                    startActivity(buscar);
-                } else {
-                    Toast.makeText(NuevoAsignaturaActivity.this, "No existe la asignatura con dicho nombre",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        b_eliminarAsignatura = findViewById(R.id.eliminar_asignatura);
-        b_eliminarAsignatura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombreAsig = et_nombreAsignatura.getText().toString();
-                int cant = asbd.eliminarAsignatura(nombreAsig);
-                et_nombreAsignatura.setText("");
-                et_descripcionAsignatura.setText("");
-                if (cant == 1) {
-                    Toast.makeText(NuevoAsignaturaActivity.this, "Se borró la asignatura con dicho nombre", Toast.LENGTH_SHORT).show();
-                    Intent eliminar = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    startActivity(eliminar);
-                } else
-                    Toast.makeText(NuevoAsignaturaActivity.this, "No existe una asignatura con dicho nombre", Toast.LENGTH_SHORT).show();
-            }
-        });
-        b_editarAsignatura = findViewById(R.id.editar_asignatura);
-        b_editarAsignatura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombreAsig = et_nombreAsignatura.getText().toString();
-                String descripAsig = et_descripcionAsignatura.getText().toString();
-                Curso curso = new Curso();
-                curso.setCursoId((Integer) s_curso.getSelectedItem());
-                Asignatura asignatura = new Asignatura(nombreAsig, descripAsig, curso);
-                int editar = asbd.editarAsignatura(nombreAsig, asignatura);
-                if (editar == 1) {
-                    Toast.makeText(NuevoAsignaturaActivity.this, "Se modificaron los datos de la asignatura", Toast.LENGTH_SHORT)
-                            .show();
-                    Intent edit = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    edit.putExtra("NombreAsignatura", nombreAsig);
-                    edit.putExtra("DescripcionAsignatura", descripAsig);
-                    edit.putExtra("Curso", String.valueOf(curso));
-                    startActivity(edit);
-                } else
-                    Toast.makeText(NuevoAsignaturaActivity.this, "No existe la asignatura",
-                            Toast.LENGTH_SHORT).show();
-            }
-        });*/
         b_cancelarAsignatura = findViewById(R.id.cancelarAsignatura);
         b_cancelarAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override

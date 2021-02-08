@@ -53,7 +53,7 @@ public class CursoAdaptador extends BaseAdapter {
 
         // Si la View es null se crea de nuevo
         if (view == null) {
-            view = inflater.inflate(R.layout.activity_cursos, viewGroup);
+            view = inflater.inflate(R.layout.item_cursos, viewGroup);
 
             holder = new ViewHolder();
             holder.iconoCursos = view.findViewById(R.id.ivCurso);

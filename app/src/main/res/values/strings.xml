@@ -76,4 +76,5 @@
     <string name="verCurso">Ver Cursos</string>
     <string name="editarCurso">Editar Curso</string>
     <string name="eliminarCurso">Eliminar Curso</string>
+    <string name="buscarCurso">Buscar Curso</string>
 </resources>

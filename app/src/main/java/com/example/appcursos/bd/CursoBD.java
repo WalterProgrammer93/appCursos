@@ -6,20 +6,19 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CursoBD {
 
     private static final String DATABASE_NAME = "appcursos.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLA_CURSOS = "cursos";
+    private final String TABLA_CURSOS = "cursos";
     private static final String COL_CURSO_ID = "curso_id";
     private static final int NUM_COL_CURSO_ID = 0;
     private static final String COL_NOMBRE_CURSO = "nombre_curso";
     private static final int NUM_COL_NOMBRE_CURSO = 1;
     private static final String COL_CENTRO = "centro";
-    private static final int NUM_COL_CENTRO = 2;
+    private static int NUM_COL_CENTRO = 2;
     private static final String COL_DISPONIBILIDAD = "disponibilidad";
     private static final int NUM_COL_DISPONIBILIDAD = 3;
     private static final String COL_NUM_ALUMNOS = "numero_alumnos";
