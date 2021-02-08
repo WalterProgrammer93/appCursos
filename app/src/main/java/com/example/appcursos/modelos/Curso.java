@@ -17,7 +17,6 @@ public class Curso {
     private String disponibilidad;
     private String numeroAlumnos;
     private String temas;
-    private Bitmap iconoCurso;
     private int i;
 
 
@@ -34,10 +33,6 @@ public class Curso {
         for (i = 0; i < listaTema.size(); i++) {
             this.temas = listaTema.get(i);
         }
-    }
-
-    public Bitmap getIconoCurso() {
-        return iconoCurso;
     }
 
     public int getCursoId() {

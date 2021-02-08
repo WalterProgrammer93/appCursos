@@ -85,11 +85,11 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         cb_tema3.setChecked(false);
                         Toast.makeText(NuevoCursoActivity.this, "El curso se ha creado correctamente!", Toast.LENGTH_LONG).show();
                         Intent i_insert = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                        i_insert.putExtra("NombreCurso", nombreCurso);
+                        /*i_insert.putExtra("NombreCurso", nombreCurso);
                         i_insert.putExtra("CentroCurso", centroCurso);
                         i_insert.putExtra("Disponibilidad", disponibilidad);
                         i_insert.putExtra("NumeroAlumnos", numeroAlumnos);
-                        i_insert.putExtra("Temas", tema);
+                        i_insert.putExtra("Temas", tema);*/
                         startActivity(i_insert);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();

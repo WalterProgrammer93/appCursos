@@ -108,7 +108,7 @@ public class CursoBD {
     public ArrayList<Curso> listarCurso() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {
-                COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_TEMAS
+                COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_TEMAS
         }, null, null, null, null, null, COL_NOMBRE_CURSO);
 
         if (cursor.getCount() == 0) {
@@ -118,7 +118,6 @@ public class CursoBD {
         ArrayList<Curso> listaCurso = new ArrayList<>();
         while (cursor.moveToNext()) {
             Curso curso = new Curso();
-            curso.setCursoId(cursor.getInt(NUM_COL_CURSO_ID));
             curso.setNombreCurso(cursor.getString(NUM_COL_NOMBRE_CURSO));
             curso.setCentro(cursor.getString(NUM_COL_CENTRO));
             curso.setDisponibilidad(cursor.getString(NUM_COL_DISPONIBILIDAD));

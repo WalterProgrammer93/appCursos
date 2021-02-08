@@ -73,7 +73,7 @@ public class CursoAdaptador extends BaseAdapter {
         }
 
         Curso curso = listaCursos.get(i);
-        holder.iconoCursos.setImageBitmap(curso.getIconoCurso());
+        holder.iconoCursos.setImageResource(R.drawable.ic_school_black_24dp);
         holder.nombreCurso.setText(curso.getNombreCurso());
         holder.centro.setText(curso.getCentro());
         holder.numeroAlumnos.setText(curso.getNumeroAlumnos());

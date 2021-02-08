@@ -3,9 +3,9 @@ package com.example.appcursos.actividades;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -17,11 +17,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.CursoAdaptador;
+import com.example.appcursos.bd.CursoBD;
 import com.example.appcursos.modelos.Curso;
-
 import java.util.ArrayList;
 
 public class CursosActivity extends AppCompatActivity {
@@ -31,6 +30,7 @@ public class CursosActivity extends AppCompatActivity {
     ListView lvCursos;
     ImageView ivCursos;
     TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvTemas;
+    CursoBD cbd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,48 +38,22 @@ public class CursosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cursos);
 
         listaCursos = new ArrayList<>();
-        cursoAdaptador = new CursoAdaptador(this, listaCursos);
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
         tvCentro = findViewById(R.id.tvCentro);
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
         tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
         tvTemas = findViewById(R.id.tvTemas);
+        cursoAdaptador = new CursoAdaptador(this, listaCursos);
         lvCursos = findViewById(R.id.lvCursos);
-        registerForContextMenu(lvCursos);
-        lvCursos.setAdapter(cursoAdaptador);
 
-        try {
-            Bundle recibir = getIntent().getExtras();
-            if (recibir != null) {
-                String nombre = recibir.getString("NombreCurso");
-                String centro = recibir.getString("CentroCurso");
-                ArrayList<String> disponibilidad = new ArrayList<>();
-                disponibilidad.add(recibir.getString("Disponibilidad"));
-                String numeroAlumnos = recibir.getString("NumeroAlumnos");
-                ArrayList<String> temas = new ArrayList<>();
-                temas.add(recibir.getString("Temas"));
-                Curso c = new Curso(nombre, centro, disponibilidad, numeroAlumnos, temas);
-                tvNombreCurso.setText(c.getNombreCurso());
-                tvCentro.setText(c.getCentro());
-                tvDisponibilidad.setText(c.getDisponibilidad());
-                tvNumeroAlumnos.setText(c.getNumeroAlumnos());
-                tvTemas.setText(c.getTemas());
-                listaCursos.add((Curso) tvNombreCurso.getText());
-                listaCursos.add((Curso) tvCentro.getText());
-                listaCursos.add((Curso) tvDisponibilidad.getText());
-                listaCursos.add((Curso) tvNumeroAlumnos.getText());
-                listaCursos.add((Curso) tvTemas.getText());
-
-            }
-
-        } catch (Exception e) {
-            lvCursos.setEmptyView(tvNombreCurso);
-            lvCursos.setEmptyView(tvCentro);
-            lvCursos.setEmptyView(tvDisponibilidad);
-            lvCursos.setEmptyView(tvNumeroAlumnos);
-            lvCursos.setEmptyView(tvTemas);
+        cbd = new CursoBD(this);
+        cbd.escribirBD();
+        Cursor fila = (Cursor) cbd.listarCurso();
+        while (fila.moveToFirst()) {
+            listaCursos.add((Curso) fila);
         }
+        lvCursos.setAdapter(cursoAdaptador);
         cursoAdaptador.notifyDataSetChanged();
     }
 
