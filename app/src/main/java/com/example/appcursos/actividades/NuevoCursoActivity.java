@@ -92,7 +92,8 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         i_insert.putExtra("NoDisponible", listadisponibilidad.get(1));
                         i_insert.putExtra("NumeroAlumnos", numeroAlumnos);
                         i_insert.putExtra("Tema1", listatema.get(0));
-                        i_insert.putExtra("")
+                        i_insert.putExtra("Tema2", listatema.get(1));
+                        i_insert.putExtra("Tema3", listatema.get(2));
                         startActivity(i_insert);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();

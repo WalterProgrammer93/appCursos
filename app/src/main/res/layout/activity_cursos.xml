@@ -33,8 +33,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
-
                 <TextView
                     android:id="@+id/tvNombreCurso"
                     android:layout_width="match_parent"
@@ -48,7 +46,13 @@
                     android:layout_weight="1"/>
 
                 <TextView
-                    android:id="@+id/tvDisponibilidad"
+                    android:id="@+id/tvDisponible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tvNoDisponible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
@@ -68,7 +72,19 @@
                     android:layout_weight="1"/>
 
                 <TextView
-                    android:id="@+id/tvTemas"
+                    android:id="@+id/tvTema1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tvTema2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tvTema3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>

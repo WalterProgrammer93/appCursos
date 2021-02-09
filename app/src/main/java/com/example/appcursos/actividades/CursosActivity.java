@@ -27,7 +27,7 @@ public class CursosActivity extends AppCompatActivity {
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
     ImageView ivCursos;
-    TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvTemas;
+    TextView tvNombreCurso, tvCentro, tvDisponible, tvNoDisponible, tvNumeroAlumnos, tvTema1, tvTema2, tvTema3;
     CursoBD cbd;
 
     @Override
@@ -39,9 +39,12 @@ public class CursosActivity extends AppCompatActivity {
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
         tvCentro = findViewById(R.id.tvCentro);
-        tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
+        tvDisponible = findViewById(R.id.tvDisponible);
+        tvNoDisponible = findViewById(R.id.tvNoDisponible);
         tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
-        tvTemas = findViewById(R.id.tvTemas);
+        tvTema1 = findViewById(R.id.tvTema1);
+        tvTema2 = findViewById(R.id.tvTema2);
+        tvTema3 = findViewById(R.id.tvTema3);
         lvCursos = findViewById(R.id.lvCursos);
         cbd = new CursoBD(this);
         cbd.leerBD();
@@ -50,14 +53,20 @@ public class CursosActivity extends AppCompatActivity {
             String nameCurso = mostrarCurso.getString("NombreCurso");
             String nameCentro = mostrarCurso.getString("CentroCurso");
             String disponible = mostrarCurso.getString("Disponible");
+            String noDisponible = mostrarCurso.getString("NoDisponible");
             String nAlumnos = mostrarCurso.getString("NumeroAlumnos");
-            String temas = mostrarCurso.getString("Temas");
+            String tema1 = mostrarCurso.getString("Tema1");
+            String tema2 = mostrarCurso.getString("Tema2");
+            String tema3 = mostrarCurso.getString("Tema3");
 
             tvNombreCurso.setText(nameCurso);
             tvCentro.setText(nameCentro);
-            tvDisponibilidad.setText(dispo);
+            tvDisponible.setText(disponible);
+            tvNoDisponible.setText(noDisponible);
             tvNumeroAlumnos.setText(nAlumnos);
-            tvTemas.setText(temas);
+            tvTema1.setText(tema1);
+            tvTema2.setText(tema2);
+            tvTema3.setText(tema3);
 
             Cursor fila = (Cursor) cbd.listarCurso(); // error
             if (fila.moveToFirst()) {
@@ -73,9 +82,7 @@ public class CursosActivity extends AppCompatActivity {
                 }
             }
         }
-
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
-
         lvCursos.setAdapter(cursoAdaptador);
         cursoAdaptador.notifyDataSetChanged();
     }
