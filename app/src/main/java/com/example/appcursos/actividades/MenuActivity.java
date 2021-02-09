@@ -122,12 +122,16 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     }
 
     public void llamar() {
-        String numero = "674926136";
+        /*String numero = "674926136";
         Intent call = new Intent(Intent.ACTION_CALL);
         call.setData(Uri.parse("tel:" + numero));
         if (call.resolveActivity(getPackageManager()) != null) {
             startActivity(call);
-        }
+        }*/
+
+        Intent i = new Intent(android.content.Intent.ACTION_CALL,
+                Uri.parse("tel:640608295"));
+        startActivity(i);
     }
 
     public void marcar() {
