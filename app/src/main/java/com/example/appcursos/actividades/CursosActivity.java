@@ -1,10 +1,9 @@
 package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -43,11 +42,40 @@ public class CursosActivity extends AppCompatActivity {
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
         tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
         tvTemas = findViewById(R.id.tvTemas);
+        lvCursos = findViewById(R.id.lvCursos);
         cbd = new CursoBD(this);
         cbd.leerBD();
-        listaCursos = cbd.listarCurso(); // error
+        Bundle mostrarCurso = getIntent().getExtras();
+        if (mostrarCurso != null) {
+            String nameCurso = mostrarCurso.getString("NombreCurso");
+            String nameCentro = mostrarCurso.getString("CentroCurso");
+            String disponible = mostrarCurso.getString("Disponible");
+            String nAlumnos = mostrarCurso.getString("NumeroAlumnos");
+            String temas = mostrarCurso.getString("Temas");
+
+            tvNombreCurso.setText(nameCurso);
+            tvCentro.setText(nameCentro);
+            tvDisponibilidad.setText(dispo);
+            tvNumeroAlumnos.setText(nAlumnos);
+            tvTemas.setText(temas);
+
+            Cursor fila = (Cursor) cbd.listarCurso(); // error
+            if (fila.moveToFirst()) {
+                while (fila.moveToNext()) {
+                    Curso c = new Curso();
+                    c.setNombreCurso(fila.getString(1));
+                    c.setCentro(fila.getString(2));
+                    c.setDisponibilidad(fila.getString(3));
+                    c.setNumeroAlumnos(fila.getString(4));
+                    c.setTemas(fila.getString(5));
+                    listaCursos.add(c);
+
+                }
+            }
+        }
+
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
-        lvCursos = findViewById(R.id.lvCursos);
+
         lvCursos.setAdapter(cursoAdaptador);
         cursoAdaptador.notifyDataSetChanged();
     }
@@ -89,7 +117,7 @@ public class CursosActivity extends AppCompatActivity {
         switch (itemSeleccionado) {
             case R.id.action_editar:
                 // hacer algo
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(R.string.lb_esta_seguro)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
@@ -112,11 +140,11 @@ public class CursosActivity extends AppCompatActivity {
                                         // En este caso se cierra directamente el diálogo y no se hace nada más
                                         dialog.dismiss();
                                     }});
-                builder.create().show();
+                builder.create().show();*/
                 return true;
             case R.id.action_eliminar:
                 // hacer algo
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                /*AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setMessage(R.string.lb_esta_seguro)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
@@ -134,17 +162,17 @@ public class CursosActivity extends AppCompatActivity {
                                         // En este caso se cierra directamente el diálogo y no se hace nada más
                                         dialog.dismiss();
                                     }});
-                builder2.create().show();
+                builder2.create().show();*/
                 return true;
             case R.id.action_detalles:
                 // hacer algo
-                Intent detalles_curso = new Intent(CursosActivity.this, NuevoCursoActivity.class);
+                /*Intent detalles_curso = new Intent(CursosActivity.this, NuevoCursoActivity.class);
                 detalles_curso.putExtra("NombreCurso", listaCursos.get(0).getNombreCurso());
                 detalles_curso.putExtra("Centro", listaCursos.get(1).getCentro());
                 detalles_curso.putExtra("NumeroAlumnos", listaCursos.get(2).getNumeroAlumnos());
                 detalles_curso.putExtra("Disponibilidad", listaCursos.get(3).getDisponibilidad());
                 detalles_curso.putExtra("Temas", listaCursos.get(4).getTemas());
-                startActivity(detalles_curso);
+                startActivity(detalles_curso);*/
                 return true;
             default:
                 return super.onContextItemSelected(item);

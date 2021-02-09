@@ -13,12 +13,10 @@ import java.util.ArrayList;
 
 public class CursoAdaptador extends BaseAdapter {
 
-    private Context context;
     private ArrayList<Curso> listaCursos;
     private LayoutInflater inflater;
 
     public CursoAdaptador(Context context, ArrayList<Curso> listaCursos) {
-        this.context = context;
         this.listaCursos = listaCursos;
         inflater = LayoutInflater.from(context);
     }

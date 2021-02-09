@@ -66,14 +66,14 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     String tema1 = cb_tema1.getText().toString();
                     String tema2 = cb_tema2.getText().toString();
                     String tema3 = cb_tema3.getText().toString();
-                    ArrayList<String> disponibilidad = new ArrayList<>();
-                    disponibilidad.add(disponible);
-                    disponibilidad.add(nodisponible);
-                    ArrayList<String> tema = new ArrayList<>();
-                    tema.add(tema1);
-                    tema.add(tema2);
-                    tema.add(tema3);
-                    Curso curso = new Curso(nombreCurso, centroCurso, disponibilidad, numeroAlumnos, tema);
+                    ArrayList<String> listadisponibilidad = new ArrayList<>();
+                    listadisponibilidad.add(disponible);
+                    listadisponibilidad.add(nodisponible);
+                    ArrayList<String> listatema = new ArrayList<>();
+                    listatema.add(tema1);
+                    listatema.add(tema2);
+                    listatema.add(tema3);
+                    Curso curso = new Curso(nombreCurso, centroCurso, listadisponibilidad, numeroAlumnos, listatema);
                     if (!cbd.isCursoExists(curso.getNombreCurso(), curso.getCentro())) {
                         cbd.insertarCurso(curso);
                         et_nombreCurso.setText("");
@@ -85,7 +85,14 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         cb_tema2.setChecked(false);
                         cb_tema3.setChecked(false);
                         Toast.makeText(NuevoCursoActivity.this, "El curso se ha creado correctamente!", Toast.LENGTH_LONG).show();
-                        Intent i_insert = new Intent(NuevoCursoActivity.this, CursosActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent i_insert = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                        i_insert.putExtra("NombreCurso", nombreCurso);
+                        i_insert.putExtra("CentroCurso", centroCurso);
+                        i_insert.putExtra("Disponible", listadisponibilidad.get(0));
+                        i_insert.putExtra("NoDisponible", listadisponibilidad.get(1));
+                        i_insert.putExtra("NumeroAlumnos", numeroAlumnos);
+                        i_insert.putExtra("Tema1", listatema.get(0));
+                        i_insert.putExtra("")
                         startActivity(i_insert);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();
