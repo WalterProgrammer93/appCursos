@@ -69,29 +69,29 @@
                 tools:layout_editor_absoluteX="1dp" />
 
             <CheckBox
-                android:id="@+id/cb_tema1"
+                android:id="@+id/cb_precio1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ingles"
+                android:text="@string/precio1"
                 app:layout_constraintTop_toBottomOf="@+id/s_numeroAlumnos"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="26dp" />
 
             <CheckBox
-                android:id="@+id/cb_tema2"
+                android:id="@+id/cb_precio2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lengua"
-                app:layout_constraintTop_toBottomOf="@+id/cb_tema1"
+                android:text="@string/precio2"
+                app:layout_constraintTop_toBottomOf="@+id/cb_precio1"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="26dp" />
 
             <CheckBox
-                android:id="@+id/cb_tema3"
+                android:id="@+id/cb_precio3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/matematicas"
-                app:layout_constraintTop_toBottomOf="@+id/cb_tema2"
+                android:text="@string/precio3"
+                app:layout_constraintTop_toBottomOf="@+id/cb_precio2"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="26dp" />
 

@@ -25,9 +25,9 @@ public class CursoAdaptador extends BaseAdapter {
         ImageView iconoCursos;
         TextView nombreCurso;
         TextView centro;
+        TextView disponible;
+        TextView noDisponible;
         TextView numeroAlumnos;
-        TextView disponibilidad;
-        TextView temas;
     }
 
     @Override
@@ -57,9 +57,9 @@ public class CursoAdaptador extends BaseAdapter {
             holder.iconoCursos = view.findViewById(R.id.ivCurso);
             holder.nombreCurso = view.findViewById(R.id.tvNombreCurso);
             holder.centro = view.findViewById(R.id.tvCentro);
+            holder.disponible = view.findViewById(R.id.tvDisponible);
+            holder.noDisponible = view.findViewById(R.id.tvNoDisponible);
             holder.numeroAlumnos = view.findViewById(R.id.tvNumeroAlumnos);
-            holder.disponibilidad = view.findViewById(R.id.tvDisponibilidad);
-            holder.temas = view.findViewById(R.id.tvTemas);
             view.setTag(holder);
         }
         /*
@@ -74,10 +74,9 @@ public class CursoAdaptador extends BaseAdapter {
         holder.iconoCursos.setImageResource(R.drawable.ic_school_black_24dp);
         holder.nombreCurso.setText(curso.getNombreCurso());
         holder.centro.setText(curso.getCentro());
+        holder.disponible.setText(curso.getDisponible());
+        holder.noDisponible.setText(curso.getNoDisponible());
         holder.numeroAlumnos.setText(curso.getNumeroAlumnos());
-        holder.disponibilidad.setText(curso.getDisponibilidad());
-        holder.temas.setText(curso.getTemas());
-
         return view;
     }
 }
