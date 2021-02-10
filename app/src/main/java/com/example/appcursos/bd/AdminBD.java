@@ -20,7 +20,7 @@ public class AdminBD  extends SQLiteOpenHelper {
             COL_USUARIO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_USUARIO_NAME + " TEXT NOT NULL, " +
             COL_USUARIO_EMAIL + " TEXT NOT NULL, "+
-            COL_USUARIO_ROL +" TEXT NOT NULL, "+
+            COL_USUARIO_ROL +" TEXT NULL, "+
             COL_USUARIO_PASSWORD + " TEXT NOT NULL);";
 
     private static final String TABLA_CURSOS = "cursos";
@@ -29,14 +29,14 @@ public class AdminBD  extends SQLiteOpenHelper {
     private static final String COL_CENTRO = "centro";
     private static final String COL_NUM_ALUMNOS = "numero_alumnos";
     private static final String COL_DISPONIBILIDAD = "disponibilidad";
-    private static final String COL_TEMAS = "temas";
+    private static final String COL_MODOS = "modos";
     private static final String CREATE_TABLE_CURSOS = "CREATE TABLE " + TABLA_CURSOS + " (" +
             COL_CURSO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_NOMBRE_CURSO + " TEXT NOT NULL, " +
             COL_CENTRO + " TEXT NOT NULL, " +
             COL_NUM_ALUMNOS + " TEXT NOT NULL, " +
             COL_DISPONIBILIDAD + " TEXT NOT NULL, " +
-            COL_TEMAS + " TEXT NOT NULL);";
+            COL_MODOS + " TEXT NOT NULL);";
 
     private static final String TABLA_ASIGNATURAS = "asignaturas";
     private static final String COL_ASIGNATURA_ID = "asignatura_id";

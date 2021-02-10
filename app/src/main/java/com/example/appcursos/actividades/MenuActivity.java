@@ -55,23 +55,23 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     public void onItemClick(View view, int position) {
         switch (position) {
             case 0:
-                Intent i1 = new Intent(MenuActivity.this, NuevoCursoActivity.class);
+                Intent i1 = new Intent(MenuActivity.this, CursosActivity.class);
                 startActivity(i1);
                 break;
             case 1:
-                Intent i2 = new Intent(MenuActivity.this, NuevoAsignaturaActivity.class);
+                Intent i2 = new Intent(MenuActivity.this, AsignaturasActivity.class);
                 startActivity(i2);
                 break;
             case 2:
-                Intent i3 = new Intent(MenuActivity.this, NuevoAlumnoActivity.class);
+                Intent i3 = new Intent(MenuActivity.this, AlumnosActivity.class);
                 startActivity(i3);
                 break;
             case 3:
-                Intent i4 = new Intent(MenuActivity.this, NuevoProfesorActivity.class);
+                Intent i4 = new Intent(MenuActivity.this, ProfesoresActivity.class);
                 startActivity(i4);
                 break;
             case 4:
-                Intent i5 = new Intent(MenuActivity.this, NuevoUsuarioActivity.class);
+                Intent i5 = new Intent(MenuActivity.this, UsuariosActivity.class);
                 startActivity(i5);
                 break;
             default:
@@ -122,13 +122,6 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     }
 
     public void llamar() {
-        /*String numero = "674926136";
-        Intent call = new Intent(Intent.ACTION_CALL);
-        call.setData(Uri.parse("tel:" + numero));
-        if (call.resolveActivity(getPackageManager()) != null) {
-            startActivity(call);
-        }*/
-
         Intent i = new Intent(android.content.Intent.ACTION_CALL,
                 Uri.parse("tel:640608295"));
         startActivity(i);

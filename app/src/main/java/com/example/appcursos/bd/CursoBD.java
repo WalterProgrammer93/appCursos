@@ -23,8 +23,8 @@ public class CursoBD {
     private static final int NUM_COL_DISPONIBILIDAD = 3;
     private static final String COL_NUM_ALUMNOS = "numero_alumnos";
     private static final int NUM_COL_NUM_ALUMNOS = 4;
-    private static final String COL_TEMAS = "temas";
-    private static final int NUM_COL_TEMAS = 5;
+    private static final String COL_MODOS = "modos";
+    private static final int NUM_COL_MODOS = 5;
 
     private SQLiteDatabase bd;
     private AdminBD abd;
@@ -54,7 +54,7 @@ public class CursoBD {
         registro.put(COL_CENTRO, curso.getCentro());
         registro.put(COL_DISPONIBILIDAD, curso.getDisponibilidad());
         registro.put(COL_NUM_ALUMNOS, curso.getNumeroAlumnos());
-        registro.put(COL_TEMAS, curso.getTemas());
+        registro.put(COL_MODOS, curso.getModos());
         bd.insert(TABLA_CURSOS, null, registro);
         bd.close();
     }
@@ -66,7 +66,7 @@ public class CursoBD {
         registro.put(COL_CENTRO, curso.getCentro());
         registro.put(COL_DISPONIBILIDAD, curso.getDisponibilidad());
         registro.put(COL_NUM_ALUMNOS, curso.getNumeroAlumnos());
-        registro.put(COL_TEMAS, curso.getTemas());
+        registro.put(COL_MODOS, curso.getModos());
         int edit = bd.update(TABLA_CURSOS, registro, COL_NOMBRE_CURSO + "=" + nombre,null);
         bd.close();
         return edit;
@@ -81,7 +81,7 @@ public class CursoBD {
 
     public Curso buscarCurso(String nombre) {
         bd = abd.getReadableDatabase();
-        Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_TEMAS}, COL_NOMBRE_CURSO
+        Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_MODOS}, COL_NOMBRE_CURSO
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_CURSO);
         bd.close();
         return seleccionarCurso(cursor);
@@ -99,7 +99,7 @@ public class CursoBD {
         curso.setCentro(cursor.getString(NUM_COL_CENTRO));
         curso.setDisponibilidad(cursor.getString(NUM_COL_DISPONIBILIDAD));
         curso.setNumeroAlumnos(cursor.getString(NUM_COL_NUM_ALUMNOS));
-        curso.setTemas(cursor.getString(NUM_COL_TEMAS));
+        curso.setModos(cursor.getString(NUM_COL_MODOS));
         cursor.close();
         bd.close();
         return curso;
@@ -107,7 +107,7 @@ public class CursoBD {
     public ArrayList<Curso> listarCurso() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {
-                COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_TEMAS
+                COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_MODOS
         }, null, null, null, null, null, COL_NOMBRE_CURSO); // ERROR
 
         if (cursor.getCount() == 0) {
@@ -122,7 +122,7 @@ public class CursoBD {
                 curso.setCentro(cursor.getString(NUM_COL_CENTRO));
                 curso.setDisponibilidad(cursor.getString(NUM_COL_DISPONIBILIDAD));
                 curso.setNumeroAlumnos(cursor.getString(NUM_COL_NUM_ALUMNOS));
-                curso.setTemas(cursor.getString(NUM_COL_TEMAS));
+                curso.setModos(cursor.getString(NUM_COL_MODOS));
                 listaCurso.add(curso);
             }
         }

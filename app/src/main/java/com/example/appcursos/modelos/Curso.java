@@ -1,12 +1,5 @@
 package com.example.appcursos.modelos;
 
-import android.annotation.SuppressLint;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-
-import com.example.appcursos.bd.AdminBD;
-
 import java.util.ArrayList;
 
 public class Curso {
@@ -16,22 +9,21 @@ public class Curso {
     private String centro;
     private String disponibilidad;
     private String numeroAlumnos;
-    private String temas;
-    private int i;
-
+    private String modos;
 
     public Curso() {
     }
 
-    public Curso(String nombreCurso, String centroCurso, ArrayList<String> listaDisponibilidad, String numeroAlumnos, ArrayList<String> listaTema) {
+    public Curso(String nombreCurso, String centroCurso, ArrayList<String> listaDisponibilidad, String numeroAlumnos, ArrayList<String> listaModos) {
         this.nombreCurso = nombreCurso;
         this.centro = centroCurso;
+        int i;
         for (i = 0; i < listaDisponibilidad.size(); i++) {
             this.disponibilidad = listaDisponibilidad.get(i);
         }
         this.numeroAlumnos = numeroAlumnos;
-        for (i = 0; i < listaTema.size(); i++) {
-            this.temas = listaTema.get(i);
+        for (i = 0; i < listaModos.size(); i++) {
+            this.modos = listaModos.get(i);
         }
     }
 
@@ -75,11 +67,11 @@ public class Curso {
         this.disponibilidad = disponibilidad;
     }
 
-    public String getTemas() {
-        return temas;
+    public String getModos() {
+        return modos;
     }
 
-    public void setTemas(String temas) {
-        this.temas = temas;
+    public void setModos(String modos) {
+        this.modos = modos;
     }
 }
