@@ -20,7 +20,7 @@ public class AdminBD  extends SQLiteOpenHelper {
             COL_USUARIO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_USUARIO_NAME + " TEXT NOT NULL, " +
             COL_USUARIO_EMAIL + " TEXT NOT NULL, "+
-            COL_USUARIO_ROL +" TEXT NULL, "+
+            COL_USUARIO_ROL +" TEXT NOT NULL, "+
             COL_USUARIO_PASSWORD + " TEXT NOT NULL);";
 
     private static final String TABLA_CURSOS = "cursos";
