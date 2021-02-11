@@ -24,7 +24,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
     EditText et_nombreCurso, et_centroCurso;
     RadioButton rb_disponible, rb_nodisponible;
     Spinner s_numeroAlumnos;
-    CheckBox cb_tema1, cb_tema2, cb_tema3;
+    CheckBox cb_modo1, cb_modo2, cb_modo3;
     Button b_altaCurso, b_cancelarCurso;
     ArrayAdapter<String> spinner_adapter;
     ArrayList<String> numAlumnos;
@@ -50,9 +50,9 @@ public class NuevoCursoActivity extends AppCompatActivity {
         numAlumnos.add("30");
         spinner_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, numAlumnos);
         s_numeroAlumnos.setAdapter(spinner_adapter);
-        cb_tema1 = findViewById(R.id.cb_tema1);
-        cb_tema2 = findViewById(R.id.cb_tema2);
-        cb_tema3 = findViewById(R.id.cb_tema3);
+        cb_modo1 = findViewById(R.id.cb_modo1);
+        cb_modo2 = findViewById(R.id.cb_modo2);
+        cb_modo3 = findViewById(R.id.cb_modo3);
         b_altaCurso = findViewById(R.id.altaCurso);
         b_altaCurso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,17 +63,17 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     String disponible = rb_disponible.getText().toString();
                     String nodisponible = rb_nodisponible.getText().toString();
                     String numeroAlumnos =s_numeroAlumnos.getSelectedItem().toString();
-                    String tema1 = cb_tema1.getText().toString();
-                    String tema2 = cb_tema2.getText().toString();
-                    String tema3 = cb_tema3.getText().toString();
-                    ArrayList<String> listadisponibilidad = new ArrayList<>();
-                    listadisponibilidad.add(disponible);
-                    listadisponibilidad.add(nodisponible);
-                    ArrayList<String> listatema = new ArrayList<>();
-                    listatema.add(tema1);
-                    listatema.add(tema2);
-                    listatema.add(tema3);
-                    Curso curso = new Curso(nombreCurso, centroCurso, listadisponibilidad, numeroAlumnos, listatema);
+                    String modo1 = cb_modo1.getText().toString();
+                    String modo2 = cb_modo2.getText().toString();
+                    String modo3 = cb_modo3.getText().toString();
+                    ArrayList<String> listaDisponibilidad = new ArrayList<>();
+                    listaDisponibilidad.add(disponible);
+                    listaDisponibilidad.add(nodisponible);
+                    ArrayList<String> listaModo = new ArrayList<>();
+                    listaModo.add(modo1);
+                    listaModo.add(modo2);
+                    listaModo.add(modo3);
+                    Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
                     if (!cbd.isCursoExists(curso.getNombreCurso(), curso.getCentro())) {
                         cbd.insertarCurso(curso);
                         et_nombreCurso.setText("");
@@ -81,19 +81,19 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         rb_disponible.setChecked(false);
                         rb_nodisponible.setChecked(false);
                         s_numeroAlumnos.setEnabled(false);
-                        cb_tema1.setChecked(false);
-                        cb_tema2.setChecked(false);
-                        cb_tema3.setChecked(false);
+                        cb_modo1.setChecked(false);
+                        cb_modo2.setChecked(false);
+                        cb_modo3.setChecked(false);
                         Toast.makeText(NuevoCursoActivity.this, "El curso se ha creado correctamente!", Toast.LENGTH_LONG).show();
                         Intent i_insert = new Intent(NuevoCursoActivity.this, CursosActivity.class);
                         i_insert.putExtra("NombreCurso", nombreCurso);
                         i_insert.putExtra("CentroCurso", centroCurso);
-                        i_insert.putExtra("Disponible", listadisponibilidad.get(0));
-                        i_insert.putExtra("NoDisponible", listadisponibilidad.get(1));
+                        i_insert.putExtra("Disponible", listaDisponibilidad.get(0));
+                        i_insert.putExtra("NoDisponible", listaDisponibilidad.get(1));
                         i_insert.putExtra("NumeroAlumnos", numeroAlumnos);
-                        i_insert.putExtra("Tema1", listatema.get(0));
-                        i_insert.putExtra("Tema2", listatema.get(1));
-                        i_insert.putExtra("Tema3", listatema.get(2));
+                        i_insert.putExtra("Modo1", listaModo.get(0));
+                        i_insert.putExtra("Modo2", listaModo.get(1));
+                        i_insert.putExtra("Modo3", listaModo.get(2));
                         startActivity(i_insert);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();

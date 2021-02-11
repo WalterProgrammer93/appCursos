@@ -19,10 +19,8 @@ public class UsuarioBD {
     private static final int NUM_COL_USUARIO_NAME = 1;
     private static final String COL_USUARIO_EMAIL = "email";
     private static final int NUM_COL_USUARIO_EMAIL = 2;
-    private static final String COL_USUARIO_ROL = "rol";
-    private static final int NUM_COL_USUARIO_ROL = 3;
     private static final String COL_USUARIO_PASSWORD = "password";
-    private static final int NUM_COL_USUARIO_PASSWORD = 4;
+    private static final int NUM_COL_USUARIO_PASSWORD = 3;
 
     private SQLiteDatabase bd;
     private AdminBD abd;
@@ -31,12 +29,21 @@ public class UsuarioBD {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    public void leerBD() {
+        bd = abd.getReadableDatabase();
+    }
+    public void escribirBD() {
+        bd = abd.getWritableDatabase();
+    }
+    public void cerrarBD() {
+        bd.close();
+    }
+
     public void insertarUsuario(Usuario usuario) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_NAME, usuario.getUsername());
         registro.put(COL_USUARIO_EMAIL, usuario.getEmail());
-        registro.put(COL_USUARIO_ROL, usuario.getRol());
         registro.put(COL_USUARIO_PASSWORD, usuario.getPassword());
         bd.insert(TABLA_USUARIOS, null, registro);
         bd.close();
@@ -46,7 +53,6 @@ public class UsuarioBD {
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_NAME, usuario.getUsername());
         registro.put(COL_USUARIO_EMAIL, usuario.getEmail());
-        registro.put(COL_USUARIO_ROL, usuario.getRol());
         registro.put(COL_USUARIO_PASSWORD, usuario.getPassword());
         bd.update(TABLA_USUARIOS, registro, COL_USUARIO_ID + "=" + id,null);
         bd.close();
@@ -60,13 +66,13 @@ public class UsuarioBD {
 
     public Usuario buscarUsuario(String nombre) {
         bd = abd.getReadableDatabase();
-        Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD}, COL_USUARIO_NAME
+        Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_PASSWORD}, COL_USUARIO_NAME
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_USUARIO_NAME);
         bd.close();
         return seleccionarUsuario(cursor);
     }
 
-    private Usuario seleccionarUsuario(Cursor cursor) {
+    public Usuario seleccionarUsuario(Cursor cursor) {
         bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
@@ -76,16 +82,15 @@ public class UsuarioBD {
         usuario.setUsuarioId(cursor.getInt(NUM_COL_USUARIO_ID));
         usuario.setUsername(cursor.getString(NUM_COL_USUARIO_NAME));
         usuario.setEmail(cursor.getString(NUM_COL_USUARIO_EMAIL));
-        usuario.setRol(cursor.getString(NUM_COL_USUARIO_ROL));
         usuario.setPassword(cursor.getString(NUM_COL_USUARIO_PASSWORD));
         cursor.close();
         bd.close();
         return usuario;
     }
-    ArrayList<Usuario> listarUsuarios() {
+    public ArrayList<Usuario> listarUsuarios() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_USUARIOS, new String[] {
-                COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_ROL, COL_USUARIO_PASSWORD
+                COL_USUARIO_ID, COL_USUARIO_NAME, COL_USUARIO_EMAIL, COL_USUARIO_PASSWORD
         }, null, null, null, null, COL_USUARIO_NAME);
 
         if (cursor.getCount() == 0) {
@@ -98,7 +103,6 @@ public class UsuarioBD {
             usuario.setUsuarioId(cursor.getInt(NUM_COL_USUARIO_ID));
             usuario.setUsername(cursor.getString(NUM_COL_USUARIO_NAME));
             usuario.setEmail(cursor.getString(NUM_COL_USUARIO_EMAIL));
-            usuario.setRol(cursor.getString(NUM_COL_USUARIO_ROL));
             usuario.setPassword(cursor.getString(NUM_COL_USUARIO_PASSWORD));
             listaUsuario.add(usuario);
         }
@@ -114,7 +118,6 @@ public class UsuarioBD {
                 COL_USUARIO_ID,
                 COL_USUARIO_NAME,
                 COL_USUARIO_EMAIL,
-                COL_USUARIO_ROL,
                 COL_USUARIO_PASSWORD
         };
         bd = abd.getReadableDatabase();
@@ -132,7 +135,6 @@ public class UsuarioBD {
                 Usuario user = new Usuario(cursor.getInt(cursor.getColumnIndex(COL_USUARIO_ID)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_NAME)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_EMAIL)),
-                        cursor.getString(cursor.getColumnIndex(COL_USUARIO_ROL)),
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_PASSWORD)));
 
                 if (user.getPassword().equalsIgnoreCase(usuario.getPassword()) && user.getEmail().equals(usuario.getEmail())) {

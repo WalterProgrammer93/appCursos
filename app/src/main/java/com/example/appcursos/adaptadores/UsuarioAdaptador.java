@@ -13,12 +13,10 @@ import java.util.ArrayList;
 
 public class UsuarioAdaptador extends BaseAdapter {
 
-    private Context context;
     private ArrayList<Usuario> listaUsuarios;
     private LayoutInflater inflater;
 
     public UsuarioAdaptador(Context context, ArrayList<Usuario> listaUsuarios) {
-        this.context = context;
         this.listaUsuarios = listaUsuarios;
         inflater = LayoutInflater.from(context);
     }
@@ -27,7 +25,6 @@ public class UsuarioAdaptador extends BaseAdapter {
         ImageView iconoUsuario;
         TextView username;
         TextView email;
-        TextView rol;
     }
     @Override
     public int getCount() {
@@ -56,7 +53,6 @@ public class UsuarioAdaptador extends BaseAdapter {
             holder.iconoUsuario = view.findViewById(R.id.ivUsuario);
             holder.username = view.findViewById(R.id.tvUsername);
             holder.email = view.findViewById(R.id.tvEmail);
-            holder.rol = view.findViewById(R.id.tvRol);
             view.setTag(holder);
         }
         /*
@@ -71,7 +67,6 @@ public class UsuarioAdaptador extends BaseAdapter {
         holder.iconoUsuario.setImageBitmap(usuario.getIconoUsuario());
         holder.username.setText(usuario.getUsername());
         holder.email.setText(usuario.getEmail());
-        holder.rol.setText(usuario.getRol());
         return view;
     }
 }

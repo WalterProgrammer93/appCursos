@@ -44,6 +44,7 @@ public class AsignaturaBD {
     public SQLiteDatabase getBD() {
         return bd;
     }
+
     public void insertarAsignatura(Asignatura asignatura) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
@@ -94,7 +95,7 @@ public class AsignaturaBD {
         bd.close();
         return asignatura;
     }
-    public ArrayList<Asignatura> listarAsignatura() {
+    public ArrayList<Asignatura> listarAsignaturas() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {
                 COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA

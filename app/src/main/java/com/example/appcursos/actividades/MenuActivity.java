@@ -41,6 +41,8 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
         menu.add("Alumnos");
         menu.add("Profesores");
         menu.add("Usuarios");
+        menu.add("Roles");
+        menu.add("Permisos");
 
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -73,6 +75,14 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
             case 4:
                 Intent i5 = new Intent(MenuActivity.this, UsuariosActivity.class);
                 startActivity(i5);
+                break;
+            case 5:
+                Intent i6 = new Intent(MenuActivity.this, RolesActivity.class);
+                startActivity(i6);
+                break;
+            case 6:
+                Intent i7 = new Intent(MenuActivity.this, PermisosActivity.class);
+                startActivity(i7);
                 break;
             default:
                 Toast.makeText(this, "You clicked " + adapter.getItem(position) +

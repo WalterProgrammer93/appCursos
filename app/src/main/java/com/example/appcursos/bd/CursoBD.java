@@ -104,7 +104,7 @@ public class CursoBD {
         bd.close();
         return curso;
     }
-    public ArrayList<Curso> listarCurso() {
+    public ArrayList<Curso> listarCursos() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {
                 COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_MODOS

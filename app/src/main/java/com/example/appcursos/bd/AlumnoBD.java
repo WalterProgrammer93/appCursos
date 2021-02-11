@@ -33,6 +33,20 @@ public class AlumnoBD {
         abd = new AdminBD(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    public void leerBD() {
+        bd = abd.getReadableDatabase();
+    }
+    public void escribirBD() {
+        bd = abd.getWritableDatabase();
+    }
+    public void cerrarBD() {
+        bd.close();
+    }
+
+    public SQLiteDatabase getBD() {
+        return bd;
+    }
+
     public void insertarAlumno(Alumno alumno) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();

@@ -27,7 +27,7 @@ public class CursosActivity extends AppCompatActivity {
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
     ImageView ivCursos;
-    TextView tvNombreCurso, tvCentro, tvDisponible, tvNoDisponible, tvNumeroAlumnos, tvTema1, tvTema2, tvTema3;
+    TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvModos;
     CursoBD cbd;
 
     @Override
@@ -39,49 +39,40 @@ public class CursosActivity extends AppCompatActivity {
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
         tvCentro = findViewById(R.id.tvCentro);
-        tvDisponible = findViewById(R.id.tvDisponible);
-        tvNoDisponible = findViewById(R.id.tvNoDisponible);
+        tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
         tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
-        tvTema1 = findViewById(R.id.tvTema1);
-        tvTema2 = findViewById(R.id.tvTema2);
-        tvTema3 = findViewById(R.id.tvTema3);
+        tvModos = findViewById(R.id.tvModos);
         lvCursos = findViewById(R.id.lvCursos);
         cbd = new CursoBD(this);
-        cbd.leerBD();
-        Bundle mostrarCurso = getIntent().getExtras();
+        Cursor fila = (Cursor) cbd.listarCursos();
+        if (fila.moveToFirst()) {
+            do {
+                Curso c = new Curso();
+                c.setNombreCurso(fila.getString(1));
+                c.setCentro(fila.getString(2));
+                c.setDisponibilidad(fila.getString(3));
+                c.setNumeroAlumnos(fila.getString(4));
+                c.setModos(fila.getString(5));
+                listaCursos.add(c);
+                tvNombreCurso.setText(c.getNombreCurso());
+                tvCentro.setText(c.getCentro());
+                tvDisponibilidad.setText(c.getDisponibilidad());
+                tvNumeroAlumnos.setText(c.getNumeroAlumnos());
+                tvModos.setText(c.getModos());
+            } while (fila.moveToNext());
+        }
+        /*Bundle mostrarCurso = getIntent().getExtras();
         if (mostrarCurso != null) {
             String nameCurso = mostrarCurso.getString("NombreCurso");
             String nameCentro = mostrarCurso.getString("CentroCurso");
-            String disponible = mostrarCurso.getString("Disponible");
-            String noDisponible = mostrarCurso.getString("NoDisponible");
+            String disponibilidad = mostrarCurso.getString("Disponibilidad");
             String nAlumnos = mostrarCurso.getString("NumeroAlumnos");
-            String tema1 = mostrarCurso.getString("Tema1");
-            String tema2 = mostrarCurso.getString("Tema2");
-            String tema3 = mostrarCurso.getString("Tema3");
+            String modos = mostrarCurso.getString("Modos");*/
 
-            tvNombreCurso.setText(nameCurso);
-            tvCentro.setText(nameCentro);
-            tvDisponible.setText(disponible);
-            tvNoDisponible.setText(noDisponible);
-            tvNumeroAlumnos.setText(nAlumnos);
-            tvTema1.setText(tema1);
-            tvTema2.setText(tema2);
-            tvTema3.setText(tema3);
 
-            Cursor fila = (Cursor) cbd.listarCurso(); // error
-            if (fila.moveToFirst()) {
-                while (fila.moveToNext()) {
-                    Curso c = new Curso();
-                    c.setNombreCurso(fila.getString(1));
-                    c.setCentro(fila.getString(2));
-                    c.setDisponibilidad(fila.getString(3));
-                    c.setNumeroAlumnos(fila.getString(4));
-                    c.setTemas(fila.getString(5));
-                    listaCursos.add(c);
 
-                }
-            }
-        }
+
+       // }
         cursoAdaptador = new CursoAdaptador(this, listaCursos);
         lvCursos.setAdapter(cursoAdaptador);
         cursoAdaptador.notifyDataSetChanged();
