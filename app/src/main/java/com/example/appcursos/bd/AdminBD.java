@@ -95,7 +95,7 @@ public class AdminBD  extends SQLiteOpenHelper {
 
     private static final String DROP_TABLE_USUARIOS = "DROP TABLE IF EXISTS " + TABLA_USUARIOS;
     private static final String DROP_TABLE_ROLES = "DROP TABLE IF EXISTS " + TABLA_ROLES;
-    private static final String DROP_TABLE_PERMISOS = " DROP TABLE IF EXITS " + TABLA_PERMISOS;
+    private static final String DROP_TABLE_PERMISOS = "DROP TABLE IF EXISTS " + TABLA_PERMISOS;
     private static final String DROP_TABLE_CURSOS = "DROP TABLE IF EXISTS " + TABLA_CURSOS;
     private static final String DROP_TABLE_ASIGNATURAS = "DROP TABLE IF EXISTS " + TABLA_ASIGNATURAS;
     private static final String DROP_TABLE_ALUMNOS = "DROP TABLE IF EXISTS " + TABLA_ALUMNOS;
@@ -121,6 +121,8 @@ public class AdminBD  extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase bd, int i, int i1) {
         bd.execSQL(DROP_TABLE_USUARIOS);
+        bd.execSQL(DROP_TABLE_ROLES);
+        bd.execSQL(DROP_TABLE_PERMISOS);
         bd.execSQL(DROP_TABLE_CURSOS);
         bd.execSQL(DROP_TABLE_ASIGNATURAS);
         bd.execSQL(DROP_TABLE_ALUMNOS);
