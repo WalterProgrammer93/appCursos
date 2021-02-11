@@ -36,7 +36,7 @@ public class AdminBD  extends SQLiteOpenHelper {
             COL_PERMISO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "  +
             COL_USUARIO_ID + " INTEGER NOT NULL, " +
             COL_ROL_ID + " INTEGER NOT NULL, " +
-            "FOREIGN KEY (" + COL_USUARIO_ID + ") REFERENCES " + TABLA_USUARIOS + " (" + COL_USUARIO_ID + ")),  " +
+            "FOREIGN KEY (" + COL_USUARIO_ID + ") REFERENCES " + TABLA_USUARIOS + " (" + COL_USUARIO_ID + "),  " +
             "FOREIGN KEY (" + COL_ROL_ID + ") REFERENCES " + TABLA_ROLES + " (" + COL_ROL_ID + "));";
 
     private static final String TABLA_CURSOS = "cursos";
