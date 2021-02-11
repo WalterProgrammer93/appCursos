@@ -14,14 +14,30 @@ public class AdminBD  extends SQLiteOpenHelper {
     private static final String COL_USUARIO_ID = "usuario_id";
     private static final String COL_USUARIO_NAME = "username";
     private static final String COL_USUARIO_EMAIL = "email";
-    private static final String COL_USUARIO_ROL = "rol";
     private static final String COL_USUARIO_PASSWORD = "password";
     private static final String CREATE_TABLE_USUARIOS = "CREATE TABLE " + TABLA_USUARIOS + " (" +
             COL_USUARIO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COL_USUARIO_NAME + " TEXT NOT NULL, " +
             COL_USUARIO_EMAIL + " TEXT NOT NULL, "+
-            COL_USUARIO_ROL +" TEXT NOT NULL, "+
             COL_USUARIO_PASSWORD + " TEXT NOT NULL);";
+
+    private static final String TABLA_ROLES = "roles";
+    private static final String COL_ROL_ID = "rol_id";
+    private static final String COL_NOMBRE_ROL = "nombre_rol";
+    private static final String COL_DESCRIPCION_ROL = "descripcion_rol";
+    private static final String CREATE_TABLE_ROLES = "CREATE TABLE " + TABLA_ROLES + " (" +
+            COL_ROL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COL_NOMBRE_ROL + " TEXT NOT NULL, " +
+            COL_DESCRIPCION_ROL + " TEXT NOT NULL);";
+
+    private static final String TABLA_PERMISOS = "permisos";
+    private static final String COL_PERMISO_ID = "permiso_id";
+    private static final String CREATE_TABLE_PERMISOS = "CREATE TABLE " + TABLA_PERMISOS + " (" +
+            COL_PERMISO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "  +
+            COL_USUARIO_ID + " INTEGER NOT NULL, " +
+            COL_ROL_ID + " INTEGER NOT NULL, " +
+            "FOREIGN KEY (" + COL_USUARIO_ID + ") REFERENCES " + TABLA_USUARIOS + " (" + COL_USUARIO_ID + ")),  " +
+            "FOREIGN KEY (" + COL_ROL_ID + ") REFERENCES " + TABLA_ROLES + " (" + COL_ROL_ID + "));";
 
     private static final String TABLA_CURSOS = "cursos";
     private static final String COL_CURSO_ID = "curso_id";
@@ -78,6 +94,8 @@ public class AdminBD  extends SQLiteOpenHelper {
             COL_ASIGNATURA_ID + " INTEGER NOT NULL, FOREIGN KEY (" + COL_ASIGNATURA_ID + ") REFERENCES " + TABLA_ASIGNATURAS + " (" + COL_ASIGNATURA_ID + "));";
 
     private static final String DROP_TABLE_USUARIOS = "DROP TABLE IF EXISTS " + TABLA_USUARIOS;
+    private static final String DROP_TABLE_ROLES = "DROP TABLE IF EXISTS " + TABLA_ROLES;
+    private static final String DROP_TABLE_PERMISOS = " DROP TABLE IF EXITS " + TABLA_PERMISOS;
     private static final String DROP_TABLE_CURSOS = "DROP TABLE IF EXISTS " + TABLA_CURSOS;
     private static final String DROP_TABLE_ASIGNATURAS = "DROP TABLE IF EXISTS " + TABLA_ASIGNATURAS;
     private static final String DROP_TABLE_ALUMNOS = "DROP TABLE IF EXISTS " + TABLA_ALUMNOS;
@@ -92,6 +110,8 @@ public class AdminBD  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase bd) {
         bd.execSQL(CREATE_TABLE_USUARIOS);
+        bd.execSQL(CREATE_TABLE_ROLES);
+        bd.execSQL(CREATE_TABLE_PERMISOS);
         bd.execSQL(CREATE_TABLE_CURSOS);
         bd.execSQL(CREATE_TABLE_ASIGNATURAS);
         bd.execSQL(CREATE_TABLE_ALUMNOS);
