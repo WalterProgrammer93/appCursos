@@ -28,7 +28,6 @@ public class RegistrarseActivity extends AppCompatActivity {
 
         et_username = findViewById(R.id.et_usuario);
         et_email = findViewById(R.id.et_email);
-        et_rol = findViewById(R.id.et_rol);
         et_password = findViewById(R.id.et_password);
         et_confirmPassword = findViewById(R.id.et_confirmPassword);
         btn_anadir = findViewById(R.id.btn_añadir);
@@ -41,12 +40,11 @@ public class RegistrarseActivity extends AppCompatActivity {
                 if (validar()) {
                     String username = et_username.getText().toString();
                     String email = et_email.getText().toString();
-                    String rol = et_rol.getText().toString();
                     String pass = et_password.getText().toString();
                     String confirmPassword = et_confirmPassword.getText().toString();
 
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
-                        ubd.insertarUsuario(new Usuario(username, email, rol, pass));
+                        ubd.insertarUsuario(new Usuario(username, email, pass));
                         Toast.makeText(RegistrarseActivity.this, "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_LONG).show();
                         new Handler().postDelayed(new Runnable() {
                             @Override

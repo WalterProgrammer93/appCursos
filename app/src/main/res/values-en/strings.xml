@@ -76,4 +76,7 @@
     <string name="editarCurso">Editar Curso</string>
     <string name="eliminarCurso">Eliminar Curso</string>
     <string name="buscarCurso">Buscar Curso</string>
+    <string name="online">Online</string>
+    <string name="presencial">facetoface</string>
+    <string name="semipresencial">Blended</string>
 </resources>

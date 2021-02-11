@@ -31,17 +31,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/centroCurso"
-                android:importantForAutofill="no"
                 android:inputType="text"
                 app:layout_constraintTop_toBottomOf="@+id/et_nombreCurso"
                 tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="-8dp" />
+                tools:layout_editor_absoluteX="-8dp"
+                android:autofillHints="no"/>
 
             <RadioGroup
                 android:id="@+id/rg_disponibilidad"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/et_centroCurso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="203dp">
@@ -63,35 +63,37 @@
             <Spinner
                 android:id="@+id/s_numeroAlumnos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/rg_disponibilidad"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />
 
             <CheckBox
-                android:id="@+id/cb_precio1"
+                android:id="@+id/cb_modo1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/precio1"
+                android:text="@string/online"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/s_numeroAlumnos"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="26dp" />
 
             <CheckBox
-                android:id="@+id/cb_precio2"
+                android:id="@+id/cb_modo2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/precio2"
-                app:layout_constraintTop_toBottomOf="@+id/cb_precio1"
+                android:text="@string/presencial"
+                app:layout_constraintTop_toBottomOf="@+id/cb_modo1"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="26dp" />
 
             <CheckBox
-                android:id="@+id/cb_precio3"
+                android:id="@+id/cb_modo3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/precio3"
-                app:layout_constraintTop_toBottomOf="@+id/cb_precio2"
+                android:text="@string/semipresencial"
+                app:layout_constraintTop_toBottomOf="@+id/cb_modo2"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="26dp" />
 
@@ -102,8 +104,8 @@
                 android:background="@color/colorAccent"
                 android:textColor="@color/blanco"
                 android:text="@string/alta"
-                android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/cb_tema3"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/cb_modo3"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="25dp" />
 
@@ -114,7 +116,7 @@
                 android:background="@color/colorAccent"
                 android:text="@string/cancelar"
                 android:textColor="@color/blanco"
-                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/altaCurso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="540dp" />

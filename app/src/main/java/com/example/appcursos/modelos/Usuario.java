@@ -7,25 +7,22 @@ public class Usuario {
     private int usuarioId;
     private String username;
     private String email;
-    private String rol;
     private String password;
     private Bitmap iconoUsuario;
 
     public Usuario() {
     }
 
-    public Usuario(int usuarioId, String username, String email, String rol, String password) {
+    public Usuario(int usuarioId, String username, String email, String password) {
         this.usuarioId = usuarioId;
         this.username = username;
         this.email = email;
-        this.rol = rol;
         this.password = password;
     }
 
-    public Usuario(String username, String email, String rol, String password) {
+    public Usuario(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this.rol = rol;
         this.password = password;
     }
 
@@ -60,14 +57,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
     }
 
     public String getPassword() {
