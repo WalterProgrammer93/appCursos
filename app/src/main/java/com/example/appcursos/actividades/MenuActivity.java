@@ -30,8 +30,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     MenuAdaptador adapter;
     ArrayList<String> menu;
     RecyclerView recyclerView;
-    private final int REQUEST_IMAGE_CAPTURE = 1;
-    private final int TAKE_PICTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     UsuarioBD ubd;
 
     @Override
@@ -137,9 +136,16 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     }
 
     public void llamar() {
-        Intent i = new Intent(android.content.Intent.ACTION_CALL,
+        Intent call = new Intent(android.content.Intent.ACTION_CALL,
                 Uri.parse("tel:640608295"));
-        startActivity(i);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CALL_PHONE}, 1);
+        }
+        if (call.resolveActivity(getPackageManager()) != null) {
+            startActivity(call);
+        }
     }
 
     public void marcar() {
