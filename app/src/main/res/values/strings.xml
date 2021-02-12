@@ -80,4 +80,6 @@
     <string name="online">Enlinea</string>
     <string name="presencial">Presencial</string>
     <string name="semipresencial">Semipresencial</string>
+    <string name="lb_roles">Roles</string>
+    <string name="lb_permisos">Permisos</string>
 </resources>

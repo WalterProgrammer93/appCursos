@@ -28,8 +28,20 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".actividades.PermisosActivity"></activity>
-        <activity android:name=".actividades.RolesActivity" />
+        <activity android:name=".actividades.PermisosActivity"
+            android:label="@string/lb_permisos"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
+        <activity android:name=".actividades.RolesActivity"
+            android:label="@string/lb_roles"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -44,7 +56,8 @@
 
         <activity
             android:name=".actividades.MapaActivity"
-            android:label="@string/title_activity_mapa">
+            android:label="@string/title_activity_mapa"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MenuActivity" />
@@ -55,7 +68,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.NuevoUsuarioActivity" />
+                android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
         <activity
             android:name=".actividades.ProfesoresActivity"
@@ -63,7 +76,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.NuevoProfesorActivity" />
+                android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
         <activity
             android:name=".actividades.AsignaturasActivity"
@@ -71,7 +84,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.NuevoAsignaturaActivity" />
+                android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
         <activity
             android:name=".actividades.AlumnosActivity"
@@ -79,7 +92,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.NuevoAlumnoActivity" />
+                android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
         <activity
             android:name=".actividades.CursosActivity"
@@ -87,7 +100,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.NuevoCursoActivity" />
+                android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
         <activity
             android:name=".actividades.NuevoUsuarioActivity"
@@ -95,7 +108,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
+                android:value="com.example.appcursos.actividades.UsuariosActivity" />
         </activity>
         <activity
             android:name=".actividades.NuevoProfesorActivity"
@@ -103,7 +116,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
+                android:value="com.example.appcursos.actividades.ProfesoresActivity" />
         </activity>
         <activity
             android:name=".actividades.NuevoAlumnoActivity"
@@ -111,7 +124,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
+                android:value="com.example.appcursos.actividades.AlumnosActivity" />
         </activity>
         <activity
             android:name=".actividades.NuevoAsignaturaActivity"
@@ -119,7 +132,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
+                android:value="com.example.appcursos.actividades.AsignaturasActivity" />
         </activity>
         <activity
             android:name=".actividades.NuevoCursoActivity"
@@ -127,7 +140,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MenuActivity" />
+                android:value="com.example.appcursos.actividades.CursosActivity" />
         </activity>
         <activity
             android:name=".actividades.MenuActivity"

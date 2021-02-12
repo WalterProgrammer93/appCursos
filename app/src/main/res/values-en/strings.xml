@@ -79,4 +79,6 @@
     <string name="online">Online</string>
     <string name="presencial">facetoface</string>
     <string name="semipresencial">Blended</string>
+    <string name="lb_roles">Roles</string>
+    <string name="lb_permisos">Permisos</string>
 </resources>
