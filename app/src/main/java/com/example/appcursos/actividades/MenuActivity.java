@@ -150,6 +150,10 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
 
     public void marcar() {
         Intent dial = new Intent(Intent.ACTION_DIAL);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CALL_PHONE}, 1);
+        }
         if (dial.resolveActivity(getPackageManager()) != null) {
             startActivity(dial);
         }
@@ -161,11 +165,22 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
         Uri sms_uri = Uri.parse("smsto:+" + strPhone);
         Intent sms = new Intent(Intent.ACTION_SENDTO, sms_uri);
         sms.putExtra("sms_body", strMessage);
-        startActivity(sms);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.SEND_SMS}, 1);
+        }
+        if (sms.resolveActivity(getPackageManager()) != null) {
+            startActivity(sms);
+        }
+
     }
 
     public void contactos() {
         Intent contactos = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.READ_CONTACTS}, 1);
+        }
         if (contactos.resolveActivity(getPackageManager()) != null) {
             startActivity(contactos);
         }
