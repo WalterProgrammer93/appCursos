@@ -28,14 +28,18 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".actividades.PermisosActivity"
+        <activity android:name=".actividades.NuevoPermisoActivity"></activity>
+        <activity android:name=".actividades.NuevoRolActivity" />
+        <activity
+            android:name=".actividades.PermisosActivity"
             android:label="@string/lb_permisos"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MenuActivity" />
         </activity>
-        <activity android:name=".actividades.RolesActivity"
+        <activity
+            android:name=".actividades.RolesActivity"
             android:label="@string/lb_roles"
             android:screenOrientation="portrait">
             <meta-data
