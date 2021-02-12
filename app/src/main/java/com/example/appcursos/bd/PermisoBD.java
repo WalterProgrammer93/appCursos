@@ -62,7 +62,7 @@ public class PermisoBD {
         bd.close();
     }
 
-    public Usuario buscarPermiso(int id) {
+    public Permiso buscarPermiso(int id) {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_PERMISOS, new String[] {COL_PERMISO_ID, COL_USUARIO_ID, COL_ROL_ID}, COL_PERMISO_ID
                 + " LIKE \"" + id + "\"", null, null, null, null, COL_PERMISO_ID);
@@ -70,7 +70,7 @@ public class PermisoBD {
         return seleccionarPermiso(cursor);
     }
 
-    public Usuario seleccionarPermiso(Cursor cursor) {
+    public Permiso seleccionarPermiso(Cursor cursor) {
         bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
@@ -94,7 +94,7 @@ public class PermisoBD {
             cursor.close();
             return null;
         }
-        ArrayList<Usuario> listaPermisos = new ArrayList<>();
+        ArrayList<Permiso> listaPermisos = new ArrayList<>();
         while (cursor.moveToNext()) {
             Permiso permiso = new Permiso();
             permiso.setPermisoId(cursor.getInt(NUM_COL_PERMISO_ID));

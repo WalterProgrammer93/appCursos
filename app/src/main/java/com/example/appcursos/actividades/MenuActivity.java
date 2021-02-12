@@ -1,14 +1,18 @@
 package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,7 +30,8 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     MenuAdaptador adapter;
     ArrayList<String> menu;
     RecyclerView recyclerView;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private final int REQUEST_IMAGE_CAPTURE = 1;
+    private final int TAKE_PICTURE = 1;
     UsuarioBD ubd;
 
     @Override
@@ -161,9 +166,13 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     }
 
     public void camara() {
-        Intent camara = new Intent("android.media.action.IMAGE_CAPTURE");
-        if (camara.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(camara, REQUEST_IMAGE_CAPTURE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CAMERA}, 1);
+        }
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
 
     }
