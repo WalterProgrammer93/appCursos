@@ -3,10 +3,8 @@ package com.example.appcursos.actividades;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AsignaturaAdaptador;
-import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
 import java.util.ArrayList;
 
@@ -30,7 +27,7 @@ public class AsignaturasActivity extends AppCompatActivity {
     AsignaturaAdaptador asignaturaAdaptador;
     ListView lvAsignaturas;
     ImageView ivAsignaturas;
-    TextView tvNombreAsignatura, tvDescripcionAsignatura, tvCurso;
+    TextView tvNombreAsignatura, tvCurso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,34 +35,28 @@ public class AsignaturasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_asignaturas);
 
         listaAsignaturas = new ArrayList<>();
-        asignaturaAdaptador = new AsignaturaAdaptador(this, listaAsignaturas);
+        asignaturaAdaptador = new AsignaturaAdaptador(this, R.layout.item_asignaturas, listaAsignaturas);
         ivAsignaturas = findViewById(R.id.ivAsignatura);
         tvNombreAsignatura = findViewById(R.id.tvNombreAsignatura);
-        tvDescripcionAsignatura = findViewById(R.id.tvDescripcionAsignatura);
         tvCurso = findViewById(R.id.tvCurso);
         lvAsignaturas = findViewById(R.id.lvAsignaturas);
-
         lvAsignaturas.setAdapter(asignaturaAdaptador);
         registerForContextMenu(lvAsignaturas);
 
-        try {
+        /*try {
             Bundle recibir = getIntent().getExtras();
             if (recibir != null) {
                 String nombreAsig = recibir.getString("NombreAsignatura");
-                String descripAsig = recibir.getString("DescripcionAsignatura");
                 String curso = recibir.getString("Curso");
                 tvNombreAsignatura.setText(nombreAsig);
-                tvDescripcionAsignatura.setText(descripAsig);
                 tvCurso.setText(curso);
                 listaAsignaturas.add((Asignatura) tvNombreAsignatura.getText());
-                listaAsignaturas.add((Asignatura) tvDescripcionAsignatura.getText());
                 listaAsignaturas.add((Asignatura) tvCurso.getText());
             }
         } catch (Exception e) {
             lvAsignaturas.setEmptyView(tvNombreAsignatura);
-            lvAsignaturas.setEmptyView(tvDescripcionAsignatura);
             lvAsignaturas.setEmptyView(tvCurso);
-        }
+        }*/
         asignaturaAdaptador.notifyDataSetChanged();
     }
 

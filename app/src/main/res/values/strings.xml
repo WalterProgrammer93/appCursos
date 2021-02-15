@@ -82,4 +82,6 @@
     <string name="semipresencial">Semipresencial</string>
     <string name="lb_roles">Roles</string>
     <string name="lb_permisos">Permisos</string>
+    <string name="nombreRol">Nombre Rol</string>
+    <string name="descripcionRol">Descripcion Rol</string>
 </resources>

@@ -2,7 +2,7 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -11,18 +11,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AlumnoAdaptador;
-import com.example.appcursos.modelos.Alumno;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AlumnosActivity extends AppCompatActivity {
 
-    ArrayList<Alumno> listaAlumnos;
+    List<String> listaAlumnos;
     AlumnoAdaptador alumnoAdaptador;
-    ListView lvAlumnos;
+    RecyclerView rvAlumnos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +30,9 @@ public class AlumnosActivity extends AppCompatActivity {
 
         listaAlumnos = new ArrayList<>();
         alumnoAdaptador = new AlumnoAdaptador(this, listaAlumnos);
-        lvAlumnos = findViewById(R.id.lvAlumnos);
-        lvAlumnos.setAdapter(alumnoAdaptador);
-        registerForContextMenu(lvAlumnos);
+        rvAlumnos = findViewById(R.id.rvAlumnos);
+        rvAlumnos.setAdapter(alumnoAdaptador);
+        registerForContextMenu(rvAlumnos);
         alumnoAdaptador.notifyDataSetChanged();
     }
 

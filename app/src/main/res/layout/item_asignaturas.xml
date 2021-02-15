@@ -8,9 +8,9 @@
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/tools">
 
-        <ListView
-            android:id="@+id/lvCursos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <ListView
+        android:id="@+id/lvAsignaturas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.cardview.widget.CardView>

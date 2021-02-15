@@ -9,14 +9,13 @@ public class Asignatura {
     private int asignaturaId;
     private String nombreAsignatura;
     private String descripcionAsignatura;
-    private Curso curso;
+    private int curso;
     private Bitmap iconoAsignatura;
-    AdminBD abd;
 
     public Asignatura() {
     }
 
-    public Asignatura(String nombreAsignatura, String descripcionAsignatura, Curso curso) {
+    public Asignatura(String nombreAsignatura, String descripcionAsignatura, int curso) {
         this.nombreAsignatura = nombreAsignatura;
         this.descripcionAsignatura = descripcionAsignatura;
         this.curso = curso;
@@ -50,17 +49,11 @@ public class Asignatura {
         this.descripcionAsignatura = descripcionAsignatura;
     }
 
-    public Curso getCurso() {
+    public int getCurso() {
         return curso;
     }
 
-    public void setCurso(Curso curso) {
-        String query = "select curso_id as curso from cursos where curso_id = " + curso.getCursoId();
-        Cursor cursor = abd.getReadableDatabase().rawQuery(query,null);
-        while(cursor.moveToNext()) {
-            int fila = Integer.valueOf(cursor.getString(cursor.getColumnIndex("curso_id")));
-        }
-        cursor.close();
+    public void setCurso(int curso) {
         this.curso = curso;
     }
 }

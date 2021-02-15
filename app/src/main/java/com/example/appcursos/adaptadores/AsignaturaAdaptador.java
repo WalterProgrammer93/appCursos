@@ -1,32 +1,35 @@
 package com.example.appcursos.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Asignatura;
 import java.util.ArrayList;
 
-public class AsignaturaAdaptador extends BaseAdapter {
+public class AsignaturaAdaptador extends ArrayAdapter<Asignatura> {
 
-    private Context context;
     private ArrayList<Asignatura> listaAsignaturas;
-    private LayoutInflater inflater;
+    private Context context;
+    private int viewRes;
+    private Resources res;
 
-    public AsignaturaAdaptador(Context context, ArrayList<Asignatura> listaAsignaturas) {
-        this.context = context;
+    public AsignaturaAdaptador(Context context, int textViewResourceId, ArrayList<Asignatura> listaAsignaturas) {
+        super(context, textViewResourceId, listaAsignaturas);
         this.listaAsignaturas = listaAsignaturas;
-        inflater = LayoutInflater.from(context);
+        this.context = context;
+        this.viewRes = textViewResourceId;
+        this.res = context.getResources();
     }
 
     static class ViewHolder {
         ImageView iconoAsignatura;
         TextView nombreAsignatura;
-        TextView descripcionAsignatura;
         TextView curso;
     }
 
@@ -36,27 +39,17 @@ public class AsignaturaAdaptador extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return listaAsignaturas.get(i);
-    }
+    public View getView(int i, View convertView, ViewGroup parent) {
 
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+        View view = convertView;
         ViewHolder holder;
-
         // Si la View es null se crea de nuevo
         if (view == null) {
-            view = inflater.inflate(R.layout.activity_asignaturas, viewGroup);
-
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(viewRes, parent, false);
             holder = new ViewHolder();
             holder.iconoAsignatura = view.findViewById(R.id.ivAsignatura);
             holder.nombreAsignatura = view.findViewById(R.id.tvNombreAsignatura);
-            holder.descripcionAsignatura = view.findViewById(R.id.tvDescripcionAsignatura);
             holder.curso = view.findViewById(R.id.tvCurso);
             view.setTag(holder);
         }
@@ -68,11 +61,13 @@ public class AsignaturaAdaptador extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        Asignatura asignatura = listaAsignaturas.get(i);
-        holder.iconoAsignatura.setImageBitmap(asignatura.getIconoAsignatura());
-        holder.nombreAsignatura.setText(asignatura.getNombreAsignatura());
-        holder.descripcionAsignatura.setText(asignatura.getDescripcionAsignatura());
-        holder.curso.setText(asignatura.getCurso().getCursoId());
+        final Asignatura asignatura = listaAsignaturas.get(i);
+        if (asignatura != null) {
+            holder.iconoAsignatura.setImageBitmap(asignatura.getIconoAsignatura());
+            holder.nombreAsignatura.setText(asignatura.getNombreAsignatura());
+            holder.curso.setText(asignatura.getCurso());
+        }
+
         return view;
     }
 }
