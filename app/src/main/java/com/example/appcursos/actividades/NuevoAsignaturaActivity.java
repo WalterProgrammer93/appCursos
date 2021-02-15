@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
-import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +32,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_asignatura);
 
         asbd = new AsignaturaBD(this);
-        et_nombreAsignatura = findViewById(R.id.tvNombreAsignatura);
-        et_descripcionAsignatura = findViewById(R.id.tvDescripcionAsignatura);
+        et_nombreAsignatura = findViewById(R.id.et_nombreAsignatura);
+        et_descripcionAsignatura = findViewById(R.id.et_descripcionAsignatura);
         s_curso = findViewById(R.id.spinner_cursoAsignatura);
         cursos = new ArrayList<>();
         asbd.leerBD();
@@ -48,8 +47,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nombreAsignatura = et_nombreAsignatura.getText().toString();
                 String descripcionAsignatura = et_descripcionAsignatura.getText().toString();
-                Curso curso = new Curso();
-                curso.setCursoId((Integer) s_curso.getSelectedItem());
+                int curso = (int) s_curso.getSelectedItem();
                 Asignatura asignatura = new Asignatura(nombreAsignatura, descripcionAsignatura, curso);
                 if (!asbd.isAsignaturaExists(nombreAsignatura)) {
                     asbd.insertarAsignatura(asignatura);

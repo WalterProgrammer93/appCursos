@@ -41,10 +41,10 @@ public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHo
         return listaAlumnos.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivAlumno;
         TextView tvNombreAlumno, tvApellidosAlumno, tvAsignatura;
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivAlumno = itemView.findViewById(R.id.ivAlumno);
             tvNombreAlumno = itemView.findViewById(R.id.tvNombreAlumno);

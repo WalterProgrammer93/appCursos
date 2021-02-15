@@ -2,7 +2,7 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -11,18 +11,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.ProfesorAdaptador;
-import com.example.appcursos.modelos.Profesor;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfesoresActivity extends AppCompatActivity {
 
-    ArrayList<Profesor> listaProfesores;
+    List<String> listaProfesores;
     ProfesorAdaptador profesorAdaptador;
-    ListView lvProfesores;
+    RecyclerView rvProfesores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +30,9 @@ public class ProfesoresActivity extends AppCompatActivity {
 
         listaProfesores = new ArrayList<>();
         profesorAdaptador = new ProfesorAdaptador(this, listaProfesores);
-        lvProfesores = findViewById(R.id.lvProfesores);
-        lvProfesores.setAdapter(profesorAdaptador);
-        registerForContextMenu(lvProfesores);
+        rvProfesores = findViewById(R.id.rvProfesores);
+        rvProfesores.setAdapter(profesorAdaptador);
+        registerForContextMenu(rvProfesores);
         profesorAdaptador.notifyDataSetChanged();
     }
 
@@ -72,7 +71,7 @@ public class ProfesoresActivity extends AppCompatActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
 
-        switch (item.getItemId()) {
+        switch (itemSeleccionado) {
             case R.id.action_editar:
                 // hacer algo
                 return true;

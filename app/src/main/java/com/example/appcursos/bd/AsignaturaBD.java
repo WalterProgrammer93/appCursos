@@ -50,7 +50,7 @@ public class AsignaturaBD {
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ASIGNATURA, asignatura.getNombreAsignatura());
         registro.put(COL_DESCRIPCION_ASIGNATURA, asignatura.getDescripcionAsignatura());
-        registro.put(COL_CURSO_ID, asignatura.getCurso().getCursoId());
+        registro.put(COL_CURSO_ID, asignatura.getCurso());
         bd.insert(TABLA_ASIGNATURAS, null, registro);
         bd.close();
     }
@@ -60,7 +60,7 @@ public class AsignaturaBD {
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ASIGNATURA, asignatura.getNombreAsignatura());
         registro.put(COL_DESCRIPCION_ASIGNATURA, asignatura.getDescripcionAsignatura());
-        registro.put(COL_CURSO_ID, asignatura.getCurso().getCursoId());
+        registro.put(COL_CURSO_ID, asignatura.getCurso());
         int res = bd.update(TABLA_ASIGNATURAS, registro, COL_NOMBRE_ASIGNATURA + "=" + nombre,null);
         bd.close();
         return res;

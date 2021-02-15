@@ -95,7 +95,7 @@ public class AsignaturasActivity extends AppCompatActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
 
-        switch (item.getItemId()) {
+        switch (itemSeleccionado) {
             case R.id.action_editar:
                 // hacer algo
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -108,7 +108,7 @@ public class AsignaturasActivity extends AppCompatActivity {
                                         Intent editar_curso = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
                                         editar_curso.putExtra("NombreAsignatura", listaAsignaturas.get(0).getNombreAsignatura());
                                         editar_curso.putExtra("DescripcionAsignatura", listaAsignaturas.get(1).getDescripcionAsignatura());
-                                        editar_curso.putExtra("Curso", listaAsignaturas.get(2).getCurso().getCursoId());
+                                        editar_curso.putExtra("Curso", listaAsignaturas.get(2).getCurso());
                                         startActivity(editar_curso);
                                     }})
                         .setNegativeButton(R.string.lb_no,
@@ -148,7 +148,7 @@ public class AsignaturasActivity extends AppCompatActivity {
                 Intent detalles_asignatura = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
                 detalles_asignatura.putExtra("NombreAsignatura", listaAsignaturas.get(0).getNombreAsignatura());
                 detalles_asignatura.putExtra("DescripcionAsignatura", listaAsignaturas.get(1).getDescripcionAsignatura());
-                detalles_asignatura.putExtra("Curso", listaAsignaturas.get(2).getCurso().getCursoId());
+                detalles_asignatura.putExtra("Curso", listaAsignaturas.get(2).getCurso());
                 startActivity(detalles_asignatura);
                 return true;
             default:

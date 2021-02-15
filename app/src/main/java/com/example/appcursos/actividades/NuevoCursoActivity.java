@@ -80,7 +80,6 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         et_centroCurso.setText("");
                         rb_disponible.setChecked(false);
                         rb_nodisponible.setChecked(false);
-                        s_numeroAlumnos.setEnabled(false);
                         cb_modo1.setChecked(false);
                         cb_modo2.setChecked(false);
                         cb_modo3.setChecked(false);
@@ -116,23 +115,17 @@ public class NuevoCursoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu3, menu);
+        inflater.inflate(R.menu.menu2, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_ver_cursos:
-                Intent ver = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                startActivity(ver);
-                return true;
-            case R.id.action_salir:
-                finish();
-                Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_salir) {
+            finish();
+            Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
         }
+        return super.onOptionsItemSelected(item);
 
     }
 

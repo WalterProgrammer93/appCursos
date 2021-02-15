@@ -23,12 +23,12 @@ public class RolesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roles);
 
-        listaRoles = new ArrayList<>();
+        /*listaRoles = new ArrayList<>();
         rolAdaptador = new RolAdaptador(this, listaRoles);
         lvRoles = findViewById(R.id.lvRoles);
         lvRoles.setAdapter(rolAdaptador);
         registerForContextMenu(lvRoles);
-        rolAdaptador.notifyDataSetChanged();
+        rolAdaptador.notifyDataSetChanged();*/
     }
 
     @Override

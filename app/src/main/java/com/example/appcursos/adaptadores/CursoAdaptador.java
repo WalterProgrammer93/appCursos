@@ -1,9 +1,12 @@
 package com.example.appcursos.adaptadores;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,14 +14,20 @@ import com.example.appcursos.R;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
 
-public class CursoAdaptador extends BaseAdapter {
+public class CursoAdaptador extends ArrayAdapter<Curso> {
 
     private ArrayList<Curso> listaCursos;
+    private Context context;
     private LayoutInflater inflater;
+    private int viewRes;
+    private Resources res;
 
-    public CursoAdaptador(Context context, ArrayList<Curso> listaCursos) {
-        this.listaCursos = listaCursos;
-        inflater = LayoutInflater.from(context);
+    public CursoAdaptador(Context context, int textViewResourcesId, ArrayList<Curso> lista) {
+        super(context, textViewResourcesId, lista);
+        this.listaCursos = lista;
+        this.context = context;
+        this.viewRes = textViewResourcesId;
+        this.res = context.getResources();
     }
 
     static class ViewHolder {
@@ -36,29 +45,17 @@ public class CursoAdaptador extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return listaCursos.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int i, View convertView, ViewGroup parent) {
         ViewHolder holder;
-
+        View view = convertView;
         // Si la View es null se crea de nuevo
         if (view == null) {
-            view = inflater.inflate(R.layout.item_cursos, viewGroup);
-
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(viewRes, parent, false);
             holder = new ViewHolder();
             holder.iconoCursos = view.findViewById(R.id.ivCurso);
             holder.nombreCurso = view.findViewById(R.id.tvNombreCurso);
-            holder.centro = view.findViewById(R.id.tvCentro);
             holder.disponibilidad = view.findViewById(R.id.tvDisponibilidad);
-            holder.numeroAlumnos = view.findViewById(R.id.tvNumeroAlumnos);
             holder.modos = view.findViewById(R.id.tvModos);
             view.setTag(holder);
         }

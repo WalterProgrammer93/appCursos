@@ -4,69 +4,50 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
-import com.example.appcursos.modelos.Usuario;
-import java.util.ArrayList;
+import java.util.List;
 
-public class UsuarioAdaptador extends BaseAdapter {
+public class UsuarioAdaptador extends RecyclerView.Adapter<UsuarioAdaptador.ViewHolder> {
 
-    private ArrayList<Usuario> listaUsuarios;
-    private LayoutInflater inflater;
+    private List<String> listaProfesores;
+    private LayoutInflater mInflater;
 
-    public UsuarioAdaptador(Context context, ArrayList<Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
-        inflater = LayoutInflater.from(context);
+    public UsuarioAdaptador(Context context, List<String> lista) {
+        this.mInflater = LayoutInflater.from(context);
+        this.listaProfesores = lista;
     }
 
-    static class ViewHolder {
-        ImageView iconoUsuario;
-        TextView username;
-        TextView email;
-    }
+    @NonNull
     @Override
-    public int getCount() {
-        return listaUsuarios.size();
+    public UsuarioAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = mInflater.inflate(R.layout.item_usuarios, parent, false);
+        return new UsuarioAdaptador.ViewHolder(view);
     }
 
     @Override
-    public Object getItem(int i) {
-        return listaUsuarios.get(i);
+    public void onBindViewHolder(@NonNull UsuarioAdaptador.ViewHolder holder, int position) {
+        String coleccionUsuarios = listaProfesores.get(position);
+        holder.tvUserName.setText(coleccionUsuarios);
+        holder.tvEmail.setText(coleccionUsuarios);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public int getItemCount() {
+        return listaProfesores.size();
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder;
-
-        // Si la View es null se crea de nuevo
-        if (view == null) {
-            view = inflater.inflate(R.layout.activity_asignaturas, viewGroup);
-
-            holder = new ViewHolder();
-            holder.iconoUsuario = view.findViewById(R.id.ivUsuario);
-            holder.username = view.findViewById(R.id.tvUsername);
-            holder.email = view.findViewById(R.id.tvEmail);
-            view.setTag(holder);
+    class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivUsuario;
+        TextView tvUserName, tvEmail;
+        ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ivUsuario = itemView.findViewById(R.id.ivUsuario);
+            tvUserName = itemView.findViewById(R.id.tvUsername);
+            tvEmail = itemView.findViewById(R.id.tvEmail);
         }
-        /*
-         * En caso de que la View no sea null se reutilizará con los
-         * nuevos valores
-         */
-        else {
-            holder = (ViewHolder) view.getTag();
-        }
-
-        Usuario usuario = listaUsuarios.get(i);
-        holder.iconoUsuario.setImageBitmap(usuario.getIconoUsuario());
-        holder.username.setText(usuario.getUsername());
-        holder.email.setText(usuario.getEmail());
-        return view;
     }
 }

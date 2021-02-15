@@ -3,7 +3,6 @@ package com.example.appcursos.actividades;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -27,7 +26,7 @@ public class CursosActivity extends AppCompatActivity {
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
     ImageView ivCursos;
-    TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvModos;
+    TextView tvNombreCurso, tvDisponibilidad, tvModos;
     CursoBD cbd;
 
     @Override
@@ -38,42 +37,12 @@ public class CursosActivity extends AppCompatActivity {
         listaCursos = new ArrayList<>();
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
-        tvCentro = findViewById(R.id.tvCentro);
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
-        tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
         tvModos = findViewById(R.id.tvModos);
         lvCursos = findViewById(R.id.lvCursos);
         cbd = new CursoBD(this);
-        Cursor fila = (Cursor) cbd.listarCursos();
-        if (fila.moveToFirst()) {
-            do {
-                Curso c = new Curso();
-                c.setNombreCurso(fila.getString(1));
-                c.setCentro(fila.getString(2));
-                c.setDisponibilidad(fila.getString(3));
-                c.setNumeroAlumnos(fila.getString(4));
-                c.setModos(fila.getString(5));
-                listaCursos.add(c);
-                tvNombreCurso.setText(c.getNombreCurso());
-                tvCentro.setText(c.getCentro());
-                tvDisponibilidad.setText(c.getDisponibilidad());
-                tvNumeroAlumnos.setText(c.getNumeroAlumnos());
-                tvModos.setText(c.getModos());
-            } while (fila.moveToNext());
-        }
-        /*Bundle mostrarCurso = getIntent().getExtras();
-        if (mostrarCurso != null) {
-            String nameCurso = mostrarCurso.getString("NombreCurso");
-            String nameCentro = mostrarCurso.getString("CentroCurso");
-            String disponibilidad = mostrarCurso.getString("Disponibilidad");
-            String nAlumnos = mostrarCurso.getString("NumeroAlumnos");
-            String modos = mostrarCurso.getString("Modos");*/
-
-
-
-
-       // }
-        cursoAdaptador = new CursoAdaptador(this, listaCursos);
+        listaCursos.addAll(cbd.listarCursos());
+        cursoAdaptador = new CursoAdaptador(this, R.layout.item_cursos, listaCursos);
         lvCursos.setAdapter(cursoAdaptador);
         cursoAdaptador.notifyDataSetChanged();
     }
