@@ -28,8 +28,20 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".actividades.NuevoPermisoActivity"></activity>
-        <activity android:name=".actividades.NuevoRolActivity" />
+        <activity android:name=".actividades.NuevoPermisoActivity"
+            android:label="@string/lb_nuevo_permiso"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.PermisosActivity" />
+        </activity>
+        <activity android:name=".actividades.NuevoRolActivity"
+            android:label="@string/lb_nuevo_rol"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.RolesActivity" />
+        </activity>
         <activity
             android:name=".actividades.PermisosActivity"
             android:label="@string/lb_permisos"
@@ -165,7 +177,6 @@
         <activity android:name=".actividades.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -130,7 +130,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
                 mapa();
             case R.id.action_salir:
                 finish();
-                Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ha cerrado sesion", Toast.LENGTH_SHORT).show();
             default:
                 return super.onOptionsItemSelected(item);
         }

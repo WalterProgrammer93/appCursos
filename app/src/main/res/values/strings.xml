@@ -84,4 +84,6 @@
     <string name="lb_permisos">Permisos</string>
     <string name="nombreRol">Nombre Rol</string>
     <string name="descripcionRol">Descripcion Rol</string>
+    <string name="lb_nuevo_rol">Nuevo Rol</string>
+    <string name="lb_nuevo_permiso">Nuevo Permiso</string>
 </resources>

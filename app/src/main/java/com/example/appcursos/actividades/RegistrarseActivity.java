@@ -15,7 +15,7 @@ import com.example.appcursos.modelos.Usuario;
 
 public class RegistrarseActivity extends AppCompatActivity {
 
-    EditText et_username, et_email, et_rol, et_password, et_confirmPassword;
+    EditText et_username, et_email, et_password, et_confirmPassword;
     Button btn_anadir, btn_cancelar;
     UsuarioBD ubd;
 
@@ -45,7 +45,9 @@ public class RegistrarseActivity extends AppCompatActivity {
 
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
                         ubd.insertarUsuario(new Usuario(username, email, pass));
-                        Toast.makeText(RegistrarseActivity.this, "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_SHORT).show();
+                        Intent acceso = new Intent(RegistrarseActivity.this, MenuActivity.class);
+                        startActivity(acceso);
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -54,10 +56,10 @@ public class RegistrarseActivity extends AppCompatActivity {
                         }, Toast.LENGTH_LONG);
 
                     } else if (!confirmPassword.equals(pass)) {
-                        Toast.makeText(RegistrarseActivity.this, "La contraseña no coincide ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "La contraseña no coincide ", Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Toast.makeText(RegistrarseActivity.this, "El usuario ya existe, Verifique su email ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrarseActivity.this, "El usuario ya existe, Verifique su email ", Toast.LENGTH_SHORT).show();
 
                     }
                 }
@@ -80,7 +82,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         boolean valido;
         String UserName = et_username.getText().toString();
         String Email = et_email.getText().toString();
-        String Rol = et_rol.getText().toString();
         String Password = et_password.getText().toString();
 
         if (UserName.isEmpty()) {
@@ -96,18 +97,6 @@ public class RegistrarseActivity extends AppCompatActivity {
             }
         }
 
-        if (Rol.isEmpty()) {
-            valido = false;
-            et_rol.setError("Please enter valid username!");
-        } else {
-            if (Rol.length() > 9) {
-                valido = true;
-                et_rol.setError(null);
-            } else {
-                valido = false;
-                et_rol.setError("Rol is to short");
-            }
-        }
         //Handling validation for Email field
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
             valido = false;
