@@ -31,9 +31,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
     static class ViewHolder {
         ImageView iconoCursos;
         TextView nombreCurso;
-        TextView centro;
         TextView disponibilidad;
-        TextView numeroAlumnos;
         TextView modos;
     }
 
@@ -69,9 +67,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
         Curso curso = listaCursos.get(i);
         holder.iconoCursos.setImageResource(R.drawable.ic_school_black_24dp);
         holder.nombreCurso.setText(curso.getNombreCurso());
-        holder.centro.setText(curso.getCentro());
         holder.disponibilidad.setText(curso.getDisponibilidad());
-        holder.numeroAlumnos.setText(curso.getNumeroAlumnos());
         holder.modos.setText(curso.getModos());
         return view;
     }
