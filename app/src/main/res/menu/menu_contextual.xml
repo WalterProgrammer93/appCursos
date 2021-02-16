@@ -9,8 +9,8 @@
         android:icon="@drawable/ic_delete_black_24dp"
         android:title="@string/eliminar"/>
 
-    <item android:id="@+id/action_detalles"
+    <item android:id="@+id/action_buscar"
         android:icon="@drawable/ic_description_black_24dp"
-        android:title="@string/detalles"/>
+        android:title="@string/buscar"/>
 
 </menu>

@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.UsuarioAdaptador;
-import com.example.appcursos.modelos.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +52,10 @@ public class UsuariosActivity extends AppCompatActivity {
                 return true;
             case R.id.action_salir:
                 finish();
-                Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+                Intent salir = new Intent(UsuariosActivity.this, MainActivity.class);
+                startActivity(salir);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -79,7 +81,7 @@ public class UsuariosActivity extends AppCompatActivity {
             case R.id.action_eliminar:
                 // hacer algo
                 return true;
-            case R.id.action_detalles:
+            case R.id.action_buscar:
                 // hacer algo
                 return true;
             default:

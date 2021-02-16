@@ -2,14 +2,13 @@ package com.example.appcursos.adaptadores;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
 
     private ArrayList<Curso> listaCursos;
     private Context context;
-    private LayoutInflater inflater;
     private int viewRes;
     private Resources res;
 
@@ -44,8 +42,9 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
         return listaCursos.size();
     }
 
+    @NonNull
     @Override
-    public View getView(int i, View convertView, ViewGroup parent) {
+    public View getView(int i, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         View view = convertView;
         // Si la View es null se crea de nuevo

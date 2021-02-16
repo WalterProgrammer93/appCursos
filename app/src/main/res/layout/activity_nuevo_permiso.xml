@@ -6,47 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".actividades.NuevoPermisoActivity">
 
-    <Spinner
-        android:id="@+id/spinner_usuario"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="25dp"
-        android:layout_marginTop="20dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="match_parent"
+        tools:ignore="ScrollViewCount">
 
-    <Spinner
-        android:id="@+id/spinner_rol"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_usuario"
-        android:layout_margin="25dp"
-        tools:ignore="MissingConstraints" />
+        <Spinner
+            android:id="@+id/spinner_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/altaPermiso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:textColor="@color/blanco"
-        android:text="@string/alta"
-        android:layout_marginTop="20dp"
-        android:layout_margin="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_rol"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="25dp" />
+        <Spinner
+            android:id="@+id/spinner_rol"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_usuario"
+            android:layout_margin="10dp"
+            tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/cancelarPermiso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:text="@string/cancelar"
-        android:textColor="@color/blanco"
-        android:layout_marginTop="20dp"
-        android:layout_margin="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/altaPermiso"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="540dp" />
+        <Button
+            android:id="@+id/altaPermiso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:textColor="@color/blanco"
+            android:text="@string/alta"
+            android:layout_marginTop="20dp"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_rol"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="25dp" />
+
+        <Button
+            android:id="@+id/cancelarPermiso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/cancelar"
+            android:textColor="@color/blanco"
+            android:layout_marginTop="20dp"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/altaPermiso"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="540dp" />
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

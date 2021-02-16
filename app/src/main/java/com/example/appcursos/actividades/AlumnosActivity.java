@@ -2,6 +2,8 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,8 +31,10 @@ public class AlumnosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alumnos);
 
         listaAlumnos = new ArrayList<>();
-        alumnoAdaptador = new AlumnoAdaptador(this, listaAlumnos);
         rvAlumnos = findViewById(R.id.rvAlumnos);
+        rvAlumnos.setLayoutManager(new LinearLayoutManager(this));
+        rvAlumnos.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+        alumnoAdaptador = new AlumnoAdaptador(this, listaAlumnos);
         rvAlumnos.setAdapter(alumnoAdaptador);
         registerForContextMenu(rvAlumnos);
         alumnoAdaptador.notifyDataSetChanged();
@@ -52,7 +56,10 @@ public class AlumnosActivity extends AppCompatActivity {
                 return true;
             case R.id.action_salir:
                 finish();
-                Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+                Intent salir = new Intent(AlumnosActivity.this, MainActivity.class);
+                startActivity(salir);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -71,14 +78,14 @@ public class AlumnosActivity extends AppCompatActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
 
-        switch (item.getItemId()) {
+        switch (itemSeleccionado) {
             case R.id.action_editar:
                 // hacer algo
                 return true;
             case R.id.action_eliminar:
                 // hacer algo
                 return true;
-            case R.id.action_detalles:
+            case R.id.action_buscar:
                 // hacer algo
                 return true;
             default:

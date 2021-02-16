@@ -37,7 +37,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         s_curso = findViewById(R.id.spinner_cursoAsignatura);
         cursos = new ArrayList<>();
         asbd.leerBD();
-        cursos = asbd.getAllCursos(); // error
+        cursos = asbd.getAllCursos();
         s_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, cursos);
         s_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_curso.setAdapter(s_adapter);
@@ -53,11 +53,11 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                     asbd.insertarAsignatura(asignatura);
                     et_nombreAsignatura.setText("");
                     et_descripcionAsignatura.setText("");
-                    Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura se ha creado correctamente!", Toast.LENGTH_LONG).show();
-                    Intent alta = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura se ha creado correctamente!", Toast.LENGTH_SHORT).show();
+                    Intent alta = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
                     startActivity(alta);
                 } else {
-                    Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura ya existe!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura ya existe!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

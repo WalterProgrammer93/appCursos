@@ -76,7 +76,10 @@ public class AsignaturasActivity extends AppCompatActivity {
                 return true;
             case R.id.action_salir:
                 finish();
-                Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+                Intent salir = new Intent(AsignaturasActivity.this, MainActivity.class);
+                startActivity(salir);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -143,13 +146,9 @@ public class AsignaturasActivity extends AppCompatActivity {
                                     }});
                 builder2.create().show();
                 return true;
-            case R.id.action_detalles:
+            case R.id.action_buscar:
                 // hacer algo
-                Intent detalles_asignatura = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
-                detalles_asignatura.putExtra("NombreAsignatura", listaAsignaturas.get(0).getNombreAsignatura());
-                detalles_asignatura.putExtra("DescripcionAsignatura", listaAsignaturas.get(1).getDescripcionAsignatura());
-                detalles_asignatura.putExtra("Curso", listaAsignaturas.get(2).getCurso());
-                startActivity(detalles_asignatura);
+
                 return true;
             default:
                 return super.onContextItemSelected(item);

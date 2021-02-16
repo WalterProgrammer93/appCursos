@@ -85,14 +85,14 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         cb_modo3.setChecked(false);
                         Toast.makeText(NuevoCursoActivity.this, "El curso se ha creado correctamente!", Toast.LENGTH_LONG).show();
                         Intent i_insert = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                        i_insert.putExtra("NombreCurso", nombreCurso);
+                        /*i_insert.putExtra("NombreCurso", nombreCurso);
                         i_insert.putExtra("CentroCurso", centroCurso);
                         i_insert.putExtra("Disponible", listaDisponibilidad.get(0));
                         i_insert.putExtra("NoDisponible", listaDisponibilidad.get(1));
                         i_insert.putExtra("NumeroAlumnos", numeroAlumnos);
                         i_insert.putExtra("Modo1", listaModo.get(0));
                         i_insert.putExtra("Modo2", listaModo.get(1));
-                        i_insert.putExtra("Modo3", listaModo.get(2));
+                        i_insert.putExtra("Modo3", listaModo.get(2));*/
                         startActivity(i_insert);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();
@@ -123,7 +123,9 @@ public class NuevoCursoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salir) {
             finish();
-            Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+            Intent salir = new Intent(NuevoCursoActivity.this, MainActivity.class);
+            startActivity(salir);
         }
         return super.onOptionsItemSelected(item);
 

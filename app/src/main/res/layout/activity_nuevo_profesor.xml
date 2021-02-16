@@ -23,6 +23,7 @@
                 android:importantForAutofill="no"
                 android:hint="@string/nombreProfesor"
                 android:inputType="text"
+                android:layout_margin="10dp"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-8dp" />
 
@@ -31,91 +32,76 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/apellidosProfesor"
+                android:layout_margin="10dp"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 app:layout_constraintTop_toBottomOf="@+id/et_nombreProfesor"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-8dp" />
 
-            <ScrollView
+            <RadioGroup
+                android:id="@+id/departamentos"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="NestedScrolling">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_centroCurso"
+                tools:ignore="MissingConstraints,UselessParent"
+                tools:layout_editor_absoluteX="203dp">
 
-                <LinearLayout
+                <RadioButton
+                    android:id="@+id/rb_lengua"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:orientation="vertical">
+                    android:text="@string/lengua" />
 
-                    <RadioGroup
-                        android:id="@+id/departamentos"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="48dp"
-                        app:layout_constraintTop_toBottomOf="@+id/et_centroCurso"
-                        tools:ignore="MissingConstraints,UselessParent"
-                        tools:layout_editor_absoluteX="203dp">
+                <RadioButton
+                    android:id="@+id/rb_matematicas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/matematicas" />
 
-                        <RadioButton
-                            android:id="@+id/rb_lengua"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/lengua" />
+                <RadioButton
+                    android:id="@+id/rb_ingles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ingles" />
 
-                        <RadioButton
-                            android:id="@+id/rb_matematicas"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/matematicas" />
+                <RadioButton
+                    android:id="@+id/rb_fisicaQuimica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fisicaQuimica" />
 
-                        <RadioButton
-                            android:id="@+id/rb_ingles"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/ingles" />
+                <RadioButton
+                    android:id="@+id/rb_tecnologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tecnologia" />
 
-                        <RadioButton
-                            android:id="@+id/rb_fisicaQuimica"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fisicaQuimica" />
+                <RadioButton
+                    android:id="@+id/rb_informatica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/informatica" />
 
-                        <RadioButton
-                            android:id="@+id/rb_tecnologia"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tecnologia" />
+                <RadioButton
+                    android:id="@+id/rb_musica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/musica" />
 
-                        <RadioButton
-                            android:id="@+id/rb_informatica"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/informatica" />
+                <RadioButton
+                    android:id="@+id/rb_biologiaGeologia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/biologiaGeologia" />
 
-                        <RadioButton
-                            android:id="@+id/rb_musica"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/musica" />
-
-                        <RadioButton
-                            android:id="@+id/rb_biologiaGeologia"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/biologiaGeologia" />
-
-                        <RadioButton
-                            android:id="@+id/rb_historiaGeografia"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/historiaGeografia" />
-                    </RadioGroup>
-
-                </LinearLayout>
-
-            </ScrollView>
-
+                <RadioButton
+                    android:id="@+id/rb_historiaGeografia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/historiaGeografia" />
+            </RadioGroup>
 
             <EditText
                 android:id="@+id/et_telefonoProfesor"
@@ -123,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/telefonoProfesor"
                 android:importantForAutofill="no"
+                android:layout_margin="10dp"
                 android:inputType="text"
                 app:layout_constraintTop_toBottomOf="@+id/departamentos"
                 tools:ignore="MissingConstraints"
@@ -131,8 +118,9 @@
             <Spinner
                 android:id="@+id/spinner_asignaturaProfesor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:hint="@string/seleccionar_asignatura"
+                android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/et_telefonoProfesor"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />

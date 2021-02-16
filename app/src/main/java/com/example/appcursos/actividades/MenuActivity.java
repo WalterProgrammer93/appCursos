@@ -63,37 +63,37 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
             case 0:
                 Intent i1 = new Intent(MenuActivity.this, CursosActivity.class);
                 startActivity(i1);
-                Toast.makeText(getApplicationContext(), menu.get(0), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), menu.get(0), Toast.LENGTH_SHORT).show();
                 break;
             case 1:
                 Intent i2 = new Intent(MenuActivity.this, AsignaturasActivity.class);
                 startActivity(i2);
-                Toast.makeText(getApplicationContext(), menu.get(1), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), menu.get(1), Toast.LENGTH_SHORT).show();
                 break;
             case 2:
                 Intent i3 = new Intent(MenuActivity.this, AlumnosActivity.class);
                 startActivity(i3);
-                Toast.makeText(getApplicationContext(), menu.get(2), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), menu.get(2), Toast.LENGTH_SHORT).show();
                 break;
             case 3:
                 Intent i4 = new Intent(MenuActivity.this, ProfesoresActivity.class);
                 startActivity(i4);
-                Toast.makeText(getApplicationContext(), menu.get(3), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), menu.get(3), Toast.LENGTH_SHORT).show();
                 break;
             case 4:
                 Intent i5 = new Intent(MenuActivity.this, UsuariosActivity.class);
                 startActivity(i5);
-                Toast.makeText(getApplicationContext(), menu.get(4), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), menu.get(4), Toast.LENGTH_SHORT).show();
                 break;
             case 5:
                 Intent i6 = new Intent(MenuActivity.this, RolesActivity.class);
                 startActivity(i6);
-                Toast.makeText(getApplicationContext(), menu.get(5), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), menu.get(5), Toast.LENGTH_SHORT).show();
                 break;
             case 6:
                 Intent i7 = new Intent(MenuActivity.this, PermisosActivity.class);
                 startActivity(i7);
-                Toast.makeText(getApplicationContext(), menu.get(6), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), menu.get(6), Toast.LENGTH_SHORT).show();
                 break;
             default:
                 Toast.makeText(this, "You clicked " + adapter.getItem(position) +
@@ -130,7 +130,10 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
                 mapa();
             case R.id.action_salir:
                 finish();
-                Toast.makeText(getApplicationContext(), "Ha cerrado sesion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+                Intent salir = new Intent(MenuActivity.this, MainActivity.class);
+                startActivity(salir);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

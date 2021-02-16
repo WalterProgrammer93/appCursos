@@ -63,7 +63,10 @@ public class CursosActivity extends AppCompatActivity {
                 return true;
             case R.id.action_salir:
                 finish();
-                Toast.makeText(getApplicationContext(), "LogOut Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+                Intent salir = new Intent(CursosActivity.this, MainActivity.class);
+                startActivity(salir);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -131,7 +134,7 @@ public class CursosActivity extends AppCompatActivity {
                                     }});
                 builder2.create().show();*/
                 return true;
-            case R.id.action_detalles:
+            case R.id.action_buscar:
                 // hacer algo
                 /*Intent detalles_curso = new Intent(CursosActivity.this, NuevoCursoActivity.class);
                 detalles_curso.putExtra("NombreCurso", listaCursos.get(0).getNombreCurso());

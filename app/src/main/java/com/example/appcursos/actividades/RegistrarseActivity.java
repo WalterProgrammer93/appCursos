@@ -45,7 +45,7 @@ public class RegistrarseActivity extends AppCompatActivity {
 
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
                         ubd.insertarUsuario(new Usuario(username, email, pass));
-                        Toast.makeText(RegistrarseActivity.this, "Usuario creado correctamente! Por favor inicie sesion ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrarseActivity.this, " Usuario creado correctamente ", Toast.LENGTH_SHORT).show();
                         Intent acceso = new Intent(RegistrarseActivity.this, MenuActivity.class);
                         startActivity(acceso);
                         new Handler().postDelayed(new Runnable() {
