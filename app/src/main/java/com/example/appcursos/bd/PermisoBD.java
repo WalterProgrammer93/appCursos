@@ -1,10 +1,12 @@
 package com.example.appcursos.bd;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Permiso;
+import com.example.appcursos.modelos.Rol;
 import com.example.appcursos.modelos.Usuario;
 import java.util.ArrayList;
 
@@ -78,8 +80,8 @@ public class PermisoBD {
         }
         Permiso permiso = new Permiso();
         permiso.setPermisoId(cursor.getInt(NUM_COL_PERMISO_ID));
-        permiso.setUsuario(cursor.getInt(NUM_COL_USUARIO_ID));
-        permiso.setRol(cursor.getInt(NUM_COL_ROL_ID));
+        permiso.setUsuario(cursor.getString(NUM_COL_USUARIO_ID));
+        permiso.setRol(cursor.getString(NUM_COL_ROL_ID));
         cursor.close();
         bd.close();
         return permiso;
@@ -98,12 +100,79 @@ public class PermisoBD {
         while (cursor.moveToNext()) {
             Permiso permiso = new Permiso();
             permiso.setPermisoId(cursor.getInt(NUM_COL_PERMISO_ID));
-            permiso.setUsuario(cursor.getInt(NUM_COL_USUARIO_ID));
-            permiso.setRol(cursor.getInt(NUM_COL_ROL_ID));
+            permiso.setUsuario(cursor.getString(NUM_COL_USUARIO_ID));
+            permiso.setRol(cursor.getString(NUM_COL_ROL_ID));
             listaPermisos.add(permiso);
         }
         cursor.close();
         bd.close();
         return listaPermisos;
+    }
+
+    public ArrayList<Usuario> cargarUsuarios() {
+        bd = abd.getReadableDatabase();
+        Cursor cursor = bd.rawQuery("select curso_id, nombre_curso from cursos", null);
+
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            return null;
+        }
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Usuario usuario = new Usuario();
+            usuario.setUsername(cursor.getString(1));
+            listaUsuarios.add(usuario);
+        }
+        cursor.close();
+        bd.close();
+        return listaUsuarios;
+    }
+
+    public ArrayList<Rol> cargarRoles() {
+        bd = abd.getReadableDatabase();
+        Cursor cursor = bd.rawQuery("select rol_id, nombre_rol from roles", null);
+
+        if (cursor.getCount() == 0) {
+            cursor.close();
+            return null;
+        }
+        ArrayList<Rol> listaRoles = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Rol rol = new Rol();
+            rol.setNombreRol(cursor.getString(1));
+            listaRoles.add(rol);
+        }
+        cursor.close();
+        bd.close();
+        return listaRoles;
+    }
+
+    public boolean isPermisoExists(String usuario, String rol) {
+        String[] columns = {COL_USUARIO_ID, COL_ROL_ID};
+
+        //Selection
+        String selection = COL_USUARIO_ID + " = ? and " + COL_ROL_ID + " = ? ";
+
+        //Selection Args
+        String[] selection_Args = {usuario, rol};
+
+        bd = abd.getReadableDatabase();
+        //Query
+        Cursor cursor = bd.query(TABLA_PERMISOS,
+                columns,
+                selection,
+                selection_Args,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+            return true;
+
+        }
+        cursor.close();
+        bd.close();
+        return false;
     }
 }

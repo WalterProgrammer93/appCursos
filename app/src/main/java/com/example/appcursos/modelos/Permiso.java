@@ -5,14 +5,14 @@ import android.graphics.Bitmap;
 public class Permiso {
 
     private int permisoId;
-    private int usuario;
-    private int rol;
+    private String usuario;
+    private String rol;
     private Bitmap iconoPermiso;
 
     public Permiso() {
     }
 
-    public Permiso(int usuario, int rol) {
+    public Permiso(String usuario, String rol) {
         this.usuario = usuario;
         this.rol = rol;
     }
@@ -25,19 +25,19 @@ public class Permiso {
         this.permisoId = permisoId;
     }
 
-    public int getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(int usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public int getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(int rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
