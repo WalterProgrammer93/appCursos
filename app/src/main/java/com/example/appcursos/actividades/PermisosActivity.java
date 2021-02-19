@@ -18,7 +18,6 @@ import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.PermisoAdaptador;
 import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.modelos.Permiso;
-
 import java.util.ArrayList;
 
 public class PermisosActivity extends AppCompatActivity {
@@ -35,10 +34,17 @@ public class PermisosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permisos);
 
+        listaPermisos = new ArrayList<>();
         ivPermisos = findViewById(R.id.ivPermiso);
         tvIdAlumno = findViewById(R.id.tvIdAlumno);
         tvIdRol = findViewById(R.id.tvIdRol);
         lvPermisos = findViewById(R.id.lvPermisos);
+
+        pbd = new PermisoBD(this);
+        listaPermisos.addAll(pbd.listarPermisos());
+        permisoAdaptador = new PermisoAdaptador(this, R.layout.item_permisos, listaPermisos);
+        lvPermisos.setAdapter(permisoAdaptador);
+        permisoAdaptador.notifyDataSetChanged();
 
     }
 

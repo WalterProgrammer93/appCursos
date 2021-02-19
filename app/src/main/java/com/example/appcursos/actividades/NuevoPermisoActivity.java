@@ -64,7 +64,10 @@ public class NuevoPermisoActivity extends AppCompatActivity {
         editarPermiso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                pbd = new PermisoBD(getApplicationContext());
+                String alumno = spin_alumno.getSelectedItem().toString();
+                String rol = spin_rol.getSelectedItem().toString();
+                //int cant = pbd.editarPermiso();
             }
         });
         eliminarPermiso.setOnClickListener(new View.OnClickListener() {
