@@ -1,6 +1,5 @@
 package com.example.appcursos.bd;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

@@ -10,15 +10,36 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.appcursos.R;
+import com.example.appcursos.adaptadores.PermisoAdaptador;
+import com.example.appcursos.bd.PermisoBD;
+import com.example.appcursos.modelos.Permiso;
+
+import java.util.ArrayList;
 
 public class PermisosActivity extends AppCompatActivity {
+
+    ArrayList<Permiso> listaPermisos;
+    PermisoAdaptador permisoAdaptador;
+    PermisoBD pbd;
+    ImageView ivPermisos;
+    TextView tvIdAlumno, tvIdRol;
+    ListView lvPermisos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permisos);
+
+        ivPermisos = findViewById(R.id.ivPermiso);
+        tvIdAlumno = findViewById(R.id.tvIdAlumno);
+        tvIdRol = findViewById(R.id.tvIdRol);
+        lvPermisos = findViewById(R.id.lvPermisos);
+
     }
 
     @Override
