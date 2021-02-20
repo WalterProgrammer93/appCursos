@@ -18,7 +18,7 @@ public class CursoBD {
     private static final String COL_NOMBRE_CURSO = "nombre_curso";
     private static final int NUM_COL_NOMBRE_CURSO = 1;
     private static final String COL_CENTRO = "centro";
-    private static int NUM_COL_CENTRO = 2;
+    private static final int NUM_COL_CENTRO = 2;
     private static final String COL_DISPONIBILIDAD = "disponibilidad";
     private static final int NUM_COL_DISPONIBILIDAD = 3;
     private static final String COL_NUM_ALUMNOS = "numero_alumnos";
@@ -82,7 +82,7 @@ public class CursoBD {
     public Curso buscarCurso(String nombre) {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_MODOS}, COL_NOMBRE_CURSO
-                + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_CURSO);
+                + " LIKE \"" + nombre + "\"", null, null, null, COL_NOMBRE_CURSO);
         bd.close();
         return seleccionarCurso(cursor);
     }

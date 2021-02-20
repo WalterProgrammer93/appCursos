@@ -2,6 +2,7 @@ package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.appcursos.R;
@@ -22,12 +24,14 @@ import java.util.ArrayList;
 public class NuevoCursoActivity extends AppCompatActivity {
 
     EditText et_nombreCurso, et_centroCurso;
+    RadioGroup rg_disponibilidad;
     RadioButton rb_disponible, rb_nodisponible;
     Spinner s_numeroAlumnos;
     CheckBox cb_modo1, cb_modo2, cb_modo3;
-    Button b_altaCurso, b_cancelarCurso;
+    Button altaCurso, editarCurso, eliminarCurso, buscarCurso, cancelarCurso;
     ArrayAdapter<String> spinner_adapter;
     ArrayList<String> numAlumnos;
+    ArrayList<String> listaDisponibilidad, listaModo;
     CursoBD cbd;
 
     @Override
@@ -38,6 +42,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
         cbd = new CursoBD(this);
         et_nombreCurso = findViewById(R.id.et_nombreCurso);
         et_centroCurso = findViewById(R.id.et_centroCurso);
+        rg_disponibilidad = findViewById(R.id.rg_disponibilidad);
         rb_disponible = findViewById(R.id.rb_disponible);
         rb_nodisponible = findViewById(R.id.rb_nodisponible);
         s_numeroAlumnos = findViewById(R.id.s_numeroAlumnos);
@@ -53,8 +58,12 @@ public class NuevoCursoActivity extends AppCompatActivity {
         cb_modo1 = findViewById(R.id.cb_modo1);
         cb_modo2 = findViewById(R.id.cb_modo2);
         cb_modo3 = findViewById(R.id.cb_modo3);
-        b_altaCurso = findViewById(R.id.altaCurso);
-        b_altaCurso.setOnClickListener(new View.OnClickListener() {
+        altaCurso = findViewById(R.id.altaCurso);
+        editarCurso = findViewById(R.id.editarCurso);
+        eliminarCurso = findViewById(R.id.eliminarCurso);
+        buscarCurso = findViewById(R.id.buscarCurso);
+        cancelarCurso = findViewById(R.id.cancelarCurso);
+        altaCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //if (validarDatos()) {
@@ -66,10 +75,10 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     String modo1 = cb_modo1.getText().toString();
                     String modo2 = cb_modo2.getText().toString();
                     String modo3 = cb_modo3.getText().toString();
-                    ArrayList<String> listaDisponibilidad = new ArrayList<>();
+                    listaDisponibilidad = new ArrayList<>();
                     listaDisponibilidad.add(disponible);
                     listaDisponibilidad.add(nodisponible);
-                    ArrayList<String> listaModo = new ArrayList<>();
+                    listaModo = new ArrayList<>();
                     listaModo.add(modo1);
                     listaModo.add(modo2);
                     listaModo.add(modo3);
@@ -83,16 +92,8 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         cb_modo1.setChecked(false);
                         cb_modo2.setChecked(false);
                         cb_modo3.setChecked(false);
-                        Toast.makeText(NuevoCursoActivity.this, "El curso se ha creado correctamente!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NuevoCursoActivity.this, "El curso se ha creado correctamente", Toast.LENGTH_LONG).show();
                         Intent i_insert = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                        /*i_insert.putExtra("NombreCurso", nombreCurso);
-                        i_insert.putExtra("CentroCurso", centroCurso);
-                        i_insert.putExtra("Disponible", listaDisponibilidad.get(0));
-                        i_insert.putExtra("NoDisponible", listaDisponibilidad.get(1));
-                        i_insert.putExtra("NumeroAlumnos", numeroAlumnos);
-                        i_insert.putExtra("Modo1", listaModo.get(0));
-                        i_insert.putExtra("Modo2", listaModo.get(1));
-                        i_insert.putExtra("Modo3", listaModo.get(2));*/
                         startActivity(i_insert);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();
@@ -102,12 +103,73 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 }*/
             }
         });
-        b_cancelarCurso = findViewById(R.id.cancelarCurso);
-        b_cancelarCurso.setOnClickListener(new View.OnClickListener() {
+
+        editarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cancelar_curso = new Intent(NuevoCursoActivity.this, MenuActivity.class);
-                startActivity(cancelar_curso);
+                String nombreCurso = et_nombreCurso.getText().toString();
+                String centroCurso = et_centroCurso.getText().toString();
+                String disponible = rb_disponible.getText().toString();
+                String noDisponible = rb_nodisponible.getText().toString();
+                String numeroAlumnos = s_numeroAlumnos.getSelectedItem().toString();
+                String modo1 = cb_modo1.getText().toString();
+                String modo2 = cb_modo2.getText().toString();
+                String modo3 = cb_modo3.getText().toString();
+                listaDisponibilidad = new ArrayList<>();
+                listaDisponibilidad.add(disponible);
+                listaDisponibilidad.add(noDisponible);
+                listaModo = new ArrayList<>();
+                listaModo.add(modo1);
+                listaModo.add(modo2);
+                listaModo.add(modo3);
+                Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
+                int cant = cbd.editarCurso(nombreCurso, curso);
+                if (cant == 1) {
+                    Toast.makeText(getApplicationContext(), "se modificaron los datos del curso", Toast.LENGTH_SHORT)
+                            .show();
+                    Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No existe el curso",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        eliminarCurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreCurso = et_nombreCurso.getText().toString();
+                int cant = cbd.eliminarCurso(nombreCurso);
+                if (cant == 1) {
+                    Toast.makeText(getApplicationContext(), "Se borró el curso con dicho nombre",
+                            Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No existe el curso",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        buscarCurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreCurso = et_nombreCurso.getText().toString();
+                Cursor fila = (Cursor) cbd.buscarCurso(nombreCurso);
+                if (fila.moveToFirst()) {
+                    et_centroCurso.setText(fila.getString(1));
+                    rg_disponibilidad.set
+                }
+            }
+        });
+
+        cancelarCurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NuevoCursoActivity.this, MenuActivity.class);
+                startActivity(i);
             }
         });
     }

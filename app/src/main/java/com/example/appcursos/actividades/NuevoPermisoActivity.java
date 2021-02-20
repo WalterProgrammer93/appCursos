@@ -64,10 +64,16 @@ public class NuevoPermisoActivity extends AppCompatActivity {
         editarPermiso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pbd = new PermisoBD(getApplicationContext());
                 String alumno = spin_alumno.getSelectedItem().toString();
                 String rol = spin_rol.getSelectedItem().toString();
-                //int cant = pbd.editarPermiso();
+                int cant = pbd.editarPermiso();
+                if (cant == 1) {
+                    Toast.makeText(getApplicationContext(), "Se modificaron los datos del permiso", Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "No existe el permiso",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
         eliminarPermiso.setOnClickListener(new View.OnClickListener() {
