@@ -48,25 +48,27 @@ public class PermisoBD {
         bd.close();
     }
 
-    public void editarPermiso(int id, Permiso permiso) {
+    public int editarPermiso(String usuarioId, Permiso permiso) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_ID, permiso.getUsuario());
         registro.put(COL_ROL_ID, permiso.getRol());
-        bd.update(TABLA_PERMISOS, registro, COL_PERMISO_ID + "=" + id,null);
+        int res = bd.update(TABLA_PERMISOS, registro, COL_USUARIO_ID + "=" + usuarioId,null);
         bd.close();
+        return res;
     }
 
-    public void eliminarPermiso(int id) {
+    public int eliminarPermiso(String usuarioId) {
         bd = abd.getReadableDatabase();
-        bd.delete(TABLA_PERMISOS, COL_PERMISO_ID + "=" + id, null);
+        int res = bd.delete(TABLA_PERMISOS, COL_USUARIO_ID + "=" + usuarioId, null);
         bd.close();
+        return res;
     }
 
-    public Permiso buscarPermiso(int id) {
+    public Permiso buscarPermiso(String alumnoId) {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_PERMISOS, new String[] {COL_PERMISO_ID, COL_USUARIO_ID, COL_ROL_ID}, COL_PERMISO_ID
-                + " LIKE \"" + id + "\"", null, null, null, null, COL_PERMISO_ID);
+                + " LIKE \"" + alumnoId + "\"", null, null, null, COL_USUARIO_ID);
         bd.close();
         return seleccionarPermiso(cursor);
     }

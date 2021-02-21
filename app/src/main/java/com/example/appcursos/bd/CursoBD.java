@@ -67,9 +67,9 @@ public class CursoBD {
         registro.put(COL_DISPONIBILIDAD, curso.getDisponibilidad());
         registro.put(COL_NUM_ALUMNOS, curso.getNumeroAlumnos());
         registro.put(COL_MODOS, curso.getModos());
-        int edit = bd.update(TABLA_CURSOS, registro, COL_NOMBRE_CURSO + "=" + nombre,null);
+        int res = bd.update(TABLA_CURSOS, registro, COL_NOMBRE_CURSO + "=" + nombre,null);
         bd.close();
-        return edit;
+        return res;
     }
 
     public int eliminarCurso(String nombre) {

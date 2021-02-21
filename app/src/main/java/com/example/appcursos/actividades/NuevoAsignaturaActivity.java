@@ -13,15 +13,16 @@ import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
+import com.example.appcursos.modelos.Curso;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class NuevoAsignaturaActivity extends AppCompatActivity {
 
     EditText et_nombreAsignatura, et_descripcionAsignatura;
     Spinner s_curso;
     Button b_altaAsignatura, b_cancelarAsignatura;
-    List<String> cursos;
+    ArrayList<Curso> load_cursos;
     ArrayAdapter s_adapter;
     AsignaturaBD asbd;
 
@@ -35,10 +36,10 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         et_nombreAsignatura = findViewById(R.id.et_nombreAsignatura);
         et_descripcionAsignatura = findViewById(R.id.et_descripcionAsignatura);
         s_curso = findViewById(R.id.spinner_cursoAsignatura);
-        cursos = new ArrayList<>();
-        asbd.leerBD();
-        cursos = asbd.getAllCursos();
-        s_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, cursos);
+        load_cursos = new ArrayList<>();
+        asbd.escribirBD();
+        load_cursos = asbd.cargarCursos();
+        s_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, load_cursos);
         s_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_curso.setAdapter(s_adapter);
         b_altaAsignatura = findViewById(R.id.altaAsignatura);

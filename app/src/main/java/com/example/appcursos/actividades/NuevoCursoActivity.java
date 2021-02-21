@@ -160,7 +160,16 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 Cursor fila = (Cursor) cbd.buscarCurso(nombreCurso);
                 if (fila.moveToFirst()) {
                     et_centroCurso.setText(fila.getString(1));
-                    rg_disponibilidad.set
+                    rg_disponibilidad.check(Integer.parseInt(fila.getString(2)));
+                    s_numeroAlumnos.setSelected(Boolean.parseBoolean(fila.getString(3)));
+                    cb_modo1.setChecked(Boolean.parseBoolean(fila.getString(4)));
+                    cb_modo2.setChecked(Boolean.parseBoolean(fila.getString(5)));
+                    cb_modo3.setChecked(Boolean.parseBoolean(fila.getString(6)));
+                    Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No existe el curso",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
