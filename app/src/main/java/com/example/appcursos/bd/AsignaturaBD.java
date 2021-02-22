@@ -156,6 +156,7 @@ public class AsignaturaBD {
         ArrayList<Curso> listaCursos = new ArrayList<>();
         while (cursor.moveToFirst()) {
             Curso curso = new Curso();
+            curso.setCursoId(cursor.getInt(0));
             curso.setNombreCurso(cursor.getString(1));
             listaCursos.add(curso);
         }

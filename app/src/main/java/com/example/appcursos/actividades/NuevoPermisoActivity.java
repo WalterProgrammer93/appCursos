@@ -10,11 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.modelos.Permiso;
-
 import java.util.ArrayList;
 
 public class NuevoPermisoActivity extends AppCompatActivity {
@@ -113,8 +111,8 @@ public class NuevoPermisoActivity extends AppCompatActivity {
         cancelarPermiso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cancelPermiso = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
-                startActivity(cancelPermiso);
+                Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
+                startActivity(intent);
             }
         });
 

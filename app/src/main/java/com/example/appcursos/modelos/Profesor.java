@@ -2,6 +2,8 @@ package com.example.appcursos.modelos;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
 public class Profesor {
 
     private int profesorId;
@@ -9,16 +11,18 @@ public class Profesor {
     private String apellidosProfesor;
     private String departamento;
     private String telefonoProfesor;
-    private Asignatura asignatura;
+    private String asignatura;
     private Bitmap iconoProfesor;
 
     public Profesor() {
     }
 
-    public Profesor(String nombreProfesor, String apellidosProfesor, String departamento, String telefonoProfesor, Asignatura asignatura) {
+    public Profesor(String nombreProfesor, String apellidosProfesor, ArrayList<String> listaDepartamentos, String telefonoProfesor, String asignatura) {
         this.nombreProfesor = nombreProfesor;
         this.apellidosProfesor = apellidosProfesor;
-        this.departamento = departamento;
+        for (int i = 0; i < listaDepartamentos.size(); i++) {
+            this.departamento = listaDepartamentos.get(i);
+        }
         this.telefonoProfesor = telefonoProfesor;
         this.asignatura = asignatura;
     }
@@ -67,11 +71,11 @@ public class Profesor {
         this.telefonoProfesor = telefonoProfesor;
     }
 
-    public Asignatura getAsignatura() {
+    public String getAsignatura() {
         return asignatura;
     }
 
-    public void setAsignatura(Asignatura asignatura) {
+    public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
 }

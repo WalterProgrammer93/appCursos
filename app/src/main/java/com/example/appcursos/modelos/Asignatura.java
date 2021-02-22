@@ -9,13 +9,13 @@ public class Asignatura {
     private int asignaturaId;
     private String nombreAsignatura;
     private String descripcionAsignatura;
-    private int curso;
+    private String curso;
     private Bitmap iconoAsignatura;
 
     public Asignatura() {
     }
 
-    public Asignatura(String nombreAsignatura, String descripcionAsignatura, int curso) {
+    public Asignatura(String nombreAsignatura, String descripcionAsignatura, String curso) {
         this.nombreAsignatura = nombreAsignatura;
         this.descripcionAsignatura = descripcionAsignatura;
         this.curso = curso;
@@ -49,11 +49,11 @@ public class Asignatura {
         this.descripcionAsignatura = descripcionAsignatura;
     }
 
-    public int getCurso() {
+    public String getCurso() {
         return curso;
     }
 
-    public void setCurso(int curso) {
+    public void setCurso(String curso) {
         this.curso = curso;
     }
 }

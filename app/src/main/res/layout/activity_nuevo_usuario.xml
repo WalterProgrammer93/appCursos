@@ -39,36 +39,6 @@
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-8dp" />
 
-            <CheckBox
-                android:id="@+id/cb_administrador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rol1"
-                android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/et_emailUsuario"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="26dp" />
-
-            <CheckBox
-                android:id="@+id/cb_alumno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rol2"
-                android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/cb_administrador"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="26dp" />
-
-            <CheckBox
-                android:id="@+id/cb_profesor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/rol3"
-                android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/cb_alumno"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="26dp" />
-
             <EditText
                 android:id="@+id/et_passwordUsuario"
                 android:layout_width="match_parent"
@@ -77,7 +47,7 @@
                 android:layout_margin="10dp"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
-                app:layout_constraintTop_toBottomOf="@+id/cb_profesor"
+                app:layout_constraintTop_toBottomOf="@+id/et_emailUsuario"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-8dp" />
 

@@ -99,7 +99,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();
                     }
                 /*} else {
-                    Toast.makeText(NuevoCursoActivity.this, "Se ha producido un error en la insercion del curso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NuevoCursoActivity.this, "Se ha producido un error en la insercion del curso", Toast.LENGTH_SHORT).show();
                 }*/
             }
         });
@@ -163,8 +163,8 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     rg_disponibilidad.check(Integer.parseInt(fila.getString(2)));
                     s_numeroAlumnos.setSelected(Boolean.parseBoolean(fila.getString(3)));
                     cb_modo1.setChecked(Boolean.parseBoolean(fila.getString(4)));
-                    cb_modo2.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    cb_modo3.setChecked(Boolean.parseBoolean(fila.getString(6)));
+                    cb_modo2.setChecked(Boolean.parseBoolean(fila.getString(4)));
+                    cb_modo3.setChecked(Boolean.parseBoolean(fila.getString(4)));
                     Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
                     startActivity(i);
                 } else {

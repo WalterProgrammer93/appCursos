@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Alumno;
-import com.example.appcursos.modelos.Rol;
-
 import java.util.ArrayList;
 
 public class AlumnoBD {
@@ -56,27 +54,29 @@ public class AlumnoBD {
         registro.put(COL_APELLIDOS_ALUMNO, alumno.getApellidosAlumno());
         registro.put(COL_DNI, alumno.getDni());
         registro.put(COL_TELEFONO_ALUMNO, alumno.getTelefonoAlumno());
-        registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura().getAsignaturaId());
+        registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura());
         bd.insert(TABLA_ALUMNOS, null, registro);
         bd.close();
     }
 
-    public void editarAlumno(int id, Alumno alumno) {
+    public int editarAlumno(String nombreAlumno, Alumno alumno) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ALUMNO, alumno.getNombreAlumno());
         registro.put(COL_APELLIDOS_ALUMNO, alumno.getApellidosAlumno());
         registro.put(COL_DNI, alumno.getDni());
         registro.put(COL_TELEFONO_ALUMNO, alumno.getTelefonoAlumno());
-        registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura().getAsignaturaId());
-        bd.update(TABLA_ALUMNOS, registro, COL_ASIGNATURA_ID + "=" + id,null);
+        registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura());
+        int res = bd.update(TABLA_ALUMNOS, registro, COL_NOMBRE_ALUMNO + "=" + nombreAlumno,null);
         bd.close();
+        return res;
     }
 
-    public void eliminarAlumno(String nombre) {
+    public int eliminarAlumno(String nombreAlumno) {
         bd = abd.getReadableDatabase();
-        bd.delete(TABLA_ALUMNOS, COL_NOMBRE_ALUMNO + "=" + nombre, null);
+        int res = bd.delete(TABLA_ALUMNOS, COL_NOMBRE_ALUMNO + "=" + nombreAlumno, null);
         bd.close();
+        return res;
     }
 
     public Alumno buscarAlumno(String nombre) {
@@ -145,5 +145,33 @@ public class AlumnoBD {
         cursor.close();
         bd.close();
         return listaAsignaturas;
+    }
+
+    public boolean isAlumnoExists(String nombreAlumno) {
+        String[] columns = {COL_NOMBRE_ALUMNO};
+
+        //Selection
+        String selection = COL_NOMBRE_ALUMNO + " = ? ";
+
+        //Selection Args
+        String[] selection_Args = {nombreAlumno};
+
+        bd = abd.getReadableDatabase();
+        //Query
+        Cursor cursor = bd.query(TABLA_ALUMNOS,
+                columns,
+                selection,
+                selection_Args,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+            return true;
+        }
+        cursor.close();
+        bd.close();
+        return false;
     }
 }

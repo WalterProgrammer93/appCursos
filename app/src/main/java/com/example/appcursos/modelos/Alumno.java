@@ -9,13 +9,13 @@ public class Alumno {
     private String apellidosAlumno;
     private String dni;
     private String telefonoAlumno;
-    private Asignatura asignatura;
+    private String asignatura;
     private Bitmap iconoAlumno;
 
     public Alumno() {
     }
 
-    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String telefonoAlumno, Asignatura asignatura) {
+    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String telefonoAlumno, String asignatura) {
         this.nombreAlumno = nombreAlumno;
         this.apellidosAlumno = apellidosAlumno;
         this.dni = dni;
@@ -67,11 +67,11 @@ public class Alumno {
         this.telefonoAlumno = telefonoAlumno;
     }
 
-    public Asignatura getAsignatura() {
+    public String getAsignatura() {
         return asignatura;
     }
 
-    public void setAsignatura(Asignatura asignatura) {
+    public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
 }

@@ -50,19 +50,21 @@ public class RolBD {
         bd.close();
     }
 
-    public void editarRol(int id, Rol rol) {
+    public int editarRol(String nombreRol, Rol rol) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ROL, rol.getNombreRol());
         registro.put(COL_DESCRIPCION_ROL, rol.getDescripcionRol());
-        bd.update(TABLA_ROLES, registro, COL_ROL_ID + "=" + id,null);
+        int res = bd.update(TABLA_ROLES, registro, COL_NOMBRE_ROL + "=" + nombreRol,null);
         bd.close();
+        return res;
     }
 
-    public void eliminarRol(String nombre) {
+    public int eliminarRol(String nombreRol) {
         bd = abd.getReadableDatabase();
-        bd.delete(TABLA_ROLES, COL_NOMBRE_ROL + "=" + nombre, null);
+        int res = bd.delete(TABLA_ROLES, COL_NOMBRE_ROL + "=" + nombreRol, null);
         bd.close();
+        return res;
     }
 
     public Rol buscarRol(String nombre) {
@@ -111,4 +113,31 @@ public class RolBD {
         return listaRoles;
     }
 
+    public boolean isExistsRol(String nombreRol) {
+        String[] columns = {COL_NOMBRE_ROL};
+
+        //Selection
+        String selection = COL_NOMBRE_ROL + " = ? ";
+
+        //Selection Args
+        String[] selection_Args = {nombreRol};
+
+        bd = abd.getReadableDatabase();
+        //Query
+        Cursor cursor = bd.query(TABLA_ROLES,
+                columns,
+                selection,
+                selection_Args,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+            return true;
+        }
+        cursor.close();
+        bd.close();
+        return false;
+    }
 }

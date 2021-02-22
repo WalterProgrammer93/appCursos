@@ -3,7 +3,11 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,17 +17,15 @@ import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
-import com.example.appcursos.modelos.Curso;
-
 import java.util.ArrayList;
 
 public class NuevoAsignaturaActivity extends AppCompatActivity {
 
     EditText et_nombreAsignatura, et_descripcionAsignatura;
     Spinner s_curso;
-    Button b_altaAsignatura, b_cancelarAsignatura;
-    ArrayList<Curso> load_cursos;
-    ArrayAdapter s_adapter;
+    Button b_altaAsignatura, b_editarAsignatura, b_eliminarAsignatura, b_buscarAsignatura, b_cancelarAsignatura;
+    ArrayList<String> load_cursos;
+    ArrayAdapter<String> arrayAdapter;
     AsignaturaBD asbd;
 
     @SuppressLint("WrongViewCast")
@@ -38,31 +40,95 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         s_curso = findViewById(R.id.spinner_cursoAsignatura);
         load_cursos = new ArrayList<>();
         asbd.escribirBD();
-        load_cursos = asbd.cargarCursos();
-        s_adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, load_cursos);
-        s_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s_curso.setAdapter(s_adapter);
+        load_cursos.add(String.valueOf(asbd.cargarCursos()));
+        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, load_cursos);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s_curso.setAdapter(arrayAdapter);
         b_altaAsignatura = findViewById(R.id.altaAsignatura);
+        b_editarAsignatura = findViewById(R.id.editarAsignatura);
+        b_eliminarAsignatura = findViewById(R.id.eliminarAsignatura);
+        b_buscarAsignatura = findViewById(R.id.buscarAsignatura);
+        b_cancelarAsignatura = findViewById(R.id.cancelarAsignatura);
+
         b_altaAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nombreAsignatura = et_nombreAsignatura.getText().toString();
-                String descripcionAsignatura = et_descripcionAsignatura.getText().toString();
-                int curso = (int) s_curso.getSelectedItem();
-                Asignatura asignatura = new Asignatura(nombreAsignatura, descripcionAsignatura, curso);
-                if (!asbd.isAsignaturaExists(nombreAsignatura)) {
-                    asbd.insertarAsignatura(asignatura);
-                    et_nombreAsignatura.setText("");
-                    et_descripcionAsignatura.setText("");
-                    Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura se ha creado correctamente!", Toast.LENGTH_SHORT).show();
-                    Intent alta = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    startActivity(alta);
+                //if (validarDatos()) {
+                    String nombreAsig = et_nombreAsignatura.getText().toString();
+                    String descripAsig = et_descripcionAsignatura.getText().toString();
+                    String cursoId = s_curso.getSelectedItem().toString();
+                    Asignatura asignatura = new Asignatura(nombreAsig, descripAsig, cursoId);
+                    if (!asbd.isAsignaturaExists(nombreAsig)) {
+                        asbd.insertarAsignatura(asignatura);
+                        et_nombreAsignatura.setText("");
+                        et_descripcionAsignatura.setText("");
+                        s_curso.setSelected(false);
+                        Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura se ha creado correctamente", Toast.LENGTH_SHORT).show();
+                        Intent alta = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
+                        startActivity(alta);
+                    } else {
+                        Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura ya existe", Toast.LENGTH_SHORT).show();
+                    }
+                /*} else {
+                    Toast.makeText(NuevoAsignaturaActivity.this, "Se ha producido un error en la insercion de la asignatura", Toast.LENGTH_SHORT).show();
+                }*/
+            }
+        });
+
+        b_editarAsignatura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreAsig = et_nombreAsignatura.getText().toString();
+                String descripAsig = et_descripcionAsignatura.getText().toString();
+                String cursoId = s_curso.getSelectedItem().toString();
+                Asignatura asignatura = new Asignatura(nombreAsig, descripAsig, cursoId);
+                int cant = asbd.editarAsignatura(nombreAsig, asignatura);
+                if (cant == 1) {
+                    Toast.makeText(getApplicationContext(), "se modificaron los datos de la asignatura", Toast.LENGTH_SHORT)
+                            .show();
+                    Intent i = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
+                    startActivity(i);
                 } else {
-                    Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura ya existe!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No existe la asignatura",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        b_cancelarAsignatura = findViewById(R.id.cancelarAsignatura);
+
+        b_eliminarAsignatura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreAsig = et_nombreAsignatura.getText().toString();
+                int cant = asbd.eliminarAsignatura(nombreAsig);
+                if (cant == 1) {
+                    Toast.makeText(getApplicationContext(), "Se borró la asignatura correctamente",
+                            Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No existe la asignatura",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        b_buscarAsignatura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreAsig = et_nombreAsignatura.getText().toString();
+                Cursor fila = (Cursor) asbd.buscarAsignatura(nombreAsig);
+                if (fila.moveToFirst()) {
+                    et_descripcionAsignatura.setText(fila.getString(1));
+                    s_curso.setSelected(Boolean.parseBoolean(fila.getString(2)));
+                    Intent i = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No existe la asignatura",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         b_cancelarAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +138,26 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_salir) {
+            finish();
+            Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+            Intent salir = new Intent(NuevoAsignaturaActivity.this, MainActivity.class);
+            startActivity(salir);
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
     /*public boolean validarDatos() {
         boolean valido;
         String campo1 = et_nombreAsignatura.getText().toString();
