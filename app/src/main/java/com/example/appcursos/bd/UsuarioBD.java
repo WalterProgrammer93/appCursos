@@ -180,4 +180,32 @@ public class UsuarioBD {
         return false;
     }
 
+    public boolean isUsuarioExists(String username) {
+        // array of columns to fetch
+        String[] columns = {COL_USUARIO_NAME};
+
+        //Selection
+        String selection = COL_USUARIO_NAME + " = ? ";
+
+        //Selection Args
+        String[] selection_Args = {username};
+
+        bd = abd.getReadableDatabase();
+        //Query
+        Cursor cursor = bd.query(TABLA_USUARIOS,
+                columns,
+                selection,
+                selection_Args,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+            return true;
+        }
+        cursor.close();
+        bd.close();
+        return false;
+    }
 }

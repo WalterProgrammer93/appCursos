@@ -64,8 +64,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                         et_descripcionAsignatura.setText("");
                         s_curso.setSelected(false);
                         Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura se ha creado correctamente", Toast.LENGTH_SHORT).show();
-                        Intent alta = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                        startActivity(alta);
+                        Intent intent = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(NuevoAsignaturaActivity.this, "La asignatura ya existe", Toast.LENGTH_SHORT).show();
                     }
@@ -86,8 +86,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "se modificaron los datos de la asignatura", Toast.LENGTH_SHORT)
                             .show();
-                    Intent i = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    startActivity(i);
+                    Intent intent = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe la asignatura",
                             Toast.LENGTH_SHORT).show();
@@ -120,8 +120,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                 if (fila.moveToFirst()) {
                     et_descripcionAsignatura.setText(fila.getString(1));
                     s_curso.setSelected(Boolean.parseBoolean(fila.getString(2)));
-                    Intent i = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    startActivity(i);
+                    Intent intent = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe la asignatura",
                             Toast.LENGTH_SHORT).show();
@@ -132,8 +132,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         b_cancelarAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cancelar = new Intent(NuevoAsignaturaActivity.this, MenuActivity.class);
-                startActivity(cancelar);
+                Intent intent = new Intent(NuevoAsignaturaActivity.this, MenuActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -151,8 +151,8 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_salir) {
             finish();
             Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
-            Intent salir = new Intent(NuevoAsignaturaActivity.this, MainActivity.class);
-            startActivity(salir);
+            Intent intent = new Intent(NuevoAsignaturaActivity.this, MainActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
 
