@@ -1,6 +1,5 @@
 package com.example.appcursos.adaptadores;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,36 +8,50 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
-import java.util.List;
+import com.example.appcursos.modelos.Alumno;
+import java.util.ArrayList;
 
-public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHolder> {
+public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHolder> implements View.OnClickListener {
 
-    private List<String> listaAlumnos;
-    private LayoutInflater mInflater;
+    private ArrayList<Alumno> listaAlumnos;
+    private View.OnClickListener escuchador;
 
-    public AlumnoAdaptador(Context context, List<String> lista) {
-        this.mInflater = LayoutInflater.from(context);
-        this.listaAlumnos = lista;
+    public AlumnoAdaptador(ArrayList<Alumno> listaAlumnos) {
+        this.listaAlumnos = listaAlumnos;
     }
 
     @NonNull
     @Override
     public AlumnoAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_alumnos, parent, false);
-        return new AlumnoAdaptador.ViewHolder(view);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alumnos, parent, false);
+        vista.setOnClickListener(this);
+        return new ViewHolder(vista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AlumnoAdaptador.ViewHolder holder, int position) {
-        String coleccionAlumnos = listaAlumnos.get(position);
-        holder.tvNombreAlumno.setText(coleccionAlumnos);
-        holder.tvApellidosAlumno.setText(coleccionAlumnos);
-        holder.tvAsignatura.setText(coleccionAlumnos);
+        holder.tvNombreAlumno.setText((CharSequence) listaAlumnos.get(position));
+        holder.tvApellidosAlumno.setText((CharSequence) listaAlumnos.get(position));
+        holder.tvAsignatura.setText((CharSequence) listaAlumnos.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listaAlumnos.size();
+        if (listaAlumnos != null)
+        {
+            return listaAlumnos.size();
+        }
+        return 0;
+    }
+
+    public void setOnClickListener(View.OnClickListener escucha) {
+        this.escuchador = escucha;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (escuchador != null)
+            escuchador.onClick(view);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -24,6 +24,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="@string/nombreRol"
+                android:textColor="@color/colorSecundaryText"
                 tools:ignore="LabelFor,MissingConstraints"
                 android:importantForAutofill="no" />
 
@@ -36,6 +37,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="@string/descripcionRol"
+                android:textColor="@color/colorSecundaryText"
                 app:layout_constraintTop_toBottomOf="@+id/et_nombreRol"
                 tools:ignore="LabelFor,MissingConstraints"
                 tools:layout_editor_absoluteX="16dp"
@@ -45,8 +47,8 @@
                 android:id="@+id/altaRol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/alta"
                 android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/et_descripcionRol"
@@ -57,8 +59,8 @@
                 android:id="@+id/editarRol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/editar"
                 android:layout_margin="10dp"
                 android:layout_marginTop="20dp"
@@ -70,8 +72,8 @@
                 android:id="@+id/eliminarRol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/eliminar"
                 android:layout_margin="10dp"
                 android:layout_marginTop="20dp"
@@ -83,8 +85,8 @@
                 android:id="@+id/buscarRol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/buscar"
                 android:layout_margin="10dp"
                 android:layout_marginTop="20dp"
@@ -96,9 +98,9 @@
                 android:id="@+id/cancelarRol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/cancelar"
-                android:textColor="@color/blanco"
+                android:textColor="@color/icons"
                 android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/altaRol"
                 tools:ignore="MissingConstraints"
@@ -106,7 +108,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

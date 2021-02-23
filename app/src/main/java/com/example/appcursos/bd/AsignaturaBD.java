@@ -99,8 +99,8 @@ public class AsignaturaBD {
     public ArrayList<Asignatura> listarAsignaturas() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {
-                COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA
-        }, null, null, null, null, null, COL_NOMBRE_ASIGNATURA);
+                COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA
+        }, null, null, null, null, COL_ASIGNATURA_ID);
 
         if (cursor.getCount() == 0) {
             cursor.close();

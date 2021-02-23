@@ -38,17 +38,17 @@
                     android:id="@+id/tvNombreAsignatura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tvCurso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_weight="1" />
 
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
 </LinearLayout>

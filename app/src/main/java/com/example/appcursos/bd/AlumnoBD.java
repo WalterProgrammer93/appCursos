@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Alumno;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AlumnoBD {
 
@@ -106,8 +107,8 @@ public class AlumnoBD {
     public ArrayList<Alumno> listarAlumno() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ALUMNOS, new String[] {
-                COL_ASIGNATURA_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_ASIGNATURA_ID
-        }, null, null, null, null, null, COL_NOMBRE_ALUMNO);
+                COL_ALUMNO_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_ASIGNATURA_ID
+        }, null, null, null, null, COL_ALUMNO_ID);
 
         if (cursor.getCount() == 0) {
             cursor.close();
@@ -128,7 +129,7 @@ public class AlumnoBD {
         return listaAlumno;
     }
 
-    public ArrayList<Alumno> cargarAsignaturas() {
+    public List<Alumno> cargarAsignaturas() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.rawQuery("select asignatura_id, nombre_asignatura from asignaturas", null);
 
@@ -136,7 +137,7 @@ public class AlumnoBD {
             cursor.close();
             return null;
         }
-        ArrayList<Alumno> listaAsignaturas = new ArrayList<>();
+        List<Alumno> listaAsignaturas = new ArrayList<>();
         while (cursor.moveToNext()) {
             Alumno alumno = new Alumno();
             alumno.setNombreAlumno(cursor.getString(1));

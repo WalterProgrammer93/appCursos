@@ -38,18 +38,21 @@
                     android:id="@+id/tvNombreAlumno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/tvApellidosAlumno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/tvAsignatura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_weight="1"/>
 
             </LinearLayout>

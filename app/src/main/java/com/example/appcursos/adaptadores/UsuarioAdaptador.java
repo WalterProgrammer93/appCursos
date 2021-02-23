@@ -1,6 +1,5 @@
 package com.example.appcursos.adaptadores;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,35 +8,49 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
-import java.util.List;
+import com.example.appcursos.modelos.Usuario;
+import java.util.ArrayList;
 
-public class UsuarioAdaptador extends RecyclerView.Adapter<UsuarioAdaptador.ViewHolder> {
+public class UsuarioAdaptador extends RecyclerView.Adapter<UsuarioAdaptador.ViewHolder> implements View.OnClickListener {
 
-    private List<String> listaProfesores;
-    private LayoutInflater mInflater;
+    private ArrayList<Usuario> listaUsuarios;
+    private View.OnClickListener escuchador;
 
-    public UsuarioAdaptador(Context context, List<String> lista) {
-        this.mInflater = LayoutInflater.from(context);
-        this.listaProfesores = lista;
+    public UsuarioAdaptador(ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
     }
 
     @NonNull
     @Override
     public UsuarioAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_usuarios, parent, false);
-        return new UsuarioAdaptador.ViewHolder(view);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_usuarios, parent, false);
+        vista.setOnClickListener(this);
+        return new ViewHolder(vista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UsuarioAdaptador.ViewHolder holder, int position) {
-        String coleccionUsuarios = listaProfesores.get(position);
-        holder.tvUserName.setText(coleccionUsuarios);
-        holder.tvEmail.setText(coleccionUsuarios);
+        holder.tvUserName.setText((CharSequence) listaUsuarios.get(position));
+        holder.tvEmail.setText((CharSequence) listaUsuarios.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listaProfesores.size();
+        if (listaUsuarios != null)
+        {
+            return listaUsuarios.size();
+        }
+        return 0;
+    }
+
+    public void setOnClickListener(View.OnClickListener escucha) {
+        this.escuchador = escucha;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (escuchador != null)
+            escuchador.onClick(view);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

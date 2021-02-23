@@ -16,10 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.ProfesorBD;
-import com.example.appcursos.modelos.Asignatura;
 import com.example.appcursos.modelos.Profesor;
 import java.util.ArrayList;
 
@@ -32,8 +30,8 @@ public class NuevoProfesorActivity extends AppCompatActivity {
             rb_musica, rb_biologiaGeologia, rb_historiaGeografia;
     Spinner s_asignaturas;
     Button b_altaProf, b_editarProf, b_eliminarProf, b_buscarProf, b_cancelar;
-    ArrayList<Asignatura> load_asignaturas;
-    ArrayAdapter<Asignatura> arrayAdapter;
+    ArrayList<String> load_asignaturas;
+    ArrayAdapter<String> arrayAdapter;
     ArrayList<String> listaDepartamentos;
     ProfesorBD probd;
 
@@ -59,7 +57,7 @@ public class NuevoProfesorActivity extends AppCompatActivity {
         s_asignaturas = findViewById(R.id.s_asignaturas);
         load_asignaturas = new ArrayList<>();
         probd.escribirBD();
-        load_asignaturas = probd.cargarAsignaturas();
+        load_asignaturas.add(String.valueOf(probd.cargarAsignaturas()));
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, load_asignaturas);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_asignaturas.setAdapter(arrayAdapter);
@@ -220,7 +218,7 @@ public class NuevoProfesorActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu2, menu);
+        inflater.inflate(R.menu.menu3, menu);
         return true;
     }
 

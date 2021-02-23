@@ -17,14 +17,15 @@ import com.example.appcursos.R;
 import com.example.appcursos.bd.AlumnoBD;
 import com.example.appcursos.modelos.Alumno;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NuevoAlumnoActivity extends AppCompatActivity {
 
     EditText et_nombreAlumno, et_apellidosAlumno, et_dniAlumno, et_telefonoAlumno;
     Spinner s_asignaturas;
     Button altaAlumno, editarAlumno, eliminarAlumno, buscarAlumno, cancelarAlumno;
-    ArrayList<Alumno> load_asignaturas;
-    ArrayAdapter<Alumno> arrayAdapter;
+    List<String> load_asignaturas;
+    ArrayAdapter<String> arrayAdapter;
     AlumnoBD alumbd;
 
     @Override
@@ -40,7 +41,7 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
         s_asignaturas = findViewById(R.id.spinner_asignaturaId);
         load_asignaturas = new ArrayList<>();
         alumbd.escribirBD();
-        load_asignaturas = alumbd.cargarAsignaturas();
+        load_asignaturas.add(String.valueOf(alumbd.cargarAsignaturas()));
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, load_asignaturas);
         s_asignaturas.setAdapter(arrayAdapter);
         altaAlumno = findViewById(R.id.altaAlumno);
@@ -143,7 +144,7 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu2, menu);
+        inflater.inflate(R.menu.menu3, menu);
         return true;
     }
 

@@ -1,7 +1,6 @@
 package com.example.appcursos.adaptadores;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Curso;
-import java.util.ArrayList;
+import java.util.List;
 
 public class CursoAdaptador extends ArrayAdapter<Curso> {
 
-    private ArrayList<Curso> listaCursos;
+    private List<Curso> listaCursos;
     private Context context;
-    private int viewRes;
-    private Resources res;
+    private int listItemResLayout;
 
-    public CursoAdaptador(Context context, int textViewResourcesId, ArrayList<Curso> lista) {
-        super(context, textViewResourcesId, lista);
-        this.listaCursos = lista;
+    public CursoAdaptador(Context context, int resource, List<Curso> listaCursos) {
+        super(context, resource, listaCursos);
+        this.listaCursos = listaCursos;
+        this.listItemResLayout = resource;
         this.context = context;
-        this.viewRes = textViewResourcesId;
-        this.res = context.getResources();
     }
 
     static class ViewHolder {
@@ -42,13 +39,13 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
 
     @NonNull
     @Override
-    public View getView(int i, View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ViewHolder holder;
         View view = convertView;
         // Si la View es null se crea de nuevo
         if (view == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(viewRes, parent, false);
+            view = layoutInflater.inflate(listItemResLayout, parent, false);
             holder = new ViewHolder();
             holder.iconoCursos = view.findViewById(R.id.ivCurso);
             holder.nombreCurso = view.findViewById(R.id.tvNombreCurso);
@@ -64,7 +61,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
             holder = (ViewHolder) view.getTag();
         }
 
-        Curso curso = listaCursos.get(i);
+        Curso curso = listaCursos.get(position);
         holder.iconoCursos.setImageResource(R.drawable.ic_school_black_24dp);
         holder.nombreCurso.setText(curso.getNombreCurso());
         holder.disponibilidad.setText(curso.getDisponibilidad());

@@ -1,7 +1,6 @@
 package com.example.appcursos.adaptadores;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,47 +10,48 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Permiso;
-import java.util.ArrayList;
+import java.util.List;
 
 public class PermisoAdaptador extends ArrayAdapter<Permiso> {
 
-    private ArrayList<Permiso> listaPermisos;
+    private List<Permiso> listaPermisos;
     private Context context;
-    private int viewRes;
-    private Resources res;
+    private int listItemResLayout;
 
-    public PermisoAdaptador(Context context, int textViewResourcesId, ArrayList<Permiso> lista) {
-        super(context, textViewResourcesId, lista);
-        this.listaPermisos = lista;
+    public PermisoAdaptador(@NonNull Context context, int resource, @NonNull List<Permiso> listaPermisos) {
+        super(context, resource, listaPermisos);
+        this.listaPermisos = listaPermisos;
+        this.listItemResLayout = resource;
         this.context = context;
-        this.viewRes = textViewResourcesId;
-        this.res = context.getResources();
     }
 
     static class ViewHolder {
-        ImageView iconoPermisos;
-        TextView idAlumno;
-        TextView idRol;
+        ImageView iconoPermiso;
+        TextView usuarioId;
+        TextView rolId;
     }
 
     @Override
     public int getCount() {
-        return listaPermisos.size();
+        if (listaPermisos != null) {
+            return listaPermisos.size();
+        }
+        return 0;
     }
 
     @NonNull
     @Override
-    public View getView(int i, View convertView, @NonNull ViewGroup parent) {
-        PermisoAdaptador.ViewHolder holder;
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
+        ViewHolder holder;
         // Si la View es null se crea de nuevo
         if (view == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(viewRes, parent, false);
-            holder = new PermisoAdaptador.ViewHolder();
-            holder.iconoPermisos = view.findViewById(R.id.ivPermiso);
-            holder.idAlumno = view.findViewById(R.id.tvIdAlumno);
-            holder.idRol = view.findViewById(R.id.tvIdRol);
+            view = layoutInflater.inflate(listItemResLayout, parent, false);
+            holder = new ViewHolder();
+            holder.iconoPermiso = view.findViewById(R.id.ivPermiso);
+            holder.usuarioId = view.findViewById(R.id.tvIdAlumno);
+            holder.rolId = view.findViewById(R.id.tvIdRol);
             view.setTag(holder);
         }
         /*
@@ -62,10 +62,10 @@ public class PermisoAdaptador extends ArrayAdapter<Permiso> {
             holder = (PermisoAdaptador.ViewHolder) view.getTag();
         }
 
-        Permiso permiso = listaPermisos.get(i);
-        holder.iconoPermisos.setImageResource(R.drawable.ic_school_black_24dp);
-        holder.idAlumno.setText(permiso.getUsuario());
-        holder.idRol.setText(permiso.getRol());
+        Permiso permiso = listaPermisos.get(position);
+        holder.iconoPermiso.setImageResource(R.drawable.ic_school_black_24dp);
+        holder.usuarioId.setText(permiso.getUsuario());
+        holder.rolId.setText(permiso.getRol());
         return view;
     }
 }

@@ -109,7 +109,7 @@ public class ProfesorBD {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_PROFESORES, new String[] {
                 COL_PROFESOR_ID, COL_NOMBRE_PROFESOR, COL_APELLIDOS_PROFESOR, COL_DEPARTAMENTO, COL_TELEFONO_PROFESOR, COL_ASIGNATURA_ID
-        }, null, null, null, null, null, COL_NOMBRE_PROFESOR);
+        }, null, null, null, null, COL_PROFESOR_ID);
 
         if (cursor.getCount() == 0) {
             cursor.close();

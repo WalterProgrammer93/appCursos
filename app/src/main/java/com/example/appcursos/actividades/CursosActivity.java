@@ -34,16 +34,17 @@ public class CursosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cursos);
 
+        cbd = new CursoBD(this);
         listaCursos = new ArrayList<>();
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
         tvModos = findViewById(R.id.tvModos);
         lvCursos = findViewById(R.id.lvCursos);
-        cbd = new CursoBD(this);
-        listaCursos.addAll(cbd.listarCursos());
+        listaCursos = cbd.listarCursos();
         cursoAdaptador = new CursoAdaptador(this, R.layout.item_cursos, listaCursos);
-        lvCursos.setAdapter(cursoAdaptador);
+        //lvCursos.setAdapter(cursoAdaptador);
+        //registerForContextMenu(lvCursos);
         cursoAdaptador.notifyDataSetChanged();
     }
 
@@ -58,14 +59,14 @@ public class CursosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_nuevo:
-                Intent nuevo_curso = new Intent(CursosActivity.this, NuevoCursoActivity.class);
-                startActivity(nuevo_curso);
+                Intent intent = new Intent(CursosActivity.this, NuevoCursoActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_salir:
                 finish();
                 Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
-                Intent salir = new Intent(CursosActivity.this, MainActivity.class);
-                startActivity(salir);
+                Intent i = new Intent(CursosActivity.this, MainActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

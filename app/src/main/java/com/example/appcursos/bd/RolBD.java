@@ -94,7 +94,7 @@ public class RolBD {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ROLES, new String[] {
                 COL_ROL_ID, COL_NOMBRE_ROL, COL_DESCRIPCION_ROL
-        }, null, null, null, null, COL_NOMBRE_ROL);
+        }, null, null, null, null, COL_ROL_ID);
 
         if (cursor.getCount() == 0) {
             cursor.close();

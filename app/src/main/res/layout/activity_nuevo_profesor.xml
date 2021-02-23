@@ -23,6 +23,7 @@
                 android:importantForAutofill="no"
                 android:hint="@string/nombreProfesor"
                 android:inputType="text"
+                android:textColor="@color/colorSecundaryText"
                 android:layout_margin="10dp"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-8dp" />
@@ -35,6 +36,7 @@
                 android:layout_margin="10dp"
                 android:importantForAutofill="no"
                 android:inputType="text"
+                android:textColor="@color/colorSecundaryText"
                 app:layout_constraintTop_toBottomOf="@+id/et_nombreProfesor"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-8dp" />
@@ -52,54 +54,63 @@
                     android:id="@+id/rb_lengua"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/lengua" />
 
                 <RadioButton
                     android:id="@+id/rb_matematicas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/matematicas" />
 
                 <RadioButton
                     android:id="@+id/rb_ingles"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/ingles" />
 
                 <RadioButton
                     android:id="@+id/rb_fisicaQuimica"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/fisicaQuimica" />
 
                 <RadioButton
                     android:id="@+id/rb_tecnologia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/tecnologia" />
 
                 <RadioButton
                     android:id="@+id/rb_informatica"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/informatica" />
 
                 <RadioButton
                     android:id="@+id/rb_musica"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/musica" />
 
                 <RadioButton
                     android:id="@+id/rb_biologiaGeologia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/biologiaGeologia" />
 
                 <RadioButton
                     android:id="@+id/rb_historiaGeografia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:text="@string/historiaGeografia" />
             </RadioGroup>
 
@@ -111,6 +122,7 @@
                 android:importantForAutofill="no"
                 android:layout_margin="10dp"
                 android:inputType="text"
+                android:textColor="@color/colorSecundaryText"
                 app:layout_constraintTop_toBottomOf="@+id/rg_departamentos"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-8dp" />
@@ -121,6 +133,7 @@
                 android:layout_height="50dp"
                 android:hint="@string/seleccionar_asignatura"
                 android:layout_margin="10dp"
+                android:textColor="@color/colorPrimaryText"
                 app:layout_constraintTop_toBottomOf="@+id/et_telefonoProfesor"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />
@@ -129,8 +142,8 @@
                 android:id="@+id/altaProfesor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/alta"
                 android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/s_asignaturas"
@@ -141,8 +154,8 @@
                 android:id="@+id/editarProfesor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/editar"
                 android:layout_margin="10dp"
                 android:layout_marginTop="20dp"
@@ -154,8 +167,8 @@
                 android:id="@+id/eliminarProfesor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/eliminar"
                 android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/editarProfesor"
@@ -166,8 +179,8 @@
                 android:id="@+id/buscarProfesor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:textColor="@color/blanco"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
                 android:text="@string/alta"
                 android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/eliminarProfesor"
@@ -178,9 +191,9 @@
                 android:id="@+id/cancelarProfesor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/cancelar"
-                android:textColor="@color/blanco"
+                android:textColor="@color/icons"
                 android:layout_margin="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/altaProfesor"
                 tools:ignore="MissingConstraints"

@@ -1,6 +1,5 @@
 package com.example.appcursos.adaptadores;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,36 +8,50 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
-import java.util.List;
+import com.example.appcursos.modelos.Profesor;
+import java.util.ArrayList;
 
-public class ProfesorAdaptador extends RecyclerView.Adapter<ProfesorAdaptador.ViewHolder> {
+public class ProfesorAdaptador extends RecyclerView.Adapter<ProfesorAdaptador.ViewHolder> implements View.OnClickListener {
 
-    private List<String> listaProfesores;
-    private LayoutInflater mInflater;
+    private ArrayList<Profesor> listaProfesores;
+    private View.OnClickListener escuchador;
 
-    public ProfesorAdaptador(Context context, List<String> lista) {
-        this.mInflater = LayoutInflater.from(context);
-        this.listaProfesores = lista;
+    public ProfesorAdaptador(ArrayList<Profesor> listaProfesores) {
+        this.listaProfesores = listaProfesores;
     }
 
     @NonNull
     @Override
     public ProfesorAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_profesores, parent, false);
-        return new ProfesorAdaptador.ViewHolder(view);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alumnos, parent, false);
+        vista.setOnClickListener(this);
+        return new ViewHolder(vista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProfesorAdaptador.ViewHolder holder, int position) {
-        String coleccionProfesores = listaProfesores.get(position);
-        holder.tvNombreProfesor.setText(coleccionProfesores);
-        holder.tvDepartamento.setText(coleccionProfesores);
-        holder.tvAsignatura.setText(coleccionProfesores);
+        holder.tvNombreProfesor.setText((CharSequence) listaProfesores.get(position));
+        holder.tvDepartamento.setText((CharSequence) listaProfesores.get(position));
+        holder.tvAsignatura.setText((CharSequence) listaProfesores.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return listaProfesores.size();
+        if (listaProfesores != null)
+        {
+            return listaProfesores.size();
+        }
+        return 0;
+    }
+
+    public void setOnClickListener(View.OnClickListener escucha) {
+        this.escuchador = escucha;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (escuchador != null)
+            escuchador.onClick(view);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

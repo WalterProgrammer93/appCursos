@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AsignaturaAdaptador;
+import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
 import java.util.ArrayList;
 
@@ -28,35 +29,23 @@ public class AsignaturasActivity extends AppCompatActivity {
     ListView lvAsignaturas;
     ImageView ivAsignaturas;
     TextView tvNombreAsignatura, tvCurso;
+    AsignaturaBD asigbd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asignaturas);
 
+        asigbd = new AsignaturaBD(this);
         listaAsignaturas = new ArrayList<>();
+        listaAsignaturas = asigbd.listarAsignaturas();
         asignaturaAdaptador = new AsignaturaAdaptador(this, R.layout.item_asignaturas, listaAsignaturas);
         ivAsignaturas = findViewById(R.id.ivAsignatura);
         tvNombreAsignatura = findViewById(R.id.tvNombreAsignatura);
         tvCurso = findViewById(R.id.tvCurso);
         lvAsignaturas = findViewById(R.id.lvAsignaturas);
-        lvAsignaturas.setAdapter(asignaturaAdaptador);
-        registerForContextMenu(lvAsignaturas);
-
-        /*try {
-            Bundle recibir = getIntent().getExtras();
-            if (recibir != null) {
-                String nombreAsig = recibir.getString("NombreAsignatura");
-                String curso = recibir.getString("Curso");
-                tvNombreAsignatura.setText(nombreAsig);
-                tvCurso.setText(curso);
-                listaAsignaturas.add((Asignatura) tvNombreAsignatura.getText());
-                listaAsignaturas.add((Asignatura) tvCurso.getText());
-            }
-        } catch (Exception e) {
-            lvAsignaturas.setEmptyView(tvNombreAsignatura);
-            lvAsignaturas.setEmptyView(tvCurso);
-        }*/
+        //lvAsignaturas.setAdapter(asignaturaAdaptador);
+        //registerForContextMenu(lvAsignaturas);
         asignaturaAdaptador.notifyDataSetChanged();
     }
 

@@ -186,7 +186,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu2, menu);
+        inflater.inflate(R.menu.menu3, menu);
         return true;
     }
 
@@ -195,8 +195,8 @@ public class NuevoCursoActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_salir) {
             finish();
             Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
-            Intent salir = new Intent(NuevoCursoActivity.this, MainActivity.class);
-            startActivity(salir);
+            Intent intent = new Intent(NuevoCursoActivity.this, MainActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
 

@@ -37,12 +37,14 @@
                     android:id="@+id/tvNombreRol"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/tvDescripcionRol"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
                     android:layout_weight="1"/>
 
             </LinearLayout>
@@ -50,6 +52,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </LinearLayout>

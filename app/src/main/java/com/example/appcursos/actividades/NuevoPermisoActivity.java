@@ -45,6 +45,9 @@ public class NuevoPermisoActivity extends AppCompatActivity {
         spin_alumno.setAdapter(selectUsuario);
         spin_rol.setAdapter(selectRol);
         altaPermiso = findViewById(R.id.altaPermiso);
+        editarPermiso = findViewById(R.id.editarPermiso);
+        eliminarPermiso = findViewById(R.id.eliminarPermiso);
+        buscarPermiso = findViewById(R.id.buscarPermiso);
         cancelarPermiso = findViewById(R.id.cancelarPermiso);
 
         altaPermiso.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +129,7 @@ public class NuevoPermisoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu2, menu);
+        inflater.inflate(R.menu.menu3, menu);
         return true;
     }
 

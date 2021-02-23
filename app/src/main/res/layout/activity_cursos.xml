@@ -37,18 +37,21 @@
                         android:id="@+id/tvNombreCurso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryText"
                         android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/tvDisponibilidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryText"
                         android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/tvModos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryText"
                         android:layout_weight="1"/>
 
                 </LinearLayout>

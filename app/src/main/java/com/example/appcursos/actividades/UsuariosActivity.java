@@ -14,25 +14,30 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.UsuarioAdaptador;
+import com.example.appcursos.bd.UsuarioBD;
+import com.example.appcursos.modelos.Usuario;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UsuariosActivity extends AppCompatActivity {
 
-    List<String> listaUsuarios;
+    ArrayList<Usuario> listaUsuarios;
     UsuarioAdaptador usuarioAdaptador;
     RecyclerView rvUsuarios;
+    UsuarioBD ubd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuarios);
 
+        ubd = new UsuarioBD(this);
         listaUsuarios = new ArrayList<>();
-        usuarioAdaptador = new UsuarioAdaptador(this, listaUsuarios);
+        ubd.escribirBD();
+        listaUsuarios = ubd.listarUsuarios();
+        usuarioAdaptador = new UsuarioAdaptador(listaUsuarios);
         rvUsuarios = findViewById(R.id.rvUsuarios);
-        rvUsuarios.setAdapter(usuarioAdaptador);
-        registerForContextMenu(rvUsuarios);
+        //rvUsuarios.setAdapter(usuarioAdaptador);
+        //registerForContextMenu(rvUsuarios);
         usuarioAdaptador.notifyDataSetChanged();
     }
 
@@ -47,14 +52,14 @@ public class UsuariosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_nuevo:
-                Intent nuevo_usuario = new Intent(UsuariosActivity.this, NuevoUsuarioActivity.class);
-                startActivity(nuevo_usuario);
+                Intent intent = new Intent(UsuariosActivity.this, NuevoUsuarioActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_salir:
                 finish();
                 Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
-                Intent salir = new Intent(UsuariosActivity.this, MainActivity.class);
-                startActivity(salir);
+                Intent i = new Intent(UsuariosActivity.this, MainActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

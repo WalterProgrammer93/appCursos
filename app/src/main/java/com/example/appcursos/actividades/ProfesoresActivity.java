@@ -14,25 +14,30 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.ProfesorAdaptador;
+import com.example.appcursos.bd.ProfesorBD;
+import com.example.appcursos.modelos.Profesor;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProfesoresActivity extends AppCompatActivity {
 
-    List<String> listaProfesores;
+    ArrayList<Profesor> listaProfesores;
     ProfesorAdaptador profesorAdaptador;
     RecyclerView rvProfesores;
+    ProfesorBD probd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profesores);
 
+        probd = new ProfesorBD(this);
+        probd.escribirBD();
+        listaProfesores = probd.listarProfesor();
         listaProfesores = new ArrayList<>();
-        profesorAdaptador = new ProfesorAdaptador(this, listaProfesores);
+        profesorAdaptador = new ProfesorAdaptador(listaProfesores);
         rvProfesores = findViewById(R.id.rvProfesores);
-        rvProfesores.setAdapter(profesorAdaptador);
-        registerForContextMenu(rvProfesores);
+        //rvProfesores.setAdapter(profesorAdaptador);
+        //registerForContextMenu(rvProfesores);
         profesorAdaptador.notifyDataSetChanged();
     }
 
@@ -47,14 +52,14 @@ public class ProfesoresActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_nuevo:
-                Intent nuevo_profesor = new Intent(ProfesoresActivity.this, NuevoProfesorActivity.class);
-                startActivity(nuevo_profesor);
+                Intent intent = new Intent(ProfesoresActivity.this, NuevoProfesorActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_salir:
                 finish();
                 Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
-                Intent salir = new Intent(ProfesoresActivity.this, MainActivity.class);
-                startActivity(salir);
+                Intent i = new Intent(ProfesoresActivity.this, MainActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

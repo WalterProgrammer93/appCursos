@@ -34,16 +34,16 @@ public class PermisosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permisos);
 
+        pbd = new PermisoBD(this);
         listaPermisos = new ArrayList<>();
         ivPermisos = findViewById(R.id.ivPermiso);
         tvIdAlumno = findViewById(R.id.tvIdAlumno);
         tvIdRol = findViewById(R.id.tvIdRol);
         lvPermisos = findViewById(R.id.lvPermisos);
-
-        pbd = new PermisoBD(this);
-        listaPermisos.addAll(pbd.listarPermisos());
+        listaPermisos = pbd.listarPermisos();
         permisoAdaptador = new PermisoAdaptador(this, R.layout.item_permisos, listaPermisos);
-        lvPermisos.setAdapter(permisoAdaptador);
+        //lvPermisos.setAdapter(permisoAdaptador);
+        //registerForContextMenu(lvPermisos);
         permisoAdaptador.notifyDataSetChanged();
 
     }
@@ -59,14 +59,14 @@ public class PermisosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_nuevo:
-                Intent nuevo_permiso = new Intent(PermisosActivity.this, NuevoPermisoActivity.class);
-                startActivity(nuevo_permiso);
+                Intent intent = new Intent(PermisosActivity.this, NuevoPermisoActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_salir:
                 finish();
                 Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
-                Intent salir = new Intent(PermisosActivity.this, MainActivity.class);
-                startActivity(salir);
+                Intent i = new Intent(PermisosActivity.this, MainActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

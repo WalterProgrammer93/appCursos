@@ -16,27 +16,33 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AlumnoAdaptador;
+import com.example.appcursos.bd.AlumnoBD;
+import com.example.appcursos.modelos.Alumno;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AlumnosActivity extends AppCompatActivity {
 
-    List<String> listaAlumnos;
+    ArrayList<Alumno> listaAlumnos;
     AlumnoAdaptador alumnoAdaptador;
     RecyclerView rvAlumnos;
+    AlumnoBD alumbd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumnos);
 
+        alumbd = new AlumnoBD(this);
+        alumbd.escribirBD();
+        listaAlumnos = alumbd.listarAlumno();
         listaAlumnos = new ArrayList<>();
         rvAlumnos = findViewById(R.id.rvAlumnos);
-        rvAlumnos.setLayoutManager(new LinearLayoutManager(this));
-        rvAlumnos.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
-        alumnoAdaptador = new AlumnoAdaptador(this, listaAlumnos);
-        rvAlumnos.setAdapter(alumnoAdaptador);
-        registerForContextMenu(rvAlumnos);
+        //rvAlumnos.setHasFixedSize(true);
+        //rvAlumnos.setLayoutManager(new LinearLayoutManager(this));
+        //rvAlumnos.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+        alumnoAdaptador = new AlumnoAdaptador(listaAlumnos);
+        //rvAlumnos.setAdapter(alumnoAdaptador);
+        //registerForContextMenu(rvAlumnos);
         alumnoAdaptador.notifyDataSetChanged();
     }
 

@@ -21,7 +21,7 @@
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimary"
             tools:ignore="MissingConstraints" />
 
     </androidx.cardview.widget.CardView>
@@ -30,7 +30,7 @@
         android:id="@+id/opcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/blanco"
+        android:textColor="@color/icons"
         android:textAlignment="center"
         android:textSize="20sp"
         tools:ignore="MissingConstraints" />
