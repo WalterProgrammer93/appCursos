@@ -5,6 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -55,8 +58,8 @@ public class NuevoPermisoActivity extends AppCompatActivity {
                     spin_alumno.setSelected(false);
                     spin_alumno.setSelected(false);
                     Toast.makeText(NuevoPermisoActivity.this, "El permiso se ha creado correctamente", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
-                    startActivity(i);
+                    Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -70,6 +73,8 @@ public class NuevoPermisoActivity extends AppCompatActivity {
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "Se modificaron los datos del permiso", Toast.LENGTH_SHORT)
                             .show();
+                    Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el permiso",
                             Toast.LENGTH_SHORT).show();
@@ -84,8 +89,8 @@ public class NuevoPermisoActivity extends AppCompatActivity {
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "Se borró el permiso",
                             Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
-                    startActivity(i);
+                    Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el permiso",
                             Toast.LENGTH_SHORT).show();
@@ -100,8 +105,8 @@ public class NuevoPermisoActivity extends AppCompatActivity {
                 if (fila.moveToFirst()) {
                     spin_alumno.setSelected(Boolean.parseBoolean(fila.getString(1)));
                     spin_rol.setSelected(Boolean.parseBoolean(fila.getString(2)));
-                    Intent i = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
-                    startActivity(i);
+                    Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el permiso",
                             Toast.LENGTH_SHORT).show();
@@ -117,4 +122,26 @@ public class NuevoPermisoActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_salir) {
+            finish();
+            Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(NuevoPermisoActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    /*private boolean validarDatos() {
+    }*/
 }
