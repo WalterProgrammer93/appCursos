@@ -15,7 +15,8 @@
         card_view:cardCornerRadius="4dp"
         android:layout_margin="10dp"
         android:padding="5dp"
-        tools:ignore="MissingConstraints">
+        card_view:cardElevation="@dimen/cardview_default_radius"
+        tools:ignore="MissingConstraints,PrivateResource">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_recycler_view"
