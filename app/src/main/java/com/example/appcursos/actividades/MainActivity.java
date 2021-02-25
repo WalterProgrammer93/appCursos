@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
@@ -23,13 +24,19 @@ public class MainActivity extends AppCompatActivity {
     EditText email_login, password_login;
     Button btn_entrar, btn_registrarse;
     UsuarioBD ubd;
+    Animation animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        animation = AnimationUtils.loadAnimation(this, R.anim.aparicion_logo);
+        animation.setRepeatMode(Animation.RESTART);
+        animation.setRepeatCount(20);
+
         iv = findViewById(R.id.iv_logo);
+        iv.startAnimation(animation);
         titulo_login = findViewById(R.id.et_titulo);
         email_login = findViewById(R.id.et_email);
         password_login = findViewById(R.id.et_password);

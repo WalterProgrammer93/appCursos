@@ -10,7 +10,11 @@
   <style name="barra" parent="Theme.AppCompat.Light">
       <item name="colorAccent">@color/colorAccent</item>
   </style>
-  <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
+  <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
+      <item name="android:windowBackground">@drawable/splash_screen</item>
+      <item name="windowActionBar">false</item>
+      <item name="windowNoTitle">true</item>
+      <item name="android:windowFullscreen">true</item>
+      <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
   </style>
 </resources>
