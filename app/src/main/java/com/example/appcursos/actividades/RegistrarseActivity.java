@@ -25,7 +25,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registrarse);
 
         ubd = new UsuarioBD(this);
-
         et_username = findViewById(R.id.et_usuario);
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);

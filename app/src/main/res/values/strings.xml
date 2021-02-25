@@ -86,4 +86,5 @@
     <string name="descripcionRol">Descripcion Rol</string>
     <string name="lb_nuevo_rol">Nuevo Rol</string>
     <string name="lb_nuevo_permiso">Nuevo Permiso</string>
+    <string name="carga" tools:ignore="MissingTranslation">Cargando</string>
 </resources>

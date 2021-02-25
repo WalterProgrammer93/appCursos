@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        animation = AnimationUtils.loadAnimation(this, R.anim.aparicion_logo);
+        animation = AnimationUtils.loadAnimation(this, R.anim.aparicion);
         animation.setRepeatMode(Animation.RESTART);
         animation.setRepeatCount(20);
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Bienvenido a appCursos " + usuario.getUsername(), Toast.LENGTH_SHORT).show();
 
                     } else {
-                        Toast.makeText(MainActivity.this, " Failed to Logged in!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, " El Login ha fallado !", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         btn_registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registrarse = new Intent(MainActivity.this, RegistrarseActivity.class);
+                Intent registrarse = new Intent(MainActivity.this, SplashToActivity.class);
                 startActivity(registrarse);
             }
         });
