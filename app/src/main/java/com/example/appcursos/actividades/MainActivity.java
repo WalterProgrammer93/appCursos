@@ -1,7 +1,9 @@
 package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -13,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
+
 import com.example.appcursos.R;
 import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
@@ -25,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
     Button btn_entrar, btn_registrarse;
     UsuarioBD ubd;
     Animation animation;
+    ConstraintLayout constraintLayout;
+    VideoView vv_video;
 
+    @SuppressLint("SdCardPath")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
         animation = AnimationUtils.loadAnimation(this, R.anim.aparicion);
         animation.setRepeatMode(Animation.RESTART);
         animation.setRepeatCount(20);
-
+        constraintLayout = findViewById(R.id.layout_login);
+        constraintLayout.startAnimation(animation);
         iv = findViewById(R.id.iv_logo);
-        iv.startAnimation(animation);
+
         titulo_login = findViewById(R.id.et_titulo);
         email_login = findViewById(R.id.et_email);
         password_login = findViewById(R.id.et_password);

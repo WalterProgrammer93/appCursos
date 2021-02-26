@@ -28,17 +28,18 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
-        <activity android:name=".actividades.SplashToActivity"
-            android:theme="@style/SplashScreen"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity android:name=".actividades.MultimediaActivity"></activity>
+        <activity
+            android:name=".actividades.SplashToActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreen"></activity>
         <activity
             android:name=".actividades.SplashActivity"
-            android:theme="@style/SplashScreen"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -47,6 +47,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
         menu.add("Usuarios");
         menu.add("Roles");
         menu.add("Permisos");
+        menu.add("Multimedia");
 
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -61,40 +62,44 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     public void onItemClick(View view, int position) {
         switch (position) {
             case 0:
-                Intent i1 = new Intent(MenuActivity.this, CursosActivity.class);
-                startActivity(i1);
+                Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
+                startActivity(i0);
                 Toast.makeText(getApplicationContext(), menu.get(0), Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                Intent i2 = new Intent(MenuActivity.this, AsignaturasActivity.class);
-                startActivity(i2);
+                Intent i1 = new Intent(MenuActivity.this, AsignaturasActivity.class);
+                startActivity(i1);
                 Toast.makeText(getApplicationContext(), menu.get(1), Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                Intent i3 = new Intent(MenuActivity.this, AlumnosActivity.class);
-                startActivity(i3);
+                Intent i2 = new Intent(MenuActivity.this, AlumnosActivity.class);
+                startActivity(i2);
                 Toast.makeText(getApplicationContext(), menu.get(2), Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                Intent i4 = new Intent(MenuActivity.this, ProfesoresActivity.class);
-                startActivity(i4);
+                Intent i3 = new Intent(MenuActivity.this, ProfesoresActivity.class);
+                startActivity(i3);
                 Toast.makeText(getApplicationContext(), menu.get(3), Toast.LENGTH_SHORT).show();
                 break;
             case 4:
-                Intent i5 = new Intent(MenuActivity.this, UsuariosActivity.class);
-                startActivity(i5);
+                Intent i4 = new Intent(MenuActivity.this, UsuariosActivity.class);
+                startActivity(i4);
                 Toast.makeText(getApplicationContext(), menu.get(4), Toast.LENGTH_SHORT).show();
                 break;
             case 5:
-                Intent i6 = new Intent(MenuActivity.this, RolesActivity.class);
-                startActivity(i6);
+                Intent i5 = new Intent(MenuActivity.this, RolesActivity.class);
+                startActivity(i5);
                 Toast.makeText(getApplicationContext(), menu.get(5), Toast.LENGTH_SHORT).show();
                 break;
             case 6:
-                Intent i7 = new Intent(MenuActivity.this, PermisosActivity.class);
-                startActivity(i7);
+                Intent i6 = new Intent(MenuActivity.this, PermisosActivity.class);
+                startActivity(i6);
                 Toast.makeText(getApplicationContext(), menu.get(6), Toast.LENGTH_SHORT).show();
                 break;
+            case 7:
+                Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                startActivity(i7);
+                Toast.makeText(getApplicationContext(), menu.get(7), Toast.LENGTH_SHORT).show();
             default:
                 Toast.makeText(this, "You clicked " + adapter.getItem(position) +
                         " on row number " + position, Toast.LENGTH_SHORT).show();

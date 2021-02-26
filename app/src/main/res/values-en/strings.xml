@@ -85,4 +85,9 @@
     <string name="descripcionRol">Description Rol</string>
     <string name="lb_nuevo_rol">Nuevo Rol</string>
     <string name="lb_nuevo_permiso">Nuevo Permiso</string>
+    <string name="video_presentacion">Video de Presentación</string>
+    <string name="video_curso1">Curso Android</string>
+    <string name="video_curso2">Curso Java</string>
+    <string name="video_curso3">Curso de JavaScript</string>
+    <string name="video_curso4">Curso de Python</string>
 </resources>

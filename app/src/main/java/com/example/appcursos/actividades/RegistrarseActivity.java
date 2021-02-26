@@ -1,11 +1,15 @@
 package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,12 +22,19 @@ public class RegistrarseActivity extends AppCompatActivity {
     EditText et_username, et_email, et_password, et_confirmPassword;
     Button btn_anadir, btn_cancelar;
     UsuarioBD ubd;
+    Animation animation;
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
 
+        animation = AnimationUtils.loadAnimation(this, R.anim.aparicion);
+        animation.setRepeatMode(Animation.RESTART);
+        animation.setRepeatCount(20);
+        constraintLayout = findViewById(R.id.layout_register);
+        constraintLayout.startAnimation(animation);
         ubd = new UsuarioBD(this);
         et_username = findViewById(R.id.et_usuario);
         et_email = findViewById(R.id.et_email);
