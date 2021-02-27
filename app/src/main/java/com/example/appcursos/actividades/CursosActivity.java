@@ -26,7 +26,7 @@ public class CursosActivity extends AppCompatActivity {
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
     ImageView ivCursos;
-    TextView tvNombreCurso, tvDisponibilidad, tvModos;
+    TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvModos;
     CursoBD cbd;
 
     @Override
@@ -38,12 +38,28 @@ public class CursosActivity extends AppCompatActivity {
         listaCursos = new ArrayList<>();
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
+        tvCentro = findViewById(R.id.tvCentroCurso);
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
+        tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
         tvModos = findViewById(R.id.tvModos);
+
+        /*Intent i = getIntent();
+        String nombre = i.getStringExtra("NombreCurso");
+        String centro = i.getStringExtra("CentroCurso");
+        String dispo = i.getStringExtra("Disponibilidad");
+        String numAlum = i.getStringExtra("NumeroAlumnos");
+        String modo = i.getStringExtra("Modo");
+        tvNombreCurso.setText(nombre);
+        tvCentro.setText(centro);
+        tvDisponibilidad.setText(dispo);
+        tvNumeroAlumnos.setText(numAlum);
+        tvModos.setText(modo);*/
+
         lvCursos = findViewById(R.id.lvCursos);
         listaCursos = cbd.listarCursos();
+        //ArrayAdapter<Curso> cursoAdaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaCursos);
         cursoAdaptador = new CursoAdaptador(this, R.layout.item_cursos, listaCursos);
-        //lvCursos.setAdapter(cursoAdaptador);
+        lvCursos.setAdapter(cursoAdaptador);
         //registerForContextMenu(lvCursos);
         cursoAdaptador.notifyDataSetChanged();
     }

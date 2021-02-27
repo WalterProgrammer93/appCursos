@@ -7,9 +7,13 @@
 
         <ListView
             android:id="@+id/lvCursos"
-            android:textColor="@color/divider"
+            android:textColor="@color/colorPrimaryText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5dp"
+            android:listSelector="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
             tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
