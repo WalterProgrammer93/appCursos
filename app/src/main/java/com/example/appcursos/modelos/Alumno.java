@@ -74,4 +74,11 @@ public class Alumno {
     public void setAsignatura(String asignatura) {
         this.asignatura = asignatura;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("" + nombreAlumno + "\n" + apellidosAlumno + "\n" + asignatura);
+        return sb.toString();
+    }
 }

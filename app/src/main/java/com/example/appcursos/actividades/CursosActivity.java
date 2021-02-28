@@ -32,10 +32,9 @@ public class CursosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cursos);
+        setContentView(R.layout.item_cursos);
 
         cbd = new CursoBD(this);
-        listaCursos = new ArrayList<>();
         ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
         tvCentro = findViewById(R.id.tvCentroCurso);
@@ -57,8 +56,8 @@ public class CursosActivity extends AppCompatActivity {
 
         lvCursos = findViewById(R.id.lvCursos);
         listaCursos = cbd.listarCursos();
-        //ArrayAdapter<Curso> cursoAdaptador = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaCursos);
-        cursoAdaptador = new CursoAdaptador(this, R.layout.item_cursos, listaCursos);
+        cbd.cerrarBD();
+        cursoAdaptador = new CursoAdaptador(this, R.layout.activity_cursos, listaCursos);
         lvCursos.setAdapter(cursoAdaptador);
         //registerForContextMenu(lvCursos);
         cursoAdaptador.notifyDataSetChanged();

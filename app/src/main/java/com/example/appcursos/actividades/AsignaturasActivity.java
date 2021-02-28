@@ -37,14 +37,15 @@ public class AsignaturasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_asignaturas);
 
         asigbd = new AsignaturaBD(this);
+        asigbd.escribirBD();
         listaAsignaturas = new ArrayList<>();
-        listaAsignaturas = asigbd.listarAsignaturas();
-        asignaturaAdaptador = new AsignaturaAdaptador(this, R.layout.item_asignaturas, listaAsignaturas);
         ivAsignaturas = findViewById(R.id.ivAsignatura);
         tvNombreAsignatura = findViewById(R.id.tvNombreAsignatura);
         tvCurso = findViewById(R.id.tvCurso);
         lvAsignaturas = findViewById(R.id.lvAsignaturas);
-        //lvAsignaturas.setAdapter(asignaturaAdaptador);
+        listaAsignaturas = asigbd.listarAsignaturas();
+        asignaturaAdaptador = new AsignaturaAdaptador(this, R.layout.item_asignaturas, listaAsignaturas);
+        lvAsignaturas.setAdapter(asignaturaAdaptador);
         //registerForContextMenu(lvAsignaturas);
         asignaturaAdaptador.notifyDataSetChanged();
     }

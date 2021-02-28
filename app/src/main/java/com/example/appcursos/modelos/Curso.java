@@ -74,4 +74,15 @@ public class Curso {
     public void setModos(String modos) {
         this.modos = modos;
     }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "nombreCurso='" + nombreCurso + '\'' +
+                ", centro='" + centro + '\'' +
+                ", disponibilidad='" + disponibilidad + '\'' +
+                ", numeroAlumnos='" + numeroAlumnos + '\'' +
+                ", modos='" + modos + '\'' +
+                '}';
+    }
 }

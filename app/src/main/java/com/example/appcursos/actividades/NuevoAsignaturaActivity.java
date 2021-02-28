@@ -40,10 +40,11 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         s_curso = findViewById(R.id.spinner_cursoAsignatura);
         load_cursos = new ArrayList<>();
         asbd.escribirBD();
-        load_cursos.add(String.valueOf(asbd.cargarCursos()));
+        load_cursos = asbd.cargarCursos();
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, load_cursos);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s_curso.setAdapter(arrayAdapter);
+
         b_altaAsignatura = findViewById(R.id.altaAsignatura);
         b_editarAsignatura = findViewById(R.id.editarAsignatura);
         b_eliminarAsignatura = findViewById(R.id.eliminarAsignatura);

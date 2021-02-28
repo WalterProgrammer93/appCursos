@@ -1,36 +1,37 @@
 package com.example.appcursos.adaptadores;
 
+//import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
+//import android.graphics.Bitmap;
+//import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+//import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Curso;
-import java.util.ArrayList;
+import java.util.List;
 
 public class CursoAdaptador extends ArrayAdapter<Curso> {
 
-    private ArrayList<Curso> listaCursos;
-    private Context context;
+    //private final Resources res;
+    private List<Curso> listaCursos;
     private int listItemResLayout;
-    private Resources res;
+    private Context context;
 
-    public CursoAdaptador(Context context, int resource, ArrayList<Curso> listaCursos) {
+    public CursoAdaptador(Context context, int resource, List<Curso> listaCursos) {
         super(context, resource, listaCursos);
         this.listaCursos = listaCursos;
         this.listItemResLayout = resource;
         this.context = context;
-        this.res = context.getResources();
+        //this.res = context.getResources();
     }
 
     static class ViewHolder {
-        ImageView iconoCursos;
+        //ImageView iconoCursos;
         TextView nombreCurso;
         TextView centroCurso;
         TextView disponibilidad;
@@ -40,7 +41,9 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
 
     @Override
     public int getCount() {
-        return listaCursos.size();
+        if (listaCursos != null)
+            return listaCursos.size();
+        return 0;
     }
 
     @NonNull
@@ -54,7 +57,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
             view = layoutInflater.inflate(listItemResLayout, parent, false);
             holder = new ViewHolder();
             //holder.iconoCursos = view.findViewById(R.id.ivCurso);
-            holder.nombreCurso = view.findViewById(R.id.tvNombreCurso);
+            holder.nombreCurso = view.findViewById(R.id.tvNombreAlumno);
             holder.centroCurso = view.findViewById(R.id.tvCentroCurso);
             holder.disponibilidad = view.findViewById(R.id.tvDisponibilidad);
             holder.numeroAlumnos = view.findViewById(R.id.tvNumeroAlumnos);
@@ -71,16 +74,11 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
 
         final Curso curso = listaCursos.get(position);
         if (curso != null) {
-            final String nombre = curso.getNombreCurso();
-            holder.nombreCurso.setText(nombre);
-            final String centro = curso.getCentro();
-            holder.centroCurso.setText(centro);
-            final String disp = curso.getDisponibilidad();
-            holder.disponibilidad.setText(disp);
-            final String numA = curso.getNumeroAlumnos();
-            holder.numeroAlumnos.setText(numA);
-            final String modo = curso.getModos();
-            holder.modos.setText(modo);
+            holder.nombreCurso.setText(String.valueOf(curso.getNombreCurso()));
+            holder.centroCurso.setText(String.valueOf(curso.getCentro()));
+            holder.disponibilidad.setText(String.valueOf(curso.getDisponibilidad()));
+            holder.numeroAlumnos.setText(String.valueOf(curso.getNumeroAlumnos()));
+            holder.modos.setText(String.valueOf(curso.getModos()));
         }
         //holder.iconoCursos.setImageResource(R.drawable.ic_school_black_24dp);
         return view;
