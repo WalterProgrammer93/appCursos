@@ -24,24 +24,26 @@ public class RolesActivity extends AppCompatActivity {
 
     ArrayList<Rol> listaRoles;
     RolAdaptador rolAdaptador;
-    ImageView ivRol;
-    TextView tvNombreRol, tvDescripcionRol;
+    /*ImageView ivRol;
+    TextView tvNombreRol, tvDescripcionRol;*/
     ListView lvRoles;
     RolBD rolbd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_roles);
+        setContentView(R.layout.item_roles);
 
         rolbd = new RolBD(this);
         listaRoles = new ArrayList<>();
-        rolAdaptador = new RolAdaptador(this, R.layout.item_roles, listaRoles);
-        ivRol = findViewById(R.id.ivRol);
+        /*ivRol = findViewById(R.id.ivRol);
         tvNombreRol = findViewById(R.id.tvNombreRol);
-        tvDescripcionRol = findViewById(R.id.tvDescripcionRol);
+        tvDescripcionRol = findViewById(R.id.tvDescripcionRol);*/
         lvRoles = findViewById(R.id.lvRoles);
-        //lvRoles.setAdapter(rolAdaptador);
+        listaRoles = rolbd.listarRoles();
+        rolbd.cerrarBD();
+        rolAdaptador = new RolAdaptador(this, R.layout.activity_roles, listaRoles);
+        lvRoles.setAdapter(rolAdaptador);
         //registerForContextMenu(lvRoles);
         rolAdaptador.notifyDataSetChanged();
     }

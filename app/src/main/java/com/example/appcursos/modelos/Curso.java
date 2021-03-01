@@ -10,6 +10,7 @@ public class Curso {
     private String disponibilidad;
     private String numeroAlumnos;
     private String modos;
+    private int iconoCurso;
 
     public Curso() {
     }
@@ -75,14 +76,11 @@ public class Curso {
         this.modos = modos;
     }
 
-    @Override
-    public String toString() {
-        return "Curso{" +
-                "nombreCurso='" + nombreCurso + '\'' +
-                ", centro='" + centro + '\'' +
-                ", disponibilidad='" + disponibilidad + '\'' +
-                ", numeroAlumnos='" + numeroAlumnos + '\'' +
-                ", modos='" + modos + '\'' +
-                '}';
+    public int getIconoCurso() {
+        return iconoCurso;
+    }
+
+    public void setIconoCurso(int iconoCurso) {
+        this.iconoCurso = iconoCurso;
     }
 }

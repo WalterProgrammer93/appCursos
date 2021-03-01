@@ -28,15 +28,15 @@ public class ProfesoresActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profesores);
+        setContentView(R.layout.item_profesores);
 
         probd = new ProfesorBD(this);
-        probd.escribirBD();
-        listaProfesores = probd.listarProfesor();
         listaProfesores = new ArrayList<>();
-        profesorAdaptador = new ProfesorAdaptador(listaProfesores);
         rvProfesores = findViewById(R.id.rvProfesores);
-        //rvProfesores.setAdapter(profesorAdaptador);
+        listaProfesores = probd.listarProfesor();
+        probd.cerrarBD();
+        profesorAdaptador = new ProfesorAdaptador(listaProfesores);
+        rvProfesores.setAdapter(profesorAdaptador);
         //registerForContextMenu(rvProfesores);
         profesorAdaptador.notifyDataSetChanged();
     }

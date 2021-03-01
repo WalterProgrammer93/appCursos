@@ -92,9 +92,4 @@
     <string name="video_curso2">Curso Java</string>
     <string name="video_curso3">Curso de JavaScript</string>
     <string name="video_curso4">Curso de Python</string>
-    <string name="list_nombreCurso" />
-    <string name="list_centro" />
-    <string name="list_disponibilidad" />
-    <string name="list_numeroAlumnos" />
-    <string name="list_modos" />
 </resources>

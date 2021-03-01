@@ -23,7 +23,7 @@ public class ProfesorAdaptador extends RecyclerView.Adapter<ProfesorAdaptador.Vi
     @NonNull
     @Override
     public ProfesorAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_alumnos, parent, false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_alumnos, parent, false);
         vista.setOnClickListener(this);
         return new ViewHolder(vista);
     }

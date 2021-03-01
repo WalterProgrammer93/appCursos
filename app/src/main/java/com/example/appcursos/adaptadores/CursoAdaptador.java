@@ -1,23 +1,21 @@
 package com.example.appcursos.adaptadores;
 
-//import android.annotation.SuppressLint;
 import android.content.Context;
-//import android.graphics.Bitmap;
-//import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-//import android.widget.ImageView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+
+import com.bumptech.glide.Glide;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Curso;
 import java.util.List;
 
 public class CursoAdaptador extends ArrayAdapter<Curso> {
 
-    //private final Resources res;
     private List<Curso> listaCursos;
     private int listItemResLayout;
     private Context context;
@@ -27,11 +25,10 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
         this.listaCursos = listaCursos;
         this.listItemResLayout = resource;
         this.context = context;
-        //this.res = context.getResources();
     }
 
     static class ViewHolder {
-        //ImageView iconoCursos;
+        ImageView iconoCursos;
         TextView nombreCurso;
         TextView centroCurso;
         TextView disponibilidad;
@@ -56,7 +53,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(listItemResLayout, parent, false);
             holder = new ViewHolder();
-            //holder.iconoCursos = view.findViewById(R.id.ivCurso);
+            holder.iconoCursos = view.findViewById(R.id.ivCurso);
             holder.nombreCurso = view.findViewById(R.id.tvNombreAlumno);
             holder.centroCurso = view.findViewById(R.id.tvCentroCurso);
             holder.disponibilidad = view.findViewById(R.id.tvDisponibilidad);
@@ -74,13 +71,13 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
 
         final Curso curso = listaCursos.get(position);
         if (curso != null) {
-            holder.nombreCurso.setText(String.valueOf(curso.getNombreCurso()));
-            holder.centroCurso.setText(String.valueOf(curso.getCentro()));
-            holder.disponibilidad.setText(String.valueOf(curso.getDisponibilidad()));
-            holder.numeroAlumnos.setText(String.valueOf(curso.getNumeroAlumnos()));
-            holder.modos.setText(String.valueOf(curso.getModos()));
+            Glide.with(getContext()).load(curso.getIconoCurso()).into(holder.iconoCursos);
+            holder.nombreCurso.setText(curso.getNombreCurso());
+            holder.centroCurso.setText(curso.getCentro());
+            holder.disponibilidad.setText(curso.getDisponibilidad());
+            holder.numeroAlumnos.setText(curso.getNumeroAlumnos());
+            holder.modos.setText(curso.getModos());
         }
-        //holder.iconoCursos.setImageResource(R.drawable.ic_school_black_24dp);
         return view;
     }
 }

@@ -10,9 +10,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
+//import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+//import android.widget.TextView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.CursoAdaptador;
@@ -25,8 +25,8 @@ public class CursosActivity extends AppCompatActivity {
     ArrayList<Curso> listaCursos;
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
-    ImageView ivCursos;
-    TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvModos;
+    /*ImageView ivCursos;
+    TextView tvNombreCurso, tvCentro, tvDisponibilidad, tvNumeroAlumnos, tvModos;*/
     CursoBD cbd;
 
     @Override
@@ -35,12 +35,12 @@ public class CursosActivity extends AppCompatActivity {
         setContentView(R.layout.item_cursos);
 
         cbd = new CursoBD(this);
-        ivCursos = findViewById(R.id.ivCurso);
+        /*ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
         tvCentro = findViewById(R.id.tvCentroCurso);
         tvDisponibilidad = findViewById(R.id.tvDisponibilidad);
         tvNumeroAlumnos = findViewById(R.id.tvNumeroAlumnos);
-        tvModos = findViewById(R.id.tvModos);
+        tvModos = findViewById(R.id.tvModos);*/
 
         /*Intent i = getIntent();
         String nombre = i.getStringExtra("NombreCurso");
@@ -55,6 +55,7 @@ public class CursosActivity extends AppCompatActivity {
         tvModos.setText(modo);*/
 
         lvCursos = findViewById(R.id.lvCursos);
+        listaCursos = new ArrayList<>();
         listaCursos = cbd.listarCursos();
         cbd.cerrarBD();
         cursoAdaptador = new CursoAdaptador(this, R.layout.activity_cursos, listaCursos);

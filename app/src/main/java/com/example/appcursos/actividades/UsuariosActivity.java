@@ -2,6 +2,7 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,19 +25,23 @@ public class UsuariosActivity extends AppCompatActivity {
     UsuarioAdaptador usuarioAdaptador;
     RecyclerView rvUsuarios;
     UsuarioBD ubd;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuarios);
+        setContentView(R.layout.item_usuarios);
 
         ubd = new UsuarioBD(this);
         listaUsuarios = new ArrayList<>();
-        ubd.escribirBD();
-        listaUsuarios = ubd.listarUsuarios();
-        usuarioAdaptador = new UsuarioAdaptador(listaUsuarios);
         rvUsuarios = findViewById(R.id.rvUsuarios);
-        //rvUsuarios.setAdapter(usuarioAdaptador);
+        rvUsuarios.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        rvUsuarios.setLayoutManager(layoutManager);
+        listaUsuarios = ubd.listarUsuarios();
+        ubd.cerrarBD();
+        usuarioAdaptador = new UsuarioAdaptador(listaUsuarios);
+        rvUsuarios.setAdapter(usuarioAdaptador);
         //registerForContextMenu(rvUsuarios);
         usuarioAdaptador.notifyDataSetChanged();
     }
@@ -79,7 +84,7 @@ public class UsuariosActivity extends AppCompatActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
 
-        switch (item.getItemId()) {
+        switch (itemSeleccionado) {
             case R.id.action_editar:
                 // hacer algo
                 return true;

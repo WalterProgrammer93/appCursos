@@ -30,18 +30,15 @@ public class AlumnosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alumnos);
+        setContentView(R.layout.item_alumnos);
 
         alumbd = new AlumnoBD(this);
-        alumbd.escribirBD();
-        listaAlumnos = alumbd.listarAlumno();
         listaAlumnos = new ArrayList<>();
         rvAlumnos = findViewById(R.id.rvAlumnos);
-        //rvAlumnos.setHasFixedSize(true);
-        //rvAlumnos.setLayoutManager(new LinearLayoutManager(this));
-        //rvAlumnos.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+        listaAlumnos = alumbd.listarAlumno();
+        alumbd.cerrarBD();
         alumnoAdaptador = new AlumnoAdaptador(listaAlumnos);
-        //rvAlumnos.setAdapter(alumnoAdaptador);
+        rvAlumnos.setAdapter(alumnoAdaptador);
         //registerForContextMenu(rvAlumnos);
         alumnoAdaptador.notifyDataSetChanged();
     }

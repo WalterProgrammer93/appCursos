@@ -25,23 +25,24 @@ public class PermisosActivity extends AppCompatActivity {
     ArrayList<Permiso> listaPermisos;
     PermisoAdaptador permisoAdaptador;
     PermisoBD pbd;
-    ImageView ivPermisos;
-    TextView tvIdAlumno, tvIdRol;
+    /*ImageView ivPermisos;
+    TextView tvIdAlumno, tvIdRol;*/
     ListView lvPermisos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_permisos);
+        setContentView(R.layout.item_permisos);
 
         pbd = new PermisoBD(this);
         listaPermisos = new ArrayList<>();
-        ivPermisos = findViewById(R.id.ivPermiso);
+        /*ivPermisos = findViewById(R.id.ivPermiso);
         tvIdAlumno = findViewById(R.id.tvIdAlumno);
-        tvIdRol = findViewById(R.id.tvIdRol);
+        tvIdRol = findViewById(R.id.tvIdRol);*/
         lvPermisos = findViewById(R.id.lvPermisos);
         listaPermisos = pbd.listarPermisos();
-        permisoAdaptador = new PermisoAdaptador(this, R.layout.item_permisos, listaPermisos);
+        pbd.cerrarBD();
+        permisoAdaptador = new PermisoAdaptador(this, R.layout.activity_permisos, listaPermisos);
         //lvPermisos.setAdapter(permisoAdaptador);
         //registerForContextMenu(lvPermisos);
         permisoAdaptador.notifyDataSetChanged();

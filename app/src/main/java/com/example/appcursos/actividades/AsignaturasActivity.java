@@ -27,24 +27,24 @@ public class AsignaturasActivity extends AppCompatActivity {
     ArrayList<Asignatura> listaAsignaturas;
     AsignaturaAdaptador asignaturaAdaptador;
     ListView lvAsignaturas;
-    ImageView ivAsignaturas;
-    TextView tvNombreAsignatura, tvCurso;
+    /*ImageView ivAsignaturas;
+    TextView tvNombreAsignatura, tvCurso;*/
     AsignaturaBD asigbd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_asignaturas);
+        setContentView(R.layout.item_asignaturas);
 
         asigbd = new AsignaturaBD(this);
-        asigbd.escribirBD();
         listaAsignaturas = new ArrayList<>();
-        ivAsignaturas = findViewById(R.id.ivAsignatura);
+        /*ivAsignaturas = findViewById(R.id.ivAsignatura);
         tvNombreAsignatura = findViewById(R.id.tvNombreAsignatura);
-        tvCurso = findViewById(R.id.tvCurso);
+        tvCurso = findViewById(R.id.tvCurso);*/
         lvAsignaturas = findViewById(R.id.lvAsignaturas);
         listaAsignaturas = asigbd.listarAsignaturas();
-        asignaturaAdaptador = new AsignaturaAdaptador(this, R.layout.item_asignaturas, listaAsignaturas);
+        asigbd.cerrarBD();
+        asignaturaAdaptador = new AsignaturaAdaptador(this, R.layout.activity_asignaturas, listaAsignaturas);
         lvAsignaturas.setAdapter(asignaturaAdaptador);
         //registerForContextMenu(lvAsignaturas);
         asignaturaAdaptador.notifyDataSetChanged();
