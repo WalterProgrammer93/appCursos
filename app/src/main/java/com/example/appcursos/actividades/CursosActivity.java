@@ -104,67 +104,30 @@ public class CursosActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info =
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
-        switch (itemSeleccionado) {
-            case R.id.action_editar:
-                // hacer algo
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.lb_esta_seguro)
-                        .setPositiveButton(R.string.lb_si,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // Qué hacer si el usuario pulsa "Si"
-                                        Intent editar = new Intent(CursosActivity.this, NuevoCursoActivity.class);
-                                        editar.putExtra("NombreCurso", listaCursos.get(0).getNombreCurso());
-                                        editar.putExtra("Centro", listaCursos.get(1).getCentro());
-                                        editar.putExtra("Disponibilidad", listaCursos.get(3).getDisponibilidad());
-                                        editar.putExtra("NumeroAlumnos", listaCursos.get(2).getNumeroAlumnos());
-                                        editar.putExtra("Temas", listaCursos.get(4).getModos());
-                                        startActivity(editar);
-                                    }})
-                        .setNegativeButton(R.string.lb_no,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // Qué hacer si el usuario pulsa "No"
-                                        // En este caso se cierra directamente el diálogo y no se hace nada más
-                                        dialog.dismiss();
-                                    }});
-                builder.create().show();
-                return true;
-            case R.id.action_eliminar:
-                // hacer algo
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-                builder2.setMessage(R.string.lb_esta_seguro)
-                        .setPositiveButton(R.string.lb_si,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // Qué hacer si el usuario pulsa "Si"
-                                        Intent eliminar = new Intent(CursosActivity.this, NuevoCursoActivity.class);
-                                        eliminar.putExtra("NombreCurso", listaCursos.get(0).getNombreCurso());
-                                        eliminar.putExtra("Centro", listaCursos.get(1).getCentro());
-                                        eliminar.putExtra("Disponibilidad", listaCursos.get(3).getDisponibilidad());
-                                        eliminar.putExtra("NumeroAlumnos", listaCursos.get(2).getNumeroAlumnos());
-                                        eliminar.putExtra("Temas", listaCursos.get(4).getModos());
-                                        startActivity(eliminar);
-                                    }})
-                        .setNegativeButton(R.string.lb_no,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // Qué hacer si el usuario pulsa "No"
-                                        // En este caso se cierra directamente el diálogo y no se hace nada más
-                                        dialog.dismiss();
-                                    }});
-                builder2.create().show();
-                return true;
-            case R.id.action_buscar:
-                // hacer algo
-
-                return true;
-            default:
-                return super.onContextItemSelected(item);
+        if (itemSeleccionado == R.id.action_editar) {// hacer algo
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.lb_esta_seguro)
+                    .setPositiveButton(R.string.lb_si,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Qué hacer si el usuario pulsa "Si"
+                                    Intent editar = new Intent(CursosActivity.this, NuevoCursoActivity.class);
+                                    startActivity(editar);
+                                }
+                            })
+                    .setNegativeButton(R.string.lb_no,
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Qué hacer si el usuario pulsa "No"
+                                    // En este caso se cierra directamente el diálogo y no se hace nada más
+                                    dialog.dismiss();
+                                }
+                            });
+            builder.create().show();
+            return true;
         }
+        return super.onContextItemSelected(item);
     }
 }
