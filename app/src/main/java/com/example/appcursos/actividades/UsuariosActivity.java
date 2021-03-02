@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -89,7 +88,8 @@ public class UsuariosActivity extends AppCompatActivity {
 
         if (itemSeleccionado == R.id.action_editar) {// hacer algo
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.lb_esta_seguro)
+            builder.setTitle(R.string.titulo)
+                    .setMessage(R.string.lb_esta_seguro)
                     .setPositiveButton(R.string.lb_si,
                             new DialogInterface.OnClickListener() {
                                 @Override

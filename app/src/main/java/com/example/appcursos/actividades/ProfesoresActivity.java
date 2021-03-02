@@ -84,7 +84,8 @@ public class ProfesoresActivity extends AppCompatActivity {
 
         if (itemSeleccionado == R.id.action_editar) {// hacer algo
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.lb_esta_seguro)
+            builder.setTitle(R.string.titulo)
+                    .setMessage(R.string.lb_esta_seguro)
                     .setPositiveButton(R.string.lb_si,
                             new DialogInterface.OnClickListener() {
                                 @Override

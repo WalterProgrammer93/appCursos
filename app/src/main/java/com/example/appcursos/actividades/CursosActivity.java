@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -105,29 +106,35 @@ public class CursosActivity extends AppCompatActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
         if (itemSeleccionado == R.id.action_editar) {// hacer algo
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.lb_esta_seguro)
-                    .setPositiveButton(R.string.lb_si,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // Qué hacer si el usuario pulsa "Si"
-                                    Intent editar = new Intent(CursosActivity.this, NuevoCursoActivity.class);
-                                    startActivity(editar);
-                                }
-                            })
-                    .setNegativeButton(R.string.lb_no,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // Qué hacer si el usuario pulsa "No"
-                                    // En este caso se cierra directamente el diálogo y no se hace nada más
-                                    dialog.dismiss();
-                                }
-                            });
-            builder.create().show();
+            showDialog(0);
             return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public Dialog onCreateDialog(int id) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.titulo)
+                .setMessage(R.string.lb_esta_seguro)
+                .setPositiveButton(R.string.lb_si,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Qué hacer si el usuario pulsa "Si"
+                                Intent editar = new Intent(CursosActivity.this, NuevoCursoActivity.class);
+                                startActivity(editar);
+                            }
+                        })
+                .setNegativeButton(R.string.lb_no,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Qué hacer si el usuario pulsa "No"
+                                // En este caso se cierra directamente el diálogo y no se hace nada más
+                                dialog.dismiss();
+                            }
+                        });
+        return builder.create();
     }
 }
