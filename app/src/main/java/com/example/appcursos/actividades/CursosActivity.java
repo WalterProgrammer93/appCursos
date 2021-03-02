@@ -34,7 +34,6 @@ public class CursosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_cursos);
 
-        cbd = new CursoBD(this);
         /*ivCursos = findViewById(R.id.ivCurso);
         tvNombreCurso = findViewById(R.id.tvNombreCurso);
         tvCentro = findViewById(R.id.tvCentroCurso);
@@ -54,13 +53,14 @@ public class CursosActivity extends AppCompatActivity {
         tvNumeroAlumnos.setText(numAlum);
         tvModos.setText(modo);*/
 
-        lvCursos = findViewById(R.id.lvCursos);
+        cbd = new CursoBD(this);
         listaCursos = new ArrayList<>();
+        lvCursos = findViewById(R.id.lvCursos);
         listaCursos = cbd.listarCursos();
         cbd.cerrarBD();
         cursoAdaptador = new CursoAdaptador(this, R.layout.activity_cursos, listaCursos);
         lvCursos.setAdapter(cursoAdaptador);
-        //registerForContextMenu(lvCursos);
+        registerForContextMenu(lvCursos);
         cursoAdaptador.notifyDataSetChanged();
     }
 

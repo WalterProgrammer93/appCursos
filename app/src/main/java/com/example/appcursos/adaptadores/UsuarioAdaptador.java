@@ -1,5 +1,6 @@
 package com.example.appcursos.adaptadores;
 
+//import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,31 +8,36 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+//import com.bumptech.glide.Glide;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Usuario;
-import java.util.ArrayList;
+//import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioAdaptador extends RecyclerView.Adapter<UsuarioAdaptador.ViewHolder> implements View.OnClickListener {
 
-    private ArrayList<Usuario> listaUsuarios;
+    private List<Usuario> listaUsuarios;
+    //private Context context;
     private View.OnClickListener escuchador;
 
-    public UsuarioAdaptador(ArrayList<Usuario> listaUsuarios) {
+    public UsuarioAdaptador(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
     }
 
     @NonNull
     @Override
     public UsuarioAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_usuarios, parent, false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_usuarios, parent, false);
         vista.setOnClickListener(this);
         return new ViewHolder(vista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UsuarioAdaptador.ViewHolder holder, int position) {
-        holder.tvUserName.setText((CharSequence) listaUsuarios.get(position));
-        holder.tvEmail.setText((CharSequence) listaUsuarios.get(position));
+        final Usuario usuario = listaUsuarios.get(position);
+        holder.ivUsuario.setImageResource(R.drawable.ic_person_black_24dp);
+        holder.tvUserName.setText(usuario.getUsername());
+        holder.tvEmail.setText(usuario.getEmail());
     }
 
     @Override

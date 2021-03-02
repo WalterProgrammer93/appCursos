@@ -76,12 +76,27 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     String modo2 = cb_modo2.getText().toString();
                     String modo3 = cb_modo3.getText().toString();
                     listaDisponibilidad = new ArrayList<>();
-                    listaDisponibilidad.add(disponible);
-                    listaDisponibilidad.add(nodisponible);
+                    for (int i = 0; i < listaDisponibilidad.size(); i++) {
+                        if (rb_disponible.isChecked()) {
+                            listaDisponibilidad.add(disponible);
+                        } else {
+                            if (rb_nodisponible.isChecked()) {
+                                listaDisponibilidad.add(nodisponible);
+                            }
+                        }
+                    }
                     listaModo = new ArrayList<>();
-                    listaModo.add(modo1);
-                    listaModo.add(modo2);
-                    listaModo.add(modo3);
+                    for (int i = 0; i < listaModo.size(); i++) {
+                        if (cb_modo1.isChecked()) {
+                            listaModo.add(modo1);
+                        }
+                        if (cb_modo2.isChecked()) {
+                            listaModo.add(modo2);
+                        }
+                        if (cb_modo3.isChecked()) {
+                            listaModo.add(modo3);
+                        }
+                    }
                     Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
                     if (!cbd.isCursoExists(curso.getNombreCurso(), curso.getCentro())) {
                         cbd.insertarCurso(curso);

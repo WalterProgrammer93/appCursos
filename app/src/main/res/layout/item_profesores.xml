@@ -7,9 +7,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProfesores"
-        android:textColor="@color/divider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:textColor="@color/colorPrimaryText"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp"
+        android:background="@drawable/ic_person_black_24dp"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

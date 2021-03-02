@@ -44,7 +44,7 @@ public class RolesActivity extends AppCompatActivity {
         rolbd.cerrarBD();
         rolAdaptador = new RolAdaptador(this, R.layout.activity_roles, listaRoles);
         lvRoles.setAdapter(rolAdaptador);
-        //registerForContextMenu(lvRoles);
+        registerForContextMenu(lvRoles);
         rolAdaptador.notifyDataSetChanged();
     }
 

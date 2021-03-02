@@ -42,7 +42,7 @@ public class UsuariosActivity extends AppCompatActivity {
         ubd.cerrarBD();
         usuarioAdaptador = new UsuarioAdaptador(listaUsuarios);
         rvUsuarios.setAdapter(usuarioAdaptador);
-        //registerForContextMenu(rvUsuarios);
+        registerForContextMenu(rvUsuarios);
         usuarioAdaptador.notifyDataSetChanged();
     }
 

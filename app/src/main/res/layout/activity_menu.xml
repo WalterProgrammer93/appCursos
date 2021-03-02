@@ -22,7 +22,11 @@
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5dp"
             android:background="@color/colorPrimary"
+            android:listSelector="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
             tools:ignore="MissingConstraints" />
 
     </androidx.cardview.widget.CardView>

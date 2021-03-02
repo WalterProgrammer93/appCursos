@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+//import com.bumptech.glide.Glide;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Rol;
 import java.util.List;
@@ -65,7 +66,8 @@ public class RolAdaptador extends ArrayAdapter<Rol> {
 
         final Rol rol = listaRoles.get(position);
         if (rol != null) {
-            holder.iconoRol.setImageBitmap(rol.getIconoRol());
+            //Glide.with(getContext()).load(rol.getIconoRol()).into(holder.iconoRol);
+            holder.iconoRol.setImageResource(R.drawable.ic_person_black_24dp);
             holder.nombreRol.setText(rol.getNombreRol());
             holder.descripcionRol.setText(rol.getDescripcionRol());
         }

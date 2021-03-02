@@ -6,8 +6,13 @@
 
     <ListView
         android:id="@+id/lvRoles"
-        android:textColor="@color/divider"
+        android:textColor="@color/colorPrimaryText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp"
+        android:background="@drawable/ic_assignment_black_24dp"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
