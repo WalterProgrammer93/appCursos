@@ -112,17 +112,20 @@ public class PermisoBD {
 
     public ArrayList<Usuario> cargarUsuarios() {
         bd = abd.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("select curso_id, nombre_curso from cursos", null);
+        Cursor cursor = bd.rawQuery("select usuario_id, username from usuarios", null);
 
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
         }
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            Usuario usuario = new Usuario();
-            usuario.setUsername(cursor.getString(1));
-            listaUsuarios.add(usuario);
+        if (cursor.moveToFirst()) {
+            do {
+                Usuario usuario = new Usuario();
+                usuario.setUsuarioId(cursor.getInt(0));
+                usuario.setUsername(cursor.getString(1));
+                listaUsuarios.add(usuario);
+            } while (cursor.moveToNext());
         }
         cursor.close();
         bd.close();
@@ -140,6 +143,7 @@ public class PermisoBD {
         ArrayList<Rol> listaRoles = new ArrayList<>();
         while (cursor.moveToNext()) {
             Rol rol = new Rol();
+            rol.setRolId(cursor.getInt(0));
             rol.setNombreRol(cursor.getString(1));
             listaRoles.add(rol);
         }

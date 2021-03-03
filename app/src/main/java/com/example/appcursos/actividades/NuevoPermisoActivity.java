@@ -16,14 +16,20 @@ import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.modelos.Permiso;
+import com.example.appcursos.modelos.Rol;
+import com.example.appcursos.modelos.Usuario;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class NuevoPermisoActivity extends AppCompatActivity {
 
     Spinner spin_alumno, spin_rol;
     Button altaPermiso, editarPermiso, eliminarPermiso, buscarPermiso, cancelarPermiso;
-    ArrayList<String> load_curso, load_rol;
-    ArrayAdapter<String> selectUsuario, selectRol;
+    List<Usuario> load_usuario;
+    List<Rol> load_rol;
+    ArrayAdapter<Usuario> selectUsuario;
+    ArrayAdapter<Rol> selectRol;
     PermisoBD pbd;
 
     @SuppressLint("CutPasteId")
@@ -33,15 +39,15 @@ public class NuevoPermisoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nuevo_permiso);
 
         pbd = new PermisoBD(this);
-        load_curso = new ArrayList<>();
+        load_usuario = new ArrayList<>();
         load_rol = new ArrayList<>();
         pbd.escribirBD();
         spin_alumno = findViewById(R.id.spinner_idusuario);
-        spin_rol = findViewById(R.id.spinner_idusuario);
-        load_curso.add(String.valueOf(pbd.cargarUsuarios()));
-        load_rol.add(String.valueOf(pbd.cargarRoles()));
-        selectUsuario = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, load_curso);
-        selectRol = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, load_rol);
+        spin_rol = findViewById(R.id.spinner_idrol);
+        load_usuario = pbd.cargarUsuarios();
+        load_rol = pbd.cargarRoles();
+        selectUsuario = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, load_usuario);
+        selectRol = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, load_rol);
         spin_alumno.setAdapter(selectUsuario);
         spin_rol.setAdapter(selectRol);
         altaPermiso = findViewById(R.id.altaPermiso);

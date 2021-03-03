@@ -48,4 +48,7 @@ public class Permiso {
     public void setIconoPermiso(Bitmap iconoPermiso) {
         this.iconoPermiso = iconoPermiso;
     }
+
+
+
 }

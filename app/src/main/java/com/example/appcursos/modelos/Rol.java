@@ -48,4 +48,9 @@ public class Rol {
     public void setIconoRol(Bitmap iconoRol) {
         this.iconoRol = iconoRol;
     }
+
+    @Override
+    public String toString() {
+        return nombreRol;
+    }
 }
