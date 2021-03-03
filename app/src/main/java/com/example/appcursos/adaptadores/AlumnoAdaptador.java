@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Alumno;
-import java.util.ArrayList;
+import java.util.List;
 
 public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHolder> implements View.OnClickListener {
 
-    private ArrayList<Alumno> listaAlumnos;
+    private List<Alumno> listaAlumnos;
     private View.OnClickListener escuchador;
 
-    public AlumnoAdaptador(ArrayList<Alumno> listaAlumnos) {
+    public AlumnoAdaptador(List<Alumno> listaAlumnos) {
         this.listaAlumnos = listaAlumnos;
     }
 
@@ -30,9 +30,11 @@ public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull AlumnoAdaptador.ViewHolder holder, int position) {
-        holder.tvNombreAlumno.setText((CharSequence) listaAlumnos.get(position));
-        holder.tvApellidosAlumno.setText((CharSequence) listaAlumnos.get(position));
-        holder.tvAsignatura.setText((CharSequence) listaAlumnos.get(position));
+        final Alumno alumno = listaAlumnos.get(position);
+        holder.ivAlumno.setImageResource(R.drawable.ic_person_black_24dp);
+        holder.tvNombreAlumno.setText(alumno.getNombreAlumno());
+        holder.tvApellidosAlumno.setText(alumno.getApellidosAlumno());
+        holder.tvAsignatura.setText(alumno.getAsignatura());
     }
 
     @Override
