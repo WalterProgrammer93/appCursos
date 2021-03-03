@@ -1,8 +1,6 @@
 package com.example.appcursos.modelos;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 
-import com.example.appcursos.bd.AdminBD;
+import android.graphics.Bitmap;
 
 public class Asignatura {
 
@@ -55,5 +53,10 @@ public class Asignatura {
 
     public void setCurso(String curso) {
         this.curso = curso;
+    }
+
+    @Override
+    public String toString() {
+        return nombreAsignatura;
     }
 }

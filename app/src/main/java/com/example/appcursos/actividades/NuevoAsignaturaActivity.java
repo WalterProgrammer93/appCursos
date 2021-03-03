@@ -17,15 +17,18 @@ import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
+import com.example.appcursos.modelos.Curso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class NuevoAsignaturaActivity extends AppCompatActivity {
 
     EditText et_nombreAsignatura, et_descripcionAsignatura;
     Spinner s_curso;
     Button b_altaAsignatura, b_editarAsignatura, b_eliminarAsignatura, b_buscarAsignatura, b_cancelarAsignatura;
-    ArrayList<String> load_cursos;
-    ArrayAdapter<String> arrayAdapter;
+    List<Curso> load_cursos;
+    ArrayAdapter<Curso> arrayAdapter;
     AsignaturaBD asbd;
 
     @SuppressLint("WrongViewCast")
@@ -41,8 +44,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         load_cursos = new ArrayList<>();
         asbd.escribirBD();
         load_cursos = asbd.cargarCursos();
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, load_cursos);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item, load_cursos);
         s_curso.setAdapter(arrayAdapter);
 
         b_altaAsignatura = findViewById(R.id.altaAsignatura);

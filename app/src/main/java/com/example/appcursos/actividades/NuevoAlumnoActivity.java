@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.AlumnoBD;
 import com.example.appcursos.modelos.Alumno;
+import com.example.appcursos.modelos.Asignatura;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +26,8 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
     EditText et_nombreAlumno, et_apellidosAlumno, et_dniAlumno, et_telefonoAlumno;
     Spinner s_asignaturas;
     Button altaAlumno, editarAlumno, eliminarAlumno, buscarAlumno, cancelarAlumno;
-    List<String> load_asignaturas;
-    ArrayAdapter<String> arrayAdapter;
+    List<Asignatura> load_asignaturas;
+    ArrayAdapter<Asignatura> arrayAdapter;
     AlumnoBD alumbd;
 
     @Override
@@ -41,9 +43,10 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
         s_asignaturas = findViewById(R.id.spinner_asignaturaId);
         load_asignaturas = new ArrayList<>();
         alumbd.escribirBD();
-        load_asignaturas.add(String.valueOf(alumbd.cargarAsignaturas()));
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, load_asignaturas);
+        load_asignaturas = alumbd.cargarAsignaturas();
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, load_asignaturas);
         s_asignaturas.setAdapter(arrayAdapter);
+
         altaAlumno = findViewById(R.id.altaAlumno);
         editarAlumno = findViewById(R.id.editarAlumno);
         eliminarAlumno = findViewById(R.id.eliminarAlumno);
@@ -61,9 +64,10 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
                     String asigId = s_asignaturas.getSelectedItem().toString();
                     Alumno alumno = new Alumno(nombreAlum, apellidosAlum, dniAlum, telfAlum, asigId);
                     if (!alumbd.isAlumnoExists(alumno.getNombreAlumno())) {
+                        alumbd.insertarAlumno(alumno);
                         Toast.makeText(getApplicationContext(), "El alumno se ha creado correctamente",
                                 Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(NuevoAlumnoActivity.this, AsignaturasActivity.class);
+                        Intent intent = new Intent(NuevoAlumnoActivity.this, AlumnosActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(NuevoAlumnoActivity.this, "El alumno ya existe", Toast.LENGTH_SHORT).show();

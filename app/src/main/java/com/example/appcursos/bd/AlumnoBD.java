@@ -5,8 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Alumno;
+import com.example.appcursos.modelos.Asignatura;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class AlumnoBD {
 
@@ -129,7 +130,7 @@ public class AlumnoBD {
         return listaAlumno;
     }
 
-    public List<Alumno> cargarAsignaturas() {
+    public ArrayList<Asignatura> cargarAsignaturas() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.rawQuery("select asignatura_id, nombre_asignatura from asignaturas", null);
 
@@ -137,11 +138,12 @@ public class AlumnoBD {
             cursor.close();
             return null;
         }
-        List<Alumno> listaAsignaturas = new ArrayList<>();
+        ArrayList<Asignatura> listaAsignaturas = new ArrayList<>();
         while (cursor.moveToNext()) {
-            Alumno alumno = new Alumno();
-            alumno.setNombreAlumno(cursor.getString(1));
-            listaAsignaturas.add(alumno);
+            Asignatura asignatura = new Asignatura();
+            asignatura.setAsignaturaId(cursor.getInt(0));
+            asignatura.setNombreAsignatura(cursor.getString(1));
+            listaAsignaturas.add(asignatura);
         }
         cursor.close();
         bd.close();

@@ -146,19 +146,19 @@ public class AsignaturaBD {
         return false;
     }
 
-    public ArrayList<String> cargarCursos(){
+    public ArrayList<Curso> cargarCursos(){
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.rawQuery("select curso_id, nombre_curso from cursos", null);
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
         }
-        ArrayList<String> listaCursos = new ArrayList<>();
-        while (cursor.moveToFirst()) {
+        ArrayList<Curso> listaCursos = new ArrayList<>();
+        while (cursor.moveToNext()) {
             Curso curso = new Curso();
             curso.setCursoId(cursor.getInt(0));
             curso.setNombreCurso(cursor.getString(1));
-            listaCursos.add(String.valueOf(curso));
+            listaCursos.add(curso);
         }
         cursor.close();
         bd.close();

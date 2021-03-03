@@ -83,4 +83,9 @@ public class Curso {
     public void setIconoCurso(int iconoCurso) {
         this.iconoCurso = iconoCurso;
     }
+
+    @Override
+    public String toString() {
+        return nombreCurso;
+    }
 }

@@ -21,10 +21,11 @@ import com.example.appcursos.adaptadores.AsignaturaAdaptador;
 import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AsignaturasActivity extends AppCompatActivity {
 
-    ArrayList<Asignatura> listaAsignaturas;
+    List<Asignatura> listaAsignaturas;
     AsignaturaAdaptador asignaturaAdaptador;
     ListView lvAsignaturas;
     /*ImageView ivAsignaturas;
