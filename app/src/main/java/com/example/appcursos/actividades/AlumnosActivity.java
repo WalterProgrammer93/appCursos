@@ -21,10 +21,11 @@ import com.example.appcursos.adaptadores.AlumnoAdaptador;
 import com.example.appcursos.bd.AlumnoBD;
 import com.example.appcursos.modelos.Alumno;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AlumnosActivity extends AppCompatActivity {
 
-    ArrayList<Alumno> listaAlumnos;
+    List<Alumno> listaAlumnos;
     AlumnoAdaptador alumnoAdaptador;
     RecyclerView rvAlumnos;
     AlumnoBD alumbd;
