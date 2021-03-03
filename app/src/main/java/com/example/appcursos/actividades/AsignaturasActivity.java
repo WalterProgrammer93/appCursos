@@ -61,8 +61,8 @@ public class AsignaturasActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_nuevo:
-                Intent nuevo_asignatura = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
-                startActivity(nuevo_asignatura);
+                Intent intent = new Intent(AsignaturasActivity.this, NuevoAsignaturaActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_salir:
                 finish();
