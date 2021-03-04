@@ -17,6 +17,12 @@ public class Permiso {
         this.rol = rol;
     }
 
+    public Permiso(int permisoId, String usuario, String rol) {
+        this.permisoId = permisoId;
+        this.usuario = usuario;
+        this.rol = rol;
+    }
+
     public int getPermisoId() {
         return permisoId;
     }

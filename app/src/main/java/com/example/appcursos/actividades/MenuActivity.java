@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.MenuAdaptador;
+import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.bd.UsuarioBD;
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
     RecyclerView recyclerView;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     UsuarioBD ubd;
+    PermisoBD pbd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
 
         ubd = new UsuarioBD(this);
         menu = new ArrayList<>();
+        if (pbd.isAdmin())
         menu.add("Curso");
         menu.add("Asignaturas");
         menu.add("Alumnos");
