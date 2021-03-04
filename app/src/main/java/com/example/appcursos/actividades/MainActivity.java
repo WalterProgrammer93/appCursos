@@ -1,9 +1,14 @@
 package com.example.appcursos.actividades;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -15,11 +20,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     UsuarioBD ubd;
     Animation animation;
     ConstraintLayout constraintLayout;
-    VideoView vv_video;
+    int PROGRESS_MAX = 100;
+    int PROGRESS_CURRENT = 0;
 
     @SuppressLint("SdCardPath")
     @Override
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        showDialog(0);
         animation = AnimationUtils.loadAnimation(this, R.anim.aparicion);
         animation.setRepeatMode(Animation.RESTART);
         animation.setRepeatCount(20);
@@ -67,6 +73,21 @@ public class MainActivity extends AppCompatActivity {
                     //Check Authentication is successful or not
                     if (usuario != null) {
                         Intent menu = new Intent(MainActivity.this, MenuActivity.class);
+                        menu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, menu, 0);
+
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(MainActivity.this);
+                        Random random = new Random();
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+                        builder.setSmallIcon(R.drawable.logo);
+                        builder.setContentTitle("Menu appcursos");
+                        builder.setContentText("Bienvenido al menu de appcursos!").setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false);
+                        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+                        // Set the intent that will fire when the user taps the notification
+                        builder.setContentIntent(pendingIntent);
+                        builder.setAutoCancel(true);
+                        notificationManager.notify(random.nextInt(), builder.build());
+
                         menu.putExtra("Email", usuario.getEmail());
                         menu.putExtra("Name", usuario.getUsername());
                         startActivity(menu);
@@ -115,6 +136,24 @@ public class MainActivity extends AppCompatActivity {
         }
         return valid;
 
+    }
+
+    protected Dialog onCreateDialog(int id) {
+        // Use the Builder class for convenient dialog construction
+        Dialog dialogo = null;
+        if (id == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.bienvenida)
+                    .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                            dialog.dismiss();
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            dialogo = builder.create();
+        }
+        return dialogo;
     }
 
 }

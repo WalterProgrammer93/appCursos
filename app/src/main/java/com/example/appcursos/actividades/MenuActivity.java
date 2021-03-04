@@ -5,7 +5,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,11 +17,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.MenuAdaptador;
 import com.example.appcursos.bd.UsuarioBD;
-
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity implements MenuAdaptador.ItemClickListener {
