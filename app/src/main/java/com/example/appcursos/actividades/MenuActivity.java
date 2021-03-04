@@ -1,11 +1,14 @@
 package com.example.appcursos.actividades;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -38,16 +41,41 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
         setContentView(R.layout.activity_menu);
 
         ubd = new UsuarioBD(this);
+        pbd = new PermisoBD(this);
         menu = new ArrayList<>();
-        if (pbd.isAdmin())
-        menu.add("Curso");
-        menu.add("Asignaturas");
-        menu.add("Alumnos");
-        menu.add("Profesores");
-        menu.add("Usuarios");
-        menu.add("Roles");
-        menu.add("Permisos");
-        menu.add("Multimedia");
+        Intent i = getIntent();
+        String username = i.getStringExtra("Username");
+        if (pbd.isPermiso(username, "Admin")) {
+            showDialog(0);
+            menu.add("Curso");
+            menu.add("Asignaturas");
+            menu.add("Alumnos");
+            menu.add("Profesores");
+            menu.add("Usuarios");
+            menu.add("Roles");
+            menu.add("Permisos");
+            menu.add("Multimedia");
+        } else {
+            if (pbd.isPermiso(username, "Alumno")) {
+                showDialog(1);
+                menu.add("Curso");
+                menu.add("Asignaturas");
+                menu.add("Multimedia");
+            } else {
+                if (pbd.isPermiso(username, "Profesor")) {
+                    showDialog(2);
+                    menu.add("Curso");
+                    menu.add("Asignatura");
+                    menu.add("Profesores");
+                    menu.add("Multimedia");
+                } else {
+                    if (pbd.isPermiso(username, "Usuario")) {
+                        showDialog(3);
+                        menu.add("Multimedia");
+                    }
+                }
+            }
+        }
 
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -212,4 +240,64 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
         }
 
     }
+
+    protected Dialog onCreateDialog(int id) {
+        // Use the Builder class for convenient dialog construction
+        Dialog dialogo = null;
+        switch (id) {
+            case 0:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.mensajeAdmin)
+                        .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                                dialog.dismiss();
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                dialogo = builder.create();
+                break;
+            case 1:
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage(R.string.mensajeAlumno)
+                        .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                                dialog.dismiss();
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                dialogo = builder1.create();
+                break;
+            case 2:
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setMessage(R.string.mensajeProfesor)
+                        .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                                dialog.dismiss();
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                dialogo = builder2.create();
+                break;
+            case 3:
+                AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+                builder3.setMessage(R.string.mensajeUsuario)
+                        .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                                dialog.dismiss();
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                dialogo = builder3.create();
+                break;
+            default:
+                return super.onCreateDialog(id);
+        }
+        return dialogo;
+    }
+
+
 }

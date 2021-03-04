@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         builder.setAutoCancel(true);
                         notificationManager.notify(random.nextInt(), builder.build());
 
-                        menu.putExtra("Name", usuario.getUsername());
+                        menu.putExtra("Username", usuario.getUsername());
                         startActivity(menu);
                         email_login.setText("");
                         password_login.setText("");

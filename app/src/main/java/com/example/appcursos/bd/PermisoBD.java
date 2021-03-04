@@ -181,23 +181,26 @@ public class PermisoBD {
         return false;
     }
 
-    public boolean isAdmin(String usuario, String rol) {
+    public boolean isPermiso(String usuario, String rol) {
         bd = abd.getReadableDatabase();
-        String query = "select * from permisos where usuario_id = '" + usuario + "' and rol_id = '" + rol;
+        String query = "select * from permisos where usuario_id = " + usuario + " and rol_id = " + rol;
         Cursor cursor = bd.rawQuery(query, null);
-        while (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
-            Permiso p = new Permiso(cursor.getInt(cursor.getColumnIndex(COL_PERMISO_ID)),
-                    cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)),
-                    cursor.getString(cursor.getColumnIndex(COL_ROL_ID)));
+        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                Permiso p = new Permiso(cursor.getInt(cursor.getColumnIndex(COL_PERMISO_ID)),
+                        cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)),
+                        cursor.getString(cursor.getColumnIndex(COL_ROL_ID)));
 
-            if (p.getUsuario().equalsIgnoreCase(usuario) && p.getRol().equals(rol)) {
-                return true;
+                if (p.getUsuario().equalsIgnoreCase(usuario) && p.getRol().equalsIgnoreCase(rol)) {
+                    return true;
+                }
+
             }
 
         }
         cursor.close();
         bd.close();
-        return true;
+        return false;
 
     }
 }

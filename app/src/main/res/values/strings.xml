@@ -94,4 +94,8 @@
     <string name="video_curso4">Curso de Python</string>
     <string name="titulo">Editar</string>
     <string name="lb_cancelar">Cancelar</string>
+    <string name="mensajeAdmin">Bienvenido Admin</string>
+    <string name="mensajeAlumno">Bienvenido Alumno</string>
+    <string name="mensajeProfesor">Bienvenido Profesor</string>
+    <string name="mensajeUsuario">Bienvenido Usuario</string>
 </resources>
