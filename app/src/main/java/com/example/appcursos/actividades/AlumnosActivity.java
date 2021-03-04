@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 //import androidx.recyclerview.widget.DividerItemDecoration;
 //import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,13 +22,13 @@ import com.example.appcursos.adaptadores.AlumnoAdaptador;
 import com.example.appcursos.bd.AlumnoBD;
 import com.example.appcursos.modelos.Alumno;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AlumnosActivity extends AppCompatActivity {
 
-    List<Alumno> listaAlumnos;
+    ArrayList<Alumno> listaAlumnos;
     AlumnoAdaptador alumnoAdaptador;
     RecyclerView rvAlumnos;
+    RecyclerView.LayoutManager layoutManager;
     AlumnoBD alumbd;
 
     @Override
@@ -38,6 +39,9 @@ public class AlumnosActivity extends AppCompatActivity {
         alumbd = new AlumnoBD(this);
         listaAlumnos = new ArrayList<>();
         rvAlumnos = findViewById(R.id.rvAlumnos);
+        rvAlumnos.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        rvAlumnos.setLayoutManager(layoutManager);
         listaAlumnos = alumbd.listarAlumno();
         alumbd.cerrarBD();
         alumnoAdaptador = new AlumnoAdaptador(listaAlumnos);

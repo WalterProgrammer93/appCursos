@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 //import com.bumptech.glide.Glide;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Usuario;
-//import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioAdaptador extends RecyclerView.Adapter<UsuarioAdaptador.ViewHolder> implements View.OnClickListener {

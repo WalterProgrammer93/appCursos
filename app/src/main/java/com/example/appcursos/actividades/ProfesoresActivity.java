@@ -3,6 +3,7 @@ package com.example.appcursos.actividades;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
@@ -24,10 +25,11 @@ import java.util.List;
 
 public class ProfesoresActivity extends AppCompatActivity {
 
-    List<Profesor> listaProfesores;
+    ArrayList<Profesor> listaProfesores;
     ProfesorAdaptador profesorAdaptador;
     RecyclerView rvProfesores;
     ProfesorBD probd;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,9 @@ public class ProfesoresActivity extends AppCompatActivity {
         probd = new ProfesorBD(this);
         listaProfesores = new ArrayList<>();
         rvProfesores = findViewById(R.id.rvProfesores);
+        rvProfesores.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        rvProfesores.setLayoutManager(layoutManager);
         listaProfesores = probd.listarProfesor();
         probd.cerrarBD();
         profesorAdaptador = new ProfesorAdaptador(listaProfesores);
