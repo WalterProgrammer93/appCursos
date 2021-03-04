@@ -18,8 +18,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.ProfesorBD;
+import com.example.appcursos.modelos.Asignatura;
 import com.example.appcursos.modelos.Profesor;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NuevoProfesorActivity extends AppCompatActivity {
 
@@ -29,10 +31,10 @@ public class NuevoProfesorActivity extends AppCompatActivity {
             rb_fisicaQuimica, rb_tecnologia, rb_informatica,
             rb_musica, rb_biologiaGeologia, rb_historiaGeografia;
     Spinner s_asignaturas;
-    Button b_altaProf, b_editarProf, b_eliminarProf, b_buscarProf, b_cancelar;
-    ArrayList<String> load_asignaturas;
-    ArrayAdapter<String> arrayAdapter;
     ArrayList<String> listaDepartamentos;
+    Button b_altaProf, b_editarProf, b_eliminarProf, b_buscarProf, b_cancelar;
+    List<Asignatura> load_asignaturas;
+    ArrayAdapter<Asignatura> arrayAdapter;
     ProfesorBD probd;
 
     @Override
@@ -57,10 +59,10 @@ public class NuevoProfesorActivity extends AppCompatActivity {
         s_asignaturas = findViewById(R.id.s_asignaturas);
         load_asignaturas = new ArrayList<>();
         probd.escribirBD();
-        load_asignaturas.add(String.valueOf(probd.cargarAsignaturas()));
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, load_asignaturas);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        load_asignaturas = probd.cargarAsignaturas();
+        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item, load_asignaturas);
         s_asignaturas.setAdapter(arrayAdapter);
+
         b_altaProf = findViewById(R.id.altaProfesor);
         b_editarProf = findViewById(R.id.editarProfesor);
         b_eliminarProf = findViewById(R.id.eliminarProfesor);
@@ -83,7 +85,42 @@ public class NuevoProfesorActivity extends AppCompatActivity {
                 String departamento8 = rb_biologiaGeologia.getText().toString();
                 String departamento9 = rb_historiaGeografia.getText().toString();
                 listaDepartamentos = new ArrayList<>();
-                listaDepartamentos.add(departamento1);
+                if (rb_lengua.isChecked()) {
+                    listaDepartamentos.add(departamento1);
+                } else {
+                    if (rb_matematicas.isChecked()) {
+                        listaDepartamentos.add(departamento2);
+                    } else {
+                        if (rb_ingles.isChecked()) {
+                            listaDepartamentos.add(departamento3);
+                        } else {
+                            if (rb_fisicaQuimica.isChecked()) {
+                                listaDepartamentos.add(departamento4);
+                            } else {
+                                if (rb_tecnologia.isChecked()) {
+                                    listaDepartamentos.add(departamento5);
+                                } else {
+                                    if (rb_informatica.isChecked()) {
+                                        listaDepartamentos.add(departamento6);
+                                    } else {
+                                        if (rb_musica.isChecked()) {
+                                            listaDepartamentos.add(departamento7);
+                                        } else {
+                                            if (rb_biologiaGeologia.isChecked()) {
+                                                listaDepartamentos.add(departamento8);
+                                            } else {
+                                                if (rb_historiaGeografia.isChecked()) {
+                                                    listaDepartamentos.add(departamento9);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                /*listaDepartamentos.add(departamento1);
                 listaDepartamentos.add(departamento2);
                 listaDepartamentos.add(departamento3);
                 listaDepartamentos.add(departamento4);
@@ -91,7 +128,7 @@ public class NuevoProfesorActivity extends AppCompatActivity {
                 listaDepartamentos.add(departamento6);
                 listaDepartamentos.add(departamento7);
                 listaDepartamentos.add(departamento8);
-                listaDepartamentos.add(departamento9);
+                listaDepartamentos.add(departamento9);*/
                 String telefonoProf = et_telfProf.getText().toString();
                 String asignaturaId = s_asignaturas.getSelectedItem().toString();
                 Profesor profesor = new Profesor(nombreProf, apellProf, listaDepartamentos, telefonoProf, asignaturaId);

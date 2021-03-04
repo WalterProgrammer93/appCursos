@@ -138,7 +138,7 @@ public class ProfesorBD {
             return null;
         }
         ArrayList<Asignatura> listaAsignaturas = new ArrayList<>();
-        while (cursor.moveToFirst()) {
+        while (cursor.moveToNext()) {
             Asignatura asignatura = new Asignatura();
             asignatura.setAsignaturaId(cursor.getInt(0));
             asignatura.setNombreAsignatura(cursor.getString(1));

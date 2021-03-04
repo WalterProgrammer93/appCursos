@@ -65,7 +65,7 @@ public class AsignaturaAdaptador extends ArrayAdapter<Asignatura> {
 
         final Asignatura asignatura = listaAsignaturas.get(position);
         if (asignatura != null) {
-            holder.iconoAsignatura.setImageBitmap(asignatura.getIconoAsignatura());
+            holder.iconoAsignatura.setImageResource(R.drawable.ic_assignment_black_24dp);
             holder.nombreAsignatura.setText(asignatura.getNombreAsignatura());
             holder.curso.setText(asignatura.getCurso());
         }

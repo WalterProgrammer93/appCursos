@@ -9,30 +9,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Profesor;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ProfesorAdaptador extends RecyclerView.Adapter<ProfesorAdaptador.ViewHolder> implements View.OnClickListener {
 
-    private ArrayList<Profesor> listaProfesores;
+    private List<Profesor> listaProfesores;
     private View.OnClickListener escuchador;
 
-    public ProfesorAdaptador(ArrayList<Profesor> listaProfesores) {
+    public ProfesorAdaptador(List<Profesor> listaProfesores) {
         this.listaProfesores = listaProfesores;
     }
 
     @NonNull
     @Override
     public ProfesorAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_alumnos, parent, false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_profesores, parent, false);
         vista.setOnClickListener(this);
         return new ViewHolder(vista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProfesorAdaptador.ViewHolder holder, int position) {
-        holder.tvNombreProfesor.setText((CharSequence) listaProfesores.get(position));
-        holder.tvDepartamento.setText((CharSequence) listaProfesores.get(position));
-        holder.tvAsignatura.setText((CharSequence) listaProfesores.get(position));
+        final Profesor profesor = listaProfesores.get(position);
+        holder.ivProfesor.setImageResource(R.drawable.ic_person_black_24dp);
+        holder.tvNombreProfesor.setText(profesor.getNombreProfesor());
+        holder.tvDepartamento.setText(profesor.getDepartamento());
+        holder.tvAsignatura.setText(profesor.getAsignatura());
     }
 
     @Override

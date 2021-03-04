@@ -20,10 +20,11 @@ import com.example.appcursos.adaptadores.ProfesorAdaptador;
 import com.example.appcursos.bd.ProfesorBD;
 import com.example.appcursos.modelos.Profesor;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfesoresActivity extends AppCompatActivity {
 
-    ArrayList<Profesor> listaProfesores;
+    List<Profesor> listaProfesores;
     ProfesorAdaptador profesorAdaptador;
     RecyclerView rvProfesores;
     ProfesorBD probd;
