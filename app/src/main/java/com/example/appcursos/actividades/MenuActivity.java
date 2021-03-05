@@ -132,17 +132,17 @@ public class MenuActivity extends AppCompatActivity {
                             case 0:
                                 Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
                                 startActivity(i0);
-                                Toast.makeText(getApplicationContext(), menuAdmin.get(0), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), menuAlumno.get(0), Toast.LENGTH_SHORT).show();
                                 break;
                             case 1:
                                 Intent i1 = new Intent(MenuActivity.this, AsignaturasActivity.class);
                                 startActivity(i1);
-                                Toast.makeText(getApplicationContext(), menuAdmin.get(1), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), menuAlumno.get(1), Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
                                 Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
                                 startActivity(i7);
-                                Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), menuAlumno.get(7), Toast.LENGTH_SHORT).show();
                             default:
                                 Toast.makeText(MenuActivity.this, "You clicked " + mad.getItem(position) +
                                         " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -168,24 +168,25 @@ public class MenuActivity extends AppCompatActivity {
                                 case 0:
                                     Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
                                     startActivity(i0);
-                                    Toast.makeText(getApplicationContext(), menuAdmin.get(0), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), menuProfesor.get(0), Toast.LENGTH_SHORT).show();
                                     break;
                                 case 1:
                                     Intent i1 = new Intent(MenuActivity.this, AsignaturasActivity.class);
                                     startActivity(i1);
-                                    Toast.makeText(getApplicationContext(), menuAdmin.get(1), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), menuProfesor.get(1), Toast.LENGTH_SHORT).show();
                                     break;
                                 case 2:
                                     Intent i3 = new Intent(MenuActivity.this, ProfesoresActivity.class);
                                     startActivity(i3);
-                                    Toast.makeText(getApplicationContext(), menuAdmin.get(3), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), menuProfesor.get(3), Toast.LENGTH_SHORT).show();
                                     break;
                                 case 3:
                                     Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
                                     startActivity(i7);
-                                    Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), menuProfesor.get(7), Toast.LENGTH_SHORT).show();
+                                    break;
                                 default:
-                                    Toast.makeText(MenuActivity.this, "You clicked " + maa.getItem(position) +
+                                    Toast.makeText(MenuActivity.this, "You clicked " + mpa.getItem(position) +
                                             " on row number " + position, Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -201,7 +202,14 @@ public class MenuActivity extends AppCompatActivity {
                         mua.setClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
+                                if (position == 0) {
+                                    Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                                    startActivity(i7);
+                                    Toast.makeText(getApplicationContext(), menuUsuario.get(7), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(MenuActivity.this, "You clicked " + mua.getItem(position) +
+                                            " on row number " + position, Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                         recyclerView.setAdapter(mua);
