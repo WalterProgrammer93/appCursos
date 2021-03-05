@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Base application theme. -->
   <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <!-- Customize your theme here. -->
@@ -17,4 +17,16 @@
       <item name="android:windowFullscreen">true</item>
       <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
   </style>
+    <style name="Widget.MaterialComponents.Slider" parent="android:Theme.Material" tools:ignore="NewApi">
+        <!--Habilitar animaciones en las transiciones -->
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/explode_transition</item>
+        <item name="android:windowExitTransition">@transition/explode_transition</item>
+
+        <!-- Estados Reingreso-Retorno  -->
+        <item name="android:windowReenterTransition">@transition/fade_transition</item>
+        <item name="android:windowReturnTransition">@transition/fade_transition</item>
+        <!-- Más definiciones... -->
+
+    </style>
 </resources>

@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.MenuAdminAdaptador;
@@ -28,6 +27,7 @@ import com.example.appcursos.adaptadores.MenuProfesorAdaptador;
 import com.example.appcursos.adaptadores.MenuUsuarioAdaptador;
 import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.bd.UsuarioBD;
+import com.example.appcursos.modelos.Permiso;
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
@@ -53,7 +53,8 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_recycler_view);
         Intent i = getIntent();
         String username = i.getStringExtra("Username");
-        if (pbd.isPermiso(username, "Admin")) {
+        Permiso permisoAdmin = pbd.isPermiso(username, "Admin");
+        if (permisoAdmin.getUsuario().equalsIgnoreCase(username) && permisoAdmin.getRol().equalsIgnoreCase("Admin")) {
             showDialog(0);
             menuAdmin.add("Curso");
             menuAdmin.add("Asignaturas");
@@ -66,9 +67,11 @@ public class MenuActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
             maa = new MenuAdminAdaptador(this, menuAdmin);
-            maa.setClickListener(new AdapterView.OnItemClickListener() {
+            recyclerView.setAdapter(maa);
+            maa.setOnItemClickListener(new View.OnClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                public void onClick(View view) {
+                    int position = recyclerView.getChildAdapterPosition(view);
                     switch (position) {
                         case 0:
                             Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
@@ -109,15 +112,18 @@ public class MenuActivity extends AppCompatActivity {
                             Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
                             startActivity(i7);
                             Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
+                            break;
                         default:
                             Toast.makeText(MenuActivity.this, "You clicked " + maa.getItem(position) +
                                     " on row number " + position, Toast.LENGTH_SHORT).show();
                     }
+
                 }
             });
-            recyclerView.setAdapter(maa);
+
         } else {
-            if (pbd.isPermiso(username, "Alumno")) {
+            Permiso permisoAlumno = pbd.isPermiso(username, "Alumno");
+            if (permisoAlumno.getUsuario().equalsIgnoreCase(username) && permisoAlumno.getRol().equalsIgnoreCase("Alumno")) {
                 showDialog(1);
                 menuAlumno.add("Curso");
                 menuAlumno.add("Asignaturas");
@@ -125,9 +131,10 @@ public class MenuActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
                 mad = new MenuAlumnoAdaptador(this, menuAlumno);
-                mad.setClickListener(new AdapterView.OnItemClickListener() {
+                mad.setOnItemClickListener(new View.OnClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    public void onClick(View view) {
+                        int position = recyclerView.getChildAdapterPosition(view);
                         switch (position) {
                             case 0:
                                 Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
@@ -143,6 +150,7 @@ public class MenuActivity extends AppCompatActivity {
                                 Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
                                 startActivity(i7);
                                 Toast.makeText(getApplicationContext(), menuAlumno.get(7), Toast.LENGTH_SHORT).show();
+                                break;
                             default:
                                 Toast.makeText(MenuActivity.this, "You clicked " + mad.getItem(position) +
                                         " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -152,7 +160,8 @@ public class MenuActivity extends AppCompatActivity {
                 });
                 recyclerView.setAdapter(mad);
             } else {
-                if (pbd.isPermiso(username, "Profesor")) {
+                Permiso permisoProfesor = pbd.isPermiso(username, "Profesor");
+                if (permisoProfesor.getUsuario().equalsIgnoreCase(username) && permisoProfesor.getRol().equalsIgnoreCase("Profesor")) {
                     showDialog(2);
                     menuProfesor.add("Curso");
                     menuProfesor.add("Asignatura");
@@ -161,9 +170,10 @@ public class MenuActivity extends AppCompatActivity {
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
                     mpa = new MenuProfesorAdaptador(this, menuProfesor);
-                    mpa.setClickListener(new AdapterView.OnItemClickListener() {
+                    mpa.setOnItemClickListener(new View.OnClickListener() {
                         @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        public void onClick(View view) {
+                            int position = recyclerView.getChildAdapterPosition(view);
                             switch (position) {
                                 case 0:
                                     Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
@@ -193,15 +203,17 @@ public class MenuActivity extends AppCompatActivity {
                     });
                     recyclerView.setAdapter(mpa);
                 } else {
-                    if (pbd.isPermiso(username, "Usuario")) {
+                    Permiso permisoUsuario = pbd.isPermiso(username, "Usuario");
+                    if (permisoUsuario.getUsuario().equalsIgnoreCase(username) && permisoUsuario.getRol().equalsIgnoreCase("Usuario")) {
                         showDialog(3);
                         menuUsuario.add("Multimedia");
                         recyclerView.setLayoutManager(new LinearLayoutManager(this));
                         recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
                         mua = new MenuUsuarioAdaptador(this, menuUsuario);
-                        mua.setClickListener(new AdapterView.OnItemClickListener() {
+                        mua.setOnItemClickListener(new View.OnClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            public void onClick(View view) {
+                                int position = recyclerView.getChildAdapterPosition(view);
                                 if (position == 0) {
                                     Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
                                     startActivity(i7);

@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
 import java.util.List;
 
-public class MenuAdminAdaptador extends RecyclerView.Adapter<MenuAdminAdaptador.ViewHolder> {
+public class MenuAdminAdaptador extends RecyclerView.Adapter<MenuAdminAdaptador.ViewHolder> implements View.OnClickListener {
 
     private List<String> mData;
     private LayoutInflater mInflater;
-    private MenuAdminAdaptador.ItemClickListener mClickListener;
+    private View.OnClickListener escuchador;
+    //private MenuAdminAdaptador.ClickListener mClickListener;
 
     public MenuAdminAdaptador(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
@@ -26,6 +26,7 @@ public class MenuAdminAdaptador extends RecyclerView.Adapter<MenuAdminAdaptador.
     @Override
     public MenuAdminAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.activity_menu, parent, false);
+        view.setOnClickListener(escuchador);
         return new ViewHolder(view);
     }
 
@@ -40,33 +41,27 @@ public class MenuAdminAdaptador extends RecyclerView.Adapter<MenuAdminAdaptador.
         return mData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
+    @Override
+    public void onClick(View view) {
+         if (escuchador != null)
+             escuchador.onClick(view);
+    }
+
+    public void setOnItemClickListener(View.OnClickListener escucha) {
+        this.escuchador = escucha;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView opcion;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             opcion = itemView.findViewById(R.id.opcion);
-            //itemView.setOnClickListener(this);
         }
-
-        /*@Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }*/
     }
 
     // convenience method for getting data at click position
     public String getItem(int id) {
         return mData.get(id);
-    }
-
-    // allows clicks events to be caught
-    public void setClickListener(AdapterView.OnItemClickListener itemClickListener) {
-        this.mClickListener = (ItemClickListener) itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
     }
 
 }

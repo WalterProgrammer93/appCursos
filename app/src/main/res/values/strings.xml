@@ -98,4 +98,5 @@
     <string name="mensajeAlumno">Bienvenido Alumno</string>
     <string name="mensajeProfesor">Bienvenido Profesor</string>
     <string name="mensajeUsuario">Bienvenido Usuario</string>
+    <string name="lb_multimedia">Multimedia</string>
 </resources>

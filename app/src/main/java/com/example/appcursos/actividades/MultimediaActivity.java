@@ -57,6 +57,6 @@ public class MultimediaActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mediaPlayer.prepareAsync();
+        //mediaPlayer.prepareAsync();
     }
 }

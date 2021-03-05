@@ -181,9 +181,10 @@ public class PermisoBD {
         return false;
     }
 
-    public boolean isPermiso(String usuario, String rol) {
+    public Permiso isPermiso(String username, String rol) {
         bd = abd.getReadableDatabase();
-        String query = "select permiso_id from permisos where usuario_id = '" + usuario + "' and rol_id = '" + rol + "'";
+        Permiso permiso = new Permiso(username, rol);
+        String query = "select permiso_id from permisos where usuario_id = '" + permiso.getUsuario() + "' and rol_id = '" + permiso.getRol() + "'";
         Cursor cursor = bd.rawQuery(query, null);
         if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
@@ -191,8 +192,8 @@ public class PermisoBD {
                         cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)),
                         cursor.getString(cursor.getColumnIndex(COL_ROL_ID)));
 
-                if (p.getUsuario().equalsIgnoreCase(usuario) && p.getRol().equalsIgnoreCase(rol)) {
-                    return true;
+                if (p.getUsuario().equalsIgnoreCase(permiso.getUsuario()) && p.getRol().equalsIgnoreCase(permiso.getRol())) {
+                    return p;
                 }
 
             }
@@ -200,7 +201,7 @@ public class PermisoBD {
         }
         cursor.close();
         bd.close();
-        return false;
+        return permiso;
 
     }
 }
