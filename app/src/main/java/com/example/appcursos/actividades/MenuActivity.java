@@ -43,9 +43,9 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
         ubd = new UsuarioBD(this);
         pbd = new PermisoBD(this);
         menu = new ArrayList<>();
-        Intent i = getIntent();
-        String username = i.getStringExtra("Username");
-        if (pbd.isPermiso(username, "Admin")) {
+        /*Intent i = getIntent();
+        String username = i.getStringExtra("Username");*/
+        //if (pbd.isPermiso(username, "Admin")) {
             showDialog(0);
             menu.add("Curso");
             menu.add("Asignaturas");
@@ -55,7 +55,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
             menu.add("Roles");
             menu.add("Permisos");
             menu.add("Multimedia");
-        } else {
+        /*} else {
             if (pbd.isPermiso(username, "Alumno")) {
                 showDialog(1);
                 menu.add("Curso");
@@ -75,7 +75,7 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
                     }
                 }
             }
-        }
+        }*/
 
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

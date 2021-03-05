@@ -183,7 +183,7 @@ public class PermisoBD {
 
     public boolean isPermiso(String usuario, String rol) {
         bd = abd.getReadableDatabase();
-        String query = "select * from permisos where usuario_id = " + usuario + " and rol_id = " + rol;
+        String query = "select permiso_id from permisos where usuario_id = '" + usuario + "' and rol_id = '" + rol + "'";
         Cursor cursor = bd.rawQuery(query, null);
         if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
