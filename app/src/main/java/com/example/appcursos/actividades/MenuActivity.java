@@ -19,17 +19,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
-import com.example.appcursos.adaptadores.MenuAdaptador;
+import com.example.appcursos.adaptadores.MenuAdminAdaptador;
+import com.example.appcursos.adaptadores.MenuAlumnoAdaptador;
+import com.example.appcursos.adaptadores.MenuProfesorAdaptador;
+import com.example.appcursos.adaptadores.MenuUsuarioAdaptador;
 import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.bd.UsuarioBD;
 import java.util.ArrayList;
 
-public class MenuActivity extends AppCompatActivity implements MenuAdaptador.ItemClickListener {
+public class MenuActivity extends AppCompatActivity {
 
-    MenuAdaptador adapter;
-    ArrayList<String> menu;
+    MenuAdminAdaptador maa;
+    MenuAlumnoAdaptador mad;
+    MenuProfesorAdaptador mpa;
+    MenuUsuarioAdaptador mua;
+    ArrayList<String> menuAdmin, menuAlumno, menuProfesor, menuUsuario;
     RecyclerView recyclerView;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     UsuarioBD ubd;
@@ -42,95 +49,165 @@ public class MenuActivity extends AppCompatActivity implements MenuAdaptador.Ite
 
         ubd = new UsuarioBD(this);
         pbd = new PermisoBD(this);
-        menu = new ArrayList<>();
-        /*Intent i = getIntent();
-        String username = i.getStringExtra("Username");*/
-        //if (pbd.isPermiso(username, "Admin")) {
+        menuAdmin = new ArrayList<>();
+        recyclerView = findViewById(R.id.my_recycler_view);
+        Intent i = getIntent();
+        String username = i.getStringExtra("Username");
+        if (pbd.isPermiso(username, "Admin")) {
             showDialog(0);
-            menu.add("Curso");
-            menu.add("Asignaturas");
-            menu.add("Alumnos");
-            menu.add("Profesores");
-            menu.add("Usuarios");
-            menu.add("Roles");
-            menu.add("Permisos");
-            menu.add("Multimedia");
-        /*} else {
+            menuAdmin.add("Curso");
+            menuAdmin.add("Asignaturas");
+            menuAdmin.add("Alumnos");
+            menuAdmin.add("Profesores");
+            menuAdmin.add("Usuarios");
+            menuAdmin.add("Roles");
+            menuAdmin.add("Permisos");
+            menuAdmin.add("Multimedia");
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+            maa = new MenuAdminAdaptador(this, menuAdmin);
+            maa.setClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    switch (position) {
+                        case 0:
+                            Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
+                            startActivity(i0);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(0), Toast.LENGTH_SHORT).show();
+                            break;
+                        case 1:
+                            Intent i1 = new Intent(MenuActivity.this, AsignaturasActivity.class);
+                            startActivity(i1);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(1), Toast.LENGTH_SHORT).show();
+                            break;
+                        case 2:
+                            Intent i2 = new Intent(MenuActivity.this, AlumnosActivity.class);
+                            startActivity(i2);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(2), Toast.LENGTH_SHORT).show();
+                            break;
+                        case 3:
+                            Intent i3 = new Intent(MenuActivity.this, ProfesoresActivity.class);
+                            startActivity(i3);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(3), Toast.LENGTH_SHORT).show();
+                            break;
+                        case 4:
+                            Intent i4 = new Intent(MenuActivity.this, UsuariosActivity.class);
+                            startActivity(i4);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(4), Toast.LENGTH_SHORT).show();
+                            break;
+                        case 5:
+                            Intent i5 = new Intent(MenuActivity.this, RolesActivity.class);
+                            startActivity(i5);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(5), Toast.LENGTH_SHORT).show();
+                            break;
+                        case 6:
+                            Intent i6 = new Intent(MenuActivity.this, PermisosActivity.class);
+                            startActivity(i6);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(6), Toast.LENGTH_SHORT).show();
+                            break;
+                        case 7:
+                            Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                            startActivity(i7);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
+                        default:
+                            Toast.makeText(MenuActivity.this, "You clicked " + maa.getItem(position) +
+                                    " on row number " + position, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            recyclerView.setAdapter(maa);
+        } else {
             if (pbd.isPermiso(username, "Alumno")) {
                 showDialog(1);
-                menu.add("Curso");
-                menu.add("Asignaturas");
-                menu.add("Multimedia");
+                menuAlumno.add("Curso");
+                menuAlumno.add("Asignaturas");
+                menuAlumno.add("Multimedia");
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+                mad = new MenuAlumnoAdaptador(this, menuAlumno);
+                mad.setClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        switch (position) {
+                            case 0:
+                                Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
+                                startActivity(i0);
+                                Toast.makeText(getApplicationContext(), menuAdmin.get(0), Toast.LENGTH_SHORT).show();
+                                break;
+                            case 1:
+                                Intent i1 = new Intent(MenuActivity.this, AsignaturasActivity.class);
+                                startActivity(i1);
+                                Toast.makeText(getApplicationContext(), menuAdmin.get(1), Toast.LENGTH_SHORT).show();
+                                break;
+                            case 2:
+                                Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                                startActivity(i7);
+                                Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
+                            default:
+                                Toast.makeText(MenuActivity.this, "You clicked " + mad.getItem(position) +
+                                        " on row number " + position, Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+                recyclerView.setAdapter(mad);
             } else {
                 if (pbd.isPermiso(username, "Profesor")) {
                     showDialog(2);
-                    menu.add("Curso");
-                    menu.add("Asignatura");
-                    menu.add("Profesores");
-                    menu.add("Multimedia");
+                    menuProfesor.add("Curso");
+                    menuProfesor.add("Asignatura");
+                    menuProfesor.add("Profesores");
+                    menuProfesor.add("Multimedia");
+                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+                    mpa = new MenuProfesorAdaptador(this, menuProfesor);
+                    mpa.setClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            switch (position) {
+                                case 0:
+                                    Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
+                                    startActivity(i0);
+                                    Toast.makeText(getApplicationContext(), menuAdmin.get(0), Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 1:
+                                    Intent i1 = new Intent(MenuActivity.this, AsignaturasActivity.class);
+                                    startActivity(i1);
+                                    Toast.makeText(getApplicationContext(), menuAdmin.get(1), Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 2:
+                                    Intent i3 = new Intent(MenuActivity.this, ProfesoresActivity.class);
+                                    startActivity(i3);
+                                    Toast.makeText(getApplicationContext(), menuAdmin.get(3), Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 3:
+                                    Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                                    startActivity(i7);
+                                    Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
+                                default:
+                                    Toast.makeText(MenuActivity.this, "You clicked " + maa.getItem(position) +
+                                            " on row number " + position, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    recyclerView.setAdapter(mpa);
                 } else {
                     if (pbd.isPermiso(username, "Usuario")) {
                         showDialog(3);
-                        menu.add("Multimedia");
+                        menuUsuario.add("Multimedia");
+                        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                        recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+                        mua = new MenuUsuarioAdaptador(this, menuUsuario);
+                        mua.setClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                            }
+                        });
+                        recyclerView.setAdapter(mua);
                     }
                 }
             }
-        }*/
-
-        recyclerView = findViewById(R.id.my_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
-        adapter = new MenuAdaptador(this, menu);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-        switch (position) {
-            case 0:
-                Intent i0 = new Intent(MenuActivity.this, CursosActivity.class);
-                startActivity(i0);
-                Toast.makeText(getApplicationContext(), menu.get(0), Toast.LENGTH_SHORT).show();
-                break;
-            case 1:
-                Intent i1 = new Intent(MenuActivity.this, AsignaturasActivity.class);
-                startActivity(i1);
-                Toast.makeText(getApplicationContext(), menu.get(1), Toast.LENGTH_SHORT).show();
-                break;
-            case 2:
-                Intent i2 = new Intent(MenuActivity.this, AlumnosActivity.class);
-                startActivity(i2);
-                Toast.makeText(getApplicationContext(), menu.get(2), Toast.LENGTH_SHORT).show();
-                break;
-            case 3:
-                Intent i3 = new Intent(MenuActivity.this, ProfesoresActivity.class);
-                startActivity(i3);
-                Toast.makeText(getApplicationContext(), menu.get(3), Toast.LENGTH_SHORT).show();
-                break;
-            case 4:
-                Intent i4 = new Intent(MenuActivity.this, UsuariosActivity.class);
-                startActivity(i4);
-                Toast.makeText(getApplicationContext(), menu.get(4), Toast.LENGTH_SHORT).show();
-                break;
-            case 5:
-                Intent i5 = new Intent(MenuActivity.this, RolesActivity.class);
-                startActivity(i5);
-                Toast.makeText(getApplicationContext(), menu.get(5), Toast.LENGTH_SHORT).show();
-                break;
-            case 6:
-                Intent i6 = new Intent(MenuActivity.this, PermisosActivity.class);
-                startActivity(i6);
-                Toast.makeText(getApplicationContext(), menu.get(6), Toast.LENGTH_SHORT).show();
-                break;
-            case 7:
-                Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
-                startActivity(i7);
-                Toast.makeText(getApplicationContext(), menu.get(7), Toast.LENGTH_SHORT).show();
-            default:
-                Toast.makeText(this, "You clicked " + adapter.getItem(position) +
-                        " on row number " + position, Toast.LENGTH_SHORT).show();
         }
     }
 
