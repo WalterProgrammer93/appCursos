@@ -102,4 +102,8 @@
     <string name="reproducir">Reproducir</string>
     <string name="pausar">Pausar</string>
     <string name="detener">Detener</string>
+    <string name="lb_cursoAndroid">Audio Curso Android</string>
+    <string name="lb_cursoJava">Audio Curso de Java</string>
+    <string name="lb_cursoJavaScript">Audio Curso de JavaScript</string>
+    <string name="lb_cursoPython">Audio Curso de Python</string>
 </resources>
