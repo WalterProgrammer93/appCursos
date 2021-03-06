@@ -28,8 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
-        <activity android:name=".actividades.MultimediaActivity"
+        <activity android:name=".actividades.AudiosActivity"></activity>
+        <activity
+            android:name=".actividades.VideosActivity"
             android:label="@string/lb_multimedia"
             android:screenOrientation="portrait">
             <meta-data
@@ -39,13 +40,14 @@
         <activity
             android:name=".actividades.SplashToActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashScreen"/>
+            android:theme="@style/SplashScreen" />
         <activity
             android:name=".actividades.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -192,8 +194,8 @@
         <activity
             android:name=".actividades.RegistrarseActivity"
             android:label="@string/lb_registrarse"
-            android:theme="@style/Slider"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Slider">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MainActivity" />

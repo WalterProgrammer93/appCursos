@@ -11,20 +11,16 @@ import android.widget.TextView;
 import android.widget.VideoView;
 import com.example.appcursos.R;
 
-import java.io.IOException;
-
-public class MultimediaActivity extends AppCompatActivity {
+public class VideosActivity extends AppCompatActivity {
 
     TextView tv_label1, tv_label2, tv_label3, tv_label4, tv_label5;
     VideoView vv_video1, vv_video2, vv_video3, vv_video4, vv_video5;
-    //Uri video;
-    //String streamingURL = "https://thirdrockradio.net/";
 
     @SuppressLint("SdCardPath")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multimedia);
+        setContentView(R.layout.activity_videos);
 
         tv_label1 = findViewById(R.id.tv_label1);
         vv_video1 = findViewById(R.id.vv_video1);
@@ -44,8 +40,7 @@ public class MultimediaActivity extends AppCompatActivity {
         vv_video1.start();
         vv_video1.requestFocus();
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.audio_intro);
-        mediaPlayer.start();
+
 
         String path2 = "android.resource://" + getPackageName() + "/" +
                 R.raw.intro_android;

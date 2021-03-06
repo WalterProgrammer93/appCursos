@@ -109,7 +109,7 @@ public class MenuActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), menuAdmin.get(6), Toast.LENGTH_SHORT).show();
                             break;
                         case 7:
-                            Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                            Intent i7 = new Intent(MenuActivity.this, VideosActivity.class);
                             startActivity(i7);
                             Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
                             break;
@@ -147,7 +147,7 @@ public class MenuActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), menuAlumno.get(1), Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
-                                Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                                Intent i7 = new Intent(MenuActivity.this, VideosActivity.class);
                                 startActivity(i7);
                                 Toast.makeText(getApplicationContext(), menuAlumno.get(7), Toast.LENGTH_SHORT).show();
                                 break;
@@ -191,7 +191,7 @@ public class MenuActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), menuProfesor.get(3), Toast.LENGTH_SHORT).show();
                                     break;
                                 case 3:
-                                    Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                                    Intent i7 = new Intent(MenuActivity.this, VideosActivity.class);
                                     startActivity(i7);
                                     Toast.makeText(getApplicationContext(), menuProfesor.get(7), Toast.LENGTH_SHORT).show();
                                     break;
@@ -215,7 +215,7 @@ public class MenuActivity extends AppCompatActivity {
                             public void onClick(View view) {
                                 int position = recyclerView.getChildAdapterPosition(view);
                                 if (position == 0) {
-                                    Intent i7 = new Intent(MenuActivity.this, MultimediaActivity.class);
+                                    Intent i7 = new Intent(MenuActivity.this, VideosActivity.class);
                                     startActivity(i7);
                                     Toast.makeText(getApplicationContext(), menuUsuario.get(7), Toast.LENGTH_SHORT).show();
                                 } else {
