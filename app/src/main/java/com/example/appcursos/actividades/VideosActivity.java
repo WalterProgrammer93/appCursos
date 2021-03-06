@@ -41,7 +41,7 @@ public class VideosActivity extends AppCompatActivity {
 
 
         String path2 = "android.resource://" + getPackageName() + "/" +
-                R.raw.intro_android_video;
+                R.raw.video2;
         vv_video2.setVideoURI(Uri.parse(path2));
         vv_video2.start();
         vv_video2.requestFocus();

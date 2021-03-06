@@ -22,7 +22,7 @@ public class AudiosActivity extends AppCompatActivity {
         audio_intro = MediaPlayer.create(this, R.raw.audio1);
         audio_intro.start();
 
-        audio_android = MediaPlayer.create(this, R.raw.intro_android_video);
+        audio_android = MediaPlayer.create(this, R.raw.audio2);
         btnPlay1 = findViewById(R.id.buttonPlay1);
         btnPlay1.setOnClickListener(new View.OnClickListener() {
             @Override
