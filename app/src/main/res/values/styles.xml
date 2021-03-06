@@ -17,7 +17,7 @@
       <item name="android:windowFullscreen">true</item>
       <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
   </style>
-    <style name="Widget.MaterialComponents.Slider" parent="android:Theme.Material" tools:ignore="NewApi">
+    <style name="Slider" parent="android:Theme.Material" tools:ignore="NewApi">
         <!--Habilitar animaciones en las transiciones -->
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowEnterTransition">@transition/explode_transition</item>

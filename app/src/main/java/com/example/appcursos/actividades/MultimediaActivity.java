@@ -18,7 +18,7 @@ public class MultimediaActivity extends AppCompatActivity {
     TextView tv_label1, tv_label2, tv_label3, tv_label4, tv_label5;
     VideoView vv_video1, vv_video2, vv_video3, vv_video4, vv_video5;
     //Uri video;
-    String streamingURL = "https://thirdrockradio.net/";
+    //String streamingURL = "https://thirdrockradio.net/";
 
     @SuppressLint("SdCardPath")
     @Override
@@ -44,19 +44,13 @@ public class MultimediaActivity extends AppCompatActivity {
         vv_video1.start();
         vv_video1.requestFocus();
 
-        MediaPlayer mediaPlayer = new MediaPlayer();
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.start();
-            }
-        });
-        try {
-            mediaPlayer.setDataSource(streamingURL);
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //mediaPlayer.prepareAsync();
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.audio_intro);
+        mediaPlayer.start();
+
+        String path2 = "android.resource://" + getPackageName() + "/" +
+                R.raw.intro_android;
+        vv_video2.setVideoURI(Uri.parse(path2));
+        vv_video2.start();
+        vv_video2.requestFocus();
     }
 }
