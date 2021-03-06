@@ -366,7 +366,6 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     protected Dialog onCreateDialog(int id) {
-        // Use the Builder class for convenient dialog construction
         Dialog dialogo = null;
         switch (id) {
             case 0:

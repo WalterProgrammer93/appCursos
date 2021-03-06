@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
-
 import com.example.appcursos.modelos.Permiso;
 import com.example.appcursos.modelos.Rol;
 import com.example.appcursos.modelos.Usuario;
@@ -185,22 +183,22 @@ public class PermisoBD {
 
     public boolean isPermiso(String username, String rol) {
         bd = abd.getReadableDatabase();
-        boolean autorizado = false;
-        String query = "select permiso_id from permisos where usuario_id = '" + username + "' and rol_id = '" + rol + "'";
+        String query = "select * from permisos where usuario_id = '" + username + "' and rol_id = '" + rol + "'";
         Cursor cursor = bd.rawQuery(query, null);
-        if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
+        //if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
-                if (cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)).equalsIgnoreCase(username)
-                    && cursor.getString(cursor.getColumnIndex(COL_ROL_ID)).equalsIgnoreCase(rol)) {
-                    autorizado = true;
+                Permiso permiso = new Permiso(cursor.getInt(cursor.getColumnIndex(COL_PERMISO_ID)),
+                        cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)),
+                        cursor.getString(cursor.getColumnIndex(COL_ROL_ID)));
+                if (permiso.getUsuario().equalsIgnoreCase(username) && permiso.getRol().equalsIgnoreCase(rol)) {
+                    return true;
                 }
 
             }
 
-        }
+        //}
         cursor.close();
         bd.close();
-        return autorizado;
-
+        return false;
     }
 }
