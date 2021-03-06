@@ -63,7 +63,8 @@ public class MenuActivity extends AppCompatActivity {
             menuAdmin.add("Usuarios");
             menuAdmin.add("Roles");
             menuAdmin.add("Permisos");
-            menuAdmin.add("Multimedia");
+            menuAdmin.add("Videos");
+            menuAdmin.add("Audios");
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
             maa = new MenuAdminAdaptador(this, menuAdmin);
@@ -113,6 +114,11 @@ public class MenuActivity extends AppCompatActivity {
                             startActivity(i7);
                             Toast.makeText(getApplicationContext(), menuAdmin.get(7), Toast.LENGTH_SHORT).show();
                             break;
+                        case 8:
+                            Intent i8 = new Intent(MenuActivity.this, AudiosActivity.class);
+                            startActivity(i8);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(8), Toast.LENGTH_SHORT).show();
+                            break;
                         default:
                             Toast.makeText(MenuActivity.this, "You clicked " + maa.getItem(position) +
                                     " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -127,7 +133,8 @@ public class MenuActivity extends AppCompatActivity {
                 showDialog(1);
                 menuAlumno.add("Curso");
                 menuAlumno.add("Asignaturas");
-                menuAlumno.add("Multimedia");
+                menuAlumno.add("Videos");
+                menuAlumno.add("Audios");
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
                 mad = new MenuAlumnoAdaptador(this, menuAlumno);
@@ -147,9 +154,14 @@ public class MenuActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), menuAlumno.get(1), Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
-                                Intent i7 = new Intent(MenuActivity.this, VideosActivity.class);
-                                startActivity(i7);
-                                Toast.makeText(getApplicationContext(), menuAlumno.get(7), Toast.LENGTH_SHORT).show();
+                                Intent i2 = new Intent(MenuActivity.this, VideosActivity.class);
+                                startActivity(i2);
+                                Toast.makeText(getApplicationContext(), menuAlumno.get(2), Toast.LENGTH_SHORT).show();
+                                break;
+                            case 3:
+                                Intent i3 = new Intent(MenuActivity.this, AudiosActivity.class);
+                                startActivity(i3);
+                                Toast.makeText(getApplicationContext(), menuAlumno.get(3), Toast.LENGTH_SHORT).show();
                                 break;
                             default:
                                 Toast.makeText(MenuActivity.this, "You clicked " + mad.getItem(position) +
@@ -166,7 +178,8 @@ public class MenuActivity extends AppCompatActivity {
                     menuProfesor.add("Curso");
                     menuProfesor.add("Asignatura");
                     menuProfesor.add("Profesores");
-                    menuProfesor.add("Multimedia");
+                    menuProfesor.add("Videos");
+                    menuProfesor.add("Audios");
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
                     mpa = new MenuProfesorAdaptador(this, menuProfesor);
@@ -186,14 +199,19 @@ public class MenuActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), menuProfesor.get(1), Toast.LENGTH_SHORT).show();
                                     break;
                                 case 2:
-                                    Intent i3 = new Intent(MenuActivity.this, ProfesoresActivity.class);
+                                    Intent i2 = new Intent(MenuActivity.this, ProfesoresActivity.class);
+                                    startActivity(i2);
+                                    Toast.makeText(getApplicationContext(), menuProfesor.get(2), Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 3:
+                                    Intent i3 = new Intent(MenuActivity.this, VideosActivity.class);
                                     startActivity(i3);
                                     Toast.makeText(getApplicationContext(), menuProfesor.get(3), Toast.LENGTH_SHORT).show();
                                     break;
-                                case 3:
-                                    Intent i7 = new Intent(MenuActivity.this, VideosActivity.class);
-                                    startActivity(i7);
-                                    Toast.makeText(getApplicationContext(), menuProfesor.get(7), Toast.LENGTH_SHORT).show();
+                                case 4:
+                                    Intent i4 = new Intent(MenuActivity.this, AudiosActivity.class);
+                                    startActivity(i4);
+                                    Toast.makeText(getApplicationContext(), menuProfesor.get(4), Toast.LENGTH_SHORT).show();
                                     break;
                                 default:
                                     Toast.makeText(MenuActivity.this, "You clicked " + mpa.getItem(position) +
@@ -206,7 +224,8 @@ public class MenuActivity extends AppCompatActivity {
                     Permiso permisoUsuario = pbd.isPermiso(username, "Usuario");
                     if (permisoUsuario.getUsuario().equalsIgnoreCase(username) && permisoUsuario.getRol().equalsIgnoreCase("Usuario")) {
                         showDialog(3);
-                        menuUsuario.add("Multimedia");
+                        menuUsuario.add("Videos");
+                        menuUsuario.add("Audios");
                         recyclerView.setLayoutManager(new LinearLayoutManager(this));
                         recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
                         mua = new MenuUsuarioAdaptador(this, menuUsuario);
@@ -214,13 +233,21 @@ public class MenuActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 int position = recyclerView.getChildAdapterPosition(view);
-                                if (position == 0) {
-                                    Intent i7 = new Intent(MenuActivity.this, VideosActivity.class);
-                                    startActivity(i7);
-                                    Toast.makeText(getApplicationContext(), menuUsuario.get(7), Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(MenuActivity.this, "You clicked " + mua.getItem(position) +
-                                            " on row number " + position, Toast.LENGTH_SHORT).show();
+                                switch (position) {
+                                    case 0:
+                                        Intent i0 = new Intent(MenuActivity.this, VideosActivity.class);
+                                        startActivity(i0);
+                                        Toast.makeText(getApplicationContext(), menuUsuario.get(0), Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case 1:
+                                        Intent i1 = new Intent(MenuActivity.this, AudiosActivity.class);
+                                        startActivity(i1);
+                                        Toast.makeText(getApplicationContext(), menuUsuario.get(1), Toast.LENGTH_SHORT).show();
+                                        break;
+                                    default:
+                                        Toast.makeText(MenuActivity.this, "You clicked " + mua.getItem(position) +
+                                                " on row number " + position, Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });

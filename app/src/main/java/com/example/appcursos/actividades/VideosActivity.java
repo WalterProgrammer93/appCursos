@@ -3,7 +3,6 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 //import android.widget.MediaController;
@@ -34,16 +33,15 @@ public class VideosActivity extends AppCompatActivity {
         vv_video5 = findViewById(R.id.vv_video5);
 
         String path = "android.resource://" + getPackageName() + "/" +
-                R.raw.intro;
+                R.raw.video1;
         vv_video1.setVideoURI(Uri.parse(path));
         //vv_video1.setMediaController(new MediaController(this));
         vv_video1.start();
         vv_video1.requestFocus();
 
 
-
         String path2 = "android.resource://" + getPackageName() + "/" +
-                R.raw.intro_android;
+                R.raw.intro_android_video;
         vv_video2.setVideoURI(Uri.parse(path2));
         vv_video2.start();
         vv_video2.requestFocus();

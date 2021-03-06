@@ -101,4 +101,7 @@
     <string name="lb_multimedia">Multimedia</string>
     <string name="lb_videos">Videos de Cursos</string>
     <string name="lb_audios">Audios de Cursos</string>
+    <string name="reproducir">Reproducir</string>
+    <string name="pausar">Pausar</string>
+    <string name="detener">Detener</string>
 </resources>
