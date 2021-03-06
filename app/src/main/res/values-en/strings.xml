@@ -97,4 +97,6 @@
     <string name="mensajeProfesor">Bienvenido Profesor</string>
     <string name="mensajeUsuario">Bienvenido Usuario</string>
     <string name="lb_multimedia">Multimedia</string>
+    <string name="lb_videos">Videos de Cursos</string>
+    <string name="lb_audios">Audios de Cursos</string>
 </resources>

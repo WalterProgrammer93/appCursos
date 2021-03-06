@@ -28,10 +28,16 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".actividades.AudiosActivity"></activity>
+        <activity android:name=".actividades.AudiosActivity"
+            android:label="@string/lb_audios"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
         <activity
             android:name=".actividades.VideosActivity"
-            android:label="@string/lb_multimedia"
+            android:label="@string/lb_videos"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
