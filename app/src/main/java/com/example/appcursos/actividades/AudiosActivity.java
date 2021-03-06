@@ -11,9 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
-import java.io.IOException;
+//import java.io.IOException;
 
 public class AudiosActivity extends AppCompatActivity {
 
@@ -50,13 +49,7 @@ public class AudiosActivity extends AppCompatActivity {
         btnStop1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    mp2.stop();
-                    mp2.prepare();
-                    mp2.seekTo(0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mp2.stop();
             }
         });
 
@@ -79,13 +72,7 @@ public class AudiosActivity extends AppCompatActivity {
         btnStop2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    mp3.stop();
-                    mp3.prepare();
-                    mp3.seekTo(0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mp3.stop();
             }
         });
 
@@ -108,13 +95,7 @@ public class AudiosActivity extends AppCompatActivity {
         btnStop3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    mp4.stop();
-                    mp4.prepare();
-                    mp4.seekTo(0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mp4.stop();
             }
         });
 
@@ -137,13 +118,7 @@ public class AudiosActivity extends AppCompatActivity {
         btnStop4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    mp5.stop();
-                    mp5.prepare();
-                    mp5.seekTo(0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mp5.stop();
             }
         });
 

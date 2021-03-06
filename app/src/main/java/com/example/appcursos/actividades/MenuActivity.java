@@ -27,7 +27,6 @@ import com.example.appcursos.adaptadores.MenuProfesorAdaptador;
 import com.example.appcursos.adaptadores.MenuUsuarioAdaptador;
 import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.bd.UsuarioBD;
-import com.example.appcursos.modelos.Permiso;
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
@@ -41,6 +40,7 @@ public class MenuActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     UsuarioBD ubd;
     PermisoBD pbd;
+    boolean autorizado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,8 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_recycler_view);
         Intent i = getIntent();
         String username = i.getStringExtra("Username");
-        Permiso permisoAdmin = pbd.isPermiso(username, "Admin");
-        if (permisoAdmin.getUsuario().equalsIgnoreCase(username) && permisoAdmin.getRol().equalsIgnoreCase("Admin")) {
+        autorizado = pbd.isPermiso(username, "Admin");
+        if (autorizado) {
             showDialog(0);
             menuAdmin.add("Curso");
             menuAdmin.add("Asignaturas");
@@ -128,8 +128,8 @@ public class MenuActivity extends AppCompatActivity {
             });
 
         } else {
-            Permiso permisoAlumno = pbd.isPermiso(username, "Alumno");
-            if (permisoAlumno.getUsuario().equalsIgnoreCase(username) && permisoAlumno.getRol().equalsIgnoreCase("Alumno")) {
+            autorizado = pbd.isPermiso(username, "Alumno");
+            if (autorizado) {
                 showDialog(1);
                 menuAlumno.add("Curso");
                 menuAlumno.add("Asignaturas");
@@ -172,8 +172,8 @@ public class MenuActivity extends AppCompatActivity {
                 });
                 recyclerView.setAdapter(mad);
             } else {
-                Permiso permisoProfesor = pbd.isPermiso(username, "Profesor");
-                if (permisoProfesor.getUsuario().equalsIgnoreCase(username) && permisoProfesor.getRol().equalsIgnoreCase("Profesor")) {
+                autorizado = pbd.isPermiso(username, "Profesor");
+                if (autorizado) {
                     showDialog(2);
                     menuProfesor.add("Curso");
                     menuProfesor.add("Asignatura");
@@ -221,8 +221,8 @@ public class MenuActivity extends AppCompatActivity {
                     });
                     recyclerView.setAdapter(mpa);
                 } else {
-                    Permiso permisoUsuario = pbd.isPermiso(username, "Usuario");
-                    if (permisoUsuario.getUsuario().equalsIgnoreCase(username) && permisoUsuario.getRol().equalsIgnoreCase("Usuario")) {
+                    autorizado = pbd.isPermiso(username, "Usuario");
+                    if (autorizado) {
                         showDialog(3);
                         menuUsuario.add("Videos");
                         menuUsuario.add("Audios");
