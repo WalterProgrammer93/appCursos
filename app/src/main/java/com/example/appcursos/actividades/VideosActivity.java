@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 //import android.widget.MediaController;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 import com.example.appcursos.R;
@@ -39,11 +40,24 @@ public class VideosActivity extends AppCompatActivity {
         vv_video1.start();
         vv_video1.requestFocus();
 
-
         String path2 = "android.resource://" + getPackageName() + "/" +
                 R.raw.video2;
         vv_video2.setVideoURI(Uri.parse(path2));
         vv_video2.start();
         vv_video2.requestFocus();
+
+        String path3 = "android.resource://" + getPackageName() + "/" +
+                R.raw.video3;
+        vv_video3.setVideoURI(Uri.parse(path3));
+        vv_video3.setMediaController(new MediaController(this));
+        vv_video3.start();
+        vv_video3.requestFocus();
+
+        String path4 = "android.resource://" + getPackageName() + "/" +
+                R.raw.video4;
+        vv_video4.setVideoURI(Uri.parse(path4));
+        vv_video4.setMediaController(new MediaController(this));
+        vv_video4.start();
+        vv_video4.requestFocus();
     }
 }
