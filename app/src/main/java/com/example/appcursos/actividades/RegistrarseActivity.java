@@ -57,6 +57,7 @@ public class RegistrarseActivity extends AppCompatActivity {
                         ubd.insertarUsuario(new Usuario(username, email, pass));
                         Toast.makeText(RegistrarseActivity.this, " Usuario creado correctamente ", Toast.LENGTH_SHORT).show();
                         Intent acceso = new Intent(RegistrarseActivity.this, MenuActivity.class);
+                        acceso.putExtra("Username", username);
                         startActivity(acceso);
                         new Handler().postDelayed(new Runnable() {
                             @Override

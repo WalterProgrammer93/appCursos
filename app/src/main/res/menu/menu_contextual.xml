@@ -4,5 +4,8 @@
     <item android:id="@+id/action_editar"
         android:icon="@drawable/ic_edit_black_24dp"
         android:title="@string/editar"/>
+    <item android:id="@+id/action_eliminar"
+        android:icon="@drawable/ic_delete_black_24dp"
+        android:title="@string/eliminar"/>
 
 </menu>

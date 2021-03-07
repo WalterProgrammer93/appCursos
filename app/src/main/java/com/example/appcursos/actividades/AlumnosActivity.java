@@ -88,31 +88,55 @@ public class AlumnosActivity extends AppCompatActivity {
                 (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final int itemSeleccionado = info.position;
 
-        if (itemSeleccionado == R.id.action_editar) {// hacer algo
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.titulo)
-                    .setMessage(R.string.lb_esta_seguro)
-                    .setPositiveButton(R.string.lb_si,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // Qué hacer si el usuario pulsa "Si"
-                                    Intent editar = new Intent(AlumnosActivity.this, NuevoAlumnoActivity.class);
-                                    startActivity(editar);
-                                }
-                            })
-                    .setNegativeButton(R.string.lb_no,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // Qué hacer si el usuario pulsa "No"
-                                    // En este caso se cierra directamente el diálogo y no se hace nada más
-                                    dialog.dismiss();
-                                }
-                            });
-            builder.create().show();
-            return true;
+        switch (itemSeleccionado) {// hacer algo
+            case R.id.action_editar:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.titulo)
+                        .setMessage(R.string.lb_esta_seguro)
+                        .setPositiveButton(R.string.lb_si,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "Si"
+                                        Intent editar = new Intent(AlumnosActivity.this, NuevoAlumnoActivity.class);
+                                        startActivity(editar);
+                                    }
+                                })
+                        .setNegativeButton(R.string.lb_no,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "No"
+                                        // En este caso se cierra directamente el diálogo y no se hace nada más
+                                        dialog.dismiss();
+                                    }
+                                });
+                builder.create().show();
+                return true;
+            case R.id.action_eliminar:
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle(R.string.titulo)
+                        .setMessage(R.string.lb_esta_seguro)
+                        .setPositiveButton(R.string.lb_si,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "Si"
+                                    }
+                                })
+                        .setNegativeButton(R.string.lb_no,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Qué hacer si el usuario pulsa "No"
+                                        // En este caso se cierra directamente el diálogo y no se hace nada más
+                                        dialog.dismiss();
+                                    }
+                                });
+                builder2.create().show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
         }
-        return super.onContextItemSelected(item);
     }
 }

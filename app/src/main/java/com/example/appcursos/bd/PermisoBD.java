@@ -48,7 +48,7 @@ public class PermisoBD {
         bd.close();
     }
 
-    public int editarPermiso(int usuarioId, Permiso permiso) {
+    public int editarPermiso(String usuarioId, Permiso permiso) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_ID, permiso.getUsuario());
@@ -58,7 +58,7 @@ public class PermisoBD {
         return res;
     }
 
-    public int eliminarPermiso(int usuarioId) {
+    public int eliminarPermiso(String usuarioId) {
         bd = abd.getReadableDatabase();
         int res = bd.delete(TABLA_PERMISOS, COL_USUARIO_ID + "=" + usuarioId, null);
         bd.close();
@@ -81,8 +81,8 @@ public class PermisoBD {
         }
         Permiso permiso = new Permiso();
         permiso.setPermisoId(cursor.getInt(NUM_COL_PERMISO_ID));
-        permiso.setUsuario(cursor.getInt(NUM_COL_USUARIO_ID));
-        permiso.setRol(cursor.getInt(NUM_COL_ROL_ID));
+        permiso.setUsuario(cursor.getString(NUM_COL_USUARIO_ID));
+        permiso.setRol(cursor.getString(NUM_COL_ROL_ID));
         cursor.close();
         bd.close();
         return permiso;
@@ -101,8 +101,8 @@ public class PermisoBD {
         while (cursor.moveToNext()) {
             Permiso permiso = new Permiso();
             permiso.setPermisoId(cursor.getInt(NUM_COL_PERMISO_ID));
-            permiso.setUsuario(cursor.getInt(NUM_COL_USUARIO_ID));
-            permiso.setRol(cursor.getInt(NUM_COL_ROL_ID));
+            permiso.setUsuario(cursor.getString(NUM_COL_USUARIO_ID));
+            permiso.setRol(cursor.getString(NUM_COL_ROL_ID));
             listaPermisos.add(permiso);
         }
         cursor.close();
@@ -181,16 +181,16 @@ public class PermisoBD {
         return false;
     }
 
-    public boolean isPermiso(int username, int rol) {
+    public boolean isPermiso(String username, String rol) {
         bd = abd.getReadableDatabase();
         String query = "select * from permisos where usuario_id = '" + username + "' and rol_id = '" + rol + "'";
         Cursor cursor = bd.rawQuery(query, null);
         if (cursor != null && cursor.moveToFirst() && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 Permiso permiso = new Permiso(cursor.getInt(cursor.getColumnIndex(COL_PERMISO_ID)),
-                        cursor.getInt(cursor.getColumnIndex(COL_USUARIO_ID)),
-                        cursor.getInt(cursor.getColumnIndex(COL_ROL_ID)));
-                if (permiso.getUsuario() == username && permiso.getRol() == rol) {
+                        cursor.getString(cursor.getColumnIndex(COL_USUARIO_ID)),
+                        cursor.getString(cursor.getColumnIndex(COL_ROL_ID)));
+                if (permiso.getUsuario().equalsIgnoreCase(username) && permiso.getRol().equalsIgnoreCase(rol)) {
                     return true;
                 }
 
