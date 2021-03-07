@@ -28,7 +28,57 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".actividades.AudiosActivity"
+        <activity android:name=".actividades.EditarPermisoActivity"
+            android:label="@string/lb_editarPermiso"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.PermisosActivity" />
+        </activity>
+        <activity android:name=".actividades.EditarUsuarioActivity"
+            android:label="@string/lb_editarUsuario"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.UsuariosActivity" />
+        </activity>
+        <activity android:name=".actividades.EditarRolActivity"
+            android:label="@string/lb_editarRol"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.RolesActivity" />
+        </activity>
+        <activity android:name=".actividades.EditarProfesorActivity"
+            android:label="@string/lb_editarProfesor"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.ProfesoresActivity" />
+        </activity>
+        <activity android:name=".actividades.EditarAlumnoActivity"
+            android:label="@string/lb_editarAlumno"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.AlumnosActivity" />
+        </activity>
+        <activity android:name=".actividades.EditarAsignaturaActivity"
+            android:label="@string/lb_editarAsignatura"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.AsignaturasActivity" />
+        </activity>
+        <activity android:name=".actividades.EditarCursoActivity"
+            android:label="@string/lb_editarCursor"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.CursosActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.AudiosActivity"
             android:label="@string/lb_audios"
             android:screenOrientation="portrait">
             <meta-data

@@ -76,7 +76,7 @@ public class AsignaturaBD {
 
     public Asignatura buscarAsignatura(String nombre) {
         bd = abd.getReadableDatabase();
-        Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA}, COL_NOMBRE_ASIGNATURA
+        Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA, COL_CURSO_ID}, COL_NOMBRE_ASIGNATURA
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_ASIGNATURA);
         bd.close();
         return seleccionarAsignatura(cursor);
@@ -92,6 +92,7 @@ public class AsignaturaBD {
         asignatura.setAsignaturaId(cursor.getInt(NUM_COL_ASIGNATURA_ID));
         asignatura.setNombreAsignatura(cursor.getString(NUM_COL_NOMBRE_ASIGNATURA));
         asignatura.setDescripcionAsignatura(cursor.getString(NUM_COL_DESCRIPCION_ASIGNATURA));
+        asignatura.setCurso(cursor.getString(NUM_COL_CURSO_ID));
         cursor.close();
         bd.close();
         return asignatura;
@@ -99,7 +100,7 @@ public class AsignaturaBD {
     public ArrayList<Asignatura> listarAsignaturas() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ASIGNATURAS, new String[] {
-                COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA
+                COL_ASIGNATURA_ID, COL_NOMBRE_ASIGNATURA, COL_DESCRIPCION_ASIGNATURA, COL_CURSO_ID
         }, null, null, null, null, COL_ASIGNATURA_ID);
 
         if (cursor.getCount() == 0) {
@@ -110,7 +111,8 @@ public class AsignaturaBD {
         while (cursor.moveToNext()) {
             Asignatura asignatura = new Asignatura();
             asignatura.setNombreAsignatura(cursor.getString(NUM_COL_NOMBRE_ASIGNATURA));
-            asignatura.setDescripcionAsignatura(cursor.getString(NUM_COL_DESCRIPCION_ASIGNATURA));
+            //asignatura.setDescripcionAsignatura(cursor.getString(NUM_COL_DESCRIPCION_ASIGNATURA));
+            asignatura.setCurso(cursor.getString(NUM_COL_CURSO_ID));
             listaAsignatura.add(asignatura);
         }
         cursor.close();

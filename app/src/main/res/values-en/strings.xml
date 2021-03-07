@@ -106,4 +106,16 @@
     <string name="lb_cursoJava">Audio Curso de Java</string>
     <string name="lb_cursoJavaScript">Audio Curso de JavaScript</string>
     <string name="lb_cursoPython">Audio Curso de Python</string>
+    <string name="titulo_editar">Editar</string>
+    <string name="titulo_eliminar">Eliminar</string>
+    <string name="msg_editar">Se va a editar</string>
+    <string name="msg_eliminar">Se va a eliminar</string>
+    <string name="lb_editarCurso">Editar Curso</string>
+    <string name="lb_editarPermiso">Editar Permiso</string>
+    <string name="lb_editarUsuario">Editar Usuario</string>
+    <string name="lb_editarRol">Editar Rol</string>
+    <string name="lb_editarProfesor">Editar Profesor</string>
+    <string name="lb_editarAlumno">Editar Alumno</string>
+    <string name="lb_editarAsignatura">Editar Asignatura</string>
+    <string name="lb_editarCursor">Editar Curso</string>
 </resources>

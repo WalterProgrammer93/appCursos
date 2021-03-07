@@ -70,33 +70,30 @@ public class NuevoCursoActivity extends AppCompatActivity {
                     String nombreCurso = et_nombreCurso.getText().toString();
                     String centroCurso = et_centroCurso.getText().toString();
                     String disponible = rb_disponible.getText().toString();
-                    String nodisponible = rb_nodisponible.getText().toString();
+                    String noDisponible = rb_nodisponible.getText().toString();
                     String numeroAlumnos =s_numeroAlumnos.getSelectedItem().toString();
                     String modo1 = cb_modo1.getText().toString();
                     String modo2 = cb_modo2.getText().toString();
                     String modo3 = cb_modo3.getText().toString();
                     listaDisponibilidad = new ArrayList<>();
-                    for (int i = 0; i < listaDisponibilidad.size(); i++) {
-                        if (rb_disponible.isChecked()) {
-                            listaDisponibilidad.add(disponible);
-                        } else {
-                            if (rb_nodisponible.isChecked()) {
-                                listaDisponibilidad.add(nodisponible);
-                            }
+                    if (rb_disponible.isChecked()) {
+                        listaDisponibilidad.add(disponible);
+                    } else {
+                        if (rb_nodisponible.isChecked()) {
+                            listaDisponibilidad.add(noDisponible);
                         }
                     }
                     listaModo = new ArrayList<>();
-                    for (int i = 0; i < listaModo.size(); i++) {
-                        if (cb_modo1.isChecked()) {
-                            listaModo.add(modo1);
-                        }
-                        if (cb_modo2.isChecked()) {
-                            listaModo.add(modo2);
-                        }
-                        if (cb_modo3.isChecked()) {
-                            listaModo.add(modo3);
-                        }
+                    if (cb_modo1.isChecked()) {
+                        listaModo.add(modo1);
                     }
+                    if (cb_modo2.isChecked()) {
+                        listaModo.add(modo2);
+                    }
+                    if (cb_modo3.isChecked()) {
+                        listaModo.add(modo3);
+                    }
+
                     Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
                     if (!cbd.isCursoExists(curso.getNombreCurso(), curso.getCentro())) {
                         cbd.insertarCurso(curso);
@@ -109,14 +106,6 @@ public class NuevoCursoActivity extends AppCompatActivity {
                         cb_modo3.setChecked(false);
                         Toast.makeText(NuevoCursoActivity.this, "El curso se ha creado correctamente", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                        /*i.putExtra("NombreCurso", nombreCurso);
-                        i.putExtra("CentroCurso", centroCurso);
-                        i.putExtra("Disponibilidad", disponible);
-                        i.putExtra("Disponibilidad", nodisponible);
-                        i.putExtra("NumeroAlumnos", numeroAlumnos);
-                        i.putExtra("Modo", modo1);
-                        i.putExtra("Modo", modo2);
-                        i.putExtra("Modo", modo3);*/
                         startActivity(i);
                     } else {
                         Toast.makeText(NuevoCursoActivity.this, "El curso ya existe!", Toast.LENGTH_LONG).show();
@@ -139,12 +128,23 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 String modo2 = cb_modo2.getText().toString();
                 String modo3 = cb_modo3.getText().toString();
                 listaDisponibilidad = new ArrayList<>();
-                listaDisponibilidad.add(disponible);
-                listaDisponibilidad.add(noDisponible);
+                if (rb_disponible.isChecked()) {
+                    listaDisponibilidad.add(disponible);
+                } else {
+                    if (rb_nodisponible.isChecked()) {
+                        listaDisponibilidad.add(noDisponible);
+                    }
+                }
                 listaModo = new ArrayList<>();
-                listaModo.add(modo1);
-                listaModo.add(modo2);
-                listaModo.add(modo3);
+                if (cb_modo1.isChecked()) {
+                    listaModo.add(modo1);
+                }
+                if (cb_modo2.isChecked()) {
+                    listaModo.add(modo2);
+                }
+                if (cb_modo3.isChecked()) {
+                    listaModo.add(modo3);
+                }
                 Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
                 int cant = cbd.editarCurso(nombreCurso, curso);
                 if (cant == 1) {
@@ -182,14 +182,14 @@ public class NuevoCursoActivity extends AppCompatActivity {
                 String nombreCurso = et_nombreCurso.getText().toString();
                 Cursor fila = (Cursor) cbd.buscarCurso(nombreCurso);
                 if (fila.moveToFirst()) {
-                    et_centroCurso.setText(fila.getString(1));
-                    rg_disponibilidad.check(Integer.parseInt(fila.getString(2)));
-                    s_numeroAlumnos.setSelected(Boolean.parseBoolean(fila.getString(3)));
-                    cb_modo1.setChecked(Boolean.parseBoolean(fila.getString(4)));
-                    cb_modo2.setChecked(Boolean.parseBoolean(fila.getString(4)));
-                    cb_modo3.setChecked(Boolean.parseBoolean(fila.getString(4)));
-                    Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                    startActivity(i);
+                    et_centroCurso.setText(fila.getString(2));
+                    rg_disponibilidad.check(Integer.parseInt(fila.getString(3)));
+                    s_numeroAlumnos.setSelected(Boolean.parseBoolean(fila.getString(4)));
+                    cb_modo1.setChecked(Boolean.parseBoolean(fila.getString(5)));
+                    cb_modo2.setChecked(Boolean.parseBoolean(fila.getString(5)));
+                    cb_modo3.setChecked(Boolean.parseBoolean(fila.getString(5)));
+                    /*Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                    startActivity(i);*/
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el curso",
                             Toast.LENGTH_SHORT).show();

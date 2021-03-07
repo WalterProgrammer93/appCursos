@@ -83,12 +83,11 @@ public class CursoBD {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_MODOS}, COL_NOMBRE_CURSO
                 + " LIKE \"" + nombre + "\"", null, null, null, COL_NOMBRE_CURSO);
-        bd.close();
+        //bd.close();
         return seleccionarCurso(cursor);
     }
 
     public Curso seleccionarCurso(Cursor cursor) {
-        bd = abd.getReadableDatabase();
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -101,7 +100,6 @@ public class CursoBD {
         curso.setNumeroAlumnos(cursor.getString(NUM_COL_NUM_ALUMNOS));
         curso.setModos(cursor.getString(NUM_COL_MODOS));
         cursor.close();
-        bd.close();
         return curso;
     }
     public ArrayList<Curso> listarCursos() {
