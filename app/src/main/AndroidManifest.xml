@@ -200,8 +200,7 @@
         <activity
             android:name=".actividades.RegistrarseActivity"
             android:label="@string/lb_registrarse"
-            android:screenOrientation="portrait"
-            android:theme="@style/Slider">
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.appcursos.actividades.MainActivity" />

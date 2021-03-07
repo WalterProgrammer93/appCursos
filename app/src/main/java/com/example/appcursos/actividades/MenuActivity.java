@@ -51,9 +51,7 @@ public class MenuActivity extends AppCompatActivity {
         pbd = new PermisoBD(this);
         menuAdmin = new ArrayList<>();
         recyclerView = findViewById(R.id.my_recycler_view);
-        Intent i = getIntent();
-        String username = i.getStringExtra("Username");
-        autorizado = pbd.isPermiso(username, "Admin");
+        autorizado = pbd.isPermiso(1, 1);
         if (autorizado) {
             showDialog(0);
             menuAdmin.add("Curso");
@@ -128,7 +126,7 @@ public class MenuActivity extends AppCompatActivity {
             });
 
         } else {
-            autorizado = pbd.isPermiso(username, "Alumno");
+            autorizado = pbd.isPermiso(2, 2);
             if (autorizado) {
                 showDialog(1);
                 menuAlumno.add("Curso");
@@ -172,7 +170,7 @@ public class MenuActivity extends AppCompatActivity {
                 });
                 recyclerView.setAdapter(mad);
             } else {
-                autorizado = pbd.isPermiso(username, "Profesor");
+                autorizado = pbd.isPermiso(3, 3);
                 if (autorizado) {
                     showDialog(2);
                     menuProfesor.add("Curso");
@@ -221,7 +219,7 @@ public class MenuActivity extends AppCompatActivity {
                     });
                     recyclerView.setAdapter(mpa);
                 } else {
-                    autorizado = pbd.isPermiso(username, "Usuario");
+                    autorizado = pbd.isPermiso(4, 4);
                     if (autorizado) {
                         showDialog(3);
                         menuUsuario.add("Videos");
