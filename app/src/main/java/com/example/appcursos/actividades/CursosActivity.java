@@ -87,6 +87,8 @@ public class CursosActivity extends AppCompatActivity {
         switch (itemSeleccionado) {// hacer algo
             case R.id.action_editar:
                 //showDialog(0);
+                Intent editar = new Intent(CursosActivity.this, EditarCursoActivity.class);
+                startActivity(editar);
                 return true;
             case R.id.action_eliminar:
                 showDialog(1);
