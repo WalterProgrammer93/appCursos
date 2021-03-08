@@ -3,8 +3,7 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;;
 import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.app.Dialog;
@@ -41,11 +40,12 @@ public class MenuActivity extends AppCompatActivity {
     UsuarioBD ubd;
     PermisoBD pbd;
     boolean autorizado;
+    int columnas = 3; // 3 columns
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.item_menu);
 
         ubd = new UsuarioBD(this);
         pbd = new PermisoBD(this);
@@ -65,8 +65,7 @@ public class MenuActivity extends AppCompatActivity {
             menuAdmin.add("Permisos");
             menuAdmin.add("Videos");
             menuAdmin.add("Audios");
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+            recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
             maa = new MenuAdminAdaptador(this, menuAdmin);
             recyclerView.setAdapter(maa);
             maa.setOnItemClickListener(new View.OnClickListener() {
@@ -135,8 +134,7 @@ public class MenuActivity extends AppCompatActivity {
                 menuAlumno.add("Asignaturas");
                 menuAlumno.add("Videos");
                 menuAlumno.add("Audios");
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+                recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
                 mad = new MenuAlumnoAdaptador(this, menuAlumno);
                 mad.setOnItemClickListener(new View.OnClickListener() {
                     @Override
@@ -180,8 +178,7 @@ public class MenuActivity extends AppCompatActivity {
                     menuProfesor.add("Profesores");
                     menuProfesor.add("Videos");
                     menuProfesor.add("Audios");
-                    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                    recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+                    recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
                     mpa = new MenuProfesorAdaptador(this, menuProfesor);
                     mpa.setOnItemClickListener(new View.OnClickListener() {
                         @Override
@@ -226,8 +223,7 @@ public class MenuActivity extends AppCompatActivity {
                         showDialog(3);
                         menuUsuario.add("Videos");
                         menuUsuario.add("Audios");
-                        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                        recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+                        recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
                         mua = new MenuUsuarioAdaptador(this, menuUsuario);
                         mua.setOnItemClickListener(new View.OnClickListener() {
                             @Override
