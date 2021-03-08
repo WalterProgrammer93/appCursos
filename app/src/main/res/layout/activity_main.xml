@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bordes_redondeados"
     android:id="@+id/layout_login"
     tools:context=".actividades.MainActivity">
 
@@ -51,6 +52,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/iv_logo"
                 tools:ignore="MissingConstraints"
                 android:layout_margin="10dp"
+                style="@style/ShapeAppearance.App.SmallComponent"
                 tools:layout_editor_absoluteX="-8dp" />
 
             <EditText
@@ -64,6 +66,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/et_email"
                 tools:ignore="MissingConstraints"
                 android:layout_margin="10dp"
+                style="@style/ShapeAppearance.App.SmallComponent"
                 tools:layout_editor_absoluteX="-8dp" />
 
             <Button
@@ -71,7 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/boton_redondeados"
+                style="?attr/materialButtonOutlinedStyle"
                 android:text="@string/entrar"
                 android:textColor="@color/icons"
                 app:layout_constraintTop_toBottomOf="@+id/et_password"
@@ -84,7 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginTop="84dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/boton_redondeados"
+                style="?attr/materialButtonOutlinedStyle"
                 android:text="@string/registrarse"
                 android:textColor="@color/icons"
                 app:layout_constraintTop_toBottomOf="@+id/btn_entrar"
