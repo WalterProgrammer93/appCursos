@@ -4,6 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bordes_redondeados"
     tools:context=".actividades.EditarCursoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_edit_nombreCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:hint="@string/nombreCurso"
+                android:layout_margin="10dp"
+                android:inputType="text"
+                android:textColor="@color/colorSecundaryText"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="-8dp" />
+
+            <EditText
+                android:id="@+id/et_edit_centroCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/centroCurso"
+                android:layout_margin="10dp"
+                android:inputType="text"
+                android:textColor="@color/colorSecundaryText"
+                app:layout_constraintTop_toBottomOf="@+id/et_nombreCurso"
+                tools:ignore="MissingConstraints,UnusedAttribute"
+                tools:layout_editor_absoluteX="-8dp"
+                android:autofillHints="no"/>
+
+            <RadioGroup
+                android:id="@+id/rg_edit_disponibilidad"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_centroCurso"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="203dp">
+
+                <RadioButton
+                    android:id="@+id/rb_edit_disponible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
+                    android:text="@string/disponible" />
+
+                <RadioButton
+                    android:id="@+id/rb_edit_nodisponible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryText"
+                    android:text="@string/noDisponible" />
+
+            </RadioGroup>
+
+            <Spinner
+                android:id="@+id/s_edit_numeroAlumnos"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintTop_toBottomOf="@+id/rg_disponibilidad"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="1dp" />
+
+            <CheckBox
+                android:id="@+id/cb_edit_modo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/online"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintTop_toBottomOf="@+id/s_numeroAlumnos"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="26dp" />
+
+            <CheckBox
+                android:id="@+id/cb_edit_modo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/presencial"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/cb_modo1"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="26dp" />
+
+            <CheckBox
+                android:id="@+id/cb_edit_modo3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/semipresencial"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintTop_toBottomOf="@+id/cb_modo2"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="26dp" />
+
+            <Button
+                android:id="@+id/edit_editarCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:textColor="@color/icons"
+                android:text="@string/editar"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/altaCurso"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <!--<Button
+                android:id="@+id/eliminarCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/icons"
+                android:text="@string/eliminar"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/editarCurso"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="25dp" />-->
+
+            <Button
+                android:id="@+id/edit_buscarCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:textColor="@color/icons"
+                android:text="@string/buscar"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/edit_editarCurso"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <Button
+                android:id="@+id/edit_cancelarCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:text="@string/cancelar"
+                android:textColor="@color/icons"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/edit_buscarCurso"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="540dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
