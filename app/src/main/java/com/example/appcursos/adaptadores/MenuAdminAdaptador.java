@@ -15,7 +15,6 @@ public class MenuAdminAdaptador extends RecyclerView.Adapter<MenuAdminAdaptador.
     private List<String> mData;
     private LayoutInflater mInflater;
     private View.OnClickListener escuchador;
-    //private MenuAdminAdaptador.ClickListener mClickListener;
 
     public MenuAdminAdaptador(Context context, List<String> data) {
         this.mInflater = LayoutInflater.from(context);
