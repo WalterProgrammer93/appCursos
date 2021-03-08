@@ -98,11 +98,12 @@ public class PermisosActivity extends AppCompatActivity {
         }
     }
 
-    protected Dialog onCreateDialog(int id) {
+    @Override
+    public Dialog onCreateDialog(int id) {
         Dialog dialogo = null;
         switch (id) {
             case 0:
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(R.string.titulo_editar)
                         .setMessage(R.string.msg_editar)
                         .setPositiveButton(R.string.lb_si,
@@ -126,7 +127,7 @@ public class PermisosActivity extends AppCompatActivity {
                 dialogo = builder.create();
                 break;
             case 1:
-                android.app.AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(R.string.titulo_eliminar)
                         .setMessage(R.string.msg_eliminar)
                         .setPositiveButton(R.string.lb_si,

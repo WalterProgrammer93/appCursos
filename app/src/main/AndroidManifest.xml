@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.appcursos">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -29,7 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
+        <activity android:name=".actividades.EliminarUsuarioActivity"></activity>
+        <activity android:name=".actividades.EliminarRolActivity" />
+        <activity android:name=".actividades.EliminarProfesorActivity" />
+        <activity android:name=".actividades.EliminarAlumnoActivity" />
+        <activity android:name=".actividades.EliminarAsignaturaActivity" />
+        <activity android:name=".actividades.EliminarCursoActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -131,6 +135,7 @@
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
