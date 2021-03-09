@@ -17,11 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.CursoBD;
 import com.example.appcursos.modelos.Curso;
-
 import java.util.ArrayList;
 
 public class EditarCursoActivity extends AppCompatActivity {

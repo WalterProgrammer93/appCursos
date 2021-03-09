@@ -83,16 +83,17 @@ public class AlumnosActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info =
-                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        final int itemSeleccionado = info.position;
-
-        switch (itemSeleccionado) {// hacer algo
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {// hacer algo
             case R.id.action_editar:
                 showDialog(0);
                 return true;
             case R.id.action_eliminar:
                 showDialog(1);
+                int cant = alumbd.eliminarAlumno((int) info.id);
+                if (cant == 1) {
+
+                }
                 return true;
             default:
                 return super.onContextItemSelected(item);

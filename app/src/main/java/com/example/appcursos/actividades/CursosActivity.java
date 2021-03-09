@@ -86,6 +86,9 @@ public class CursosActivity extends AppCompatActivity {
             case R.id.action_eliminar:
                 showDialog(1);
                 cbd.eliminarCurso((int) info.id);
+                Toast.makeText(getApplicationContext(), "Se borró el curso con dicho nombre",
+                            Toast.LENGTH_SHORT).show();
+
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -130,16 +133,8 @@ public class CursosActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
-                                        int cant = cbd.eliminarCurso(id);
-                                        if (cant == 1) {
-                                            Toast.makeText(getApplicationContext(), "Se borró el curso con dicho nombre",
-                                                    Toast.LENGTH_SHORT).show();
-                                            /*listaCursos.remove(id);
-                                            cursoAdaptador.notifyDataSetChanged();*/
-                                        } /*else {
-                                            Toast.makeText(getApplicationContext(), "No existe el curso",
-                                                    Toast.LENGTH_SHORT).show();
-                                        }*/
+                                        showDialog(2);
+                                        cursoAdaptador.notifyDataSetChanged();
                                     }
                                 })
                         .setNegativeButton(R.string.lb_no,
@@ -152,6 +147,18 @@ public class CursosActivity extends AppCompatActivity {
                                     }
                                 });
                 dialogo = builder2.create();
+                break;
+            case 2:
+                AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+                builder3.setMessage(R.string.msg_confirmEliminar)
+                        .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User cancelled the dialog
+                                    dialog.dismiss();
+                                }
+                        });
+                    // Create the AlertDialog object and return it
+                dialogo = builder3.create();
                 break;
             default:
                 return super.onCreateDialog(id);

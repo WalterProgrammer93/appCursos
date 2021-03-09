@@ -120,4 +120,5 @@
     <string name="lb_editarAlumno">Editar Alumno</string>
     <string name="lb_editarAsignatura">Editar Asignatura</string>
     <string name="lb_editarCursor">Editar Curso</string>
+    <string name="msg_confirmEliminar">El curso se ha eliminado correctamente</string>
 </resources>

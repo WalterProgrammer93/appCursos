@@ -1,7 +1,6 @@
 package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -12,15 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.example.appcursos.R;
-//import java.io.IOException;
 
 public class AudiosActivity extends AppCompatActivity {
 
-    MediaPlayer mp1, mp2, mp3, mp4, mp5;
+    MediaPlayer mp1, mp2, mp3;
     Button btnPlay1, btnPause1, btnStop1;
     Button btnPlay2, btnPause2, btnStop2;
-    Button btnPlay3, btnPause3, btnStop3;
-    Button btnPlay4, btnPause4, btnStop4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,52 +69,6 @@ public class AudiosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mp3.stop();
-            }
-        });
-
-        mp4 = MediaPlayer.create(this, R.raw.audio4);
-        btnPlay3 = findViewById(R.id.buttonPlay3);
-        btnPlay3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mp4.start();
-            }
-        });
-        btnPause3 = findViewById(R.id.buttonPause3);
-        btnPause3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mp4.pause();
-            }
-        });
-        btnStop3 = findViewById(R.id.buttonStop3);
-        btnStop3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mp4.stop();
-            }
-        });
-
-        mp5 = MediaPlayer.create(this, R.raw.audio5);
-        btnPlay4 = findViewById(R.id.buttonPlay4);
-        btnPlay4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mp5.start();
-            }
-        });
-        btnPause4 = findViewById(R.id.buttonPause4);
-        btnPause4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mp5.pause();
-            }
-        });
-        btnStop4 = findViewById(R.id.buttonStop4);
-        btnStop4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mp5.stop();
             }
         });
 

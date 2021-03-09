@@ -74,9 +74,9 @@ public class AlumnoBD {
         return res;
     }
 
-    public int eliminarAlumno(String nombreAlumno) {
+    public int eliminarAlumno(int id) {
         bd = abd.getReadableDatabase();
-        int res = bd.delete(TABLA_ALUMNOS, COL_NOMBRE_ALUMNO + "=" + nombreAlumno, null);
+        int res = bd.delete(TABLA_ALUMNOS, COL_ALUMNO_ID + "=" + id, null);
         bd.close();
         return res;
     }
