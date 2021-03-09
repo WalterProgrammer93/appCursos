@@ -20,6 +20,7 @@ public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHo
         this.listaAlumnos = listaAlumnos;
     }
 
+
     @NonNull
     @Override
     public AlumnoAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

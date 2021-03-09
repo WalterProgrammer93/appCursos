@@ -126,8 +126,19 @@ public class CursosActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
+                                        //cbd = new CursoBD(getApplicationContext());
+                                        int cant = cbd.eliminarCurso(id);
+                                        if (cant == 1) {
+                                            Toast.makeText(getApplicationContext(), "Se borró el curso con dicho nombre",
+                                                    Toast.LENGTH_SHORT).show();
+                                            listaCursos.remove(id);
+                                            cursoAdaptador.notifyDataSetChanged();
+                                        } /*else {
+                                            Toast.makeText(getApplicationContext(), "No existe el curso",
+                                                    Toast.LENGTH_SHORT).show();
+                                        }*/
                                     }
                                 })
                         .setNegativeButton(R.string.lb_no,

@@ -2,8 +2,6 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-//import androidx.recyclerview.widget.DividerItemDecoration;
-//import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
@@ -16,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AlumnoAdaptador;
@@ -84,8 +83,11 @@ public class AlumnosActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        final int itemSeleccionado = info.position;
 
-        switch (item.getItemId()) {// hacer algo
+        switch (itemSeleccionado) {// hacer algo
             case R.id.action_editar:
                 showDialog(0);
                 return true;
