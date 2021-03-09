@@ -48,9 +48,9 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
         s_curso.setAdapter(arrayAdapter);
 
         b_altaAsignatura = findViewById(R.id.altaAsignatura);
-        b_editarAsignatura = findViewById(R.id.editarAsignatura);
+        /*b_editarAsignatura = findViewById(R.id.editarAsignatura);
         b_eliminarAsignatura = findViewById(R.id.eliminarAsignatura);
-        b_buscarAsignatura = findViewById(R.id.buscarAsignatura);
+        b_buscarAsignatura = findViewById(R.id.buscarAsignatura);*/
         b_cancelarAsignatura = findViewById(R.id.cancelarAsignatura);
 
         b_altaAsignatura.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
             }
         });
 
-        b_editarAsignatura.setOnClickListener(new View.OnClickListener() {
+        /*b_editarAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombreAsig = et_nombreAsignatura.getText().toString();
@@ -130,7 +130,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         b_cancelarAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override

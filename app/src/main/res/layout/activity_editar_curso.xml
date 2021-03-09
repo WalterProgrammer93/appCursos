@@ -37,7 +37,7 @@
                 android:layout_margin="10dp"
                 android:inputType="text"
                 android:textColor="@color/colorSecundaryText"
-                app:layout_constraintTop_toBottomOf="@+id/et_nombreCurso"
+                app:layout_constraintTop_toBottomOf="@+id/et_edit_nombreCurso"
                 tools:ignore="MissingConstraints,UnusedAttribute"
                 tools:layout_editor_absoluteX="-8dp"
                 android:autofillHints="no"/>
@@ -48,7 +48,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/et_centroCurso"
+                app:layout_constraintTop_toBottomOf="@+id/et_edit_centroCurso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="203dp">
 
@@ -75,7 +75,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
                 android:textColor="@color/colorPrimaryText"
-                app:layout_constraintTop_toBottomOf="@+id/rg_disponibilidad"
+                app:layout_constraintTop_toBottomOf="@+id/rg_edit_disponibilidad"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="1dp" />
 
@@ -87,7 +87,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
                 android:textColor="@color/colorPrimaryText"
-                app:layout_constraintTop_toBottomOf="@+id/s_numeroAlumnos"
+                app:layout_constraintTop_toBottomOf="@+id/s_edit_numeroAlumnos"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="26dp" />
 
@@ -114,7 +114,7 @@
                 tools:layout_editor_absoluteX="26dp" />
 
             <Button
-                android:id="@+id/edit_editarCurso"
+                android:id="@+id/btn_edit_editarCurso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boton_redondeados"
@@ -122,25 +122,12 @@
                 android:text="@string/editar"
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/altaCurso"
+                app:layout_constraintTop_toBottomOf="@+id/cb_edit_modo3"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="25dp" />
 
-            <!--<Button
-                android:id="@+id/eliminarCurso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/icons"
-                android:text="@string/eliminar"
-                android:layout_marginTop="20dp"
-                android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/editarCurso"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="25dp" />-->
-
             <Button
-                android:id="@+id/edit_buscarCurso"
+                android:id="@+id/btn_edit_buscarCurso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boton_redondeados"
@@ -148,12 +135,12 @@
                 android:text="@string/buscar"
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/edit_editarCurso"
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_editarCurso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="25dp" />
 
             <Button
-                android:id="@+id/edit_cancelarCurso"
+                android:id="@+id/btn_edit_cancelarCurso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boton_redondeados"
@@ -161,7 +148,7 @@
                 android:textColor="@color/icons"
                 android:layout_marginTop="20dp"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/edit_buscarCurso"
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_buscarCurso"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="540dp" />
         </LinearLayout>

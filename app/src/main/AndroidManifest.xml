@@ -28,12 +28,6 @@
         android:supportsRtl="true"
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".actividades.EliminarUsuarioActivity"></activity>
-        <activity android:name=".actividades.EliminarRolActivity" />
-        <activity android:name=".actividades.EliminarProfesorActivity" />
-        <activity android:name=".actividades.EliminarAlumnoActivity" />
-        <activity android:name=".actividades.EliminarAsignaturaActivity" />
-        <activity android:name=".actividades.EliminarCursoActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

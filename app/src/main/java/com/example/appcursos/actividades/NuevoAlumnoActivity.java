@@ -48,9 +48,9 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
         s_asignaturas.setAdapter(arrayAdapter);
 
         altaAlumno = findViewById(R.id.altaAlumno);
-        editarAlumno = findViewById(R.id.editarAlumno);
+        /*editarAlumno = findViewById(R.id.editarAlumno);
         eliminarAlumno = findViewById(R.id.eliminarAlumno);
-        buscarAlumno = findViewById(R.id.buscarAlumno);
+        buscarAlumno = findViewById(R.id.buscarAlumno);*/
         cancelarAlumno = findViewById(R.id.cancelarAlumno);
 
         altaAlumno.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
             }
         });
 
-        editarAlumno.setOnClickListener(new View.OnClickListener() {
+        /*editarAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombreAlum = et_nombreAlumno.getText().toString();
@@ -134,7 +134,7 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         cancelarAlumno.setOnClickListener(new View.OnClickListener() {
             @Override

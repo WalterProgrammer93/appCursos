@@ -4,6 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bordes_redondeados"
     tools:context=".actividades.EditarAsignaturaActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_edit_nombreAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:hint="@string/nombreAsignatura"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorSecundaryText"
+                android:inputType="text"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="-8dp" />
+
+            <EditText
+                android:id="@+id/et_edit_descripcionAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/descripcionAsignatura"
+                android:layout_margin="10dp"
+                android:importantForAutofill="no"
+                android:textColor="@color/colorSecundaryText"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@+id/et_edit_nombreAsignatura"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="-8dp" />
+
+            <Spinner
+                android:id="@+id/spinner_edit_cursoAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/seleccionar_curso"
+                android:textColor="@color/colorSecundaryText"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_edit_descripcionAsignatura"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="1dp" />
+
+            <Button
+                android:id="@+id/btn_edit_editarAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:textColor="@color/icons"
+                android:text="@string/editar"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_edit_cursoAsignatura"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <Button
+                android:id="@+id/btn_edit_buscarAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:textColor="@color/icons"
+                android:text="@string/buscar"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_editarAsignatura"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <Button
+                android:id="@+id/btn_edit_cancelarAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:text="@string/cancelar"
+                android:textColor="@color/icons"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_buscarAsignatura"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="540dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

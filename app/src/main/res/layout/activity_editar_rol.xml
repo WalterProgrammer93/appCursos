@@ -4,6 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bordes_redondeados"
     tools:context=".actividades.EditarRolActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_edit_nombreRol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/nombreRol"
+                android:textColor="@color/colorSecundaryText"
+                tools:ignore="LabelFor,MissingConstraints"
+                android:importantForAutofill="no" />
+
+            <EditText
+                android:id="@+id/et_edit_descripcionRol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="@string/descripcionRol"
+                android:textColor="@color/colorSecundaryText"
+                app:layout_constraintTop_toBottomOf="@+id/et_edit_nombreRol"
+                tools:ignore="LabelFor,MissingConstraints"
+                tools:layout_editor_absoluteX="16dp"
+                android:importantForAutofill="no" />
+
+            <Button
+                android:id="@+id/btn_edit_editarRol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:textColor="@color/icons"
+                android:text="@string/editar"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_edit_descripcionRol"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <Button
+                android:id="@+id/btn_edit_buscarRol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:textColor="@color/icons"
+                android:text="@string/buscar"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_editarRol"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="25dp" />
+
+            <Button
+                android:id="@+id/btn_edit_cancelarRol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_redondeados"
+                android:text="@string/cancelar"
+                android:textColor="@color/icons"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_cancelarRol"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="540dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,9 +59,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
         cb_modo2 = findViewById(R.id.cb_modo2);
         cb_modo3 = findViewById(R.id.cb_modo3);
         altaCurso = findViewById(R.id.altaCurso);
-        editarCurso = findViewById(R.id.editarCurso);
-        eliminarCurso = findViewById(R.id.eliminarCurso);
-        buscarCurso = findViewById(R.id.buscarCurso);
+        //eliminarCurso = findViewById(R.id.eliminarCurso);
         cancelarCurso = findViewById(R.id.cancelarCurso);
         altaCurso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,50 +114,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
             }
         });
 
-        editarCurso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombreCurso = et_nombreCurso.getText().toString();
-                String centroCurso = et_centroCurso.getText().toString();
-                String disponible = rb_disponible.getText().toString();
-                String noDisponible = rb_nodisponible.getText().toString();
-                String numeroAlumnos = s_numeroAlumnos.getSelectedItem().toString();
-                String modo1 = cb_modo1.getText().toString();
-                String modo2 = cb_modo2.getText().toString();
-                String modo3 = cb_modo3.getText().toString();
-                listaDisponibilidad = new ArrayList<>();
-                if (rb_disponible.isChecked()) {
-                    listaDisponibilidad.add(disponible);
-                } else {
-                    if (rb_nodisponible.isChecked()) {
-                        listaDisponibilidad.add(noDisponible);
-                    }
-                }
-                listaModo = new ArrayList<>();
-                if (cb_modo1.isChecked()) {
-                    listaModo.add(modo1);
-                }
-                if (cb_modo2.isChecked()) {
-                    listaModo.add(modo2);
-                }
-                if (cb_modo3.isChecked()) {
-                    listaModo.add(modo3);
-                }
-                Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
-                int cant = cbd.editarCurso(nombreCurso, curso);
-                if (cant == 1) {
-                    Toast.makeText(getApplicationContext(), "se modificaron los datos del curso", Toast.LENGTH_SHORT)
-                            .show();
-                    Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe el curso",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        eliminarCurso.setOnClickListener(new View.OnClickListener() {
+        /*eliminarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombreCurso = et_nombreCurso.getText().toString();
@@ -174,33 +129,12 @@ public class NuevoCursoActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
-
-        buscarCurso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombreCurso = et_nombreCurso.getText().toString();
-                Cursor fila = (Cursor) cbd.buscarCurso(nombreCurso);
-                if (fila.moveToFirst()) {
-                    et_centroCurso.setText(fila.getString(2));
-                    rg_disponibilidad.check(Integer.parseInt(fila.getString(3)));
-                    s_numeroAlumnos.setSelected(Boolean.parseBoolean(fila.getString(4)));
-                    cb_modo1.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    cb_modo2.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    cb_modo3.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    /*Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                    startActivity(i);*/
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe el curso",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        });*/
 
         cancelarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(NuevoCursoActivity.this, MenuActivity.class);
+                Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
                 startActivity(i);
             }
         });
