@@ -79,12 +79,12 @@ public class CursosActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        switch (item.getItemId()) {// hacer algo
+        switch (item.getItemId()) {
             case R.id.action_editar:
                 showDialog(0);
                 return true;
             case R.id.action_eliminar:
-                cbd.eliminarCurso((int) info.id);
+                cbd.eliminarCurso(info.position);
                 showDialog(1);
                 return true;
             default:
