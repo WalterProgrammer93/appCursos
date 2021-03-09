@@ -50,19 +50,19 @@ public class RolBD {
         bd.close();
     }
 
-    public int editarRol(String nombreRol, Rol rol) {
+    public int editarRol(int id, Rol rol) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ROL, rol.getNombreRol());
         registro.put(COL_DESCRIPCION_ROL, rol.getDescripcionRol());
-        int res = bd.update(TABLA_ROLES, registro, COL_NOMBRE_ROL + "=" + nombreRol,null);
+        int res = bd.update(TABLA_ROLES, registro, COL_ROL_ID + "=" + id,null);
         bd.close();
         return res;
     }
 
-    public int eliminarRol(String nombreRol) {
+    public int eliminarRol(int id) {
         bd = abd.getReadableDatabase();
-        int res = bd.delete(TABLA_ROLES, COL_NOMBRE_ROL + "=" + nombreRol, null);
+        int res = bd.delete(TABLA_ROLES, COL_ROL_ID + "=" + id, null);
         bd.close();
         return res;
     }

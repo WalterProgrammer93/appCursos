@@ -61,7 +61,7 @@ public class ProfesorBD {
         bd.close();
     }
 
-    public int editarProfesor(String nombreProfesor, Profesor profesor) {
+    public int editarProfesor(int id, Profesor profesor) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_PROFESOR, profesor.getNombreProfesor());
@@ -69,14 +69,14 @@ public class ProfesorBD {
         registro.put(COL_DEPARTAMENTO, profesor.getDepartamento());
         registro.put(COL_TELEFONO_PROFESOR, profesor.getTelefonoProfesor());
         registro.put(COL_ASIGNATURA_ID, profesor.getAsignatura());
-        int res = bd.update(TABLA_PROFESORES, registro, COL_NOMBRE_PROFESOR + "=" + nombreProfesor,null);
+        int res = bd.update(TABLA_PROFESORES, registro, COL_PROFESOR_ID + "=" + id,null);
         bd.close();
         return res;
     }
 
-    public int eliminarProfesor(String nombreProf) {
+    public int eliminarProfesor(int id) {
         bd = abd.getReadableDatabase();
-        int res = bd.delete(TABLA_PROFESORES, COL_NOMBRE_PROFESOR + "=" + nombreProf, null);
+        int res = bd.delete(TABLA_PROFESORES, COL_PROFESOR_ID + "=" + id, null);
         bd.close();
         return res;
     }

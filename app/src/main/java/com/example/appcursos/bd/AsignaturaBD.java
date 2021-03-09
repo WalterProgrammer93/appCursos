@@ -67,9 +67,9 @@ public class AsignaturaBD {
         return res;
     }
 
-    public int eliminarAsignatura(String nombre) {
+    public int eliminarAsignatura(int id) {
         bd = abd.getReadableDatabase();
-        int res = bd.delete(TABLA_ASIGNATURAS, COL_NOMBRE_ASIGNATURA + "=" + nombre, null);
+        int res = bd.delete(TABLA_ASIGNATURAS, COL_ASIGNATURA_ID + "=" + id, null);
         bd.close();
         return res;
     }

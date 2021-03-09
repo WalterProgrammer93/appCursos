@@ -59,7 +59,7 @@ public class CursoBD {
         bd.close();
     }
 
-    public int editarCurso(String nombre, Curso curso) {
+    public int editarCurso(int id, Curso curso) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_CURSO, curso.getNombreCurso());
@@ -67,7 +67,7 @@ public class CursoBD {
         registro.put(COL_DISPONIBILIDAD, curso.getDisponibilidad());
         registro.put(COL_NUM_ALUMNOS, curso.getNumeroAlumnos());
         registro.put(COL_MODOS, curso.getModos());
-        int res = bd.update(TABLA_CURSOS, registro, COL_NOMBRE_CURSO + "=" + nombre,null);
+        int res = bd.update(TABLA_CURSOS, registro, COL_CURSO_ID + "=" + id,null);
         bd.close();
         return res;
     }

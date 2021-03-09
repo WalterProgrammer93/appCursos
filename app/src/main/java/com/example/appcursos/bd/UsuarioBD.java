@@ -48,20 +48,20 @@ public class UsuarioBD {
         bd.insert(TABLA_USUARIOS, null, registro);
         bd.close();
     }
-    public int editarUsuario(String username, Usuario usuario) {
+    public int editarUsuario(int id, Usuario usuario) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_NAME, usuario.getUsername());
         registro.put(COL_USUARIO_EMAIL, usuario.getEmail());
         registro.put(COL_USUARIO_PASSWORD, usuario.getPassword());
-        int res = bd.update(TABLA_USUARIOS, registro, COL_USUARIO_NAME + "=" + username,null);
+        int res = bd.update(TABLA_USUARIOS, registro, COL_USUARIO_ID + "=" + id,null);
         bd.close();
         return res;
     }
 
-    public int eliminarUsuario(String username) {
+    public int eliminarUsuario(int id) {
         bd = abd.getReadableDatabase();
-        int res = bd.delete(TABLA_USUARIOS, COL_USUARIO_NAME + "=" + username, null);
+        int res = bd.delete(TABLA_USUARIOS, COL_USUARIO_ID + "=" + id, null);
         bd.close();
         return res;
     }

@@ -48,19 +48,19 @@ public class PermisoBD {
         bd.close();
     }
 
-    public int editarPermiso(String usuarioId, Permiso permiso) {
+    public int editarPermiso(int id, Permiso permiso) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_USUARIO_ID, permiso.getUsuario());
         registro.put(COL_ROL_ID, permiso.getRol());
-        int res = bd.update(TABLA_PERMISOS, registro, COL_USUARIO_ID + "=" + usuarioId,null);
+        int res = bd.update(TABLA_PERMISOS, registro, COL_PERMISO_ID + "=" + id,null);
         bd.close();
         return res;
     }
 
-    public int eliminarPermiso(String usuarioId) {
+    public int eliminarPermiso(int id) {
         bd = abd.getReadableDatabase();
-        int res = bd.delete(TABLA_PERMISOS, COL_USUARIO_ID + "=" + usuarioId, null);
+        int res = bd.delete(TABLA_PERMISOS, COL_PERMISO_ID + "=" + id, null);
         bd.close();
         return res;
     }
