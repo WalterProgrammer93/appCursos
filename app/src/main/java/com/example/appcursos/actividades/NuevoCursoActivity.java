@@ -2,7 +2,6 @@ package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,7 +27,7 @@ public class NuevoCursoActivity extends AppCompatActivity {
     RadioButton rb_disponible, rb_nodisponible;
     Spinner s_numeroAlumnos;
     CheckBox cb_modo1, cb_modo2, cb_modo3;
-    Button altaCurso, editarCurso, eliminarCurso, buscarCurso, cancelarCurso;
+    Button altaCurso, cancelarCurso;
     ArrayAdapter<String> spinner_adapter;
     ArrayList<String> numAlumnos;
     ArrayList<String> listaDisponibilidad, listaModo;
@@ -59,7 +58,6 @@ public class NuevoCursoActivity extends AppCompatActivity {
         cb_modo2 = findViewById(R.id.cb_modo2);
         cb_modo3 = findViewById(R.id.cb_modo3);
         altaCurso = findViewById(R.id.altaCurso);
-        //eliminarCurso = findViewById(R.id.eliminarCurso);
         cancelarCurso = findViewById(R.id.cancelarCurso);
         altaCurso.setOnClickListener(new View.OnClickListener() {
             @Override

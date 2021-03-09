@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-//import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.appcursos.R;
@@ -78,9 +77,6 @@ public class CursosActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        /*AdapterView.AdapterContextMenuInfo info =
-                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        final int itemSeleccionado = info.position;*/
 
         switch (item.getItemId()) {// hacer algo
             case R.id.action_editar:
@@ -132,8 +128,6 @@ public class CursosActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         // Qué hacer si el usuario pulsa "Si"
-                                        Intent eliminar = new Intent(getApplicationContext(), EliminarCursoActivity.class);
-                                        startActivity(eliminar);
                                     }
                                 })
                         .setNegativeButton(R.string.lb_no,

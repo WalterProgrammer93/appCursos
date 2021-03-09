@@ -1,9 +1,7 @@
 package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.appcursos.R;
 import com.example.appcursos.bd.RolBD;
 import com.example.appcursos.modelos.Rol;
@@ -20,7 +17,7 @@ import com.example.appcursos.modelos.Rol;
 public class NuevoRolActivity extends AppCompatActivity {
 
     EditText et_nombreRol, et_descripRol;
-    Button b_altaRol, b_editarRol, b_eliminarRol, b_buscarRol, b_cancelar;
+    Button b_altaRol, b_cancelar;
     RolBD rbd;
 
     @Override
@@ -32,9 +29,9 @@ public class NuevoRolActivity extends AppCompatActivity {
         et_nombreRol = findViewById(R.id.et_nombreRol);
         et_descripRol = findViewById(R.id.et_descripcionRol);
         b_altaRol = findViewById(R.id.altaRol);
-        b_editarRol = findViewById(R.id.editarRol);
+        /*b_editarRol = findViewById(R.id.editarRol);
         b_eliminarRol = findViewById(R.id.eliminarRol);
-        b_buscarRol = findViewById(R.id.buscarRol);
+        b_buscarRol = findViewById(R.id.buscarRol);*/
         b_cancelar = findViewById(R.id.cancelarRol);
 
         b_altaRol.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +57,7 @@ public class NuevoRolActivity extends AppCompatActivity {
             }
         });
 
-        b_editarRol.setOnClickListener(new View.OnClickListener() {
+        /*b_editarRol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombreRol = et_nombreRol.getText().toString();
@@ -110,7 +107,7 @@ public class NuevoRolActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         b_cancelar.setOnClickListener(new View.OnClickListener() {
             @Override

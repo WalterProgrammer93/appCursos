@@ -3,7 +3,6 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,7 +17,6 @@ import com.example.appcursos.R;
 import com.example.appcursos.bd.AsignaturaBD;
 import com.example.appcursos.modelos.Asignatura;
 import com.example.appcursos.modelos.Curso;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
 
     EditText et_nombreAsignatura, et_descripcionAsignatura;
     Spinner s_curso;
-    Button b_altaAsignatura, b_editarAsignatura, b_eliminarAsignatura, b_buscarAsignatura, b_cancelarAsignatura;
+    Button b_altaAsignatura, b_cancelarAsignatura;
     List<Curso> load_cursos;
     ArrayAdapter<Curso> arrayAdapter;
     AsignaturaBD asbd;
@@ -49,7 +47,6 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
 
         b_altaAsignatura = findViewById(R.id.altaAsignatura);
         /*b_editarAsignatura = findViewById(R.id.editarAsignatura);
-        b_eliminarAsignatura = findViewById(R.id.eliminarAsignatura);
         b_buscarAsignatura = findViewById(R.id.buscarAsignatura);*/
         b_cancelarAsignatura = findViewById(R.id.cancelarAsignatura);
 
@@ -89,23 +86,6 @@ public class NuevoAsignaturaActivity extends AppCompatActivity {
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "se modificaron los datos de la asignatura", Toast.LENGTH_SHORT)
                             .show();
-                    Intent intent = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe la asignatura",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        b_eliminarAsignatura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombreAsig = et_nombreAsignatura.getText().toString();
-                int cant = asbd.eliminarAsignatura(nombreAsig);
-                if (cant == 1) {
-                    Toast.makeText(getApplicationContext(), "Se borró la asignatura correctamente",
-                            Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(NuevoAsignaturaActivity.this, AsignaturasActivity.class);
                     startActivity(intent);
                 } else {

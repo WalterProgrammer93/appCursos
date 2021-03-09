@@ -3,7 +3,6 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +31,7 @@ public class NuevoProfesorActivity extends AppCompatActivity {
             rb_musica, rb_biologiaGeologia, rb_historiaGeografia;
     Spinner s_asignaturas;
     ArrayList<String> listaDepartamentos;
-    Button b_altaProf, b_editarProf, b_eliminarProf, b_buscarProf, b_cancelar;
+    Button b_altaProf, b_cancelar;
     List<Asignatura> load_asignaturas;
     ArrayAdapter<Asignatura> arrayAdapter;
     ProfesorBD probd;
@@ -64,9 +63,9 @@ public class NuevoProfesorActivity extends AppCompatActivity {
         s_asignaturas.setAdapter(arrayAdapter);
 
         b_altaProf = findViewById(R.id.altaProfesor);
-        b_editarProf = findViewById(R.id.editarProfesor);
+        /*b_editarProf = findViewById(R.id.editarProfesor);
         b_eliminarProf = findViewById(R.id.eliminarProfesor);
-        b_buscarProf = findViewById(R.id.buscarProfesor);
+        b_buscarProf = findViewById(R.id.buscarProfesor);*/
         b_cancelar = findViewById(R.id.cancelarProfesor);
 
         b_altaProf.setOnClickListener(new View.OnClickListener() {
@@ -120,15 +119,6 @@ public class NuevoProfesorActivity extends AppCompatActivity {
                         }
                     }
                 }
-                /*listaDepartamentos.add(departamento1);
-                listaDepartamentos.add(departamento2);
-                listaDepartamentos.add(departamento3);
-                listaDepartamentos.add(departamento4);
-                listaDepartamentos.add(departamento5);
-                listaDepartamentos.add(departamento6);
-                listaDepartamentos.add(departamento7);
-                listaDepartamentos.add(departamento8);
-                listaDepartamentos.add(departamento9);*/
                 String telefonoProf = et_telfProf.getText().toString();
                 String asignaturaId = s_asignaturas.getSelectedItem().toString();
                 Profesor profesor = new Profesor(nombreProf, apellProf, listaDepartamentos, telefonoProf, asignaturaId);
@@ -159,7 +149,7 @@ public class NuevoProfesorActivity extends AppCompatActivity {
             }
         });
 
-        b_editarProf.setOnClickListener(new View.OnClickListener() {
+        /*b_editarProf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombreProf = et_nombreProf.getText().toString();
@@ -241,7 +231,7 @@ public class NuevoProfesorActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
         b_cancelar.setOnClickListener(new View.OnClickListener() {
             @Override

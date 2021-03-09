@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AlumnoAdaptador;
@@ -85,11 +84,8 @@ public class AlumnosActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info =
-                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        final int itemSeleccionado = info.position;
 
-        switch (itemSeleccionado) {// hacer algo
+        switch (item.getItemId()) {// hacer algo
             case R.id.action_editar:
                 showDialog(0);
                 return true;
@@ -102,8 +98,8 @@ public class AlumnosActivity extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        Dialog dialogo = null;
+    public Dialog onCreateDialog(int id) {
+        Dialog dialogo;
         switch (id) {
             case 0:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

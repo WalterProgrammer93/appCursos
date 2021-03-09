@@ -18,7 +18,6 @@ import com.example.appcursos.bd.PermisoBD;
 import com.example.appcursos.modelos.Permiso;
 import com.example.appcursos.modelos.Rol;
 import com.example.appcursos.modelos.Usuario;
-
 import java.util.ArrayList;
 import java.util.List;
 

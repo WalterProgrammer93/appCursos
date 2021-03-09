@@ -2,7 +2,6 @@ package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,7 +16,6 @@ import com.example.appcursos.R;
 import com.example.appcursos.bd.AlumnoBD;
 import com.example.appcursos.modelos.Alumno;
 import com.example.appcursos.modelos.Asignatura;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
 
     EditText et_nombreAlumno, et_apellidosAlumno, et_dniAlumno, et_telefonoAlumno;
     Spinner s_asignaturas;
-    Button altaAlumno, editarAlumno, eliminarAlumno, buscarAlumno, cancelarAlumno;
+    Button altaAlumno, cancelarAlumno;
     List<Asignatura> load_asignaturas;
     ArrayAdapter<Asignatura> arrayAdapter;
     AlumnoBD alumbd;
@@ -49,7 +47,6 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
 
         altaAlumno = findViewById(R.id.altaAlumno);
         /*editarAlumno = findViewById(R.id.editarAlumno);
-        eliminarAlumno = findViewById(R.id.eliminarAlumno);
         buscarAlumno = findViewById(R.id.buscarAlumno);*/
         cancelarAlumno = findViewById(R.id.cancelarAlumno);
 
