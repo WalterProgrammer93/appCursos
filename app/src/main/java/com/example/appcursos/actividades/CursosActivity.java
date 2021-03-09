@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.appcursos.R;
@@ -77,13 +78,14 @@ public class CursosActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {// hacer algo
             case R.id.action_editar:
                 showDialog(0);
                 return true;
             case R.id.action_eliminar:
                 showDialog(1);
+                cbd.eliminarCurso((int) info.id);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -128,13 +130,12 @@ public class CursosActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
-                                        //cbd = new CursoBD(getApplicationContext());
                                         int cant = cbd.eliminarCurso(id);
                                         if (cant == 1) {
                                             Toast.makeText(getApplicationContext(), "Se borró el curso con dicho nombre",
                                                     Toast.LENGTH_SHORT).show();
-                                            listaCursos.remove(id);
-                                            cursoAdaptador.notifyDataSetChanged();
+                                            /*listaCursos.remove(id);
+                                            cursoAdaptador.notifyDataSetChanged();*/
                                         } /*else {
                                             Toast.makeText(getApplicationContext(), "No existe el curso",
                                                     Toast.LENGTH_SHORT).show();
