@@ -90,8 +90,8 @@ public class EditarCursoActivity extends AppCompatActivity {
                 if (cb_edit_modo3.isChecked()) {
                     listaModo.add(modo3);
                 }
-                Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
-                int cant = cbd.editarCurso(nombreCurso, curso);
+                //Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
+                /*int cant = cbd.editarCurso(nombreCurso, curso);
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "se modificaron los datos del curso", Toast.LENGTH_SHORT)
                             .show();
@@ -100,7 +100,7 @@ public class EditarCursoActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el curso",
                             Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
         btn_edit_buscarCurso = findViewById(R.id.btn_edit_buscarCurso);

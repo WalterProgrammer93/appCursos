@@ -84,11 +84,8 @@ public class CursosActivity extends AppCompatActivity {
                 showDialog(0);
                 return true;
             case R.id.action_eliminar:
-                showDialog(1);
                 cbd.eliminarCurso((int) info.id);
-                Toast.makeText(getApplicationContext(), "Se borró el curso con dicho nombre",
-                            Toast.LENGTH_SHORT).show();
-
+                showDialog(1);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -103,6 +100,7 @@ public class CursosActivity extends AppCompatActivity {
             case 0:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(R.string.titulo_editar)
+                        .setIcon(R.drawable.ic_warning_black_24dp)
                         .setMessage(R.string.msg_editar)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
@@ -127,6 +125,7 @@ public class CursosActivity extends AppCompatActivity {
             case 1:
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(R.string.titulo_eliminar)
+                        .setIcon(R.drawable.ic_info_black_24dp)
                         .setMessage(R.string.msg_eliminar)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
@@ -134,7 +133,7 @@ public class CursosActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
                                         showDialog(2);
-                                        cursoAdaptador.notifyDataSetChanged();
+                                        //cursoAdaptador.notifyDataSetChanged();
                                     }
                                 })
                         .setNegativeButton(R.string.lb_no,
@@ -150,7 +149,9 @@ public class CursosActivity extends AppCompatActivity {
                 break;
             case 2:
                 AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
-                builder3.setMessage(R.string.msg_confirmEliminar)
+                builder3.setTitle(R.string.title_confirmar)
+                        .setIcon(R.drawable.ic_done_black_24dp)
+                        .setMessage(R.string.msg_confirmEliminar)
                         .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // User cancelled the dialog

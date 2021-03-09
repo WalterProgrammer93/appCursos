@@ -76,7 +76,7 @@ public class NuevoPermisoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String alumnoId = spin_alumno.getSelectedItem().toString();
                 String rolId = spin_rol.getSelectedItem().toString();
-                Permiso permiso = new Permiso(alumnoId, rolId);
+                /*Permiso permiso = new Permiso(alumnoId, rolId);
                 int cant = pbd.editarPermiso(alumnoId, permiso);
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "Se modificaron los datos del permiso", Toast.LENGTH_SHORT)
@@ -86,13 +86,13 @@ public class NuevoPermisoActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el permiso",
                             Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
         eliminarPermiso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String usuarioId = spin_alumno.getSelectedItem().toString();
+                /*String usuarioId = spin_alumno.getSelectedItem().toString();
                 int cant = pbd.eliminarPermiso(usuarioId);
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "Se borró el permiso",
@@ -102,7 +102,7 @@ public class NuevoPermisoActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el permiso",
                             Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
         buscarPermiso.setOnClickListener(new View.OnClickListener() {
