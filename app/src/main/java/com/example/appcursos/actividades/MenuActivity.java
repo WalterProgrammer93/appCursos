@@ -295,7 +295,10 @@ public class MenuActivity extends AppCompatActivity {
 
     private void mapa() {
         Intent mapa = new Intent(MenuActivity.this, MapaActivity.class);
-        startActivity(mapa);
+        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (mapa.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapa);
+        }
     }
 
     public void llamar() {
