@@ -79,18 +79,21 @@ public class CursosActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int seleccionado = (int) info.id;
+
         switch (item.getItemId()) {
             case R.id.action_editar:
                 showDialog(0);
-                return true;
+                break;
             case R.id.action_eliminar:
-                cbd.eliminarCurso(info.position);
+                cbd.eliminarCurso(seleccionado);
+                listaCursos.remove(info.position);
                 showDialog(1);
-                return true;
+                break;
             default:
                 return super.onContextItemSelected(item);
-
         }
+        return true;
     }
 
     @Override
@@ -132,8 +135,9 @@ public class CursosActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
+
                                         showDialog(2);
-                                        //cursoAdaptador.notifyDataSetChanged();
+                                        cursoAdaptador.notifyDataSetChanged();
                                     }
                                 })
                         .setNegativeButton(R.string.lb_no,

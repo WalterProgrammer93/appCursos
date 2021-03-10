@@ -72,11 +72,10 @@ public class CursoBD {
         return res;
     }
 
-    public int eliminarCurso(int id) {
+    public void eliminarCurso(int id) {
         bd = abd.getWritableDatabase();
-        int res = bd.delete(TABLA_CURSOS, COL_CURSO_ID + "=" + id, null);
+        bd.delete(TABLA_CURSOS, COL_CURSO_ID + "=" + id, null);
         bd.close();
-        return res;
     }
 
     public Curso buscarCurso(String nombre) {
