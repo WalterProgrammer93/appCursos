@@ -35,7 +35,7 @@ public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHo
         holder.ivAlumno.setImageResource(R.drawable.ic_person_black_24dp);
         holder.tvNombreAlumno.setText(alumno.getNombreAlumno());
         holder.tvApellidosAlumno.setText(alumno.getApellidosAlumno());
-        holder.tvAsignatura.setText(alumno.getAsignatura());
+        holder.tvCurso.setText(alumno.getCurso());
     }
 
     @Override
@@ -59,13 +59,13 @@ public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivAlumno;
-        TextView tvNombreAlumno, tvApellidosAlumno, tvAsignatura;
+        TextView tvNombreAlumno, tvApellidosAlumno, tvCurso;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivAlumno = itemView.findViewById(R.id.ivAlumno);
             tvNombreAlumno = itemView.findViewById(R.id.tvNombreAlumno);
             tvApellidosAlumno = itemView.findViewById(R.id.tvApellidosAlumno);
-            tvAsignatura = itemView.findViewById(R.id.tvAsignatura);
+            tvCurso = itemView.findViewById(R.id.tvCurso);
         }
     }
 }

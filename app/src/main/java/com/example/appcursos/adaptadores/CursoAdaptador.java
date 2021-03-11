@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 //import com.bumptech.glide.Glide;
-import com.bumptech.glide.Glide;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Curso;
 import java.util.List;

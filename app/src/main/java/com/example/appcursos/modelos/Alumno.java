@@ -9,18 +9,18 @@ public class Alumno {
     private String apellidosAlumno;
     private String dni;
     private String telefonoAlumno;
-    private String asignatura;
+    private String curso;
     private Bitmap iconoAlumno;
 
     public Alumno() {
     }
 
-    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String telefonoAlumno, String asignatura) {
+    public Alumno(String nombreAlumno, String apellidosAlumno, String dni, String telefonoAlumno, String curso) {
         this.nombreAlumno = nombreAlumno;
         this.apellidosAlumno = apellidosAlumno;
         this.dni = dni;
         this.telefonoAlumno = telefonoAlumno;
-        this.asignatura = asignatura;
+        this.curso = curso;
     }
 
     public Bitmap getIconoAlumno() {
@@ -67,18 +67,16 @@ public class Alumno {
         this.telefonoAlumno = telefonoAlumno;
     }
 
-    public String getAsignatura() {
-        return asignatura;
+    public String getCurso() {
+        return curso;
     }
 
-    public void setAsignatura(String asignatura) {
-        this.asignatura = asignatura;
+    public void setCurso(String curso) {
+        this.curso = curso;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("" + nombreAlumno + "\n" + apellidosAlumno + "\n" + asignatura);
-        return sb.toString();
+        return curso;
     }
 }

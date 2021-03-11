@@ -15,6 +15,7 @@
             android:padding="6dp"
             card_view:cardElevation="2dp"
             android:layout_gravity="center"
+            card_view:cardBackgroundColor="@drawable/bordes_cards"
             card_view:cardCornerRadius="10dp">
 
             <LinearLayout

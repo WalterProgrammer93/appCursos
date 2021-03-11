@@ -76,8 +76,8 @@ public class AdminBD  extends SQLiteOpenHelper {
             COL_APELLIDOS_ALUMNO + " TEXT NOT NULL, " +
             COL_DNI + " TEXT NOT NULL, " +
             COL_TELEFONO_ALUMNO + " TEXT NOT NULL, " +
-            COL_ASIGNATURA_ID + " INTEGER NOT NULL, FOREIGN KEY (" +
-            COL_ASIGNATURA_ID + ") REFERENCES " + TABLA_ASIGNATURAS + " (" + COL_ASIGNATURA_ID + "));";
+            COL_CURSO_ID + " INTEGER NOT NULL, FOREIGN KEY (" +
+            COL_CURSO_ID + ") REFERENCES " + TABLA_CURSOS + " (" + COL_CURSO_ID + "));";
 
     private static final String TABLA_PROFESORES = "profesores";
     private static final String COL_PROFESOR_ID = "profesor_id";

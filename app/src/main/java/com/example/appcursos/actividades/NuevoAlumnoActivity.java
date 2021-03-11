@@ -15,17 +15,17 @@ import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.AlumnoBD;
 import com.example.appcursos.modelos.Alumno;
-import com.example.appcursos.modelos.Asignatura;
+import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NuevoAlumnoActivity extends AppCompatActivity {
 
     EditText et_nombreAlumno, et_apellidosAlumno, et_dniAlumno, et_telefonoAlumno;
-    Spinner s_asignaturas;
+    Spinner s_cursos;
     Button altaAlumno, cancelarAlumno;
-    List<Asignatura> load_asignaturas;
-    ArrayAdapter<Asignatura> arrayAdapter;
+    List<Curso> load_cursos;
+    ArrayAdapter<Curso> arrayAdapter;
     AlumnoBD alumbd;
 
     @Override
@@ -38,12 +38,12 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
         et_apellidosAlumno = findViewById(R.id.et_apellidosAlumno);
         et_dniAlumno = findViewById(R.id.et_dniAlumno);
         et_telefonoAlumno = findViewById(R.id.et_telefonoAlumno);
-        s_asignaturas = findViewById(R.id.spinner_asignaturaId);
-        load_asignaturas = new ArrayList<>();
+        s_cursos = findViewById(R.id.spinner_cursos);
+        load_cursos = new ArrayList<>();
         alumbd.escribirBD();
-        load_asignaturas = alumbd.cargarAsignaturas();
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, load_asignaturas);
-        s_asignaturas.setAdapter(arrayAdapter);
+        load_cursos = alumbd.cargarCursos();
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, load_cursos);
+        s_cursos.setAdapter(arrayAdapter);
 
         altaAlumno = findViewById(R.id.altaAlumno);
         /*editarAlumno = findViewById(R.id.editarAlumno);
@@ -58,8 +58,8 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
                     String apellidosAlum = et_apellidosAlumno.getText().toString();
                     String dniAlum = et_dniAlumno.getText().toString();
                     String telfAlum = et_telefonoAlumno.getText().toString();
-                    String asigId = s_asignaturas.getSelectedItem().toString();
-                    Alumno alumno = new Alumno(nombreAlum, apellidosAlum, dniAlum, telfAlum, asigId);
+                    String cursoId = s_cursos.getSelectedItem().toString();
+                    Alumno alumno = new Alumno(nombreAlum, apellidosAlum, dniAlum, telfAlum, cursoId);
                     if (!alumbd.isAlumnoExists(alumno.getNombreAlumno())) {
                         alumbd.insertarAlumno(alumno);
                         Toast.makeText(getApplicationContext(), "El alumno se ha creado correctamente",
@@ -88,23 +88,6 @@ public class NuevoAlumnoActivity extends AppCompatActivity {
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "se modificaron los datos del alumno", Toast.LENGTH_SHORT)
                             .show();
-                    Intent intent = new Intent(NuevoAlumnoActivity.this, AlumnosActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe el alumno",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        eliminarAlumno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombreAlumno = et_nombreAlumno.getText().toString();
-                int cant = alumbd.eliminarAlumno(nombreAlumno);
-                if (cant == 1) {
-                    Toast.makeText(getApplicationContext(), "Se borró el alumno correctamente",
-                            Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(NuevoAlumnoActivity.this, AlumnosActivity.class);
                     startActivity(intent);
                 } else {

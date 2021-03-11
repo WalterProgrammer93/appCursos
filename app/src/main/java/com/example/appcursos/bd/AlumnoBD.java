@@ -5,8 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Alumno;
-import com.example.appcursos.modelos.Asignatura;
-
+import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
 
 public class AlumnoBD {
@@ -25,8 +24,8 @@ public class AlumnoBD {
     private static final int NUM_COL_DNI = 3;
     private static final String COL_TELEFONO_ALUMNO = "telefono_alumno";
     private static final int NUM_COL_TELEFONO_ALUMNO = 4;
-    private static final String COL_ASIGNATURA_ID = "asignatura_id";
-    private static final int NUM_COL_ASIGNATURA_ID = 5;
+    private static final String COL_CURSO_ID = "curso_id";
+    private static final int NUM_COL_CURSO_ID = 5;
 
     private SQLiteDatabase bd;
     private AdminBD abd;
@@ -56,20 +55,20 @@ public class AlumnoBD {
         registro.put(COL_APELLIDOS_ALUMNO, alumno.getApellidosAlumno());
         registro.put(COL_DNI, alumno.getDni());
         registro.put(COL_TELEFONO_ALUMNO, alumno.getTelefonoAlumno());
-        registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura());
+        registro.put(COL_CURSO_ID, alumno.getCurso());
         bd.insert(TABLA_ALUMNOS, null, registro);
         bd.close();
     }
 
-    public int editarAlumno(String nombreAlumno, Alumno alumno) {
+    public int editarAlumno(int id, Alumno alumno) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_ALUMNO, alumno.getNombreAlumno());
         registro.put(COL_APELLIDOS_ALUMNO, alumno.getApellidosAlumno());
         registro.put(COL_DNI, alumno.getDni());
         registro.put(COL_TELEFONO_ALUMNO, alumno.getTelefonoAlumno());
-        registro.put(COL_ASIGNATURA_ID, alumno.getAsignatura());
-        int res = bd.update(TABLA_ALUMNOS, registro, COL_NOMBRE_ALUMNO + "=" + nombreAlumno,null);
+        registro.put(COL_CURSO_ID, alumno.getCurso());
+        int res = bd.update(TABLA_ALUMNOS, registro, COL_ALUMNO_ID + "=" + id,null);
         bd.close();
         return res;
     }
@@ -83,7 +82,7 @@ public class AlumnoBD {
 
     public Alumno buscarAlumno(String nombre) {
         bd = abd.getReadableDatabase();
-        Cursor cursor = bd.query(TABLA_ALUMNOS, new String[] {COL_ALUMNO_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_ASIGNATURA_ID}, COL_NOMBRE_ALUMNO
+        Cursor cursor = bd.query(TABLA_ALUMNOS, new String[] {COL_ALUMNO_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_CURSO_ID}, COL_NOMBRE_ALUMNO
                 + " LIKE \"" + nombre + "\"", null, null, null, null, COL_NOMBRE_ALUMNO);
         bd.close();
         return seleccionarAlumno(cursor);
@@ -101,6 +100,7 @@ public class AlumnoBD {
         alumno.setApellidosAlumno(cursor.getString(NUM_COL_APELLIDOS_ALUMNO));
         alumno.setDni(cursor.getString(NUM_COL_DNI));
         alumno.setTelefonoAlumno(cursor.getString(NUM_COL_TELEFONO_ALUMNO));
+        alumno.setCurso(cursor.getString(NUM_COL_CURSO_ID));
         cursor.close();
         bd.close();
         return alumno;
@@ -108,7 +108,7 @@ public class AlumnoBD {
     public ArrayList<Alumno> listarAlumno() {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_ALUMNOS, new String[] {
-                COL_ALUMNO_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_ASIGNATURA_ID
+                COL_ALUMNO_ID, COL_NOMBRE_ALUMNO, COL_APELLIDOS_ALUMNO, COL_DNI, COL_TELEFONO_ALUMNO, COL_CURSO_ID
         }, null, null, null, null, COL_ALUMNO_ID);
 
         if (cursor.getCount() == 0) {
@@ -123,6 +123,7 @@ public class AlumnoBD {
             alumno.setApellidosAlumno(cursor.getString(NUM_COL_APELLIDOS_ALUMNO));
             alumno.setDni(cursor.getString(NUM_COL_DNI));
             alumno.setTelefonoAlumno(cursor.getString(NUM_COL_TELEFONO_ALUMNO));
+            alumno.setCurso(cursor.getString(NUM_COL_CURSO_ID));
             listaAlumno.add(alumno);
         }
         cursor.close();
@@ -130,24 +131,24 @@ public class AlumnoBD {
         return listaAlumno;
     }
 
-    public ArrayList<Asignatura> cargarAsignaturas() {
+    public ArrayList<Curso> cargarCursos() {
         bd = abd.getReadableDatabase();
-        Cursor cursor = bd.rawQuery("select asignatura_id, nombre_asignatura from asignaturas", null);
+        Cursor cursor = bd.rawQuery("select curso_id, nombre_curso from cursos", null);
 
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
         }
-        ArrayList<Asignatura> listaAsignaturas = new ArrayList<>();
+        ArrayList<Curso> listaCursos = new ArrayList<>();
         while (cursor.moveToNext()) {
-            Asignatura asignatura = new Asignatura();
-            asignatura.setAsignaturaId(cursor.getInt(0));
-            asignatura.setNombreAsignatura(cursor.getString(1));
-            listaAsignaturas.add(asignatura);
+            Curso curso = new Curso();
+            curso.setCursoId(cursor.getInt(0));
+            curso.setNombreCurso(cursor.getString(1));
+            listaCursos.add(curso);
         }
         cursor.close();
         bd.close();
-        return listaAsignaturas;
+        return listaCursos;
     }
 
     public boolean isAlumnoExists(String nombreAlumno) {
