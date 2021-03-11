@@ -23,7 +23,6 @@
     <string name="sms">Mensajes</string>
     <string name="contactos">Contactos</string>
     <string name="camara">Camara</string>
-    <string name="mapa">Mapa</string>
     <string name="salir">Salir</string>
     <string name="nuevo">Nuevo</string>
     <string name="editar">Editar</string>
@@ -96,7 +95,7 @@
     <string name="lb_cancelar">Cancelar</string>
     <string name="mensajeAdmin">Bienvenido Admin</string>
     <string name="mensajeAlumno">Bienvenido Alumno</string>
-    <string name="mensajeProfesor">Bienvenido Profesor</string>
+    <string name="mensajeProfesor" tools:ignore="Typos">Bienvenido Profesor</string>
     <string name="mensajeUsuario">Bienvenido Usuario</string>
     <string name="lb_multimedia">Multimedia</string>
     <string name="lb_videos">Videos de Cursos</string>
@@ -116,11 +115,10 @@
     <string name="lb_editarPermiso">Editar Permiso</string>
     <string name="lb_editarUsuario">Editar Usuario</string>
     <string name="lb_editarRol">Editar Rol</string>
-    <string name="lb_editarProfesor">Editar Profesor</string>
+    <string name="lb_editarProfesor" tools:ignore="Typos">Editar Profesor</string>
     <string name="lb_editarAlumno">Editar Alumno</string>
     <string name="lb_editarAsignatura">Editar Asignatura</string>
     <string name="lb_editarCursor">Editar Curso</string>
     <string name="msg_confirmEliminar">El curso se ha eliminado correctamente</string>
     <string name="title_confirmar">Confirmar</string>
-    <string name="title_activity_mapas">Mapas</string>
 </resources>
