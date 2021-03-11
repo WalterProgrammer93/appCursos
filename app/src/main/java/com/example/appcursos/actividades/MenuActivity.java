@@ -65,6 +65,7 @@ public class MenuActivity extends AppCompatActivity {
             menuAdmin.add("Permisos");
             menuAdmin.add("Videos");
             menuAdmin.add("Audios");
+            menuAdmin.add("Mapas");
             recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
             maa = new MenuAdminAdaptador(this, menuAdmin);
             recyclerView.setAdapter(maa);
@@ -118,6 +119,11 @@ public class MenuActivity extends AppCompatActivity {
                             startActivity(i8);
                             Toast.makeText(getApplicationContext(), menuAdmin.get(8), Toast.LENGTH_SHORT).show();
                             break;
+                        case 9:
+                            Intent i9 = new Intent(MenuActivity.this, MapasActivity.class);
+                            startActivity(i9);
+                            Toast.makeText(getApplicationContext(), menuAdmin.get(9), Toast.LENGTH_SHORT).show();
+                            break;
                         default:
                             Toast.makeText(MenuActivity.this, "You clicked " + maa.getItem(position) +
                                     " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -134,6 +140,7 @@ public class MenuActivity extends AppCompatActivity {
                 menuAlumno.add("Asignaturas");
                 menuAlumno.add("Videos");
                 menuAlumno.add("Audios");
+                menuAlumno.add("Mapas");
                 recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
                 mad = new MenuAlumnoAdaptador(this, menuAlumno);
                 mad.setOnItemClickListener(new View.OnClickListener() {
@@ -161,6 +168,11 @@ public class MenuActivity extends AppCompatActivity {
                                 startActivity(i3);
                                 Toast.makeText(getApplicationContext(), menuAlumno.get(3), Toast.LENGTH_SHORT).show();
                                 break;
+                            case 4:
+                                Intent i4 = new Intent(MenuActivity.this, MapasActivity.class);
+                                startActivity(i4);
+                                Toast.makeText(getApplicationContext(), menuAlumno.get(4), Toast.LENGTH_SHORT).show();
+                                break;
                             default:
                                 Toast.makeText(MenuActivity.this, "You clicked " + mad.getItem(position) +
                                         " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -178,6 +190,7 @@ public class MenuActivity extends AppCompatActivity {
                     menuProfesor.add("Profesores");
                     menuProfesor.add("Videos");
                     menuProfesor.add("Audios");
+                    menuProfesor.add("Mapas");
                     recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
                     mpa = new MenuProfesorAdaptador(this, menuProfesor);
                     mpa.setOnItemClickListener(new View.OnClickListener() {
@@ -210,6 +223,11 @@ public class MenuActivity extends AppCompatActivity {
                                     startActivity(i4);
                                     Toast.makeText(getApplicationContext(), menuProfesor.get(4), Toast.LENGTH_SHORT).show();
                                     break;
+                                case 5:
+                                    Intent i5 = new Intent(MenuActivity.this, MapasActivity.class);
+                                    startActivity(i5);
+                                    Toast.makeText(getApplicationContext(), menuProfesor.get(5), Toast.LENGTH_SHORT).show();
+                                    break;
                                 default:
                                     Toast.makeText(MenuActivity.this, "You clicked " + mpa.getItem(position) +
                                             " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -223,6 +241,7 @@ public class MenuActivity extends AppCompatActivity {
                         showDialog(3);
                         menuUsuario.add("Videos");
                         menuUsuario.add("Audios");
+                        menuUsuario.add("Mapas");
                         recyclerView.setLayoutManager(new GridLayoutManager(this, columnas));
                         mua = new MenuUsuarioAdaptador(this, menuUsuario);
                         mua.setOnItemClickListener(new View.OnClickListener() {
@@ -240,10 +259,14 @@ public class MenuActivity extends AppCompatActivity {
                                         startActivity(i1);
                                         Toast.makeText(getApplicationContext(), menuUsuario.get(1), Toast.LENGTH_SHORT).show();
                                         break;
+                                    case 2:
+                                        Intent i2 = new Intent(MenuActivity.this, MapasActivity.class);
+                                        startActivity(i2);
+                                        Toast.makeText(getApplicationContext(), menuUsuario.get(2), Toast.LENGTH_SHORT).show();
+                                        break;
                                     default:
                                         Toast.makeText(MenuActivity.this, "You clicked " + mua.getItem(position) +
                                                 " on row number " + position, Toast.LENGTH_SHORT).show();
-
                                 }
                             }
                         });
@@ -279,8 +302,6 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.action_camara:
                 camara();
                 return true;
-            case R.id.action_mapa:
-                mapa();
             case R.id.action_salir:
                 finish();
                 Toast.makeText(getApplicationContext(), "Ha salido correctamente", Toast.LENGTH_SHORT).show();
@@ -291,14 +312,6 @@ public class MenuActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
-    }
-
-    private void mapa() {
-        Intent mapa = new Intent(MenuActivity.this, MapaActivity.class);
-        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-        if (mapa.resolveActivity(getPackageManager()) != null) {
-            startActivity(mapa);
-        }
     }
 
     public void llamar() {
