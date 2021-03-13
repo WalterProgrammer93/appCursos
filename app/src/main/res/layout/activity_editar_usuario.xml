@@ -69,19 +69,6 @@
                 tools:layout_editor_absoluteX="25dp" />
 
             <Button
-                android:id="@+id/btn_edit_buscarUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/boton_redondeados"
-                android:textColor="@color/icons"
-                android:text="@string/buscar"
-                android:layout_margin="10dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/btn_edit_editarUsuario"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="25dp" />
-
-            <Button
                 android:id="@+id/btn_edit_cancelarUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +76,7 @@
                 android:text="@string/cancelar"
                 android:textColor="@color/icons"
                 android:layout_margin="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/btn_edit_buscarUsuario"
+                app:layout_constraintTop_toBottomOf="@+id/btn_edit_editarUsuario"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="540dp" />
         </LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bordes_redondeados"
     tools:context=".actividades.NuevoRolActivity">
 
     <ScrollView
@@ -47,7 +48,7 @@
                 android:id="@+id/altaRol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/boton_redondeados"
                 android:textColor="@color/icons"
                 android:text="@string/alta"
                 android:layout_margin="10dp"
@@ -56,49 +57,10 @@
                 tools:layout_editor_absoluteX="25dp" />
 
             <Button
-                android:id="@+id/editarRol"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/icons"
-                android:text="@string/editar"
-                android:layout_margin="10dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/altaRol"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="25dp" />
-
-            <Button
-                android:id="@+id/eliminarRol"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/icons"
-                android:text="@string/eliminar"
-                android:layout_margin="10dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/editarRol"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="25dp" />
-
-            <Button
-                android:id="@+id/buscarRol"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/icons"
-                android:text="@string/buscar"
-                android:layout_margin="10dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/eliminarRol"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="25dp" />
-
-            <Button
                 android:id="@+id/cancelarRol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/boton_redondeados"
                 android:text="@string/cancelar"
                 android:textColor="@color/icons"
                 android:layout_margin="10dp"
