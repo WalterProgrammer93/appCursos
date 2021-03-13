@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -42,9 +43,9 @@ public class MapaActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng castroUrdiales = new LatLng(43.37906331066475, -3.2176935955985186);
-        mMap.addMarker(new MarkerOptions().position(castroUrdiales).title("Instituto de Educación Secundaria Ataulfo Argenta, " +
+        LatLng ataulfoArgenta = new LatLng(43.37906331066475, -3.2176935955985186);
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.)).position(ataulfoArgenta).title("Instituto de Educación Secundaria Ataulfo Argenta, " +
                 "Calle Leonardo Rucabado, 39700 Castro-Urdiales, España"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(castroUrdiales));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ataulfoArgenta));
     }
 }
