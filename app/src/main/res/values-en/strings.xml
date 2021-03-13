@@ -112,4 +112,12 @@
     <string name="lb_editarCursor">Edit Course</string>
     <string name="msg_confirmEliminar">Course has been successfully removed</string>
     <string name="title_confirmar">Confirm</string>
+    <string name="lb_mapa">Map</string>
+    <string name="rutas">Paths</string>
+    <string name="latitudInicial">Ingrese la latitud A</string>
+    <string name="longitudInicial">Ingrese la longitud A</string>
+    <string name="latitudFinal">Ingrese la latitud B</string>
+    <string name="longitudFinal">Ingrese la longitud B</string>
+    <string name="obtener">Obtener</string>
+    <string name="lb_nuevaRuta">Nueva Ruta</string>
 </resources>

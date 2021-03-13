@@ -101,8 +101,6 @@
     <string name="detener">Detener</string>
     <string name="lb_cursoAndroid">Audio Curso Android</string>
     <string name="lb_cursoJava">Audio Curso de Java</string>
-    <string name="lb_cursoJavaScript">Audio Curso de JavaScript</string>
-    <string name="lb_cursoPython">Audio Curso de Python</string>
     <string name="titulo_editar">Editar</string>
     <string name="titulo_eliminar">Eliminar</string>
     <string name="msg_editar">Se va a editar</string>
@@ -117,5 +115,12 @@
     <string name="lb_editarCursor">Editar Curso</string>
     <string name="msg_confirmEliminar">El curso se ha eliminado correctamente</string>
     <string name="title_confirmar">Confirmar</string>
-    <string name="title_activity_mapa">Mapa</string>
+    <string name="lb_mapa">Mapa</string>
+    <string name="rutas">Rutas</string>
+    <string name="latitudInicial">Ingrese la latitud A</string>
+    <string name="longitudInicial">Ingrese la longitud A</string>
+    <string name="latitudFinal">Ingrese la latitud B</string>
+    <string name="longitudFinal">Ingrese la longitud B</string>
+    <string name="obtener">Obtener</string>
+    <string name="lb_nuevaRuta">Nueva Ruta</string>
 </resources>
