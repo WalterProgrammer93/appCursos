@@ -103,7 +103,7 @@ public class EditarCursoActivity extends AppCompatActivity {
                 }*/
             }
         });
-        btn_edit_buscarCurso = findViewById(R.id.btn_edit_buscarCurso);
+        /*btn_edit_buscarCurso = findViewById(R.id.btn_edit_buscarCurso);
         btn_edit_buscarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,14 +116,14 @@ public class EditarCursoActivity extends AppCompatActivity {
                     cb_edit_modo1.setChecked(Boolean.parseBoolean(fila.getString(5)));
                     cb_edit_modo2.setChecked(Boolean.parseBoolean(fila.getString(5)));
                     cb_edit_modo3.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    /*Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                    startActivity(i);*/
+                    Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
+                    startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el curso",
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
         btn_edit_cancelarCurso = findViewById(R.id.btn_edit_cancelarCurso);
         btn_edit_cancelarCurso.setOnClickListener(new View.OnClickListener() {
             @Override

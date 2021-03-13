@@ -1,6 +1,7 @@
 package com.example.appcursos.actividades;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
+//import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 import com.example.appcursos.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -10,7 +11,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapaActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     GoogleMap mMap;
 
@@ -41,8 +42,9 @@ public class MapaActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng castroUrdiales = new LatLng(43.37906331066475, -3.2176935955985186);
+        mMap.addMarker(new MarkerOptions().position(castroUrdiales).title("Instituto de Educación Secundaria Ataulfo Argenta, " +
+                "Calle Leonardo Rucabado, 39700 Castro-Urdiales, España"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(castroUrdiales));
     }
 }

@@ -3,7 +3,6 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,7 +23,7 @@ import java.util.List;
 public class NuevoPermisoActivity extends AppCompatActivity {
 
     Spinner spin_alumno, spin_rol;
-    Button altaPermiso, editarPermiso, eliminarPermiso, buscarPermiso, cancelarPermiso;
+    Button altaPermiso, cancelarPermiso;
     List<Usuario> load_usuario;
     List<Rol> load_rol;
     ArrayAdapter<Usuario> selectUsuario;
@@ -50,11 +49,7 @@ public class NuevoPermisoActivity extends AppCompatActivity {
         spin_alumno.setAdapter(selectUsuario);
         spin_rol.setAdapter(selectRol);
         altaPermiso = findViewById(R.id.altaPermiso);
-        editarPermiso = findViewById(R.id.editarPermiso);
-        eliminarPermiso = findViewById(R.id.eliminarPermiso);
-        buscarPermiso = findViewById(R.id.buscarPermiso);
         cancelarPermiso = findViewById(R.id.cancelarPermiso);
-
         altaPermiso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,56 +63,6 @@ public class NuevoPermisoActivity extends AppCompatActivity {
                     Toast.makeText(NuevoPermisoActivity.this, "El permiso se ha creado correctamente", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
                     startActivity(intent);
-                }
-            }
-        });
-        editarPermiso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String alumnoId = spin_alumno.getSelectedItem().toString();
-                String rolId = spin_rol.getSelectedItem().toString();
-                /*Permiso permiso = new Permiso(alumnoId, rolId);
-                int cant = pbd.editarPermiso(alumnoId, permiso);
-                if (cant == 1) {
-                    Toast.makeText(getApplicationContext(), "Se modificaron los datos del permiso", Toast.LENGTH_SHORT)
-                            .show();
-                    Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe el permiso",
-                            Toast.LENGTH_SHORT).show();
-                }*/
-            }
-        });
-        eliminarPermiso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*String usuarioId = spin_alumno.getSelectedItem().toString();
-                int cant = pbd.eliminarPermiso(usuarioId);
-                if (cant == 1) {
-                    Toast.makeText(getApplicationContext(), "Se borró el permiso",
-                            Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe el permiso",
-                            Toast.LENGTH_SHORT).show();
-                }*/
-            }
-        });
-        buscarPermiso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String alumnoId = spin_alumno.getSelectedItem().toString();
-                Cursor fila = (Cursor) pbd.buscarPermiso(alumnoId);
-                if (fila.moveToFirst()) {
-                    spin_alumno.setSelected(Boolean.parseBoolean(fila.getString(1)));
-                    spin_rol.setSelected(Boolean.parseBoolean(fila.getString(2)));
-                    Intent intent = new Intent(NuevoPermisoActivity.this, PermisosActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe el permiso",
-                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
