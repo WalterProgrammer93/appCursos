@@ -3,13 +3,10 @@ package com.example.appcursos.actividades;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,13 +18,6 @@ import com.example.appcursos.R;
 import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
 
-import java.util.Arrays;
-
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-
 public class RegistrarseActivity extends AppCompatActivity {
 
     EditText et_username, et_email, et_password, et_confirmPassword;
@@ -35,7 +25,7 @@ public class RegistrarseActivity extends AppCompatActivity {
     UsuarioBD ubd;
     Animation animation;
     ConstraintLayout constraintLayout;
-    private static final String AES = "AES";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +56,9 @@ public class RegistrarseActivity extends AppCompatActivity {
                     String pass = et_password.getText().toString();
                     String confirmPassword = et_confirmPassword.getText().toString();
 
-                    try {
-                        encriptar(pass);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
-                        ubd.insertarUsuario(new Usuario(username, email, pass));
+                        String claveEncriptada = ubd.encrypt(pass);
+                        ubd.insertarUsuario(new Usuario(username, email, claveEncriptada));
                         Toast.makeText(RegistrarseActivity.this, " Usuario creado correctamente ", Toast.LENGTH_SHORT).show();
                         Intent acceso = new Intent(RegistrarseActivity.this, MenuActivity.class);
                         acceso.putExtra("Username", username);
@@ -85,8 +70,6 @@ public class RegistrarseActivity extends AppCompatActivity {
                             }
                         }, Toast.LENGTH_LONG);
 
-
-
                     } else if (!confirmPassword.equals(pass)) {
                         Toast.makeText(RegistrarseActivity.this, "La contraseña no coincide ", Toast.LENGTH_SHORT).show();
 
@@ -95,7 +78,6 @@ public class RegistrarseActivity extends AppCompatActivity {
 
                     }
                 }
-
             }
         });
         btn_cancelar.setOnClickListener(new View.OnClickListener() {
@@ -108,24 +90,6 @@ public class RegistrarseActivity extends AppCompatActivity {
         });
 
     }
-
-    @SuppressLint("GetInstance")
-    public static String encriptar(String pass) throws Exception {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance(AES);
-        keyGenerator.init(128);
-        SecretKey secretKey = keyGenerator.generateKey();
-        byte[] bytesSecretKey = secretKey.getEncoded();
-        SecretKeySpec secretKeySpec = new SecretKeySpec(bytesSecretKey, AES);
-        Cipher cipher = Cipher.getInstance(AES);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-        byte[] encriptado = cipher.doFinal(pass.getBytes());
-
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-        byte[] desencriptado = cipher.doFinal(encriptado);
-        Log.d("TAG", Arrays.toString(desencriptado));
-        return new String(desencriptado);
-    }
-
 
     private boolean validar() {
 

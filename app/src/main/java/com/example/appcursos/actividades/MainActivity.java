@@ -25,6 +25,10 @@ import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
 import java.util.Random;
 
+import javax.crypto.SecretKey;
+
+import static com.example.appcursos.bd.UsuarioBD.generateKey;
+
 public class MainActivity extends AppCompatActivity {
 
     ImageView iv;
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     //Check Authentication is successful or not
                     if (usuario != null) {
                         Intent menu = new Intent(MainActivity.this, MenuActivity.class);
+
                         menu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, menu, 0);
 
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private boolean validate() {
         boolean valid;
 
