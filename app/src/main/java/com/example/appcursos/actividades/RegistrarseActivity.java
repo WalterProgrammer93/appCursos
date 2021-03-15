@@ -57,8 +57,13 @@ public class RegistrarseActivity extends AppCompatActivity {
                     String confirmPassword = et_confirmPassword.getText().toString();
 
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
-                        String claveEncriptada = ubd.encrypt(pass);
-                        ubd.insertarUsuario(new Usuario(username, email, claveEncriptada));
+                        String passEncriptado = "";
+                        try {
+                            passEncriptado = ubd.encrypt(pass);
+                        }catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        ubd.insertarUsuario(new Usuario(username, email, passEncriptado));
                         Toast.makeText(RegistrarseActivity.this, " Usuario creado correctamente ", Toast.LENGTH_SHORT).show();
                         Intent acceso = new Intent(RegistrarseActivity.this, MenuActivity.class);
                         acceso.putExtra("Username", username);

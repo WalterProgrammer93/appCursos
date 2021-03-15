@@ -25,10 +25,6 @@ import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
 import java.util.Random;
 
-import javax.crypto.SecretKey;
-
-import static com.example.appcursos.bd.UsuarioBD.generateKey;
-
 public class MainActivity extends AppCompatActivity {
 
     ImageView iv;

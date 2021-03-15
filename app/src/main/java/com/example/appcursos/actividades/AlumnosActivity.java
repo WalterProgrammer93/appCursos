@@ -38,14 +38,37 @@ public class AlumnosActivity extends AppCompatActivity {
         alumbd = new AlumnoBD(this);
         listaAlumnos = new ArrayList<>();
         rvAlumnos = findViewById(R.id.rvAlumnos);
-        rvAlumnos.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        rvAlumnos.setLayoutManager(layoutManager);
+        //rvAlumnos.setHasFixedSize(true);
+        /*layoutManager = new LinearLayoutManager(this);
+        rvAlumnos.setLayoutManager(layoutManager);*/
         listaAlumnos = alumbd.listarAlumno();
         alumbd.cerrarBD();
         alumnoAdaptador = new AlumnoAdaptador(listaAlumnos);
         rvAlumnos.setAdapter(alumnoAdaptador);
-        registerForContextMenu(rvAlumnos);
+        rvAlumnos.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+                getMenuInflater().inflate(R.menu.menu_contextual, contextMenu);
+                contextMenu.add("Editar").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.action_editar) {
+                            showDialog(0);
+                        }
+                        return true;
+                    }
+                });
+                contextMenu.add("Eliminar").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.action_eliminar) {
+                            showDialog(1);
+                        }
+                        return true;
+                    }
+                });
+            }
+        });
         alumnoAdaptador.notifyDataSetChanged();
     }
 
@@ -76,14 +99,9 @@ public class AlumnosActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.menu_contextual, menu);
-    }
-
-    @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
         switch (item.getItemId()) {// hacer algo
             case R.id.action_editar:
                 showDialog(0);
