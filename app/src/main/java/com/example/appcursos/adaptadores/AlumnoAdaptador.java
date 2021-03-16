@@ -1,71 +1,79 @@
 package com.example.appcursos.adaptadores;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Alumno;
 import java.util.List;
 
-public class AlumnoAdaptador extends RecyclerView.Adapter<AlumnoAdaptador.ViewHolder> implements View.OnClickListener {
+public class AlumnoAdaptador extends ArrayAdapter<Alumno> {
 
     private List<Alumno> listaAlumnos;
-    private View.OnClickListener escuchador;
+    private int listItemResLayout;
+    private Context context;
 
-    public AlumnoAdaptador(List<Alumno> listaAlumnos) {
+    public AlumnoAdaptador(Context context, int resource, List<Alumno> listaAlumnos) {
+        super(context, resource, listaAlumnos);
         this.listaAlumnos = listaAlumnos;
+        this.listItemResLayout = resource;
+        this.context = context;
     }
 
-
-    @NonNull
-    @Override
-    public AlumnoAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_alumnos, parent, false);
-        vista.setOnClickListener(this);
-        return new ViewHolder(vista);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull AlumnoAdaptador.ViewHolder holder, int position) {
-        final Alumno alumno = listaAlumnos.get(position);
-        holder.ivAlumno.setImageResource(R.drawable.ic_person_black_24dp);
-        holder.tvNombreAlumno.setText(alumno.getNombreAlumno());
-        holder.tvApellidosAlumno.setText(alumno.getApellidosAlumno());
-        holder.tvCurso.setText(alumno.getCurso());
+    static class ViewHolder {
+        ImageView iconoAlumno;
+        TextView nombreAlumno;
+        TextView apellidosAlumno;
+        TextView curso;
     }
 
     @Override
-    public int getItemCount() {
-        if (listaAlumnos != null)
-        {
+    public int getCount() {
+        if (listaAlumnos != null) {
             return listaAlumnos.size();
         }
         return 0;
     }
 
-    public void setOnClickListener(View.OnClickListener escucha) {
-        this.escuchador = escucha;
-    }
-
+    @NonNull
     @Override
-    public void onClick(View view) {
-        if (escuchador != null)
-            escuchador.onClick(view);
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+
+        View view = convertView;
+        ViewHolder holder;
+        // Si la View es null se crea de nuevo
+        if (view == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(listItemResLayout, parent, false);
+            holder = new ViewHolder();
+            holder.iconoAlumno = view.findViewById(R.id.ivAlumno);
+            holder.nombreAlumno = view.findViewById(R.id.tvNombreAlumno);
+            holder.apellidosAlumno = view.findViewById(R.id.tvApellidosAlumno);
+            holder.curso = view.findViewById(R.id.tvCurso);
+            view.setTag(holder);
+        }
+        /*
+         * En caso de que la View no sea null se reutilizará con los
+         * nuevos valores
+         */
+        else {
+            holder = (ViewHolder) view.getTag();
+        }
+
+        final Alumno alumno = listaAlumnos.get(position);
+        if (alumno != null) {
+            holder.iconoAlumno.setImageResource(R.drawable.ic_person_black_24dp);
+            holder.nombreAlumno.setText(alumno.getNombreAlumno());
+            holder.apellidosAlumno.setText(alumno.getApellidosAlumno());
+            holder.curso.setText(alumno.getCurso());
+        }
+        return view;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivAlumno;
-        TextView tvNombreAlumno, tvApellidosAlumno, tvCurso;
-        ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ivAlumno = itemView.findViewById(R.id.ivAlumno);
-            tvNombreAlumno = itemView.findViewById(R.id.tvNombreAlumno);
-            tvApellidosAlumno = itemView.findViewById(R.id.tvApellidosAlumno);
-            tvCurso = itemView.findViewById(R.id.tvCurso);
-        }
-    }
+
 }

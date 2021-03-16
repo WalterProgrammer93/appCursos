@@ -6,8 +6,8 @@
     android:background="@color/colorPrimary"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProfesores"
+    <ListView
+        android:id="@+id/lvProfesores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints"

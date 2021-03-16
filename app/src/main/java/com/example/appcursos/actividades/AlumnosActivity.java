@@ -2,8 +2,6 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -15,19 +13,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.AlumnoAdaptador;
 import com.example.appcursos.bd.AlumnoBD;
 import com.example.appcursos.modelos.Alumno;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AlumnosActivity extends AppCompatActivity {
 
-    ArrayList<Alumno> listaAlumnos;
+    List<Alumno> listaAlumnos;
     AlumnoAdaptador alumnoAdaptador;
-    RecyclerView rvAlumnos;
-    RecyclerView.LayoutManager layoutManager;
+    ListView lvAlumnos;
     AlumnoBD alumbd;
 
     @Override
@@ -37,38 +36,12 @@ public class AlumnosActivity extends AppCompatActivity {
 
         alumbd = new AlumnoBD(this);
         listaAlumnos = new ArrayList<>();
-        rvAlumnos = findViewById(R.id.rvAlumnos);
-        //rvAlumnos.setHasFixedSize(true);
-        /*layoutManager = new LinearLayoutManager(this);
-        rvAlumnos.setLayoutManager(layoutManager);*/
+        lvAlumnos = findViewById(R.id.lvAlumnos);
         listaAlumnos = alumbd.listarAlumno();
         alumbd.cerrarBD();
-        alumnoAdaptador = new AlumnoAdaptador(listaAlumnos);
-        rvAlumnos.setAdapter(alumnoAdaptador);
-        rvAlumnos.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-            @Override
-            public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-                getMenuInflater().inflate(R.menu.menu_contextual, contextMenu);
-                contextMenu.add("Editar").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.action_editar) {
-                            showDialog(0);
-                        }
-                        return true;
-                    }
-                });
-                contextMenu.add("Eliminar").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.action_eliminar) {
-                            showDialog(1);
-                        }
-                        return true;
-                    }
-                });
-            }
-        });
+        alumnoAdaptador = new AlumnoAdaptador(this, R.layout.activity_alumnos, listaAlumnos);
+        lvAlumnos.setAdapter(alumnoAdaptador);
+        registerForContextMenu(lvAlumnos);
         alumnoAdaptador.notifyDataSetChanged();
     }
 
@@ -99,19 +72,23 @@ public class AlumnosActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_contextual, menu);
+    }
+
+    @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        final int seleccionado = info.position;
 
-        switch (item.getItemId()) {// hacer algo
+        switch (seleccionado) {// hacer algo
             case R.id.action_editar:
                 showDialog(0);
                 return true;
             case R.id.action_eliminar:
                 showDialog(1);
-                int cant = alumbd.eliminarAlumno((int) info.id);
-                if (cant == 1) {
-
-                }
+                alumbd.eliminarAlumno((int) info.id);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -175,4 +152,6 @@ public class AlumnosActivity extends AppCompatActivity {
         }
         return dialogo;
     }
+
+
 }

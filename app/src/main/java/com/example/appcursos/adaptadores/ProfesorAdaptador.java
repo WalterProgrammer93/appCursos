@@ -1,70 +1,77 @@
 package com.example.appcursos.adaptadores;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import com.example.appcursos.R;
 import com.example.appcursos.modelos.Profesor;
 import java.util.List;
 
-public class ProfesorAdaptador extends RecyclerView.Adapter<ProfesorAdaptador.ViewHolder> implements View.OnClickListener {
+public class ProfesorAdaptador extends ArrayAdapter<Profesor> {
 
     private List<Profesor> listaProfesores;
-    private View.OnClickListener escuchador;
+    private int listItemResLayout;
+    private Context context;
 
-    public ProfesorAdaptador(List<Profesor> listaProfesores) {
+    public ProfesorAdaptador(Context context, int resource, List<Profesor> listaProfesores) {
+        super(context, resource, listaProfesores);
         this.listaProfesores = listaProfesores;
+        this.listItemResLayout = resource;
+        this.context = context;
     }
 
-    @NonNull
-    @Override
-    public ProfesorAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_profesores, parent, false);
-        vista.setOnClickListener(this);
-        return new ViewHolder(vista);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ProfesorAdaptador.ViewHolder holder, int position) {
-        final Profesor profesor = listaProfesores.get(position);
-        holder.ivProfesor.setImageResource(R.drawable.ic_person_black_24dp);
-        holder.tvNombreProfesor.setText(profesor.getNombreProfesor());
-        holder.tvDepartamento.setText(profesor.getDepartamento());
-        holder.tvAsignatura.setText(profesor.getAsignatura());
+    static class ViewHolder {
+        ImageView iconoProfesor;
+        TextView nombreProfesor;
+        TextView departamento;
+        TextView asignatura;
     }
 
     @Override
-    public int getItemCount() {
-        if (listaProfesores != null)
-        {
+    public int getCount() {
+        if (listaProfesores != null) {
             return listaProfesores.size();
         }
         return 0;
     }
 
-    public void setOnClickListener(View.OnClickListener escucha) {
-        this.escuchador = escucha;
-    }
-
+    @NonNull
     @Override
-    public void onClick(View view) {
-        if (escuchador != null)
-            escuchador.onClick(view);
-    }
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivProfesor;
-        TextView tvNombreProfesor, tvDepartamento, tvAsignatura;
-        ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ivProfesor = itemView.findViewById(R.id.ivProfesor);
-            tvNombreProfesor = itemView.findViewById(R.id.tvNombreProfesor);
-            tvDepartamento = itemView.findViewById(R.id.tvDepartamento);
-            tvAsignatura = itemView.findViewById(R.id.tvAsignatura);
+        View view = convertView;
+        ViewHolder holder;
+        // Si la View es null se crea de nuevo
+        if (view == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(listItemResLayout, parent, false);
+            holder = new ViewHolder();
+            holder.iconoProfesor = view.findViewById(R.id.ivProfesor);
+            holder.nombreProfesor = view.findViewById(R.id.tvNombreProfesor);
+            holder.departamento = view.findViewById(R.id.tvDepartamento);
+            holder.asignatura = view.findViewById(R.id.tvAsignatura);
+            view.setTag(holder);
         }
+        /*
+         * En caso de que la View no sea null se reutilizará con los
+         * nuevos valores
+         */
+        else {
+            holder = (ViewHolder) view.getTag();
+        }
+
+        final Profesor profesor = listaProfesores.get(position);
+        if (profesor != null) {
+            holder.iconoProfesor.setImageResource(R.drawable.ic_person_black_24dp);
+            holder.nombreProfesor.setText(profesor.getNombreProfesor());
+            holder.departamento.setText(profesor.getDepartamento());
+            holder.asignatura.setText(profesor.getAsignatura());
+        }
+        return view;
     }
 }

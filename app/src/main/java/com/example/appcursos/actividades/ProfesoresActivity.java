@@ -2,8 +2,6 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,20 +12,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.ProfesorAdaptador;
 import com.example.appcursos.bd.ProfesorBD;
 import com.example.appcursos.modelos.Profesor;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfesoresActivity extends AppCompatActivity {
 
-    ArrayList<Profesor> listaProfesores;
+    List<Profesor> listaProfesores;
     ProfesorAdaptador profesorAdaptador;
-    RecyclerView rvProfesores;
+    ListView lvProfesores;
     ProfesorBD probd;
-    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +35,12 @@ public class ProfesoresActivity extends AppCompatActivity {
 
         probd = new ProfesorBD(this);
         listaProfesores = new ArrayList<>();
-        rvProfesores = findViewById(R.id.rvProfesores);
-        rvProfesores.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        rvProfesores.setLayoutManager(layoutManager);
+        lvProfesores = findViewById(R.id.lvProfesores);
         listaProfesores = probd.listarProfesor();
         probd.cerrarBD();
-        profesorAdaptador = new ProfesorAdaptador(listaProfesores);
-        rvProfesores.setAdapter(profesorAdaptador);
-        registerForContextMenu(rvProfesores);
+        profesorAdaptador = new ProfesorAdaptador(this, R.layout.activity_profesores, listaProfesores);
+        lvProfesores.setAdapter(profesorAdaptador);
+        registerForContextMenu(lvProfesores);
         profesorAdaptador.notifyDataSetChanged();
     }
 
