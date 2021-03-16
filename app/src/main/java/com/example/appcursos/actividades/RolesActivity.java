@@ -99,6 +99,7 @@ public class RolesActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(R.string.titulo_editar)
                         .setMessage(R.string.msg_editar)
+                        .setIcon(R.drawable.ic_warning_black_24dp)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -123,6 +124,7 @@ public class RolesActivity extends AppCompatActivity {
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(R.string.titulo_eliminar)
                         .setMessage(R.string.msg_eliminar)
+                        .setIcon(R.drawable.ic_info_black_24dp)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override

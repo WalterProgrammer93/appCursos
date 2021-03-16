@@ -2,8 +2,6 @@ package com.example.appcursos.actividades;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,20 +12,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 import com.example.appcursos.R;
 import com.example.appcursos.adaptadores.UsuarioAdaptador;
 import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UsuariosActivity extends AppCompatActivity {
 
-    ArrayList<Usuario> listaUsuarios;
+    List<Usuario> listaUsuarios;
     UsuarioAdaptador usuarioAdaptador;
-    RecyclerView rvUsuarios;
+    ListView lvUsuarios;
     UsuarioBD ubd;
-    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +35,12 @@ public class UsuariosActivity extends AppCompatActivity {
 
         ubd = new UsuarioBD(this);
         listaUsuarios = new ArrayList<>();
-        rvUsuarios = findViewById(R.id.rvUsuarios);
-        rvUsuarios.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        rvUsuarios.setLayoutManager(layoutManager);
+        lvUsuarios = findViewById(R.id.lvUsuarios);
         listaUsuarios = ubd.listarUsuarios();
         ubd.cerrarBD();
-        usuarioAdaptador = new UsuarioAdaptador(listaUsuarios);
-        rvUsuarios.setAdapter(usuarioAdaptador);
-        registerForContextMenu(rvUsuarios);
+        usuarioAdaptador = new UsuarioAdaptador(this, R.layout.activity_usuarios, listaUsuarios);
+        lvUsuarios.setAdapter(usuarioAdaptador);
+        registerForContextMenu(lvUsuarios);
         usuarioAdaptador.notifyDataSetChanged();
     }
 
@@ -103,6 +99,7 @@ public class UsuariosActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(R.string.titulo_editar)
                         .setMessage(R.string.msg_editar)
+                        .setIcon(R.drawable.ic_warning_black_24dp)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -127,6 +124,7 @@ public class UsuariosActivity extends AppCompatActivity {
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(R.string.titulo_eliminar)
                         .setMessage(R.string.msg_eliminar)
+                        .setIcon(R.drawable.ic_info_black_24dp)
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override
