@@ -146,6 +146,19 @@ public class ProfesoresActivity extends AppCompatActivity {
                                 });
                 dialogo = builder2.create();
                 break;
+            case 2:
+                AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+                builder3.setTitle(R.string.title_confirmar)
+                        .setIcon(R.drawable.ic_done_black_24dp)
+                        .setMessage(R.string.msg_confirmEliminarProfesor)
+                        .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                                dialog.dismiss();
+                            }
+                        });
+                dialogo = builder3.create();
+                break;
             default:
                 return super.onCreateDialog(id);
 

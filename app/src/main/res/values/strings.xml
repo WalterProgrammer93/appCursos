@@ -123,4 +123,10 @@
     <string name="longitudFinal">Ingrese la longitud B</string>
     <string name="obtener">Obtener</string>
     <string name="lb_nuevaRuta">Nueva Ruta</string>
+    <string name="msg_confirmEliminarAsignatura">La asignatura se ha eliminado correctamente</string>
+    <string name="msg_confirmEliminarAlumno">El alumno se ha eliminado correctamente</string>
+    <string name="msg_confirmEliminarPermiso">El permiso se ha eliminado correctamente</string>
+    <string name="msg_confirmEliminarProfesor">El profesor se ha eliminado correctamente</string>
+    <string name="msg_confirmEliminarRol">El rol se ha eliminado correctamente</string>
+    <string name="msg_confirmEliminarUsuario">El usuario se ha eliminado correctamente</string>
 </resources>
