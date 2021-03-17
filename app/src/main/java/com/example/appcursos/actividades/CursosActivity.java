@@ -3,6 +3,8 @@ package com.example.appcursos.actividades;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,10 +22,13 @@ import com.example.appcursos.adaptadores.CursoAdaptador;
 import com.example.appcursos.bd.CursoBD;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class CursosActivity extends AppCompatActivity {
 
     ArrayList<Curso> listaCursos;
+    ArrayList<HashMap<String, String>> myIds;
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
     CursoBD cbd;
@@ -79,21 +84,21 @@ public class CursosActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        final int seleccionado = info.position;
+        int posicion = info.position;
 
         switch (item.getItemId()) {
             case R.id.action_editar:
                 showDialog(0);
-                break;
+                return true;
             case R.id.action_eliminar:
-                cbd.eliminarCurso((int) info.id);
-                listaCursos.remove(seleccionado);
+                //listaCursos.remove(posicion);
+                int id = (int) lvCursos.getSelectedItem();
+                cbd.eliminarCurso(id);
                 showDialog(1);
-                break;
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }
-        return true;
     }
 
     @Override
@@ -111,8 +116,7 @@ public class CursosActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
                                         Intent editar = new Intent(CursosActivity.this, EditarCursoActivity.class);
-                                        String nombreCurso = (String) lvCursos.getItemAtPosition(id);
-                                        editar.putExtra("nombreCurso", nombreCurso);
+                                        editar.putExtra("nombreCurso", String.valueOf(listaCursos.get(id)));
                                         startActivity(editar);
                                     }
                                 })

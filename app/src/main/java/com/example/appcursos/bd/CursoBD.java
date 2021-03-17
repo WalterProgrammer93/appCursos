@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CursoBD {
 
@@ -80,13 +81,13 @@ public class CursoBD {
 
     public Curso buscarCurso(String nombre) {
         bd = abd.getReadableDatabase();
-        Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_MODOS}, COL_NOMBRE_CURSO
-                + " LIKE \"" + nombre + "\"", null, null, null, COL_CURSO_ID);
-        //bd.close();
+        Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD,
+                COL_NUM_ALUMNOS, COL_MODOS}, COL_NOMBRE_CURSO
+                + " LIKE \"" + nombre + "\"", null, null, null, COL_NOMBRE_CURSO);
         return seleccionarCurso(cursor);
     }
 
-    public Curso seleccionarCurso(Cursor cursor) {
+    private Curso seleccionarCurso(Cursor cursor) {
         if (cursor.getCount() == 0) {
             cursor.close();
             return null;
@@ -154,5 +155,39 @@ public class CursoBD {
         cursor.close();
         bd.close();
         return false;
+    }
+
+    public ArrayList<HashMap<String, String>> selectAllIds() {
+        try {
+            ArrayList<HashMap<String, String>> idArrayList = new ArrayList<>();
+            HashMap<String, String> map;
+
+            bd = abd.getReadableDatabase();
+
+            String query = "SELECT * FROM " + TABLA_CURSOS;
+
+            Cursor cursor = bd.rawQuery(query, null);
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        map = new HashMap<>();
+                        map.put(COL_CURSO_ID, cursor.getString(0));
+                        idArrayList.add(map);
+
+                    } while (cursor.moveToNext());
+                }
+            }
+            if (cursor != null) {
+                cursor.close();
+            }
+            bd.close();
+            return idArrayList;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }

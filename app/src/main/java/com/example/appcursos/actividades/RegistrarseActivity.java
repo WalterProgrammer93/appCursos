@@ -3,10 +3,13 @@ package com.example.appcursos.actividades;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,18 +17,28 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.UsuarioBD;
 import com.example.appcursos.modelos.Usuario;
+import org.json.JSONObject;
 
-public class RegistrarseActivity extends AppCompatActivity {
+public class RegistrarseActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     EditText et_username, et_email, et_password, et_confirmPassword;
     Button btn_anadir, btn_cancelar;
     UsuarioBD ubd;
     Animation animation;
     ConstraintLayout constraintLayout;
-
+    ProgressDialog progressDialog;
+    RequestQueue request;
+    JsonObjectRequest jsonObjectRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +56,7 @@ public class RegistrarseActivity extends AppCompatActivity {
         et_password = findViewById(R.id.et_password);
         et_confirmPassword = findViewById(R.id.et_confirmPassword);
         btn_anadir = findViewById(R.id.btn_añadir);
+        request = Volley.newRequestQueue(this);
         btn_cancelar = findViewById(R.id.btn_cancelar);
 
         btn_anadir.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +65,7 @@ public class RegistrarseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // AGREGAR USUARIO
                 if (validar()) {
+                    cargarWebService();
                     String username = et_username.getText().toString();
                     String email = et_email.getText().toString();
                     String pass = et_password.getText().toString();
@@ -94,6 +109,19 @@ public class RegistrarseActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void cargarWebService() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Cargando...");
+        progressDialog.show();
+
+        String url = "http://192.168.10.10/webServiceRegister/webService.php?username=" + et_username.getText().toString() + "&email=" +
+                et_email.getText().toString() + "&password=" + et_password.getText().toString();
+        url = url.replace(" ", "%20");
+
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
+        request.add(jsonObjectRequest);
     }
 
     private boolean validar() {
@@ -141,4 +169,19 @@ public class RegistrarseActivity extends AppCompatActivity {
         return valido;
     }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        progressDialog.hide();
+        Toast.makeText(this, "No se pudo registrar el usuario"+error.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Toast.makeText(this, "El usuario se registro correctamente", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
+        et_username.setText("");
+        et_email.setText("");
+        et_password.setText("");
+        et_confirmPassword.setText("");
+    }
 }

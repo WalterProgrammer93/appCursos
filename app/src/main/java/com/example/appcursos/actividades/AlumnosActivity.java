@@ -38,6 +38,7 @@ public class AlumnosActivity extends AppCompatActivity {
         listaAlumnos = new ArrayList<>();
         lvAlumnos = findViewById(R.id.lvAlumnos);
         listaAlumnos = alumbd.listarAlumno();
+        listaAlumnos.clear();
         alumbd.cerrarBD();
         alumnoAdaptador = new AlumnoAdaptador(this, R.layout.activity_alumnos, listaAlumnos);
         lvAlumnos.setAdapter(alumnoAdaptador);
@@ -88,7 +89,7 @@ public class AlumnosActivity extends AppCompatActivity {
                 return true;
             case R.id.action_eliminar:
                 showDialog(1);
-                alumbd.eliminarAlumno((int) info.id);
+                //alumbd.eliminarAlumno((int) info.id);
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -134,6 +135,7 @@ public class AlumnosActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         // Qué hacer si el usuario pulsa "Si"
+
 
                                     }
                                 })

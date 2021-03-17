@@ -61,27 +61,14 @@ public class EditarCursoActivity extends AppCompatActivity {
 
         Intent datos = getIntent();
         String nombre = datos.getStringExtra("nombreCurso");
-        Cursor cursor = (Cursor) cbd.buscarCurso(nombre);
-        //if (cursor.moveToFirst() && cursor.getCount() > 0) {
-            do {
-                Curso curso = new Curso();
-                curso.setCursoId(cursor.getInt(0));
-                curso.setNombreCurso(cursor.getString(1));
-                curso.setCentro(cursor.getString(2));
-                et_edit_nombreCurso.setText(curso.getNombreCurso());
-                et_edit_centroCurso.setText(curso.getCentro());
-                rg_edit_disponibilidad.check(Integer.parseInt(cursor.getString(3)));
-                s_edit_numeroAlumnos.setSelected(Boolean.parseBoolean(cursor.getString(4)));
-                cb_edit_modo1.setChecked(Boolean.parseBoolean(cursor.getString(5)));
-                cb_edit_modo2.setChecked(Boolean.parseBoolean(cursor.getString(5)));
-                cb_edit_modo3.setChecked(Boolean.parseBoolean(cursor.getString(5)));
-                Intent i = new Intent(EditarCursoActivity.this, CursosActivity.class);
-                startActivity(i);
-            } while (cursor.moveToNext());
-        /*} else {
-            Toast.makeText(getApplicationContext(), "No existe el curso",
-                    Toast.LENGTH_SHORT).show();
-        }*/
+        Curso curso = cbd.buscarCurso(nombre);
+        et_edit_nombreCurso.setText(curso.getNombreCurso());
+        et_edit_centroCurso.setText(curso.getCentro());
+        rg_edit_disponibilidad.check(Integer.parseInt(curso.getDisponibilidad()));
+        s_edit_numeroAlumnos.setSelected(Boolean.parseBoolean(curso.getNumeroAlumnos()));
+        cb_edit_modo1.setChecked(Boolean.parseBoolean(curso.getModos()));
+        cb_edit_modo2.setChecked(Boolean.parseBoolean(curso.getModos()));
+        cb_edit_modo3.setChecked(Boolean.parseBoolean(curso.getModos()));
 
         btn_edit_editarCurso = findViewById(R.id.btn_edit_editarCurso);
         btn_edit_editarCurso.setOnClickListener(new View.OnClickListener() {
