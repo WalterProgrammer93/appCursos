@@ -2,7 +2,6 @@ package com.example.appcursos.actividades;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,7 +28,7 @@ public class EditarCursoActivity extends AppCompatActivity {
     RadioButton rb_edit_disponible, rb_edit_nodisponible;
     Spinner s_edit_numeroAlumnos;
     CheckBox cb_edit_modo1, cb_edit_modo2, cb_edit_modo3;
-    Button btn_edit_editarCurso, btn_edit_buscarCurso, btn_edit_cancelarCurso;
+    Button btn_edit_editarCurso, btn_edit_cancelarCurso;
     ArrayAdapter<String> spinner_adapter;
     ArrayList<String> numAlumnos;
     ArrayList<String> listaDisponibilidad, listaModo;
@@ -59,6 +58,31 @@ public class EditarCursoActivity extends AppCompatActivity {
         cb_edit_modo1 = findViewById(R.id.cb_edit_modo1);
         cb_edit_modo2 = findViewById(R.id.cb_edit_modo2);
         cb_edit_modo3 = findViewById(R.id.cb_edit_modo3);
+
+        Intent datos = getIntent();
+        String nombre = datos.getStringExtra("nombreCurso");
+        Cursor cursor = (Cursor) cbd.buscarCurso(nombre);
+        //if (cursor.moveToFirst() && cursor.getCount() > 0) {
+            do {
+                Curso curso = new Curso();
+                curso.setCursoId(cursor.getInt(0));
+                curso.setNombreCurso(cursor.getString(1));
+                curso.setCentro(cursor.getString(2));
+                et_edit_nombreCurso.setText(curso.getNombreCurso());
+                et_edit_centroCurso.setText(curso.getCentro());
+                rg_edit_disponibilidad.check(Integer.parseInt(cursor.getString(3)));
+                s_edit_numeroAlumnos.setSelected(Boolean.parseBoolean(cursor.getString(4)));
+                cb_edit_modo1.setChecked(Boolean.parseBoolean(cursor.getString(5)));
+                cb_edit_modo2.setChecked(Boolean.parseBoolean(cursor.getString(5)));
+                cb_edit_modo3.setChecked(Boolean.parseBoolean(cursor.getString(5)));
+                Intent i = new Intent(EditarCursoActivity.this, CursosActivity.class);
+                startActivity(i);
+            } while (cursor.moveToNext());
+        /*} else {
+            Toast.makeText(getApplicationContext(), "No existe el curso",
+                    Toast.LENGTH_SHORT).show();
+        }*/
+
         btn_edit_editarCurso = findViewById(R.id.btn_edit_editarCurso);
         btn_edit_editarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,40 +114,18 @@ public class EditarCursoActivity extends AppCompatActivity {
                 if (cb_edit_modo3.isChecked()) {
                     listaModo.add(modo3);
                 }
-                //Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
-                /*int cant = cbd.editarCurso(nombreCurso, curso);
+                Curso curso = new Curso(nombreCurso, centroCurso, listaDisponibilidad, numeroAlumnos, listaModo);
+                int cant = cbd.editarCurso(nombreCurso, curso);
                 if (cant == 1) {
                     Toast.makeText(getApplicationContext(), "se modificaron los datos del curso", Toast.LENGTH_SHORT)
                             .show();
-                    Intent i = new Intent(EditarCursoActivity.this, CursosActivity.class);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(getApplicationContext(), "No existe el curso",
-                            Toast.LENGTH_SHORT).show();
-                }*/
-            }
-        });
-        /*btn_edit_buscarCurso = findViewById(R.id.btn_edit_buscarCurso);
-        btn_edit_buscarCurso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nombreCurso = et_edit_nombreCurso.getText().toString();
-                Cursor fila = (Cursor) cbd.buscarCurso(nombreCurso);
-                if (fila.moveToFirst()) {
-                    et_edit_centroCurso.setText(fila.getString(2));
-                    rg_edit_disponibilidad.check(Integer.parseInt(fila.getString(3)));
-                    s_edit_numeroAlumnos.setSelected(Boolean.parseBoolean(fila.getString(4)));
-                    cb_edit_modo1.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    cb_edit_modo2.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    cb_edit_modo3.setChecked(Boolean.parseBoolean(fila.getString(5)));
-                    Intent i = new Intent(NuevoCursoActivity.this, CursosActivity.class);
-                    startActivity(i);
+                    showDialog(0);
                 } else {
                     Toast.makeText(getApplicationContext(), "No existe el curso",
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });*/
+        });
         btn_edit_cancelarCurso = findViewById(R.id.btn_edit_cancelarCurso);
         btn_edit_cancelarCurso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,12 +143,14 @@ public class EditarCursoActivity extends AppCompatActivity {
         if (id == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.titulo_editar);
-            builder.setMessage(R.string.msg_editar)
+            builder.setMessage(R.string.msg_confirmEditarCurso)
+                    .setIcon(R.drawable.ic_done_black_24dp)
                     .setPositiveButton(R.string.lb_si, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     // Qué hacer si el usuario pulsa "Si"
-
+                                    Intent i = new Intent(EditarCursoActivity.this, CursosActivity.class);
+                                    startActivity(i);
                                 }
                             })
                     .setNegativeButton(R.string.lb_no, new DialogInterface.OnClickListener() {

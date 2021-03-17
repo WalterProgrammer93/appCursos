@@ -59,7 +59,7 @@ public class CursoBD {
         bd.close();
     }
 
-    public int editarCurso(int id, Curso curso) {
+    public int editarCurso(String nombre, Curso curso) {
         bd = abd.getWritableDatabase();
         ContentValues registro = new ContentValues();
         registro.put(COL_NOMBRE_CURSO, curso.getNombreCurso());
@@ -67,7 +67,7 @@ public class CursoBD {
         registro.put(COL_DISPONIBILIDAD, curso.getDisponibilidad());
         registro.put(COL_NUM_ALUMNOS, curso.getNumeroAlumnos());
         registro.put(COL_MODOS, curso.getModos());
-        int res = bd.update(TABLA_CURSOS, registro, COL_CURSO_ID + "=" + id,null);
+        int res = bd.update(TABLA_CURSOS, registro, COL_NOMBRE_CURSO + "=" + nombre,null);
         bd.close();
         return res;
     }
@@ -81,7 +81,7 @@ public class CursoBD {
     public Curso buscarCurso(String nombre) {
         bd = abd.getReadableDatabase();
         Cursor cursor = bd.query(TABLA_CURSOS, new String[] {COL_CURSO_ID, COL_NOMBRE_CURSO, COL_CENTRO, COL_DISPONIBILIDAD, COL_NUM_ALUMNOS, COL_MODOS}, COL_NOMBRE_CURSO
-                + " LIKE \"" + nombre + "\"", null, null, null, COL_NOMBRE_CURSO);
+                + " LIKE \"" + nombre + "\"", null, null, null, COL_CURSO_ID);
         //bd.close();
         return seleccionarCurso(cursor);
     }
@@ -155,6 +155,4 @@ public class CursoBD {
         bd.close();
         return false;
     }
-
-
 }

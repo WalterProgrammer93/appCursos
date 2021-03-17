@@ -108,9 +108,11 @@ public class CursosActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
                                         Intent editar = new Intent(CursosActivity.this, EditarCursoActivity.class);
+                                        String nombreCurso = (String) lvCursos.getItemAtPosition(id);
+                                        editar.putExtra("nombreCurso", nombreCurso);
                                         startActivity(editar);
                                     }
                                 })
