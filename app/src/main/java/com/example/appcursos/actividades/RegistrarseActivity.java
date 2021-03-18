@@ -3,13 +3,12 @@ package com.example.appcursos.actividades;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+//import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,7 +16,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,7 +24,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appcursos.R;
 import com.example.appcursos.bd.UsuarioBD;
-import com.example.appcursos.modelos.Usuario;
+//import com.example.appcursos.modelos.Usuario;
 import org.json.JSONObject;
 
 public class RegistrarseActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener {
@@ -65,20 +63,20 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
             public void onClick(View view) {
                 // AGREGAR USUARIO
                 if (validar()) {
-                    cargarWebService();
                     String username = et_username.getText().toString();
                     String email = et_email.getText().toString();
                     String pass = et_password.getText().toString();
                     String confirmPassword = et_confirmPassword.getText().toString();
 
                     if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
-                        String passEncriptado = "";
+                        /*String passEncriptado = "";
                         try {
                             passEncriptado = ubd.encrypt(pass);
                         }catch (Exception e) {
                             e.printStackTrace();
                         }
-                        ubd.insertarUsuario(new Usuario(username, email, passEncriptado));
+                        ubd.insertarUsuario(new Usuario(username, email, passEncriptado));*/
+                        cargarWebService();
                         Toast.makeText(RegistrarseActivity.this, " Usuario creado correctamente ", Toast.LENGTH_SHORT).show();
                         Intent acceso = new Intent(RegistrarseActivity.this, MenuActivity.class);
                         acceso.putExtra("Username", username);
@@ -116,12 +114,28 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
         progressDialog.setMessage("Cargando...");
         progressDialog.show();
 
-        String url = "http://192.168.10.10/webServiceRegister/webService.php?username=" + et_username.getText().toString() + "&email=" +
+        String url = "http://192.168.1.128/webServiceRegister/webService.php?username=" + et_username.getText().toString() + "&email=" +
                 et_email.getText().toString() + "&password=" + et_password.getText().toString();
         url = url.replace(" ", "%20");
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
         request.add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        progressDialog.hide();
+        Toast.makeText(this, "No se pudo registrar el usuario"+error.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Toast.makeText(this, "El usuario se registro correctamente", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
+        et_username.setText("");
+        et_email.setText("");
+        et_password.setText("");
+        et_confirmPassword.setText("");
     }
 
     private boolean validar() {
@@ -169,19 +183,5 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
         return valido;
     }
 
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        progressDialog.hide();
-        Toast.makeText(this, "No se pudo registrar el usuario"+error.toString(), Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onResponse(JSONObject response) {
-        Toast.makeText(this, "El usuario se registro correctamente", Toast.LENGTH_SHORT).show();
-        progressDialog.hide();
-        et_username.setText("");
-        et_email.setText("");
-        et_password.setText("");
-        et_confirmPassword.setText("");
-    }
 }
