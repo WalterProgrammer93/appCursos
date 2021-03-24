@@ -23,7 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appcursos.R;
-import com.example.appcursos.bd.UsuarioBD;
+//import com.example.appcursos.bd.UsuarioBD;
 //import com.example.appcursos.modelos.Usuario;
 import org.json.JSONObject;
 
@@ -31,7 +31,7 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
 
     EditText et_username, et_email, et_password, et_confirmPassword;
     Button btn_anadir, btn_cancelar;
-    UsuarioBD ubd;
+    //UsuarioBD ubd;
     Animation animation;
     ConstraintLayout constraintLayout;
     ProgressDialog progressDialog;
@@ -48,7 +48,7 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
         animation.setRepeatCount(20);
         constraintLayout = findViewById(R.id.layout_register);
         constraintLayout.startAnimation(animation);
-        ubd = new UsuarioBD(this);
+        //ubd = new UsuarioBD(this);
         et_username = findViewById(R.id.et_usuario);
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);
@@ -68,7 +68,7 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
                     String pass = et_password.getText().toString();
                     String confirmPassword = et_confirmPassword.getText().toString();
 
-                    if (confirmPassword.equals(pass) && !ubd.isEmailExists(email)) {
+                    if (confirmPassword.equals(pass) /*&& !ubd.isEmailExists(email)*/) {
                         /*String passEncriptado = "";
                         try {
                             passEncriptado = ubd.encrypt(pass);
@@ -114,7 +114,7 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
         progressDialog.setMessage("Cargando...");
         progressDialog.show();
 
-        String url = "http://192.168.1.128/webServiceRegister/webService.php?username=" + et_username.getText().toString() + "&email=" +
+        String url = "http://localhost/webServiceRegister/webService.php?username=" + et_username.getText().toString() + "&email=" +
                 et_email.getText().toString() + "&password=" + et_password.getText().toString();
         url = url.replace(" ", "%20");
 
@@ -125,7 +125,7 @@ public class RegistrarseActivity extends AppCompatActivity implements Response.L
     @Override
     public void onErrorResponse(VolleyError error) {
         progressDialog.hide();
-        Toast.makeText(this, "No se pudo registrar el usuario"+error.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "No se pudo registrar el usuario"+ error.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
