@@ -37,12 +37,12 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <!--<TextView
                         android:id="@+id/tvIdCurso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryText"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"/>-->
 
                     <TextView
                         android:id="@+id/tvNombreCurso"

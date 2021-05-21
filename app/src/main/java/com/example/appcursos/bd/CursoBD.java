@@ -73,9 +73,9 @@ public class CursoBD {
         return res;
     }
 
-    public void eliminarCurso(int id) {
+    public void eliminarCurso(String nombre) {
         bd = abd.getWritableDatabase();
-        bd.delete(TABLA_CURSOS, COL_CURSO_ID + "=" + id, null);
+        bd.delete(TABLA_CURSOS, COL_NOMBRE_CURSO + "=" + nombre, null);
         bd.close();
     }
 
@@ -155,39 +155,5 @@ public class CursoBD {
         cursor.close();
         bd.close();
         return false;
-    }
-
-    public ArrayList<HashMap<String, String>> selectAllIds() {
-        try {
-            ArrayList<HashMap<String, String>> idArrayList = new ArrayList<>();
-            HashMap<String, String> map;
-
-            bd = abd.getReadableDatabase();
-
-            String query = "SELECT * FROM " + TABLA_CURSOS;
-
-            Cursor cursor = bd.rawQuery(query, null);
-
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    do {
-                        map = new HashMap<>();
-                        map.put(COL_CURSO_ID, cursor.getString(0));
-                        idArrayList.add(map);
-
-                    } while (cursor.moveToNext());
-                }
-            }
-            if (cursor != null) {
-                cursor.close();
-            }
-            bd.close();
-            return idArrayList;
-
-
-        } catch (Exception e) {
-            return null;
-        }
-
     }
 }

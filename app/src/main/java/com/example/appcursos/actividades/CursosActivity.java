@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.DialogInterface;
@@ -73,9 +72,22 @@ public class CursosActivity extends AppCompatActivity {
 
     private void consultar(String keyword) {
         Curso c = cbd.buscarCurso(keyword);
-        listaCursos.add(c);
-        if (listaCursos != null) {
+        if (listaCursos.contains(c)) {
             lvCursos.setAdapter(new CursoAdaptador(getApplicationContext(), R.layout.activity_cursos, listaCursos));
+        } else {
+            Dialog d;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.title_informacion)
+                    .setIcon(R.drawable.ic_done_black_24dp)
+                    .setMessage(R.string.msg_informacion)
+                    .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                            dialog.dismiss();
+                        }
+                    });
+            d = builder.create();
+            d.show();
         }
     }
 
@@ -95,7 +107,6 @@ public class CursosActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override
@@ -107,27 +118,14 @@ public class CursosActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int posicion = info.position;
+        final int posicion = info.position;
 
-        switch (posicion) {
+        switch (item.getItemId()) {
             case R.id.action_editar:
-                showDialog(0);
-                return true;
-            case R.id.action_eliminar:
-                showDialog(1);
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-    @Override
-    public Dialog onCreateDialog(int id) {
-        Dialog dialogo;
-        switch (id) {
-            case 0:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.titulo_editar)
+                //showDialog(0);
+                Dialog dialogo1;
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setTitle(R.string.titulo_editar)
                         .setMessage(R.string.msg_editar)
                         .setIcon(R.drawable.ic_warning_black_24dp)
                         .setPositiveButton(R.string.lb_si,
@@ -136,7 +134,7 @@ public class CursosActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
                                         Intent editar = new Intent(CursosActivity.this, EditarCursoActivity.class);
-                                        editar.putExtra("nombreCurso", String.valueOf(listaCursos.get(id)));
+                                        editar.putExtra("nombreCurso", String.valueOf(listaCursos.get(posicion).getNombreCurso()));
                                         startActivity(editar);
                                     }
                                 })
@@ -149,9 +147,12 @@ public class CursosActivity extends AppCompatActivity {
                                         dialog.dismiss();
                                     }
                                 });
-                dialogo = builder.create();
-                break;
-            case 1:
+                dialogo1 = builder1.create();
+                dialogo1.show();
+                return true;
+            case R.id.action_eliminar:
+                //showDialog(1);
+                Dialog dialogo2;
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
                 builder2.setTitle(R.string.titulo_eliminar)
                         .setMessage(R.string.msg_eliminar)
@@ -159,13 +160,16 @@ public class CursosActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int i) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         // Qué hacer si el usuario pulsa "Si"
-                                        int id = i;
-                                        cbd.eliminarCurso(id);
-                                        listaCursos.remove(id);
-                                        showDialog(2);
+
+                                        listaCursos.remove(posicion);
                                         cursoAdaptador.notifyDataSetChanged();
+                                        String textoLista = String.valueOf(lvCursos.getItemAtPosition(posicion));
+                                        String nombre = textoLista.substring(textoLista.indexOf("<>") + 2, textoLista.lastIndexOf("<>")).trim();
+                                        cbd.eliminarCurso(nombre);
+                                        showDialog(0);
+
                                     }
                                 })
                         .setNegativeButton(R.string.lb_no,
@@ -177,27 +181,29 @@ public class CursosActivity extends AppCompatActivity {
                                         dialog.dismiss();
                                     }
                                 });
-                dialogo = builder2.create();
-                break;
-            case 2:
-                AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
-                builder3.setTitle(R.string.title_confirmar)
-                        .setIcon(R.drawable.ic_done_black_24dp)
-                        .setMessage(R.string.msg_confirmEliminar)
-                        .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // User cancelled the dialog
-                                    dialog.dismiss();
-                                }
-                        });
-                    // Create the AlertDialog object and return it
-                dialogo = builder3.create();
-                break;
+                dialogo2 = builder2.create();
+                dialogo2.show();
+                return true;
             default:
-                return super.onCreateDialog(id);
-
+                return super.onContextItemSelected(item);
         }
-        return dialogo;
+    }
 
+    @Override
+    public Dialog onCreateDialog(int id) {
+        Dialog dialogo;
+        AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+        builder3.setTitle(R.string.title_confirmar)
+                .setIcon(R.drawable.ic_done_black_24dp)
+                .setMessage(R.string.msg_confirmEliminar)
+                .setNegativeButton(R.string.lb_cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        dialog.dismiss();
+                    }
+                });
+        // Create the AlertDialog object and return it
+        dialogo = builder3.create();
+        return dialogo;
     }
 }

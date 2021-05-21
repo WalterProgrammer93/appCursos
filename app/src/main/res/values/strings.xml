@@ -130,4 +130,6 @@
     <string name="msg_confirmEliminarRol">El rol se ha eliminado correctamente</string>
     <string name="msg_confirmEliminarUsuario">El usuario se ha eliminado correctamente</string>
     <string name="msg_confirmEditarCurso">El curso se ha editado</string>
+    <string name="title_informacion">Mensaje</string>
+    <string name="msg_informacion">El curso no se encuentra</string>
 </resources>
