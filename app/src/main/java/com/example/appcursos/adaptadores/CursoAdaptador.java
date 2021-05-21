@@ -29,6 +29,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
 
     static class ViewHolder {
         ImageView iconoCursos;
+        TextView idCurso;
         TextView nombreCurso;
         TextView centroCurso;
         TextView disponibilidad;
@@ -54,6 +55,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
             view = layoutInflater.inflate(listItemResLayout, parent, false);
             holder = new ViewHolder();
             holder.iconoCursos = view.findViewById(R.id.ivCurso);
+            holder.idCurso = view.findViewById(R.id.tvIdCurso);
             holder.nombreCurso = view.findViewById(R.id.tvNombreCurso);
             holder.centroCurso = view.findViewById(R.id.tvCentroCurso);
             holder.disponibilidad = view.findViewById(R.id.tvDisponibilidad);
@@ -74,6 +76,7 @@ public class CursoAdaptador extends ArrayAdapter<Curso> {
             //Glide.with(getContext()).load(curso.getIconoCurso()).into(holder.iconoCursos);
             holder.iconoCursos.setImageResource(R.drawable.ic_school_black_24dp);
             holder.nombreCurso.setText(curso.getNombreCurso());
+            holder.idCurso.setText(curso.getCursoId());
             holder.centroCurso.setText(curso.getCentro());
             holder.disponibilidad.setText(curso.getDisponibilidad());
             holder.numeroAlumnos.setText(curso.getNumeroAlumnos());

@@ -3,9 +3,10 @@ package com.example.appcursos.actividades;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,13 +23,10 @@ import com.example.appcursos.adaptadores.CursoAdaptador;
 import com.example.appcursos.bd.CursoBD;
 import com.example.appcursos.modelos.Curso;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 
 public class CursosActivity extends AppCompatActivity {
 
     ArrayList<Curso> listaCursos;
-    ArrayList<HashMap<String, String>> myIds;
     CursoAdaptador cursoAdaptador;
     ListView lvCursos;
     CursoBD cbd;
@@ -53,7 +51,32 @@ public class CursosActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu2, menu);
+        SearchView searchView = (SearchView) menu.findItem(R.id.searchView).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                consultar(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                consultar(newText);
+                return false;
+            }
+        });
         return true;
+    }
+
+    private void consultar(String keyword) {
+        Curso c = cbd.buscarCurso(keyword);
+        listaCursos.add(c);
+        if (listaCursos != null) {
+            lvCursos.setAdapter(new CursoAdaptador(getApplicationContext(), R.layout.activity_cursos, listaCursos));
+        }
     }
 
     @Override
@@ -86,14 +109,11 @@ public class CursosActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int posicion = info.position;
 
-        switch (item.getItemId()) {
+        switch (posicion) {
             case R.id.action_editar:
                 showDialog(0);
                 return true;
             case R.id.action_eliminar:
-                //listaCursos.remove(posicion);
-                int id = (int) lvCursos.getSelectedItem();
-                cbd.eliminarCurso(id);
                 showDialog(1);
                 return true;
             default:
@@ -139,8 +159,11 @@ public class CursosActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.lb_si,
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int id) {
+                                    public void onClick(DialogInterface dialog, int i) {
                                         // Qué hacer si el usuario pulsa "Si"
+                                        int id = i;
+                                        cbd.eliminarCurso(id);
+                                        listaCursos.remove(id);
                                         showDialog(2);
                                         cursoAdaptador.notifyDataSetChanged();
                                     }
