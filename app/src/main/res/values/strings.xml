@@ -85,8 +85,8 @@
     <string name="video_presentacion">Video de Presentación</string>
     <string name="video_curso1">Curso Android</string>
     <string name="video_curso2">Curso Java</string>
-    <string name="video_curso3">Curso de JavaScript</string>
-    <string name="video_curso4">Curso de Python</string>
+    <string name="video_curso3" tools:ignore="MissingTranslation">Curso de JavaScript</string>
+    <string name="video_curso4" tools:ignore="MissingTranslation">Curso de Python</string>
     <string name="titulo">Editar</string>
     <string name="lb_cancelar">Cancelar</string>
     <string name="mensajeAdmin">Bienvenido Admin</string>
@@ -126,10 +126,11 @@
     <string name="msg_confirmEliminarAsignatura">La asignatura se ha eliminado correctamente</string>
     <string name="msg_confirmEliminarAlumno">El alumno se ha eliminado correctamente</string>
     <string name="msg_confirmEliminarPermiso">El permiso se ha eliminado correctamente</string>
-    <string name="msg_confirmEliminarProfesor">El profesor se ha eliminado correctamente</string>
+    <string name="msg_confirmEliminarProfesor" tools:ignore="Typos">El profesor se ha eliminado correctamente</string>
     <string name="msg_confirmEliminarRol">El rol se ha eliminado correctamente</string>
     <string name="msg_confirmEliminarUsuario">El usuario se ha eliminado correctamente</string>
     <string name="msg_confirmEditarCurso">El curso se ha editado</string>
     <string name="title_informacion">Mensaje</string>
     <string name="msg_informacion">El curso no se encuentra</string>
+    <string name="title_activity_mapa2" tools:ignore="MissingTranslation">Mapa</string>
 </resources>

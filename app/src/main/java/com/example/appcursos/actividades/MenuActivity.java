@@ -120,7 +120,7 @@ public class MenuActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), menuAdmin.get(8), Toast.LENGTH_SHORT).show();
                             break;
                         case 9:
-                            Intent i9 = new Intent(MenuActivity.this, MapaActivity.class);
+                            Intent i9 = new Intent(MenuActivity.this, Mapa2Activity.class);
                             startActivity(i9);
                             Toast.makeText(getApplicationContext(), menuAdmin.get(9), Toast.LENGTH_SHORT).show();
                             break;
@@ -169,7 +169,7 @@ public class MenuActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), menuAlumno.get(3), Toast.LENGTH_SHORT).show();
                                 break;
                             case 4:
-                                Intent i4 = new Intent(MenuActivity.this, MapaActivity.class);
+                                Intent i4 = new Intent(MenuActivity.this, Mapa2Activity.class);
                                 startActivity(i4);
                                 Toast.makeText(getApplicationContext(), menuAlumno.get(4), Toast.LENGTH_SHORT).show();
                                 break;
@@ -224,7 +224,7 @@ public class MenuActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), menuProfesor.get(4), Toast.LENGTH_SHORT).show();
                                     break;
                                 case 5:
-                                    Intent i5 = new Intent(MenuActivity.this, MapaActivity.class);
+                                    Intent i5 = new Intent(MenuActivity.this, Mapa2Activity.class);
                                     startActivity(i5);
                                     Toast.makeText(getApplicationContext(), menuProfesor.get(5), Toast.LENGTH_SHORT).show();
                                     break;
@@ -260,7 +260,7 @@ public class MenuActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), menuUsuario.get(1), Toast.LENGTH_SHORT).show();
                                         break;
                                     case 2:
-                                        Intent i2 = new Intent(MenuActivity.this, MapaActivity.class);
+                                        Intent i2 = new Intent(MenuActivity.this, Mapa2Activity.class);
                                         startActivity(i2);
                                         Toast.makeText(getApplicationContext(), menuUsuario.get(2), Toast.LENGTH_SHORT).show();
                                         break;

@@ -2,12 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.appcursos">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -33,12 +35,6 @@
         android:theme="@style/barra"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".actividades.NuevaRutaActivity"
-            android:label="@string/lb_nuevaRuta">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.appcursos.actividades.MainActivity" />
-        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -51,6 +47,20 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".actividades.Mapa2Activity"
+            android:label="@string/title_activity_mapa2">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".actividades.NuevaRutaActivity"
+            android:label="@string/lb_nuevaRuta">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.appcursos.actividades.MainActivity" />
+        </activity>
         <activity
             android:name=".actividades.MapaActivity"
             android:label="@string/lb_mapa">
