@@ -7,7 +7,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -72,7 +74,17 @@ public class MainActivity extends AppCompatActivity {
 
                     //Check Authentication is successful or not
                     if (usuario != null) {
+                        NotificationCompat.Builder nBuilder = new NotificationCompat.Builder(MainActivity.this)
+                                .setContentTitle("Login")
+                                .setContentText("Se ha abierto el Login")
+                                .setSmallIcon(R.drawable.ic_info_black_24dp)
+                                .setContentIntent(PendingIntent.getActivity(MainActivity.this, (int) System.currentTimeMillis(),
+                                        new Intent(MainActivity.this, MenuActivity.class), 0));
+                        nBuilder.build();
                         Intent menu = new Intent(MainActivity.this, MenuActivity.class);
+                        /*NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        nManager.notify(0, nBuilder.build());
+
 
                         menu.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, menu, 0);
@@ -87,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         // Set the intent that will fire when the user taps the notification
                         builder.setContentIntent(pendingIntent);
                         builder.setAutoCancel(true);
-                        notificationManager.notify(random.nextInt(), builder.build());
+                        notificationManager.notify(random.nextInt(), builder.build());*/
 
                         menu.putExtra("Username", usuario.getUsername());
                         startActivity(menu);

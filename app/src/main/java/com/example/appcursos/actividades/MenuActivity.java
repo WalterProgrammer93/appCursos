@@ -3,10 +3,14 @@ package com.example.appcursos.actividades;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.app.Dialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -46,6 +50,16 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_menu);
+
+        /*NotificationCompat.Builder nBuilder = new NotificationCompat.Builder(MenuActivity.this)
+                .setContentTitle("Titulo de la notificación")
+                .setContentText("Esto es el texto de la notificación")
+                .setSmallIcon(R.drawable.default_marker)
+                .setContentIntent(PendingIntent.getActivity(MenuActivity.this, (int) System.currentTimeMillis(),
+                        new Intent(MenuActivity.this, MapActivity.class), 0));
+
+        NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nManager.notify(0, nBuilder.build());*/
 
         ubd = new UsuarioBD(this);
         pbd = new PermisoBD(this);
